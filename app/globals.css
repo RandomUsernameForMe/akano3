@@ -49,24 +49,24 @@
 }
 
 :root {
-  /* Akano3 — light warm theme */
-  --background:             oklch(0.975 0.004 80);   /* warm off-white #faf7f2 */
-  --foreground:             oklch(0.13  0.020 22);   /* dark warm text  #1a0a0a */
+  /* Akano3 — neutral base, crimson primary, teal + gold accents */
+  --background:             oklch(0.987 0.001 60);   /* near-white, barely warm */
+  --foreground:             oklch(0.13  0.020 22);   /* dark text */
   --card:                   oklch(1     0     0);    /* white */
   --card-foreground:        oklch(0.13  0.020 22);
-  --popover:                oklch(1     0     0);    /* white — makes dropdowns visible */
+  --popover:                oklch(1     0     0);
   --popover-foreground:     oklch(0.13  0.020 22);
   --primary:                oklch(0.33  0.120 17);   /* crimson #6b0f1a */
   --primary-foreground:     oklch(1     0     0);
-  --secondary:              oklch(0.94  0.005 80);   /* light warm beige */
-  --secondary-foreground:   oklch(0.28  0.030 30);
-  --muted:                  oklch(0.96  0.003 80);
-  --muted-foreground:       oklch(0.52  0.025 30);   /* warm muted text */
-  --accent:                 oklch(0.73  0.072 74);   /* gold #c8a96e */
+  --secondary:              oklch(0.90  0.040 192);  /* teal tint */
+  --secondary-foreground:   oklch(0.20  0.060 192);
+  --muted:                  oklch(0.955 0.025 192);  /* very light teal */
+  --muted-foreground:       oklch(0.46  0.030 192);
+  --accent:                 oklch(0.73  0.072 74);   /* sandy gold #c8a96e */
   --accent-foreground:      oklch(0.13  0.020 22);
   --destructive:            oklch(0.577 0.245 27.325);
-  --border:                 oklch(0.90  0.005 80);   /* warm light border */
-  --input:                  oklch(0.975 0.004 80);
+  --border:                 oklch(0.90  0     0);    /* neutral gray border */
+  --input:                  oklch(1     0     0);    /* white inputs */
   --ring:                   oklch(0.33  0.120 17);   /* crimson focus ring */
   --chart-1:                oklch(0.57  0.080 196);  /* teal */
   --chart-2:                oklch(0.33  0.120 17);   /* crimson */
@@ -74,13 +74,13 @@
   --chart-4:                oklch(0.65  0.090 150);  /* green */
   --chart-5:                oklch(0.60  0.100 270);  /* purple */
   --radius:                 0.5rem;
-  --sidebar:                oklch(0.975 0.004 80);
+  --sidebar:                oklch(0.987 0.001 60);
   --sidebar-foreground:     oklch(0.13  0.020 22);
   --sidebar-primary:        oklch(0.33  0.120 17);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent:         oklch(0.94  0.005 80);
-  --sidebar-accent-foreground: oklch(0.28 0.030 30);
-  --sidebar-border:         oklch(0.90  0.005 80);
+  --sidebar-accent:         oklch(0.90  0.040 192);
+  --sidebar-accent-foreground: oklch(0.20 0.060 192);
+  --sidebar-border:         oklch(0.90  0     0);
   --sidebar-ring:           oklch(0.33  0.120 17);
 }
 
@@ -129,3 +129,37 @@
     @apply font-sans;
   }
 }
+
+/* ── Akano3 custom styles ─────────────────────────────────────────────────── */
+.font-cinzel        { }
+.sand-card          { background:#c8a96e !important; color:#3a1a0a !important; }
+.sand-card *        { color:#3a1a0a !important; border-color:#b8965a !important; }
+.teal-btn           { background:#2a8a8a !important; color:#fff !important; }
+.teal-btn:hover     { background:#3aabab !important; }
+
+@keyframes alarm-pulse {
+  0%,100% { opacity:1; background-color:#c0392b; }
+  50%     { opacity:.85; background-color:#e74c3c; }
+}
+@keyframes alarm-flash {
+  0%,100% { opacity:1; }
+  50%     { opacity:0; }
+}
+.alarm-overlay    { animation: alarm-pulse 1.2s ease-in-out infinite; }
+.alarm-flash-text { animation: alarm-flash 0.8s step-end infinite; }
+
+@keyframes slide-in-right {
+  from { transform:translateX(100%); opacity:0; }
+  to   { transform:translateX(0);   opacity:1; }
+}
+.toast-slide { animation: slide-in-right 0.3s ease-out; }
+
+@keyframes rank-update {
+  0%   { background: rgba(42,138,138,0.15); }
+  100% { background: transparent; }
+}
+.rank-flash { animation: rank-update 1s ease-out; }
+
+::-webkit-scrollbar       { width:6px; height:6px; }
+::-webkit-scrollbar-track { background:rgba(0,0,0,.04); }
+::-webkit-scrollbar-thumb { background:rgba(107,15,26,.2); border-radius:3px; }

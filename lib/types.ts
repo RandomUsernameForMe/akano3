@@ -1,0 +1,46 @@
+import type { CSSProperties, ComponentType } from "react"
+
+export type Role = "gm" | "teacher" | "ruze" | "student" | "display"
+export type Specialization = "combat" | "tactical" | "support"
+export type ActionType =
+  | "mission_success" | "mission_fail" | "lesson" | "shidosei"
+  | "informant" | "monster" | "simulation" | "qr_quest"
+  | "peer_gift" | "correction"
+
+export interface Team {
+  id: string; name: string; unitId: string
+  memberIds: string[]; points: number; color: string
+}
+export interface Character {
+  id: string; code: string; name: string; nickname?: string
+  role: Role; teamId?: string; unitId?: string; circleIds: string[]
+  specialization?: Specialization; kaichiLevel: number
+  points: number; peerPointPool: number; lessonClaimedThisWindow: boolean
+}
+export interface Circle  { id: string; name: string; memberIds: string[] }
+export interface Unit    { id: string; name: string; teamIds: [string, string] }
+export interface PointEntry {
+  id: string; timestamp: Date; sourceRole: Role
+  sourceCharacterId: string; targetType: "team" | "unit" | "circle"
+  targetId: string; resolvedTeamIds: string[]
+  amount: number; actionType: ActionType; note?: string
+}
+export interface MiasmaEntry {
+  id: string; timestamp: Date; amount: number
+  sourceCharacterId: string; note: string
+}
+export interface QRCode {
+  id: string; token: string; label: string
+  targetType: "team" | "unit" | "circle"; targetId: string
+  points: number; validity: "once" | "timed" | "repeat"
+  validUntil?: Date; timesScanned: number
+  status: "active" | "expired" | "used"; createdAt: Date
+}
+export interface AlarmState {
+  active: boolean
+  type: "evacuation" | "battle" | "assembly" | "custom"
+  message: string; color: string
+}
+export interface Toast { id: string; message: string; type: "success" | "error" | "info" }
+
+export type TablerIcon = ComponentType<{ size?: number; color?: string; strokeWidth?: number; style?: CSSProperties }>

@@ -14,16 +14,18 @@ import { TopBar } from "@/components/shared/top-bar"
 import { ThemeProvider } from "@/lib/theme-context"
 
 function Router() {
-  const { currentUser, currentScreen } = useGame()
+  const { currentUser } = useGame()
 
-  if (currentScreen === "login" || !currentUser) return <LoginScreen />
-  if (currentScreen === "display") return <DisplayScreen />
+  if (!currentUser) return <LoginScreen />
+
+  const role = currentUser.role
+  if (role === "display") return <DisplayScreen />
 
   return (
     <div style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
       <AlarmBannerStrip />
-      <TopBar showBroadcast={["gm","teacher","ruze"].includes(currentUser.role)} />
-      {currentScreen === "student" ? (
+      <TopBar showBroadcast={["gm","teacher","ruze"].includes(role)} />
+      {role === "student" ? (
         <>
           <StudentDashboard />
           <ToastContainer />
@@ -31,9 +33,9 @@ function Router() {
       ) : (
         <>
           <div style={{ maxWidth:1400, margin:"0 auto", padding:"24px 16px" }}>
-            {currentScreen === "gm"      && <GMDashboard />}
-            {currentScreen === "teacher" && <TeacherDashboard />}
-            {currentScreen === "ruze"    && <RuzeDashboard />}
+            {role === "gm"      && <GMDashboard />}
+            {role === "teacher" && <TeacherDashboard />}
+            {role === "ruze"    && <RuzeDashboard />}
           </div>
           <ToastContainer />
         </>

@@ -1,3 +1,7 @@
+## [2026-04-27] - Fix type error v page.tsx
+
+- Router: odstraněn currentScreen (neexistuje v GameCtx), screen se nyní derivuje z currentUser.role
+
 ## [2026-04-27] - Login UI a gift route fix
 
 - Logo v pozadí login formuláře — velké, průhledné (opacity 0.2)

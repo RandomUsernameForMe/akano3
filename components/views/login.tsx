@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useState } from "react"
-import { IconSword, IconUser, IconCircleX } from "@tabler/icons-react"
+import Image from "next/image"
+import { IconUser, IconCircleX } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -45,21 +46,7 @@ export function LoginScreen() {
 
       <div style={{ width:"100%", maxWidth:420, position:"relative" }}>
         <div style={{ textAlign:"center", marginBottom:48 }}>
-          <div style={{
-            display:"inline-flex", alignItems:"center", justifyContent:"center",
-            width:72, height:72, borderRadius:"50%",
-            background:"#fff",
-            border:"2px solid rgba(107,15,26,0.25)", marginBottom:20,
-            boxShadow:"0 4px 24px rgba(107,15,26,0.12)",
-          }}>
-            <IconSword size={32} color="#6b0f1a" />
-          </div>
-          <h1 style={{
-            fontSize:"3rem", fontWeight:900, letterSpacing:"0.05em",
-            color:"#1a0a0a", margin:0, lineHeight:1,
-          }}>
-            AKANO
-          </h1>
+          <Image src="/logo.png" alt="AKANO" width={180} height={220} style={{ objectFit:"contain", display:"block", margin:"0 auto" }} />
         </div>
 
         <div style={{

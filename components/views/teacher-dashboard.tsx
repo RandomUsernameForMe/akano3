@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import {
-  IconPlus, IconDashboard, IconList, IconChartLine, IconStar, IconBell,
+  IconPlus, IconDashboard, IconList, IconChartLine, IconUsers, IconBell,
 } from "@tabler/icons-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -10,7 +10,7 @@ import { ScoreboardComponent } from "@/components/panels/scoreboard"
 import { PointAssignmentForm } from "@/components/panels/point-assignment"
 import { TransactionLog } from "@/components/panels/transaction-log"
 import { ChartsPanel } from "@/components/panels/charts"
-import { KaichiPanel } from "@/components/panels/kaichi"
+import { PeoplePanel } from "@/components/panels/people"
 import { AlarmPanel } from "@/components/panels/alarm"
 
 export function TeacherDashboard() {
@@ -48,7 +48,7 @@ export function TeacherDashboard() {
             ["overview","Přehled",IconDashboard],
             ["log","Log",IconList],
             ["charts","Grafy",IconChartLine],
-            ["kaichi","Kaichi",IconStar],
+            ["people","Lidé",IconUsers],
             ["alarm","Alarm",IconBell],
           ].map(([v,label,Icon]) => (
             <TabsTrigger key={v as string} value={v as string}
@@ -73,7 +73,7 @@ export function TeacherDashboard() {
         </TabsContent>
         <TabsContent value="log"><TransactionLog /></TabsContent>
         <TabsContent value="charts"><ChartsPanel /></TabsContent>
-        <TabsContent value="kaichi"><KaichiPanel /></TabsContent>
+        <TabsContent value="people"><PeoplePanel /></TabsContent>
         <TabsContent value="alarm"><AlarmPanel /></TabsContent>
       </Tabs>
     </div>

@@ -1,3 +1,21 @@
+## [2026-04-27] - URL routing
+
+- Každá role má vlastní URL: `/play/<character-id>` (např. `/play/S007`)
+- Login přesměruje na `/play/<id>`, refresh zachová session přes URL
+- `GameProvider` přesunut do `app/layout.tsx` (sdílený přes všechny stránky)
+- Odstraněny `currentScreen`, `navigate`, `login` z GameContext — routing řeší Next.js router
+- Přidán `setCurrentUser` do GameContext pro inicializaci z URL parametru
+
+## [2026-04-27] - Persist login přes refresh
+
+- Login code uložen do `localStorage`, obnoven na mount
+- Logout a neplatný code `localStorage` vymaže
+
+## [2026-04-26] - Fix: polling interval stacking
+
+- Zachycen interval ID do lokální proměnné v closure — cleanup nyní vždy vyčistí svůj vlastní interval
+- Zabraňuje akumulaci paralelních polling smyček při re-renderech
+
 ## [2026-04-26] - Student: tab "Akce" → "Body", přidán log bodů týmu
 
 - Tab přejmenován na "Body"

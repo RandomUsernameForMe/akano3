@@ -25,10 +25,6 @@ export interface PointEntry {
   targetId: string; resolvedTeamIds: string[]
   amount: number; actionType: ActionType; note?: string
 }
-export interface MiasmaEntry {
-  id: string; timestamp: Date; amount: number
-  sourceCharacterId: string; note: string
-}
 export interface QRCode {
   id: string; token: string; label: string
   targetType: "team" | "unit" | "circle"; targetId: string

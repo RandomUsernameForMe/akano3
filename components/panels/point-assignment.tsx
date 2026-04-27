@@ -86,7 +86,9 @@ export function PointAssignmentForm({
 
         <Select value={targetId} onValueChange={(v) => setTargetId(v ?? "")}>
           <SelectTrigger style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
-            <SelectValue placeholder="Vyber cíl…" />
+            <SelectValue placeholder="Vyber cíl…">
+              {targetId ? (targetOptions.find(o => o.id === targetId)?.label ?? targetId) : undefined}
+            </SelectValue>
           </SelectTrigger>
           <SelectContent>
             {targetOptions.map(o => (

@@ -1,20 +1,15 @@
 "use client"
 
-import React, { useState, useCallback, createContext, useContext } from "react"
-import type {
-  Team, Character, PointEntry, MiasmaEntry, AlarmState, QRCode, Toast,
-} from "./types"
-import { TEAMS, CHARACTERS, INITIAL_POINT_LOG, INITIAL_QR_CODES } from "./data"
+import React, { useState, useCallback, useEffect, createContext, useContext, useRef, useMemo } from "react"
+import type { Team, Character, PointEntry, AlarmState, QRCode, Toast } from "./types"
+import { TEAMS, CHARACTERS, UNITS, CIRCLES } from "./data"
 import { ALARM_COLORS } from "./constants"
-import { resolveTargetTeams, romanNumeral, getTeamName } from "./utils"
+import { getTeamName, romanNumeral } from "./utils"
 
 export interface GameCtx {
-  // State
   teams:              Team[]
   characters:         Character[]
   pointLog:           PointEntry[]
-  miasmaValue:        number
-  miasmaLog:          MiasmaEntry[]
   alarmState:         AlarmState
   broadcastActive:    boolean
   lessonWindowActive: boolean
@@ -22,14 +17,10 @@ export interface GameCtx {
   qrCodes:            QRCode[]
   toasts:             Toast[]
   currentUser:        Character | null
-  currentScreen:      string
-  // Actions
-  login:         (code: string) => boolean
+  setCurrentUser: (char: Character | null) => void
   logout:        () => void
-  navigate:      (screen: string) => void
   assignPoints:  (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">) => void
   updateKaichi:  (characterId: string) => void
-  updateMiasma:  (amount: number, note: string) => void
   triggerAlarm:  (type: AlarmState["type"], message: string) => void
   dismissAlarm:  () => void
   setBroadcast:  (active: boolean) => void
@@ -48,20 +39,117 @@ export function useGame() {
   return ctx
 }
 
+// Merge static CHARACTERS with mutable DB state
+function buildCharacters(
+  charState: { character_id: string; kaichi_level: number; peer_point_pool: number; lesson_claimed_this_window: boolean; specialization: string | null }[],
+  circleMembers: { circle_id: string; character_id: string }[],
+  teamUnits: { team_id: string; unit_id: string }[]
+): Character[] {
+  const circlesByChar: Record<string, string[]> = {}
+  for (const { circle_id, character_id } of circleMembers) {
+    if (!circlesByChar[character_id]) circlesByChar[character_id] = []
+    circlesByChar[character_id].push(circle_id)
+  }
+  const unitByTeam: Record<string, string> = {}
+  for (const { team_id, unit_id } of teamUnits) unitByTeam[team_id] = unit_id
+
+  return CHARACTERS.map(c => {
+    const state = charState.find(s => s.character_id === c.id)
+    return {
+      ...c,
+      kaichiLevel: state?.kaichi_level ?? c.kaichiLevel,
+      peerPointPool: state?.peer_point_pool ?? c.peerPointPool,
+      lessonClaimedThisWindow: state?.lesson_claimed_this_window ?? false,
+      specialization: (state?.specialization as Character["specialization"]) ?? c.specialization,
+      circleIds: circlesByChar[c.id] ?? c.circleIds,
+      unitId: c.teamId ? (unitByTeam[c.teamId] ?? c.unitId) : c.unitId,
+    }
+  })
+}
+
+// Merge static TEAMS with DB points and unit assignments
+function buildTeams(
+  teamPoints: { team_id: string; points: number }[],
+  teamUnits: { team_id: string; unit_id: string }[]
+): Team[] {
+  const pointsMap: Record<string, number> = {}
+  for (const { team_id, points } of teamPoints) pointsMap[team_id] = points
+  const unitMap: Record<string, string> = {}
+  for (const { team_id, unit_id } of teamUnits) unitMap[team_id] = unit_id
+
+  return TEAMS.map(t => ({
+    ...t,
+    points: pointsMap[t.id] ?? t.points,
+    unitId: unitMap[t.id] ?? t.unitId,
+  }))
+}
+
+function parsePointLog(rows: Record<string, unknown>[]): PointEntry[] {
+  return rows.map(r => ({
+    id: r.id as string,
+    timestamp: new Date(r.timestamp as string),
+    sourceRole: r.source_role as PointEntry["sourceRole"],
+    sourceCharacterId: r.source_character_id as string,
+    targetType: r.target_type as PointEntry["targetType"],
+    targetId: r.target_id as string,
+    resolvedTeamIds: r.resolved_team_ids as string[],
+    amount: r.amount as number,
+    actionType: r.action_type as PointEntry["actionType"],
+    note: r.note as string | undefined,
+  }))
+}
+
+function parseQRCodes(rows: Record<string, unknown>[]): QRCode[] {
+  return rows.map(r => ({
+    id: r.id as string,
+    token: r.token as string,
+    label: r.label as string,
+    targetType: r.target_type as QRCode["targetType"],
+    targetId: r.target_id as string,
+    points: r.points as number,
+    validity: r.validity as QRCode["validity"],
+    validUntil: r.valid_until ? new Date(r.valid_until as string) : undefined,
+    timesScanned: r.times_scanned as number,
+    status: r.status as QRCode["status"],
+    createdAt: new Date(r.created_at as string),
+  }))
+}
+
 export function GameProvider({ children }: { children: React.ReactNode }) {
-  const [teams,           setTeams]           = useState<Team[]>([...TEAMS])
-  const [characters,      setCharacters]      = useState<Character[]>([...CHARACTERS])
-  const [pointLog,        setPointLog]        = useState<PointEntry[]>([...INITIAL_POINT_LOG])
-  const [miasmaValue,     setMiasmaValue]     = useState(47)
-  const [miasmaLog,       setMiasmaLog]       = useState<MiasmaEntry[]>([])
+  const [teams,           setTeams]           = useState<Team[]>(TEAMS)
+  const [characters,      setCharacters]      = useState<Character[]>(CHARACTERS)
+  const [pointLog,        setPointLog]        = useState<PointEntry[]>([])
   const [alarmState,      setAlarmState]      = useState<AlarmState>({ active:false, type:"evacuation", message:"", color:"#c0392b" })
   const [broadcastActive, setBroadcastActive] = useState(false)
   const [lessonWindowActive, setLessonWindowActive] = useState(false)
   const [lessonWindowEnd, setLessonWindowEnd] = useState<Date | null>(null)
-  const [qrCodes,         setQrCodes]         = useState<QRCode[]>([...INITIAL_QR_CODES])
+  const [qrCodes,         setQrCodes]         = useState<QRCode[]>([])
   const [toasts,          setToasts]          = useState<Toast[]>([])
   const [currentUser,     setCurrentUser]     = useState<Character | null>(null)
-  const [currentScreen,   setCurrentScreen]   = useState("login")
+
+  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const offlineRef = useRef(false)
+
+  const applyGameState = useCallback((data: Record<string, unknown>) => {
+    const alarm   = data.alarm as Record<string, unknown>
+    const config  = data.config as Record<string, unknown>
+    const tp      = data.teamPoints as { team_id: string; points: number }[]
+    const cs      = data.charState as { character_id: string; kaichi_level: number; peer_point_pool: number; lesson_claimed_this_window: boolean; specialization: string | null }[]
+    const cm      = data.circleMembers as { circle_id: string; character_id: string }[]
+    const tu      = data.teamUnits as { team_id: string; unit_id: string }[]
+    const pl      = data.pointLog as Record<string, unknown>[]
+    const qr      = data.qrCodes as Record<string, unknown>[]
+
+    setAlarmState({ active: alarm.active as boolean, type: alarm.type as AlarmState["type"], message: alarm.message as string, color: alarm.color as string })
+    setLessonWindowActive(config.lesson_window_active as boolean)
+    setLessonWindowEnd(config.lesson_window_end ? new Date(config.lesson_window_end as string) : null)
+    const chars = buildCharacters(cs, cm, tu)
+    setTeams(buildTeams(tp, tu))
+    setCharacters(chars)
+    setCurrentUser(prev => prev ? (chars.find(c => c.id === prev.id) ?? prev) : null)
+    setPointLog(parsePointLog(pl))
+    setQrCodes(parseQRCodes(qr))
+  }, [])
 
   const addToast = useCallback((message: string, type: Toast["type"] = "success") => {
     const id = Math.random().toString(36).slice(2)
@@ -69,139 +157,146 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3500)
   }, [])
 
-  const login = useCallback((code: string) => {
-    const char = CHARACTERS.find(c => c.code.toLowerCase() === code.trim().toLowerCase())
-    if (!char) return false
-    setCurrentUser(char)
-    setCurrentScreen(char.role === "display" ? "display" : char.role)
-    return true
-  }, [])
+  const fetchGameState = useCallback(async () => {
+    try {
+      const res = await fetch("/api/game-state")
+      if (!res.ok) {
+        if (!offlineRef.current) { addToast("Ztráta spojení se serverem", "error"); offlineRef.current = true }
+        return
+      }
+      if (offlineRef.current) { addToast("Spojení obnoveno", "success"); offlineRef.current = false }
+      const data = await res.json()
+      applyGameState(data)
+    } catch {
+      if (!offlineRef.current) { addToast("Ztráta spojení se serverem", "error"); offlineRef.current = true }
+    }
+  }, [applyGameState, addToast])
+
+  // Start polling when logged in, pause on background tab, stop on logout
+  useEffect(() => {
+    if (!currentUser) {
+      if (pollingRef.current) { clearInterval(pollingRef.current); pollingRef.current = null }
+      return
+    }
+    const start = () => {
+      if (pollingRef.current) return
+      fetchGameState()
+      pollingRef.current = setInterval(fetchGameState, 3000)
+    }
+    const stop = () => {
+      if (!pollingRef.current) return
+      clearInterval(pollingRef.current)
+      pollingRef.current = null
+    }
+    const onVisibilityChange = () => (document.hidden ? stop() : start())
+
+    if (!document.hidden) start()
+    document.addEventListener("visibilitychange", onVisibilityChange)
+    return () => { stop(); document.removeEventListener("visibilitychange", onVisibilityChange) }
+  }, [currentUser, fetchGameState])
 
   const logout = useCallback(() => {
     setCurrentUser(null)
-    setCurrentScreen("login")
   }, [])
 
-  const navigate = useCallback((screen: string) => setCurrentScreen(screen), [])
-
-  const assignPoints = useCallback((
-    entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">
-  ) => {
-    const resolvedTeamIds = resolveTargetTeams(entry.targetType, entry.targetId)
-    const full: PointEntry = {
-      ...entry,
-      id: `PE${Date.now()}`,
-      timestamp: new Date(),
-      resolvedTeamIds,
-    }
-    setPointLog(prev => [full, ...prev])
-    setTeams(prev => prev.map(t =>
-      resolvedTeamIds.includes(t.id) ? { ...t, points: t.points + entry.amount } : t
-    ))
-    addToast(`+${entry.amount} bodů → ${resolvedTeamIds.map(getTeamName).join(", ")}`)
+  const assignPoints = useCallback(async (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">) => {
+    try {
+      const res = await fetch("/api/points", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(entry) })
+      if (!res.ok) { addToast("Chyba při zadávání bodů", "error"); return }
+      const { id, resolvedTeamIds } = await res.json()
+      // Optimistic update
+      const full: PointEntry = { ...entry, id, timestamp: new Date(), resolvedTeamIds }
+      setPointLog(prev => [full, ...prev])
+      setTeams(prev => prev.map(t => resolvedTeamIds.includes(t.id) ? { ...t, points: t.points + entry.amount } : t))
+      addToast(`${entry.amount > 0 ? "+" : ""}${entry.amount} bodů → ${resolvedTeamIds.map(getTeamName).join(", ")}`)
+    } catch { addToast("Chyba sítě", "error") }
   }, [addToast])
 
-  const updateKaichi = useCallback((characterId: string) => {
-    setCharacters(prev => {
-      const updated = prev.map(c =>
-        c.id === characterId && c.kaichiLevel < 8
-          ? { ...c, kaichiLevel: c.kaichiLevel + 1 }
-          : c
-      )
-      const char = updated.find(c => c.id === characterId)
-      addToast(`${char?.name ?? "Postava"} povýšena na Kaichi ${romanNumeral(char?.kaichiLevel ?? 0)}`)
-      return updated
-    })
+  const updateKaichi = useCallback(async (characterId: string) => {
+    try {
+      const res = await fetch("/api/kaichi", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ characterId }) })
+      if (!res.ok) { addToast("Chyba při povýšení", "error"); return }
+      setCharacters(prev => {
+        const updated = prev.map(c => c.id === characterId && c.kaichiLevel < 8 ? { ...c, kaichiLevel: c.kaichiLevel + 1 } : c)
+        const char = updated.find(c => c.id === characterId)
+        addToast(`${char?.name ?? "Postava"} povýšena na Kaichi ${romanNumeral(char?.kaichiLevel ?? 0)}`)
+        return updated
+      })
+    } catch { addToast("Chyba sítě", "error") }
   }, [addToast])
 
-  const updateMiasma = useCallback((amount: number, note: string) => {
-    setMiasmaValue(prev => Math.max(0, prev + amount))
-    setMiasmaLog(prev => [{
-      id: `MI${Date.now()}`, timestamp: new Date(),
-      amount, sourceCharacterId: currentUser?.id ?? "GM1", note
-    }, ...prev])
-    addToast(`Miasma ${amount > 0 ? "+" : ""}${amount}`)
-  }, [currentUser, addToast])
-
-  const triggerAlarm = useCallback((type: AlarmState["type"], message: string) => {
-    setAlarmState({ active:true, type, message, color: ALARM_COLORS[type] })
-    // REALTIME_HOOK: broadcast alarm state to all connected display screens via WebSocket
+  const triggerAlarm = useCallback(async (type: AlarmState["type"], message: string) => {
+    const color = ALARM_COLORS[type]
+    setAlarmState({ active:true, type, message, color })
+    try {
+      await fetch("/api/alarm", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"trigger", type, message }) })
+    } catch { /* optimistic — polling will sync */ }
   }, [])
 
-  const dismissAlarm = useCallback(() => {
+  const dismissAlarm = useCallback(async () => {
     setAlarmState(prev => ({ ...prev, active:false }))
+    try {
+      await fetch("/api/alarm", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"dismiss" }) })
+    } catch { /* optimistic */ }
   }, [])
 
   const setBroadcast = useCallback((active: boolean) => {
     setBroadcastActive(active)
-    // REALTIME_HOOK: WebRTC signaling — start/stop broadcast stream
   }, [])
 
-  const generateQR = useCallback((cfg: Omit<QRCode, "id" | "token" | "timesScanned" | "status" | "createdAt">) => {
-    const qr: QRCode = {
-      ...cfg,
-      id:           `QR${Date.now()}`,
-      token:        `akn-${Array.from(crypto.getRandomValues(new Uint8Array(5))).map(b => b.toString(36).padStart(2,"0")).join("").slice(0,9)}`,
-      timesScanned: 0,
-      status:       "active",
-      createdAt:    new Date(),
-    }
-    setQrCodes(prev => [qr, ...prev])
-    addToast("QR kód vygenerován")
+  const generateQR = useCallback(async (cfg: Omit<QRCode, "id" | "token" | "timesScanned" | "status" | "createdAt">) => {
+    try {
+      const res = await fetch("/api/qr", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(cfg) })
+      if (!res.ok) { addToast("Chyba při generování QR", "error"); return }
+      addToast("QR kód vygenerován")
+      fetchGameState()
+    } catch { addToast("Chyba sítě", "error") }
+  }, [addToast, fetchGameState])
+
+  const toggleLesson = useCallback(async (active: boolean, durationMin = 30) => {
+    try {
+      const res = await fetch("/api/lesson", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"toggle", active, durationMin }) })
+      if (!res.ok) { addToast("Chyba", "error"); return }
+      setLessonWindowActive(active)
+      if (active) {
+        setLessonWindowEnd(new Date(Date.now() + durationMin * 60000))
+        setCharacters(prev => prev.map(c => ({ ...c, lessonClaimedThisWindow: false })))
+        addToast("Okno pro body za hodinu otevřeno")
+      } else {
+        setLessonWindowEnd(null)
+        addToast("Okno pro body za hodinu zavřeno")
+      }
+    } catch { addToast("Chyba sítě", "error") }
   }, [addToast])
 
-  const toggleLesson = useCallback((active: boolean, durationMin = 30) => {
-    setLessonWindowActive(active)
-    if (active) {
-      setLessonWindowEnd(new Date(Date.now() + durationMin * 60000))
-      setCharacters(prev => prev.map(c => ({ ...c, lessonClaimedThisWindow: false })))
-      addToast("Okno pro body za hodinu otevřeno")
-    } else {
-      setLessonWindowEnd(null)
-      addToast("Okno pro body za hodinu zavřeno")
-    }
+  const giftPoints = useCallback(async (fromId: string, toId: string, amount: number) => {
+    try {
+      const res = await fetch("/api/gift", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ fromId, toId, amount }) })
+      if (!res.ok) { addToast("Chyba při daru", "error"); return }
+      setCharacters(prev => prev.map(c => c.id === fromId ? { ...c, peerPointPool: c.peerPointPool - amount } : c))
+    } catch { addToast("Chyba sítě", "error") }
   }, [addToast])
 
-  const giftPoints = useCallback((fromId: string, toId: string, amount: number) => {
-    const from = characters.find(c => c.id === fromId)
-    const to   = characters.find(c => c.id === toId)
-    setCharacters(prev => prev.map(c =>
-      c.id === fromId ? { ...c, peerPointPool: c.peerPointPool - amount } : c
-    ))
-    if (to?.teamId) {
-      assignPoints({
-        sourceRole: "student", sourceCharacterId: fromId,
-        targetType: "team", targetId: to.teamId,
-        amount, actionType: "peer_gift",
-        note: `Dar od ${from?.name ?? fromId} pro ${to?.name ?? toId}`,
-      })
-    }
-  }, [characters, assignPoints])
-
-  const claimLesson = useCallback((studentId: string) => {
+  const claimLesson = useCallback(async (studentId: string) => {
     if (!lessonWindowActive) return
-    const student = characters.find(c => c.id === studentId)
-    setCharacters(prev => prev.map(c =>
-      c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c
-    ))
-    if (student?.teamId) {
-      assignPoints({
-        sourceRole: "student", sourceCharacterId: studentId,
-        targetType: "team", targetId: student.teamId,
-        amount: 5, actionType: "lesson",
-        note: "Body za hodinu",
-      })
-    }
-    addToast("Body za hodinu přidány!")
+    try {
+      const res = await fetch("/api/lesson", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"claim", characterId: studentId }) })
+      if (!res.ok) { addToast("Chyba", "error"); return }
+      const student = characters.find(c => c.id === studentId)
+      setCharacters(prev => prev.map(c => c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c))
+      if (student?.teamId) {
+        await assignPoints({ sourceRole:"student", sourceCharacterId:studentId, targetType:"team", targetId:student.teamId, amount:5, actionType:"lesson", note:"Body za hodinu" })
+      }
+      addToast("Body za hodinu přidány!")
+    } catch { addToast("Chyba sítě", "error") }
   }, [lessonWindowActive, characters, assignPoints, addToast])
 
   const value: GameCtx = {
-    teams, characters, pointLog, miasmaValue, miasmaLog,
-    alarmState, broadcastActive, lessonWindowActive, lessonWindowEnd,
-    qrCodes, toasts, currentUser, currentScreen,
-    login, logout, navigate, assignPoints, updateKaichi,
-    updateMiasma, triggerAlarm, dismissAlarm,
-    setBroadcast, generateQR, toggleLesson, giftPoints, claimLesson, addToast,
+    teams, characters, pointLog, alarmState, broadcastActive,
+    lessonWindowActive, lessonWindowEnd, qrCodes, toasts, currentUser, setCurrentUser, logout,
+    assignPoints, updateKaichi,
+    triggerAlarm, dismissAlarm, setBroadcast, generateQR,
+    toggleLesson, giftPoints, claimLesson, addToast,
   }
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>

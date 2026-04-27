@@ -11,20 +11,22 @@ export async function POST(req: Request) {
 
     const id = `PE${crypto.randomUUID()}`
 
-    await sql.transaction(async (tx) => {
-      const rows = await tx`
-        UPDATE character_state
-        SET peer_point_pool = peer_point_pool - ${amount}
-        WHERE character_id = ${fromId} AND peer_point_pool >= ${amount}
-        RETURNING character_id
-      `
-      if (rows.length === 0) { poolInsufficient = true; throw new Error("Insufficient pool") }
-      await tx`UPDATE team_points SET points = points + ${amount} WHERE team_id = ${to.teamId}`
-      await tx`
+    // Atomicky odečti pool — vrátí prázdné pole pokud pool nestačí
+    const poolRows = await sql`
+      UPDATE character_state
+      SET peer_point_pool = peer_point_pool - ${amount}
+      WHERE character_id = ${fromId} AND peer_point_pool >= ${amount}
+      RETURNING character_id
+    `
+    if (poolRows.length === 0) { poolInsufficient = true; throw new Error("Insufficient pool") }
+
+    await sql.transaction([
+      sql`UPDATE team_points SET points = points + ${amount} WHERE team_id = ${to.teamId}`,
+      sql`
         INSERT INTO point_log (id, source_role, source_character_id, target_type, target_id, resolved_team_ids, amount, action_type, note)
         VALUES (${id}, 'student', ${fromId}, 'team', ${to.teamId}, ${[to.teamId]}, ${amount}, 'peer_gift', ${`Dar od ${from.name} pro ${to.name}`})
-      `
-    })
+      `,
+    ])
 
     return new Response(null, { status: 204 })
   } catch (err) {

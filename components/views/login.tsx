@@ -45,14 +45,21 @@ export function LoginScreen() {
       </div>
 
       <div style={{ width:"100%", maxWidth:420, position:"relative" }}>
-        <div style={{ textAlign:"center", marginBottom:48 }}>
-          <Image src="/logo.png" alt="AKANO" width={180} height={220} style={{ objectFit:"contain", display:"block", margin:"0 auto" }} />
-        </div>
+        <Image
+          src="/logo.png" alt=""
+          width={520} height={640}
+          style={{
+            objectFit:"contain", position:"absolute",
+            top:"50%", left:"50%", transform:"translate(-50%, -50%)",
+            opacity:0.2, pointerEvents:"none", userSelect:"none",
+            width:520, height:"auto", zIndex:0,
+          }}
+        />
 
         <div style={{
-          backgroundColor:"#fff",
+          backgroundColor:"rgba(255,255,255,0.55)", backdropFilter:"blur(12px)",
           border:"1px solid rgba(107,15,26,0.15)", borderRadius:12,
-          padding:32, boxShadow:"0 4px 32px rgba(107,15,26,0.08)",
+          padding:32, boxShadow:"0 4px 32px rgba(107,15,26,0.08)", position:"relative", zIndex:1,
         }}>
           <h2 style={{ color:"#1a0a0a", fontSize:"1rem", fontWeight:600, marginBottom:6, textAlign:"center" }}>
             Přihlášení

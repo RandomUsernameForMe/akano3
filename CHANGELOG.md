@@ -1,3 +1,9 @@
+## [2026-04-27] - Login UI a gift route fix
+
+- Logo v pozadí login formuláře — velké, průhledné (opacity 0.2)
+- Formulář poloprůhledný s backdrop blur
+- fix: gift route přepsána z async transaction callbacku na array formu (Neon HTTP mode nepodporuje async callback)
+
 ## [2026-04-27] - Bugfixes a výkon
 
 - Přidána `login()` funkce do GameContext (chyběla, způsobovala crash na login stránce)

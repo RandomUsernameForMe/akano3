@@ -18,6 +18,7 @@ export interface GameCtx {
   toasts:             Toast[]
   currentUser:        Character | null
   setCurrentUser: (char: Character | null) => void
+  login:         (code: string) => boolean
   logout:        () => void
   assignPoints:  (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">) => void
   updateKaichi:  (characterId: string) => void
@@ -195,6 +196,13 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     return () => { stop(); document.removeEventListener("visibilitychange", onVisibilityChange) }
   }, [currentUser, fetchGameState])
 
+  const login = useCallback((code: string): boolean => {
+    const char = characters.find(c => c.code === code.trim())
+    if (!char) return false
+    setCurrentUser(char)
+    return true
+  }, [characters])
+
   const logout = useCallback(() => {
     setCurrentUser(null)
   }, [])
@@ -283,21 +291,25 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       const res = await fetch("/api/lesson", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"claim", characterId: studentId }) })
       if (!res.ok) { addToast("Chyba", "error"); return }
       const student = characters.find(c => c.id === studentId)
-      setCharacters(prev => prev.map(c => c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c))
       if (student?.teamId) {
         await assignPoints({ sourceRole:"student", sourceCharacterId:studentId, targetType:"team", targetId:student.teamId, amount:5, actionType:"lesson", note:"Body za hodinu" })
       }
+      setCharacters(prev => prev.map(c => c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c))
       addToast("Body za hodinu přidány!")
     } catch { addToast("Chyba sítě", "error") }
   }, [lessonWindowActive, characters, assignPoints, addToast])
 
-  const value: GameCtx = {
+  const value = useMemo<GameCtx>(() => ({
     teams, characters, pointLog, alarmState, broadcastActive,
-    lessonWindowActive, lessonWindowEnd, qrCodes, toasts, currentUser, setCurrentUser, logout,
+    lessonWindowActive, lessonWindowEnd, qrCodes, toasts, currentUser, setCurrentUser, login, logout,
     assignPoints, updateKaichi,
     triggerAlarm, dismissAlarm, setBroadcast, generateQR,
     toggleLesson, giftPoints, claimLesson, addToast,
-  }
+  }), [teams, characters, pointLog, alarmState, broadcastActive,
+    lessonWindowActive, lessonWindowEnd, qrCodes, toasts, currentUser,
+    login, logout, assignPoints, updateKaichi,
+    triggerAlarm, dismissAlarm, setBroadcast, generateQR,
+    toggleLesson, giftPoints, claimLesson, addToast])
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>
 }

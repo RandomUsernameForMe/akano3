@@ -9,7 +9,7 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json() as Omit<QRCode, "id" | "token" | "timesScanned" | "status" | "createdAt">
-    const id    = `QR${Date.now()}`
+    const id    = `QR${crypto.randomUUID()}`
     const token = `akn-${Array.from(crypto.getRandomValues(new Uint8Array(5))).map(b => b.toString(36).padStart(2,"0")).join("").slice(0,9)}`
 
     await sql`
@@ -17,7 +17,8 @@ export async function POST(req: Request) {
       VALUES (${id}, ${token}, ${body.label}, ${body.targetType}, ${body.targetId}, ${body.points}, ${body.validity}, ${body.validUntil ?? null})
     `
     return Response.json({ id, token })
-  } catch {
+  } catch (err) {
+    console.error("[api/qr]", err)
     return new Response("Server error", { status: 500 })
   }
 }

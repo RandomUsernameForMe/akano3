@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import {
   IconUser, IconUsers, IconTrophy, IconTarget, IconList, IconChartLine,
   IconBook, IconStar, IconCircleCheck,
@@ -28,7 +28,7 @@ export function StudentDashboard() {
   const { currentUser, characters, teams, pointLog, lessonWindowActive, lessonWindowEnd, claimLesson, giftPoints } = useGame()
   const student  = characters.find(c => c.id === currentUser?.id)
   const team     = teams.find(t => t.id === student?.teamId)
-  const teamRank = [...teams].sort((a,b)=>b.points-a.points).findIndex(t=>t.id===student?.teamId) + 1
+  const teamRank = useMemo(() => [...teams].sort((a,b)=>b.points-a.points).findIndex(t=>t.id===student?.teamId) + 1, [teams, student?.teamId])
 
   const [sbView,        setSbView]        = useState<"table" | "chart">("table")
   const [giftTarget,    setGiftTarget]    = useState("")
@@ -37,7 +37,7 @@ export function StudentDashboard() {
   const [giftSheetOpen, setGiftSheetOpen] = useState(false)
   const [lessonConfirm, setLessonConfirm] = useState(false)
 
-  const teammates      = characters.filter(c => c.role === "student" && c.id !== student?.id)
+  const teammates      = useMemo(() => characters.filter(c => c.role === "student" && c.id !== student?.id), [characters, student?.id])
   const giftTargetChar = characters.find(c => c.id === giftTarget)
 
   const [lessonCountdown, setLessonCountdown] = useState("")

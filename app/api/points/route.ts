@@ -19,7 +19,7 @@ export async function POST(req: Request) {
       resolvedTeamIds = resolveTargetTeams(body.targetType, body.targetId)
     }
 
-    const id = `PE${Date.now()}`
+    const id = `PE${crypto.randomUUID()}`
 
     await sql.transaction([
       sql`
@@ -32,7 +32,8 @@ export async function POST(req: Request) {
     ])
 
     return Response.json({ id, resolvedTeamIds })
-  } catch {
+  } catch (err) {
+    console.error("[api/points]", err)
     return new Response("Server error", { status: 500 })
   }
 }

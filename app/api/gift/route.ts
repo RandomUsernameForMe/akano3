@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const to   = CHARACTERS.find(c => c.id === toId)
     if (!from || !to?.teamId) return new Response("Invalid characters", { status: 400 })
 
-    const id = `PE${Date.now()}`
+    const id = `PE${crypto.randomUUID()}`
 
     await sql.transaction(async (tx) => {
       const rows = await tx`
@@ -27,8 +27,9 @@ export async function POST(req: Request) {
     })
 
     return new Response(null, { status: 204 })
-  } catch {
+  } catch (err) {
     if (poolInsufficient) return new Response("Nedostatečný pool bodů", { status: 422 })
+    console.error("[api/gift]", err)
     return new Response("Server error", { status: 500 })
   }
 }

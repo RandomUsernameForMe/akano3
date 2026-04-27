@@ -1,3 +1,14 @@
+## [2026-04-27] - Bugfixes a výkon
+
+- Přidána `login()` funkce do GameContext (chyběla, způsobovala crash na login stránce)
+- `claimLesson`: optimistický update přesunut až za úspěšný `assignPoints`
+- ID generování: `Date.now()` → `crypto.randomUUID()` (points, gift, qr routes)
+- `/api/game-state`: obaleno do try/catch, dříve unhandled rejection při DB chybě
+- `catch {}` → `catch (err) { console.error(...) }` ve všech API routech
+- Export CSV: fix pro Firefox (appendChild/removeChild)
+- `lang="cs"` v layout.tsx
+- `useMemo` na `GameProvider.value`, `activeQRs`, `teamRank`, `teammates`
+
 ## [2026-04-27] - URL routing
 
 - Každá role má vlastní URL: `/play/<character-id>` (např. `/play/S007`)

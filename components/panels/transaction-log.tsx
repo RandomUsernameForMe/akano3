@@ -46,8 +46,9 @@ export function TransactionLog({
     const blob = new Blob([[header, ...rows].join("\n")], { type:"text/csv" })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a"); a.href = url
-    a.download = "akano3-log.csv"; a.click()
-    setTimeout(() => URL.revokeObjectURL(url), 100)
+    a.download = "akano3-log.csv"
+    document.body.appendChild(a); a.click(); document.body.removeChild(a)
+    URL.revokeObjectURL(url)
   }
 
   const filterStyle = { backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)", fontSize:"0.8rem", height:32, color:"var(--c-text)" }

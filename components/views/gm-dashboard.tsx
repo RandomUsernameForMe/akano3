@@ -24,7 +24,7 @@ export function GMDashboard() {
 
   const sorted    = useMemo(() => [...teams].sort((a,b) => b.points - a.points), [teams])
   const leader    = sorted[0]
-  const activeQRs = qrCodes.filter(q => q.status === "active").length
+  const activeQRs = useMemo(() => qrCodes.filter(q => q.status === "active").length, [qrCodes])
 
   const statCard = (icon: React.ElementType, label: string, value: string | number, accent?: string) => {
     const Icon = icon

@@ -50,14 +50,14 @@ export function TransactionLog({
     setTimeout(() => URL.revokeObjectURL(url), 100)
   }
 
-  const filterStyle = { backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)", fontSize:"0.8rem", height:32 }
+  const filterStyle = { backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)", fontSize:"0.8rem", height:32, color:"var(--c-text)" }
 
   return (
     <div>
       {!hideFilters && (
         <div style={{ display:"flex", flexWrap:"wrap", gap:8, marginBottom:16, alignItems:"center" }}>
           <div style={{ position:"relative", flex:"1 1 160px" }}>
-            <IconSearch size={13} style={{ position:"absolute", left:8, top:"50%", transform:"translateY(-50%)", color:"rgba(107,15,26,0.45)" }} />
+            <IconSearch size={13} style={{ position:"absolute", left:8, top:"50%", transform:"translateY(-50%)", color:"var(--c-text-muted)" }} />
             <Input value={search} onChange={e => setSearch(e.target.value)} placeholder="Hledat…"
               style={{ ...filterStyle, paddingLeft:28 }} />
           </div>
@@ -84,7 +84,7 @@ export function TransactionLog({
           </Select>
           {(filterRole || filterAction || filterTeam || search) && (
             <button onClick={() => { setFilterRole(""); setFilterAction(""); setFilterTeam(""); setSearch("") }}
-              style={{ background:"transparent", border:"1px solid rgba(107,15,26,0.2)", color:"rgba(107,15,26,0.45)",
+              style={{ background:"transparent", border:"1px solid var(--c-border-str)", color:"var(--c-text-muted)",
                 padding:"4px 10px", borderRadius:6, cursor:"pointer", fontSize:"0.75rem" }}>
               <IconX size={11} style={{display:"inline",marginRight:4}} />Smazat filtry
             </button>
@@ -104,34 +104,34 @@ export function TransactionLog({
       <div style={{ overflowX:"auto" }}>
         <Table>
           <TableHeader>
-            <TableRow style={{ borderColor:"#a0263330" }}>
+            <TableRow style={{ borderColor:"var(--c-border)" }}>
               {["Čas","Kdo","Typ akce","Cíl","Týmy","Body","Poznámka"].map(h => (
-                <TableHead key={h} style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.75rem", letterSpacing:"0.05em" }}>{h}</TableHead>
+                <TableHead key={h} style={{ color:"var(--c-text-muted)", fontSize:"0.75rem", letterSpacing:"0.05em" }}>{h}</TableHead>
               ))}
             </TableRow>
           </TableHeader>
           <TableBody>
             {filtered.length === 0 && (
               <TableRow>
-                <TableCell colSpan={7} style={{ textAlign:"center", color:"rgba(107,15,26,0.3)", padding:"32px 0" }}>
+                <TableCell colSpan={7} style={{ textAlign:"center", color:"var(--c-text-faint)", padding:"32px 0" }}>
                   Žádné záznamy
                 </TableCell>
               </TableRow>
             )}
             {filtered.map(e => (
-              <TableRow key={e.id} style={{ borderColor:"rgba(107,15,26,0.08)" }}>
-                <TableCell style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.78rem", whiteSpace:"nowrap", fontFamily:"monospace" }}>
+              <TableRow key={e.id} style={{ borderColor:"var(--c-border)" }}>
+                <TableCell style={{ color:"var(--c-text-muted)", fontSize:"0.78rem", whiteSpace:"nowrap", fontFamily:"monospace" }}>
                   {formatDateTime(e.timestamp)}
                 </TableCell>
-                <TableCell style={{ color:"#1a0a0a", fontSize:"0.82rem" }}>
+                <TableCell style={{ color:"var(--c-text)", fontSize:"0.82rem" }}>
                   {getCharName(e.sourceCharacterId)}
                   <RoleBadge role={e.sourceRole} />
                 </TableCell>
                 <TableCell><ActionBadge type={e.actionType} /></TableCell>
-                <TableCell style={{ color:"#1a0a0a", fontSize:"0.82rem" }}>
+                <TableCell style={{ color:"var(--c-text)", fontSize:"0.82rem" }}>
                   {getTargetName(e.targetType, e.targetId)}
                 </TableCell>
-                <TableCell style={{ color:"#6b0f1a", fontSize:"0.8rem" }}>
+                <TableCell style={{ color:"var(--c-accent)", fontSize:"0.8rem" }}>
                   {e.resolvedTeamIds.map(t => (
                     <span key={t} style={{ display:"inline-flex", alignItems:"center", marginRight:4 }}>
                       <TeamDot color={TEAMS.find(tm=>tm.id===t)?.color??"#888"} teamId={t} />
@@ -142,7 +142,7 @@ export function TransactionLog({
                 <TableCell style={{ fontWeight:700, fontFamily:"monospace", color: e.amount > 0 ? "#2a8a5a" : "#e05252" }}>
                   {e.amount > 0 ? "+" : ""}{e.amount}
                 </TableCell>
-                <TableCell style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.78rem", maxWidth:200 }}>
+                <TableCell style={{ color:"var(--c-text-muted)", fontSize:"0.78rem", maxWidth:200 }}>
                   {e.note ?? "—"}
                 </TableCell>
               </TableRow>
@@ -150,7 +150,7 @@ export function TransactionLog({
           </TableBody>
         </Table>
       </div>
-      <p style={{ color:"rgba(107,15,26,0.3)", fontSize:"0.72rem", marginTop:8 }}>
+      <p style={{ color:"var(--c-text-faint)", fontSize:"0.72rem", marginTop:8 }}>
         {filtered.length} záznamů
       </p>
     </div>

@@ -19,7 +19,7 @@ export function TeacherDashboard() {
   return (
     <div>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
-        <h1 style={{ color:"#1a0a0a", fontSize:"1.5rem", fontWeight:700 }}>
+        <h1 style={{ color:"var(--c-text)", fontSize:"1.5rem", fontWeight:700 }}>
           Učitelský přehled
         </h1>
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -31,9 +31,9 @@ export function TeacherDashboard() {
           >
             <IconPlus size={16} /> Zadat body
           </SheetTrigger>
-          <SheetContent style={{ backgroundColor:"#f0f8f8", borderLeft:"1px solid rgba(107,15,26,0.15)", minWidth:380 }}>
+          <SheetContent style={{ backgroundColor:"var(--c-bg)", borderLeft:"1px solid var(--c-border)", minWidth:380 }}>
             <SheetHeader>
-              <SheetTitle style={{ color:"#1a0a0a" }}>Zadat body</SheetTitle>
+              <SheetTitle style={{ color:"var(--c-text)" }}>Zadat body</SheetTitle>
             </SheetHeader>
             <div style={{ marginTop:20 }}>
               <PointAssignmentForm onClose={() => setSheetOpen(false)} />
@@ -43,7 +43,7 @@ export function TeacherDashboard() {
       </div>
 
       <Tabs defaultValue="overview">
-        <TabsList style={{ backgroundColor:"rgba(107,15,26,0.05)", border:"1px solid rgba(107,15,26,0.1)", marginBottom:20 }}>
+        <TabsList style={{ backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border)", marginBottom:20 }}>
           {[
             ["overview","Přehled",IconDashboard],
             ["log","Log",IconList],
@@ -52,7 +52,7 @@ export function TeacherDashboard() {
             ["alarm","Alarm",IconBell],
           ].map(([v,label,Icon]) => (
             <TabsTrigger key={v as string} value={v as string}
-              style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.8rem", display:"flex", alignItems:"center", gap:5 }}>
+              style={{ color:"var(--c-text-muted)", fontSize:"0.8rem", display:"flex", alignItems:"center", gap:5 }}>
               {React.createElement(Icon as React.ElementType, {size:13})}
               {label as string}
             </TabsTrigger>
@@ -61,12 +61,12 @@ export function TeacherDashboard() {
 
         <TabsContent value="overview">
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
-            <div style={{ backgroundColor:"rgba(107,15,26,0.03)", border:"1px solid rgba(107,15,26,0.1)", borderRadius:10, padding:20 }}>
-              <p style={{ color:"#6b0f1a", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:12 }}>ŽEBŘÍČEK TÝMŮ</p>
+            <div style={{ backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border)", borderRadius:10, padding:20 }}>
+              <p style={{ color:"var(--c-accent)", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:12 }}>ŽEBŘÍČEK TÝMŮ</p>
               <ScoreboardComponent compact />
             </div>
-            <div style={{ backgroundColor:"rgba(107,15,26,0.03)", border:"1px solid rgba(107,15,26,0.1)", borderRadius:10, padding:20 }}>
-              <p style={{ color:"#6b0f1a", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:12 }}>POSLEDNÍ AKCE</p>
+            <div style={{ backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border)", borderRadius:10, padding:20 }}>
+              <p style={{ color:"var(--c-accent)", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:12 }}>POSLEDNÍ AKCE</p>
               <TransactionLog maxRows={8} hideFilters />
             </div>
           </div>

@@ -64,8 +64,8 @@ export function StudentDashboard() {
       {/* Sticky character header */}
       <div style={{
         position:"sticky", top:0, zIndex:20,
-        backgroundColor:"#f9fafa",
-        borderBottom:"1px solid rgba(107,15,26,0.12)",
+        backgroundColor:"var(--c-topbar)",
+        borderBottom:"1px solid var(--c-border)",
         padding:"18px 20px 16px",
       }}>
         <div style={{ display:"flex", alignItems:"center", gap:12 }}>
@@ -73,14 +73,14 @@ export function StudentDashboard() {
             <div style={{ width:5, alignSelf:"stretch", borderRadius:3, backgroundColor:specColor, flexShrink:0 }} />
           )}
           <div style={{ flex:1, minWidth:0 }}>
-            <h1 style={{ fontSize:"1.9rem", fontWeight:900, color:"#1a0a0a", lineHeight:1.1, margin:0 }}>
+            <h1 style={{ fontSize:"1.9rem", fontWeight:900, color:"var(--c-text)", lineHeight:1.1, margin:0 }}>
               {student?.name}
             </h1>
             {team && (
               <div style={{ display:"flex", alignItems:"center", gap:6, marginTop:5 }}>
                 <TeamIcon teamId={team.id} size={16} />
-                <span style={{ fontSize:"0.9rem", fontWeight:600, color:"rgba(107,15,26,0.6)" }}>{team.name}</span>
-                <span style={{ fontSize:"0.8rem", color:"rgba(107,15,26,0.35)" }}>#{teamRank}</span>
+                <span style={{ fontSize:"0.9rem", fontWeight:600, color:"var(--c-text-muted)" }}>{team.name}</span>
+                <span style={{ fontSize:"0.8rem", color:"var(--c-text-faint)" }}>#{teamRank}</span>
                 {(student?.kaichiLevel ?? 0) > 0 && (
                   <span style={{
                     marginLeft:4,
@@ -96,8 +96,8 @@ export function StudentDashboard() {
             )}
           </div>
           <div style={{ textAlign:"right", flexShrink:0 }}>
-            <p style={{ fontSize:"0.6rem", color:"rgba(107,15,26,0.4)", letterSpacing:"0.1em", marginBottom:1 }}>BODY TÝMU</p>
-            <p style={{ fontSize:"3.2rem", fontWeight:900, fontFamily:"monospace", color:"#6b0f1a", lineHeight:1 }}>
+            <p style={{ fontSize:"0.6rem", color:"var(--c-text-muted)", letterSpacing:"0.1em", marginBottom:1 }}>BODY TÝMU</p>
+            <p style={{ fontSize:"3.2rem", fontWeight:900, fontFamily:"monospace", color:"var(--c-accent)", lineHeight:1 }}>
               {team?.points ?? 0}
             </p>
           </div>
@@ -107,8 +107,8 @@ export function StudentDashboard() {
       <Tabs defaultValue="scoreboard" style={{ flex:1, display:"flex", flexDirection:"column" }}>
         <TabsList style={{
           display:"grid", gridTemplateColumns:"repeat(3,1fr)",
-          backgroundColor:"#fff",
-          borderBottom:"2px solid rgba(107,15,26,0.08)",
+          backgroundColor:"var(--c-topbar)",
+          borderBottom:"2px solid var(--c-border)",
           borderRadius:0, padding:0, height:"auto",
           width:"100%",
         }}>

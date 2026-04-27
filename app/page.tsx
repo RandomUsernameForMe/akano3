@@ -11,6 +11,7 @@ import { DisplayScreen } from "@/components/views/display-screen"
 import { AlarmBannerStrip } from "@/components/shared/alarm-banner"
 import { ToastContainer } from "@/components/shared/toast"
 import { TopBar } from "@/components/shared/top-bar"
+import { ThemeProvider } from "@/lib/theme-context"
 
 function Router() {
   const { currentUser, currentScreen } = useGame()
@@ -19,7 +20,7 @@ function Router() {
   if (currentScreen === "display") return <DisplayScreen />
 
   return (
-    <div style={{ minHeight:"100vh", backgroundColor:"#faf7f2", color:"#1a0a0a" }}>
+    <div style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
       <AlarmBannerStrip />
       <TopBar showBroadcast={["gm","teacher","ruze"].includes(currentUser.role)} />
       {currentScreen === "student" ? (
@@ -78,11 +79,13 @@ class ErrorBoundary extends React.Component<
 export default function AkanoApp() {
   return (
     <ErrorBoundary>
-      <TooltipProvider>
-        <GameProvider>
-          <Router />
-        </GameProvider>
-      </TooltipProvider>
+      <ThemeProvider>
+        <TooltipProvider>
+          <GameProvider>
+            <Router />
+          </GameProvider>
+        </TooltipProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   )
 }

@@ -59,9 +59,9 @@ export function ScoreboardComponent({
           {(["teams","units","circles"] as const).map(m => (
             <button key={m} onClick={() => onModeChange?.(m)} style={{
               padding:"4px 12px", borderRadius:6, fontSize:"0.8rem", cursor:"pointer",
-              backgroundColor: mode===m ? "#2a8a8a" : "rgba(107,15,26,0.06)",
-              color: mode===m ? "#fff" : "#6b0f1a",
-              border: `1px solid ${mode===m ? "#2a8a8a" : "rgba(107,15,26,0.2)"}`,
+              backgroundColor: mode===m ? "#2a8a8a" : "var(--c-bg-section)",
+              color: mode===m ? "#fff" : "var(--c-accent)",
+              border: `1px solid ${mode===m ? "#2a8a8a" : "var(--c-border-str)"}`,
               fontWeight: mode===m ? 700 : 400,
             }}>
               {m==="teams" ? "Týmy" : m==="units" ? "Jednotky" : "Kruhy"}
@@ -79,20 +79,20 @@ export function ScoreboardComponent({
               display:"flex", alignItems:"center", gap:12,
               padding: compact ? "8px 12px" : "16px 20px",
               borderRadius:8,
-              backgroundColor: isHL ? "rgba(42,138,138,0.1)" : "rgba(107,15,26,0.03)",
-              border: `1px solid ${isHL ? "rgba(42,138,138,0.4)" : "rgba(107,15,26,0.1)"}`,
+              backgroundColor: isHL ? "rgba(42,138,138,0.1)" : "var(--c-bg-section)",
+              border: `1px solid ${isHL ? "rgba(42,138,138,0.4)" : "var(--c-border)"}`,
               transition:"all 0.3s",
             }}>
               <span style={{
                 minWidth: compact ? 24 : 32, fontWeight:900,
-                color: row.rank <= 3 ? "#b8860b" : "rgba(107,15,26,0.4)",
+                color: row.rank <= 3 ? "#b8860b" : "var(--c-text-faint)",
                 fontSize: compact ? "0.85rem" : "1.1rem",
                 fontFamily:"monospace",
               }}>
                 {row.rank}
               </span>
               <TeamDot color={row.color} teamId={row.id} />
-              <span style={{ flex:1, fontWeight:600, color:"#1a0a0a", fontSize }}>
+              <span style={{ flex:1, fontWeight:600, color:"var(--c-text)", fontSize }}>
                 {row.name}
               </span>
               {change !== 0 && (
@@ -109,7 +109,7 @@ export function ScoreboardComponent({
               )}
               <span style={{
                 fontFamily:"monospace", fontWeight:900,
-                color:"#6b0f1a", fontSize: ptSize,
+                color:"var(--c-accent)", fontSize: ptSize,
                 minWidth:60, textAlign:"right",
               }}>
                 {row.points}

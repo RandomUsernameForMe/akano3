@@ -130,6 +130,38 @@
   }
 }
 
+/* ── Akano3 theme tokens ──────────────────────────────────────────────────── */
+:root {
+  --c-bg:           #faf7f2;
+  --c-bg-card:      #ffffff;
+  --c-bg-section:   rgba(107,15,26,0.03);
+  --c-border:       rgba(107,15,26,0.1);
+  --c-border-mid:   rgba(107,15,26,0.15);
+  --c-border-str:   rgba(107,15,26,0.2);
+  --c-text:         #1a0a0a;
+  --c-text-muted:   rgba(107,15,26,0.5);
+  --c-text-faint:   rgba(107,15,26,0.3);
+  --c-accent:       #6b0f1a;
+  --c-topbar:       #ffffff;
+  --c-input:        #ffffff;
+  --c-input-border: rgba(107,15,26,0.2);
+}
+.dark {
+  --c-bg:           #130408;
+  --c-bg-card:      #1f0910;
+  --c-bg-section:   rgba(255,255,255,0.04);
+  --c-border:       rgba(255,255,255,0.1);
+  --c-border-mid:   rgba(255,255,255,0.14);
+  --c-border-str:   rgba(255,255,255,0.2);
+  --c-text:         rgba(255,255,255,0.92);
+  --c-text-muted:   rgba(255,255,255,0.45);
+  --c-text-faint:   rgba(255,255,255,0.25);
+  --c-accent:       #e05252;
+  --c-topbar:       #1a0508;
+  --c-input:        rgba(255,255,255,0.07);
+  --c-input-border: rgba(255,255,255,0.15);
+}
+
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */
 .font-cinzel        { }
 .sand-card          { background:#c8a96e !important; color:#3a1a0a !important; }

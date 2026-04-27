@@ -1,9 +1,10 @@
 "use client"
 
 import React from "react"
-import { IconMicrophone, IconMicrophoneOff, IconLogout, IconBellRinging } from "@tabler/icons-react"
+import { IconMicrophone, IconMicrophoneOff, IconLogout, IconBellRinging, IconSun, IconMoon } from "@tabler/icons-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useGame } from "@/lib/game-context"
+import { useTheme } from "@/lib/theme-context"
 import { RoleBadge } from "./badges"
 
 function BroadcastButton() {
@@ -38,15 +39,16 @@ function BroadcastButton() {
 
 export function TopBar({ showBroadcast = true }: { showBroadcast?: boolean }) {
   const { currentUser, logout, alarmState } = useGame()
+  const { theme, toggle } = useTheme()
   return (
     <div style={{
       display:"flex", alignItems:"center", justifyContent:"space-between",
       padding:"10px 24px",
-      backgroundColor:"#fff",
-      borderBottom:"1px solid rgba(107,15,26,0.12)",
+      backgroundColor:"var(--c-topbar)",
+      borderBottom:"1px solid var(--c-border)",
     }}>
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-        <span style={{ color:"#6b0f1a", fontWeight:700, fontSize:"1.1rem", letterSpacing:"0.02em" }}>
+        <span style={{ color:"var(--c-accent)", fontWeight:700, fontSize:"1.1rem", letterSpacing:"0.02em" }}>
           AKANO
         </span>
         {alarmState.active && (
@@ -61,13 +63,20 @@ export function TopBar({ showBroadcast = true }: { showBroadcast?: boolean }) {
         {showBroadcast && <BroadcastButton />}
         {currentUser && (
           <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-            <span style={{ color:"#1a0a0a", fontSize:"0.85rem" }}>{currentUser.name}</span>
+            <span style={{ color:"var(--c-text)", fontSize:"0.85rem" }}>{currentUser.name}</span>
             <RoleBadge role={currentUser.role} />
           </div>
         )}
+        <button onClick={toggle} title={theme === "dark" ? "Světlý mód" : "Tmavý mód"} style={{
+          background:"transparent", border:"1px solid var(--c-border-str)",
+          color:"var(--c-text-muted)", padding:"5px 8px", borderRadius:6,
+          cursor:"pointer", display:"flex", alignItems:"center",
+        }}>
+          {theme === "dark" ? <IconSun size={14} /> : <IconMoon size={14} />}
+        </button>
         <button onClick={logout} style={{
-          background:"transparent", border:"1px solid rgba(107,15,26,0.2)",
-          color:"rgba(107,15,26,0.5)", padding:"5px 10px", borderRadius:6,
+          background:"transparent", border:"1px solid var(--c-border-str)",
+          color:"var(--c-text-muted)", padding:"5px 10px", borderRadius:6,
           cursor:"pointer", display:"flex", alignItems:"center", gap:4,
           fontSize:"0.8rem",
         }}>

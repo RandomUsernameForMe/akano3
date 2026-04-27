@@ -1,14 +1,31 @@
 "use client"
 
 import React, { useState, useEffect, useMemo } from "react"
-import { IconBellRinging, IconVolume } from "@tabler/icons-react"
+import { IconBellRinging, IconVolume, IconShield } from "@tabler/icons-react"
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
+  Tooltip as RechartsTooltip, ResponsiveContainer,
 } from "recharts"
 import { useGame } from "@/lib/game-context"
 import { formatDateTime } from "@/lib/utils"
+import { TEAM_ICONS } from "@/lib/data"
 import { TeamIcon } from "@/components/shared/team-icon"
+import type { Team } from "@/lib/types"
+
+function EndLabel({ cx, cy, index, lastIndex, team }: {
+  cx?: number; cy?: number; index?: number; lastIndex: number; team: Team
+}) {
+  if (index !== lastIndex || cx == null || cy == null) return null
+  const Icon = TEAM_ICONS[team.id] ?? IconShield
+  return (
+    <g transform={`translate(${cx + 10}, ${cy - 12})`}>
+      <Icon size={24} color={team.color} strokeWidth={2} />
+      <text x={30} y={12} fill={team.color} fontSize={20} fontWeight={700} fontFamily="monospace" dominantBaseline="middle">
+        {team.name}
+      </text>
+    </g>
+  )
+}
 
 function ClockDisplay() {
   const [time, setTime] = useState(() => new Date().toLocaleTimeString("cs-CZ"))
@@ -16,7 +33,7 @@ function ClockDisplay() {
     const iv = setInterval(() => setTime(new Date().toLocaleTimeString("cs-CZ")), 1000)
     return () => clearInterval(iv)
   }, [])
-  return <span style={{ color:"rgba(200,169,110,0.5)", fontSize:"0.8rem", fontFamily:"monospace" }}>{time}</span>
+  return <span style={{ color:"rgba(255,255,255,0.55)", fontSize:"0.8rem", fontFamily:"monospace" }}>{time}</span>
 }
 
 export function DisplayScreen() {
@@ -33,6 +50,8 @@ export function DisplayScreen() {
 
   const timeData = useMemo(() => {
     const sortedLog = [...pointLog].sort((a,b) => a.timestamp.getTime() - b.timestamp.getTime())
+    const latest = sortedLog.length ? sortedLog[sortedLog.length - 1].timestamp.getTime() : Date.now()
+    const cutoff = latest - 12 * 60 * 60 * 1000
     const runningTotals: Record<string, number> = {}
     teams.forEach(t => {
       const loggedSum = sortedLog.reduce((s,e) => e.resolvedTeamIds.includes(t.id) ? s + e.amount : s, 0)
@@ -41,12 +60,15 @@ export function DisplayScreen() {
     const buckets: Record<string, Record<string, number>> = {}
     sortedLog.forEach(e => {
       e.resolvedTeamIds.forEach(tid => { runningTotals[tid] = (runningTotals[tid]??0) + e.amount })
+      if (e.timestamp.getTime() < cutoff) return
       const key = formatDateTime(e.timestamp)
       if (!buckets[key]) buckets[key] = { time: key as any }
       teams.forEach(t => { buckets[key][t.id] = runningTotals[t.id] ?? 0 })
     })
     return Object.values(buckets)
   }, [teams, pointLog])
+
+  const formatTimeOnly = (val: string) => val?.slice(-5) ?? val
 
   if (alarmState.active) {
     return (
@@ -89,16 +111,16 @@ export function DisplayScreen() {
 
       <div style={{ textAlign:"center", padding:"20px 0 10px", flexShrink:0 }}>
         <h1 style={{
-          color:"#c8a96e", fontSize:"clamp(1rem,3vw,2rem)", fontWeight:900,
-          letterSpacing:"0.1em", opacity:0.45, margin:0,
+          color:"rgba(255,255,255,0.9)", fontSize:"clamp(1rem,3vw,2rem)", fontWeight:900,
+          letterSpacing:"0.15em", margin:0,
         }}>
           AKANO
         </h1>
         <p style={{
-          color:"rgba(200,169,110,0.35)", fontSize:"clamp(0.6rem,1.2vw,0.8rem)",
-          letterSpacing:"0.25em", marginTop:4,
+          color:"rgba(255,255,255,0.4)", fontSize:"clamp(0.6rem,1.2vw,0.8rem)",
+          letterSpacing:"0.3em", marginTop:4, textTransform:"uppercase",
         }}>
-          {view === "scores" ? "ŽEBŘÍČEK" : "VÝVOJ V ČASE"}
+          {view === "scores" ? "Žebříček" : "Vývoj v čase"}
         </p>
       </div>
 
@@ -111,8 +133,8 @@ export function DisplayScreen() {
                 <div key={team.id} style={{
                   display:"flex", alignItems:"center", gap:20,
                   padding:"clamp(8px,1.5vh,18px) 28px",
-                  backgroundColor: i === 0 ? "rgba(212,160,23,0.1)" : "rgba(255,255,255,0.06)",
-                  border: `1px solid ${i === 0 ? "rgba(212,160,23,0.3)" : "rgba(255,255,255,0.1)"}`,
+                  backgroundColor: i === 0 ? "rgba(200,160,60,0.12)" : "rgba(255,255,255,0.05)",
+                  border: `1px solid ${i === 0 ? "rgba(200,160,60,0.35)" : "rgba(255,255,255,0.12)"}`,
                   borderRadius:10, transition:"all 0.5s ease",
                 }}>
                   <span style={{
@@ -124,12 +146,12 @@ export function DisplayScreen() {
                   <span style={{
                     flex:1,
                     fontSize:"clamp(1rem,2.2vw,2rem)",
-                    fontWeight:700, color:"#e8d5b0", letterSpacing:"0.05em",
+                    fontWeight:700, color:"rgba(255,255,255,0.92)", letterSpacing:"0.04em",
                   }}>{team.name}</span>
                   <span style={{
                     fontFamily:"monospace", fontWeight:900,
                     fontSize:"clamp(1.2rem,3vw,2.5rem)",
-                    color:"#c8a96e", letterSpacing:"0.05em",
+                    color: i === 0 ? "#c8a96e" : "rgba(255,255,255,0.88)", letterSpacing:"0.05em",
                   }}>{team.points}</span>
                 </div>
               ))}
@@ -140,30 +162,31 @@ export function DisplayScreen() {
         {view === "chart" && (
           <div style={{ flex:1, display:"flex", flexDirection:"column", maxWidth:1100, margin:"0 auto", width:"100%" }}>
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={timeData} margin={{ top:10, right:30, bottom:10, left:10 }}>
-                <CartesianGrid strokeDasharray="4 4" stroke="rgba(255,255,255,0.07)" />
+              <LineChart data={timeData} margin={{ top:10, right:230, bottom:50, left:10 }}>
+                <CartesianGrid strokeDasharray="4 4" stroke="rgba(255,255,255,0.08)" />
                 <XAxis
                   dataKey="time"
-                  tick={{ fill:"rgba(200,169,110,0.5)", fontSize:"clamp(8px,1vw,12px)" }}
-                  tickLine={false} axisLine={{ stroke:"rgba(255,255,255,0.1)" }}
+                  tick={{ fill:"rgba(255,255,255,0.75)", fontSize:18, fontFamily:"monospace" }}
+                  tickLine={false} axisLine={{ stroke:"rgba(255,255,255,0.12)" }}
+                  angle={-35} textAnchor="end" height={70}
+                  interval={Math.max(0, Math.floor(timeData.length / 6))}
+                  tickFormatter={formatTimeOnly}
                 />
                 <YAxis
-                  tick={{ fill:"rgba(200,169,110,0.5)", fontSize:"clamp(8px,1vw,12px)" }}
-                  tickLine={false} axisLine={{ stroke:"rgba(255,255,255,0.1)" }}
-                  width={45}
+                  tick={{ fill:"rgba(255,255,255,0.75)", fontSize:18, fontFamily:"monospace" }}
+                  tickLine={false} axisLine={{ stroke:"rgba(255,255,255,0.12)" }}
+                  width={60} domain={["auto", "auto"]}
                 />
                 <RechartsTooltip
-                  contentStyle={{ backgroundColor:"rgba(30,5,10,0.95)", border:"1px solid rgba(200,169,110,0.3)", color:"#e8d5b0", borderRadius:6 }}
-                  labelStyle={{ color:"rgba(200,169,110,0.7)", fontSize:"0.75rem" }}
-                />
-                <Legend
-                  wrapperStyle={{ color:"rgba(200,169,110,0.7)", fontSize:"clamp(9px,1vw,13px)", paddingTop:8 }}
+                  contentStyle={{ backgroundColor:"rgba(30,5,10,0.95)", border:"1px solid rgba(200,169,110,0.3)", color:"#e8d5b0", borderRadius:6, fontSize:16 }}
+                  labelStyle={{ color:"rgba(200,169,110,0.7)", fontSize:"0.9rem" }}
                 />
                 {sorted.map(t => (
                   <Line
                     key={t.id} type="monotone" dataKey={t.id} name={t.name}
-                    stroke={t.color} strokeWidth={3} dot={false}
-                    activeDot={{ r:5, fill:t.color }}
+                    stroke={t.color} strokeWidth={4}
+                    dot={(props: any) => <EndLabel {...props} lastIndex={timeData.length - 1} team={t} />}
+                    activeDot={{ r:7, fill:t.color }}
                   />
                 ))}
               </LineChart>
@@ -178,14 +201,14 @@ export function DisplayScreen() {
         display:"flex", justifyContent:"space-between", alignItems:"center",
         flexShrink:0,
       }}>
-        <span style={{ color:"rgba(200,169,110,0.4)", fontSize:"0.75rem", letterSpacing:"0.15em" }}>
+        <span style={{ color:"rgba(255,255,255,0.3)", fontSize:"0.75rem", letterSpacing:"0.15em" }}>
           AKANO · SCOREBOARD
         </span>
         <div style={{ display:"flex", gap:6, alignItems:"center" }}>
           {(["scores","chart"] as const).map(v => (
             <button key={v} onClick={() => setView(v)} style={{
               width:8, height:8, borderRadius:"50%", border:"none", cursor:"pointer", padding:0,
-              backgroundColor: view === v ? "rgba(200,169,110,0.8)" : "rgba(200,169,110,0.2)",
+              backgroundColor: view === v ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.2)",
               transition:"background 0.3s",
             }} />
           ))}

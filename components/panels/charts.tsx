@@ -1,16 +1,33 @@
 "use client"
 
-import React, { useState, useMemo } from "react"
+import React, { useMemo } from "react"
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
+  Tooltip as RechartsTooltip, ResponsiveContainer,
 } from "recharts"
+import { IconShield } from "@tabler/icons-react"
 import { useGame } from "@/lib/game-context"
 import { formatDateTime } from "@/lib/utils"
+import { TEAM_ICONS } from "@/lib/data"
+import type { Team } from "@/lib/types"
+
+function EndLabel({ cx, cy, index, lastIndex, team }: {
+  cx?: number; cy?: number; index?: number; lastIndex: number; team: Team
+}) {
+  if (index !== lastIndex || cx == null || cy == null) return null
+  const Icon = TEAM_ICONS[team.id] ?? IconShield
+  return (
+    <g transform={`translate(${cx + 6}, ${cy - 7})`}>
+      <Icon size={14} color={team.color} strokeWidth={1.8} />
+      <text x={18} y={7} fill={team.color} fontSize={10} fontFamily="monospace" dominantBaseline="middle">
+        {team.name}
+      </text>
+    </g>
+  )
+}
 
 export function ChartsPanel({ singleTeamId }: { singleTeamId?: string }) {
   const { teams, pointLog } = useGame()
-  const [hiddenTeams, setHiddenTeams] = useState<Set<string>>(new Set())
 
   const timeData = useMemo(() => {
     const buckets: Record<string, Record<string, number>> = {}
@@ -30,6 +47,7 @@ export function ChartsPanel({ singleTeamId }: { singleTeamId?: string }) {
   }, [teams, pointLog])
 
   const displayTeams = singleTeamId ? teams.filter(t => t.id === singleTeamId) : teams
+  const lastIndex = timeData.length - 1
 
   return (
     <div>
@@ -39,25 +57,18 @@ export function ChartsPanel({ singleTeamId }: { singleTeamId?: string }) {
       }}>
         <p style={{ color:"#6b0f1a", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:16 }}>VÝVOJ BODŮ V ČASE</p>
         <ResponsiveContainer width="100%" height={260}>
-          <LineChart data={timeData}>
+          <LineChart data={timeData} margin={{ right: 130 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#a0263318" />
             <XAxis dataKey="time" tick={{ fill:"rgba(107,15,26,0.45)", fontSize:10 }} />
             <YAxis tick={{ fill:"rgba(107,15,26,0.45)", fontSize:10 }} />
             <RechartsTooltip
               contentStyle={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)", color:"#1a0a0a" }}
             />
-            <Legend
-              wrapperStyle={{ fontSize:"0.75rem", color:"#6b0f1a" }}
-              onClick={e => {
-                const id = displayTeams.find(t => t.name === e.dataKey)?.id
-                if (!id) return
-                setHiddenTeams(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n })
-              }}
-            />
             {displayTeams.map(t => (
               <Line key={t.id} type="monotone" dataKey={t.id} name={t.name}
-                stroke={t.color} strokeWidth={2} dot={false}
-                hide={hiddenTeams.has(t.id)}
+                stroke={t.color} strokeWidth={2}
+                dot={(props: any) => <EndLabel {...props} lastIndex={lastIndex} team={t} />}
+                activeDot={{ r: 3, stroke: t.color, fill: t.color }}
               />
             ))}
           </LineChart>

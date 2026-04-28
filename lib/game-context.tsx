@@ -212,12 +212,12 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   }, [isLoggedIn, fetchGameState])
 
   const login = useCallback((code: string): Character | null => {
-    const char = characters.find(c => c.code === code.trim())
+    const char = CHARACTERS.find(c => c.code === code.trim())
     if (!char) return null
     sessionStorage.setItem("akano_user_id", char.id)
     setCurrentUser(char)
     return char
-  }, [characters])
+  }, [])
 
   const logout = useCallback(() => {
     sessionStorage.removeItem("akano_user_id")

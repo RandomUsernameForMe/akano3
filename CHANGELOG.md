@@ -1,3 +1,9 @@
+## [2026-04-28] - Opravy kritických bugů (review)
+
+- `/api/gift` — TOCTOU fix: pool deduction + team_points + log v jednom CTE (atomic); přidána validace `amount > 0`
+- `/api/runs PATCH` — validace runId před transakcí; neexistující ID vrací 404 místo deaktivace systému
+- `lib/game-context.tsx` `login` — `CHARACTERS.find` místo `characters.find`; eliminuje re-render všech consumers každé 2s
+
 ## [2026-04-28] - AKANO v TopBaru odkazuje na login
 
 - Klik na "AKANO" volá `logout()` → přesměruje na `/` (login screen)

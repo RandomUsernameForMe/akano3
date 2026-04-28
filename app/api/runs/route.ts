@@ -65,6 +65,9 @@ export async function PATCH(req: Request) {
     const body = await req.json() as { action: "setActive"; runId: number }
     if (body.action !== "setActive") return new Response("Bad request", { status: 400 })
 
+    const [existing] = await sql`SELECT id FROM runs WHERE id = ${body.runId}`
+    if (!existing) return new Response("Run not found", { status: 404 })
+
     await sql.transaction([
       sql`UPDATE runs SET is_active = FALSE WHERE is_active = TRUE`,
       sql`UPDATE runs SET is_active = TRUE WHERE id = ${body.runId}`,

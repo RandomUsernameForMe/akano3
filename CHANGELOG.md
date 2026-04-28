@@ -1,3 +1,7 @@
+## [2026-04-28] - AKANO v TopBaru odkazuje na login
+
+- Klik na "AKANO" volá `logout()` → přesměruje na `/` (login screen)
+
 ## [2026-04-28] - Real-time sync přes SSE
 
 - `lib/event-bus.ts` — singleton EventEmitter, `emitGameEvent` / `onGameEvent`

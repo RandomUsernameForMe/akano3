@@ -4,8 +4,12 @@
 - `app/api/events/route.ts` — SSE endpoint (text/event-stream), heartbeat 25s
 - Všechny mutation routy (alarm, points, lesson, kaichi, gift, config, qr, runs) emitují event po DB write
 - `lib/game-context.tsx` — nahrazen 3s polling za EventSource, alarm se aplikuje přímo z SSE payloadu (bez extra round-tripu), ostatní eventy triggerují `fetchGameState()`
-- Alarm se šíří na všechny připojené klienty okamžitě (< 100ms vs dřívějších ~3s)
-- Pozastavenou viditelnost tabu (visibilitychange) neblokuje příchod alarmů — SSE běží v pozadí
+- REVERTOVÁNO — SSE nefunguje na Vercel (serverless, izolované procesy bez sdílené paměti)
+
+## [2026-04-28] - Polling 2s bez pauzy na background tab
+
+- `lib/game-context.tsx` — polling 2s bez `visibilitychange` pauzy; background taby stále synchronizují
+- Alarm dorazí na všechna zařízení do max 2s
 
 ## [2026-04-28] - Seed endpoint pro mock data běhu 1
 

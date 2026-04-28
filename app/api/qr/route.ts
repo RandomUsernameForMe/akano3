@@ -1,5 +1,4 @@
 import { sql } from "@/lib/db"
-import { emitGameEvent } from "@/lib/event-bus"
 import type { QRCode } from "@/lib/types"
 
 export async function GET() {
@@ -17,7 +16,6 @@ export async function POST(req: Request) {
       INSERT INTO qr_codes (id, token, label, target_type, target_id, points, validity, valid_until)
       VALUES (${id}, ${token}, ${body.label}, ${body.targetType}, ${body.targetId}, ${body.points}, ${body.validity}, ${body.validUntil ?? null})
     `
-    emitGameEvent({ type: "state-changed" })
     return Response.json({ id, token })
   } catch (err) {
     console.error("[api/qr]", err)

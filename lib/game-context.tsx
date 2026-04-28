@@ -139,6 +139,7 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   const [activeRunId,     setActiveRunId]     = useState<number | null>(null)
   const [runs,            setRuns]            = useState<RunSummary[]>([])
 
+  const pollingRef   = useRef<ReturnType<typeof setInterval> | null>(null)
   const offlineRef  = useRef(false)
   const failCountRef = useRef(0)
 
@@ -196,52 +197,19 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     }
   }, [applyGameState, addToast])
 
-  // SSE real-time sync — replaces polling
-  // isLoggedIn (boolean) prevents the effect from re-running on every applyGameState call
+  // Poll every 2s — no visibilitychange pause so background tabs still sync
   const isLoggedIn = currentUser !== null
   useEffect(() => {
-    if (!isLoggedIn) return
-
+    if (!isLoggedIn) {
+      if (pollingRef.current) { clearInterval(pollingRef.current); pollingRef.current = null }
+      return
+    }
     fetchGameState()
-
-    const es = new EventSource("/api/events")
-    let offlineTimer: ReturnType<typeof setTimeout> | null = null
-
-    es.addEventListener("alarm", (e: MessageEvent) => {
-      const d = JSON.parse(e.data) as { active: boolean; alarmType?: AlarmState["type"]; message?: string; color?: string }
-      setAlarmState(prev =>
-        d.active
-          ? { active: true, type: d.alarmType!, message: d.message!, color: d.color! }
-          : { ...prev, active: false }
-      )
-    })
-    es.addEventListener("state-changed", () => fetchGameState())
-    es.addEventListener("config-changed", () => fetchGameState())
-    es.addEventListener("run-changed", () => fetchGameState())
-
-    es.onopen = () => {
-      if (offlineTimer) { clearTimeout(offlineTimer); offlineTimer = null }
-      if (offlineRef.current) { addToast("Spojení obnoveno", "success"); offlineRef.current = false; fetchGameState() }
-    }
-
-    es.onerror = () => {
-      if (!offlineRef.current && offlineTimer === null) {
-        offlineTimer = setTimeout(() => {
-          offlineTimer = null
-          if (!offlineRef.current) { addToast("Ztráta spojení se serverem", "error"); offlineRef.current = true }
-        }, 5000)
-      }
-    }
-
-    const onVisibility = () => { if (!document.hidden) fetchGameState() }
-    document.addEventListener("visibilitychange", onVisibility)
-
+    pollingRef.current = setInterval(fetchGameState, 2000)
     return () => {
-      es.close()
-      if (offlineTimer) clearTimeout(offlineTimer)
-      document.removeEventListener("visibilitychange", onVisibility)
+      if (pollingRef.current) { clearInterval(pollingRef.current); pollingRef.current = null }
     }
-  }, [isLoggedIn, fetchGameState, addToast])
+  }, [isLoggedIn, fetchGameState])
 
   const login = useCallback((code: string): Character | null => {
     const char = characters.find(c => c.code === code.trim())

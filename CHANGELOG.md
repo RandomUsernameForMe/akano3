@@ -1,3 +1,7 @@
+## [2026-04-28] - Seed endpoint pro mock data běhu 1
+
+- `POST /api/admin/seed` — resetuje point_log + team_points pro run 1, vloží 30 mock záznamů z INITIAL_POINT_LOG
+
 ## [2026-04-28] - Fix multi-tab login + connection toast spam
 
 - sessionStorage místo localStorage — každý tab má vlastní přihlášení

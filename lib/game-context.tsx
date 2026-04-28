@@ -18,7 +18,7 @@ export interface GameCtx {
   toasts:             Toast[]
   currentUser:        Character | null
   setCurrentUser: (char: Character | null) => void
-  login:         (code: string) => boolean
+  login:         (code: string) => Character | null
   logout:        () => void
   assignPoints:  (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">) => void
   updateKaichi:  (characterId: string) => void
@@ -120,7 +120,7 @@ function parseQRCodes(rows: Record<string, unknown>[]): QRCode[] {
   }))
 }
 
-export function GameProvider({ children }: { children: React.ReactNode }) {
+export function GameProvider({ children, initialUserId }: { children: React.ReactNode; initialUserId?: string }) {
   const [teams,           setTeams]           = useState<Team[]>(TEAMS)
   const [characters,      setCharacters]      = useState<Character[]>(CHARACTERS)
   const [pointLog,        setPointLog]        = useState<PointEntry[]>([])
@@ -130,7 +130,12 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   const [lessonWindowEnd, setLessonWindowEnd] = useState<Date | null>(null)
   const [qrCodes,         setQrCodes]         = useState<QRCode[]>([])
   const [toasts,          setToasts]          = useState<Toast[]>([])
-  const [currentUser,     setCurrentUser]     = useState<Character | null>(null)
+  const [currentUser,     setCurrentUser]     = useState<Character | null>(() => {
+    if (initialUserId) return CHARACTERS.find(c => c.id === initialUserId) ?? null
+    if (typeof window === "undefined") return null
+    const saved = localStorage.getItem("akano_user_id")
+    return saved ? (CHARACTERS.find(c => c.id === saved) ?? null) : null
+  })
   const [activeRunId,     setActiveRunId]     = useState<number | null>(null)
   const [runs,            setRuns]            = useState<RunSummary[]>([])
 
@@ -183,8 +188,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [applyGameState, addToast])
 
   // Start polling when logged in, pause on background tab, stop on logout
+  // isLoggedIn (boolean) prevents the effect from re-running on every poll
+  // because applyGameState always creates a new currentUser object reference
+  const isLoggedIn = currentUser !== null
   useEffect(() => {
-    if (!currentUser) {
+    if (!isLoggedIn) {
       if (pollingRef.current) { clearInterval(pollingRef.current); pollingRef.current = null }
       return
     }
@@ -203,16 +211,18 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     if (!document.hidden) start()
     document.addEventListener("visibilitychange", onVisibilityChange)
     return () => { stop(); document.removeEventListener("visibilitychange", onVisibilityChange) }
-  }, [currentUser, fetchGameState])
+  }, [isLoggedIn, fetchGameState])
 
-  const login = useCallback((code: string): boolean => {
+  const login = useCallback((code: string): Character | null => {
     const char = characters.find(c => c.code === code.trim())
-    if (!char) return false
+    if (!char) return null
+    localStorage.setItem("akano_user_id", char.id)
     setCurrentUser(char)
-    return true
+    return char
   }, [characters])
 
   const logout = useCallback(() => {
+    localStorage.removeItem("akano_user_id")
     setCurrentUser(null)
   }, [])
 

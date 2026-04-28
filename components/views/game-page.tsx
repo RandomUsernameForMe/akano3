@@ -29,7 +29,19 @@ export function GamePage({ id }: { id: string }) {
   if (char.role === "display") return <DisplayScreen />
 
   return (
-    <div style={{ minHeight:"100vh", backgroundColor:"#faf7f2", color:"#1a0a0a" }}>
+    <div style={{
+      minHeight:"100vh", color:"#1a0a0a", position:"relative", overflow:"hidden",
+      background:"radial-gradient(ellipse at 65% -5%, #deeee8 0%, #faf7f2 52%)",
+    }}>
+      <div style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0 }}>
+        {[8, 22, 78, 92].map(pct => (
+          <div key={pct} style={{
+            position:"absolute", top:0, bottom:0, left:`${pct}%`,
+            width:1, background:"linear-gradient(to bottom, transparent, rgba(107,15,26,0.06), transparent)",
+          }} />
+        ))}
+      </div>
+      <div style={{ position:"relative", zIndex:1 }}>
       <AlarmBannerStrip />
       <TopBar showBroadcast={["gm","teacher","ruze"].includes(char.role)} />
       {char.role === "student" ? (
@@ -47,6 +59,7 @@ export function GamePage({ id }: { id: string }) {
           <ToastContainer />
         </>
       )}
+      </div>
     </div>
   )
 }

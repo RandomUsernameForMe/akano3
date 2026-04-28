@@ -1,0 +1,37 @@
+"use client"
+
+import React from "react"
+
+export class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { error: Error | null }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props)
+    this.state = { error: null }
+  }
+  static getDerivedStateFromError(error: Error) { return { error } }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{
+          minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center",
+          justifyContent:"center", backgroundColor:"#faf7f2", color:"#6b0f1a",
+          gap:16, padding:32,
+        }}>
+          <p style={{ fontWeight:700, fontSize:"1.1rem" }}>Nastala neočekávaná chyba</p>
+          <pre style={{ fontSize:"0.75rem", opacity:0.6, maxWidth:480, whiteSpace:"pre-wrap", wordBreak:"break-word" }}>
+            {this.state.error.message}
+          </pre>
+          <button onClick={() => this.setState({ error: null })} style={{
+            padding:"8px 20px", backgroundColor:"#6b0f1a", color:"#fff",
+            border:"none", borderRadius:6, cursor:"pointer",
+          }}>
+            Zkusit znovu
+          </button>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}

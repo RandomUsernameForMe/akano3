@@ -1,3 +1,12 @@
+## [2026-04-28] - Routing refaktor na /character/[id], localStorage persistence
+
+- Přihlášení přesměrovává na `/character/{id}` místo single-page render
+- `GameProvider` přijímá `initialUserId` — obnovuje session z localStorage
+- `login()` vrací `Character | null` (místo boolean) pro přímé přesměrování
+- `ErrorBoundary` extrahován do `components/shared/error-boundary.tsx`
+- `game-page.tsx`: dekorativní pozadí (gradient + svislé linky)
+- Polling efekt používá `isLoggedIn` boolean místo `currentUser` reference (fix zbytečných re-runů)
+
 ## [2026-04-28] - Podpora více běhů (runs)
 
 - Přidána tabulka `runs` s migrací přes `/api/admin/migrate`

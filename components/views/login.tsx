@@ -2,6 +2,7 @@
 
 import React, { useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { IconUser, IconCircleX } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,6 +13,7 @@ import { useGame } from "@/lib/game-context"
 
 export function LoginScreen() {
   const { login } = useGame()
+  const router = useRouter()
   const [code,    setCode]    = useState("")
   const [error,   setError]   = useState("")
   const [loading, setLoading] = useState(false)
@@ -21,10 +23,12 @@ export function LoginScreen() {
     if (!code.trim()) return
     setLoading(true)
     setTimeout(() => {
-      const ok = login(code)
-      if (!ok) {
+      const char = login(code)
+      if (!char) {
         setError("Neplatný kód. Zkontroluj zápis a zkus znovu.")
         setLoading(false)
+      } else {
+        router.push(`/character/${char.id}`)
       }
     }, 400)
   }

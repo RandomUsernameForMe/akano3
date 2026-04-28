@@ -133,14 +133,15 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   const [currentUser,     setCurrentUser]     = useState<Character | null>(() => {
     if (initialUserId) return CHARACTERS.find(c => c.id === initialUserId) ?? null
     if (typeof window === "undefined") return null
-    const saved = localStorage.getItem("akano_user_id")
+    const saved = sessionStorage.getItem("akano_user_id")
     return saved ? (CHARACTERS.find(c => c.id === saved) ?? null) : null
   })
   const [activeRunId,     setActiveRunId]     = useState<number | null>(null)
   const [runs,            setRuns]            = useState<RunSummary[]>([])
 
-  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null)
-  const offlineRef = useRef(false)
+  const pollingRef  = useRef<ReturnType<typeof setInterval> | null>(null)
+  const offlineRef  = useRef(false)
+  const failCountRef = useRef(0)
 
   const applyGameState = useCallback((data: Record<string, unknown>) => {
     const alarm   = data.alarm as Record<string, unknown>
@@ -176,14 +177,23 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     try {
       const res = await fetch("/api/game-state")
       if (!res.ok) {
-        if (!offlineRef.current) { addToast("Ztráta spojení se serverem", "error"); offlineRef.current = true }
+        failCountRef.current++
+        if (failCountRef.current >= 3 && !offlineRef.current) {
+          addToast("Ztráta spojení se serverem", "error")
+          offlineRef.current = true
+        }
         return
       }
+      failCountRef.current = 0
       if (offlineRef.current) { addToast("Spojení obnoveno", "success"); offlineRef.current = false }
       const data = await res.json()
       applyGameState(data)
     } catch {
-      if (!offlineRef.current) { addToast("Ztráta spojení se serverem", "error"); offlineRef.current = true }
+      failCountRef.current++
+      if (failCountRef.current >= 3 && !offlineRef.current) {
+        addToast("Ztráta spojení se serverem", "error")
+        offlineRef.current = true
+      }
     }
   }, [applyGameState, addToast])
 
@@ -216,13 +226,13 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   const login = useCallback((code: string): Character | null => {
     const char = characters.find(c => c.code === code.trim())
     if (!char) return null
-    localStorage.setItem("akano_user_id", char.id)
+    sessionStorage.setItem("akano_user_id", char.id)
     setCurrentUser(char)
     return char
   }, [characters])
 
   const logout = useCallback(() => {
-    localStorage.removeItem("akano_user_id")
+    sessionStorage.removeItem("akano_user_id")
     setCurrentUser(null)
   }, [])
 

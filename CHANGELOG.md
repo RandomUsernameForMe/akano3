@@ -1,3 +1,8 @@
+## [2026-04-28] - Fix multi-tab login + connection toast spam
+
+- sessionStorage místo localStorage — každý tab má vlastní přihlášení
+- Toasty "ztráta spojení" jen po 3+ po sobě jdoucích selháních (ne při občasném hiccupu)
+
 ## [2026-04-28] - Routing refaktor na /character/[id], localStorage persistence
 
 - Přihlášení přesměrovává na `/character/{id}` místo single-page render

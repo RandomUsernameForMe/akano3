@@ -1,22 +1,28 @@
 import { sql } from "@/lib/db"
+import { getActiveRunId } from "@/lib/runs"
 
 export const dynamic = "force-dynamic"
 
 export async function GET() {
   try {
-    const [alarm, config, teamPoints, charState, circleMembers, teamUnits, pointLog, qrCodes] =
+    const runId = await getActiveRunId()
+
+    const [alarm, config, teamPoints, charState, circleMembers, teamUnits, pointLog, qrCodes, runs] =
       await Promise.all([
-        sql`SELECT * FROM alarm_state WHERE id = 1`,
-        sql`SELECT * FROM game_config WHERE id = 1`,
-        sql`SELECT team_id, points FROM team_points`,
-        sql`SELECT character_id, kaichi_level, peer_point_pool, lesson_claimed_this_window, specialization FROM character_state`,
-        sql`SELECT circle_id, character_id FROM circle_members`,
-        sql`SELECT team_id, unit_id FROM team_units`,
-        sql`SELECT * FROM point_log ORDER BY timestamp DESC LIMIT 200`,
+        sql`SELECT * FROM alarm_state WHERE run_id = ${runId} LIMIT 1`,
+        sql`SELECT * FROM game_config WHERE run_id = ${runId} LIMIT 1`,
+        sql`SELECT team_id, points FROM team_points WHERE run_id = ${runId}`,
+        sql`SELECT character_id, kaichi_level, peer_point_pool, lesson_claimed_this_window, specialization FROM character_state WHERE run_id = ${runId}`,
+        sql`SELECT circle_id, character_id FROM circle_members WHERE run_id = ${runId}`,
+        sql`SELECT team_id, unit_id FROM team_units WHERE run_id = ${runId}`,
+        sql`SELECT * FROM point_log WHERE run_id = ${runId} ORDER BY timestamp DESC LIMIT 200`,
         sql`SELECT * FROM qr_codes ORDER BY created_at DESC`,
+        sql`SELECT id, name, is_active, created_at FROM runs ORDER BY id ASC`,
       ])
 
     return Response.json({
+      activeRunId: runId,
+      runs,
       alarm: alarm[0],
       config: config[0],
       teamPoints,

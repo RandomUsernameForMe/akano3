@@ -40,3 +40,10 @@ export interface AlarmState {
 export interface Toast { id: string; message: string; type: "success" | "error" | "info" }
 
 export type TablerIcon = ComponentType<{ size?: number; color?: string; strokeWidth?: number; style?: CSSProperties }>
+
+export interface RunSummary {
+  id: number
+  name: string
+  isActive: boolean
+  createdAt: Date
+}

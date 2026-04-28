@@ -1,0 +1,254 @@
+"use client"
+
+import React, { useState } from "react"
+import { IconPlayerPlay, IconPlus } from "@tabler/icons-react"
+import { Input } from "@/components/ui/input"
+import { useGame } from "@/lib/game-context"
+import { TEAMS, UNITS, CIRCLES, CHARACTERS } from "@/lib/data"
+import { getTeamName } from "@/lib/utils"
+
+const SPECIALIZATIONS = [
+  { value: "", label: "—" },
+  { value: "combat",   label: "Bojová" },
+  { value: "tactical", label: "Taktická" },
+  { value: "support",  label: "Podpora" },
+]
+
+const selectStyle: React.CSSProperties = {
+  backgroundColor: "#fff",
+  border: "1px solid rgba(107,15,26,0.2)",
+  borderRadius: 6,
+  color: "#1a0a0a",
+  fontSize: "0.82rem",
+  padding: "4px 8px",
+  cursor: "pointer",
+}
+
+function section(title: string, children: React.ReactNode) {
+  return (
+    <div style={{
+      backgroundColor: "rgba(107,15,26,0.03)",
+      border: "1px solid rgba(107,15,26,0.1)",
+      borderRadius: 10,
+      padding: 20,
+      marginBottom: 16,
+    }}>
+      <p style={{ color: "#6b0f1a", fontSize: "0.75rem", letterSpacing: "0.1em", marginBottom: 14 }}>{title}</p>
+      {children}
+    </div>
+  )
+}
+
+export function RunSetupPanel() {
+  const { runs, activeRunId, setActiveRun, createRun, teams, characters } = useGame()
+  const [newRunName, setNewRunName] = useState("")
+  const [creating, setCreating] = useState(false)
+  const [savingTeam, setSavingTeam] = useState<string | null>(null)
+  const [savingCircle, setSavingCircle] = useState<string | null>(null)
+  const [savingSpec, setSavingSpec] = useState<string | null>(null)
+
+  const students = CHARACTERS.filter(c => c.role === "student" || c.role === "ruze")
+
+  const handleCreateRun = async () => {
+    if (!newRunName.trim()) return
+    setCreating(true)
+    await createRun(newRunName.trim())
+    setNewRunName("")
+    setCreating(false)
+  }
+
+  const handleSetTeamUnit = async (teamId: string, unitId: string) => {
+    setSavingTeam(teamId)
+    await fetch("/api/config", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "setTeamUnit", teamId, unitId }),
+    })
+    setSavingTeam(null)
+  }
+
+  const handleSetCircle = async (circleId: string, memberIds: string[]) => {
+    setSavingCircle(circleId)
+    await fetch("/api/config", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "setCircleMembers", circleId, memberIds }),
+    })
+    setSavingCircle(null)
+  }
+
+  const handleSetSpec = async (characterId: string, specialization: string) => {
+    setSavingSpec(characterId)
+    await fetch("/api/config", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "setSpecialization", characterId, specialization: specialization || null }),
+    })
+    setSavingSpec(null)
+  }
+
+  return (
+    <div style={{ maxWidth: 640 }}>
+
+      {section("SPRÁVA BĚHŮ",
+        <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+            {runs.map(run => (
+              <div key={run.id} style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "10px 14px", borderRadius: 8,
+                backgroundColor: run.isActive ? "rgba(42,138,90,0.1)" : "rgba(107,15,26,0.04)",
+                border: `1px solid ${run.isActive ? "rgba(42,138,90,0.4)" : "rgba(107,15,26,0.1)"}`,
+              }}>
+                <div>
+                  <span style={{ fontWeight: 700, color: "#1a0a0a", fontSize: "0.9rem" }}>{run.name}</span>
+                  {run.isActive && (
+                    <span style={{
+                      marginLeft: 10, backgroundColor: "#2a8a5a", color: "#fff",
+                      fontSize: "0.7rem", padding: "2px 8px", borderRadius: 20, fontWeight: 700,
+                    }}>AKTIVNÍ</span>
+                  )}
+                  <p style={{ color: "rgba(107,15,26,0.45)", fontSize: "0.72rem", marginTop: 2 }}>
+                    #{run.id} · {run.createdAt.toLocaleDateString("cs-CZ")}
+                  </p>
+                </div>
+                {!run.isActive && (
+                  <button
+                    onClick={() => setActiveRun(run.id)}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 5,
+                      backgroundColor: "#2a8a8a", color: "#fff", border: "none",
+                      borderRadius: 6, padding: "6px 12px", cursor: "pointer", fontSize: "0.8rem", fontWeight: 700,
+                    }}
+                  >
+                    <IconPlayerPlay size={13} /> Aktivovat
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div style={{ display: "flex", gap: 8 }}>
+            <Input
+              placeholder="Název nového běhu…"
+              value={newRunName}
+              onChange={e => setNewRunName(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && handleCreateRun()}
+              style={{ flex: 1, backgroundColor: "#fff", border: "1px solid rgba(107,15,26,0.2)", color: "#1a0a0a" }}
+            />
+            <button
+              onClick={handleCreateRun}
+              disabled={creating || !newRunName.trim()}
+              style={{
+                display: "flex", alignItems: "center", gap: 5,
+                backgroundColor: "#6b0f1a", color: "#fff", border: "none",
+                borderRadius: 6, padding: "0 16px", cursor: "pointer", fontSize: "0.85rem", fontWeight: 700,
+                opacity: creating || !newRunName.trim() ? 0.5 : 1,
+              }}
+            >
+              <IconPlus size={14} /> Vytvořit
+            </button>
+          </div>
+        </div>
+      )}
+
+      {section("PŘIŘAZENÍ JEDNOTEK",
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {TEAMS.map(staticTeam => {
+            const liveTeam = teams.find(t => t.id === staticTeam.id)
+            const currentUnitId = liveTeam?.unitId ?? staticTeam.unitId
+            return (
+              <div key={staticTeam.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{ color: "#1a0a0a", fontSize: "0.85rem", minWidth: 120 }}>
+                  {getTeamName(staticTeam.id)}
+                  {savingTeam === staticTeam.id && <span style={{ color: "rgba(107,15,26,0.4)", fontSize: "0.75rem", marginLeft: 6 }}>ukládám…</span>}
+                </span>
+                <select
+                  value={currentUnitId}
+                  onChange={e => handleSetTeamUnit(staticTeam.id, e.target.value)}
+                  disabled={savingTeam === staticTeam.id}
+                  style={selectStyle}
+                >
+                  {UNITS.map(u => (
+                    <option key={u.id} value={u.id}>{u.name}</option>
+                  ))}
+                </select>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+      {section("ČLENOVÉ KRUHŮ",
+        <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+          {CIRCLES.map(circle => {
+            const memberIds = characters
+              .filter(c => c.circleIds.includes(circle.id))
+              .map(c => c.id)
+            return (
+              <div key={circle.id}>
+                <p style={{ color: "#6b0f1a", fontSize: "0.8rem", marginBottom: 6, fontWeight: 600 }}>
+                  {circle.name}
+                  {savingCircle === circle.id && <span style={{ color: "rgba(107,15,26,0.4)", fontSize: "0.72rem", marginLeft: 6 }}>ukládám…</span>}
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {students.map(student => {
+                    const checked = memberIds.includes(student.id)
+                    return (
+                      <button
+                        key={student.id}
+                        onClick={() => {
+                          const next = checked
+                            ? memberIds.filter(id => id !== student.id)
+                            : [...memberIds, student.id]
+                          handleSetCircle(circle.id, next)
+                        }}
+                        style={{
+                          padding: "3px 10px", borderRadius: 20, fontSize: "0.78rem", cursor: "pointer",
+                          border: `1px solid ${checked ? "#6b0f1a" : "rgba(107,15,26,0.2)"}`,
+                          backgroundColor: checked ? "#6b0f1a" : "transparent",
+                          color: checked ? "#fff" : "rgba(107,15,26,0.7)",
+                          fontWeight: checked ? 700 : 400,
+                        }}
+                      >
+                        {student.name}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+      {section("SPECIALIZACE POSTAV",
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {students.map(student => {
+            const liveChar = characters.find(c => c.id === student.id)
+            const currentSpec = liveChar?.specialization ?? ""
+            return (
+              <div key={student.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <span style={{ color: "#1a0a0a", fontSize: "0.85rem", minWidth: 160 }}>
+                  {student.name}
+                  {savingSpec === student.id && <span style={{ color: "rgba(107,15,26,0.4)", fontSize: "0.75rem", marginLeft: 6 }}>ukládám…</span>}
+                </span>
+                <select
+                  value={currentSpec ?? ""}
+                  onChange={e => handleSetSpec(student.id, e.target.value)}
+                  disabled={savingSpec === student.id}
+                  style={selectStyle}
+                >
+                  {SPECIALIZATIONS.map(s => (
+                    <option key={s.value} value={s.value}>{s.label}</option>
+                  ))}
+                </select>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+    </div>
+  )
+}

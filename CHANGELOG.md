@@ -1,3 +1,14 @@
+## [2026-04-28] - Podpora více běhů (runs)
+
+- Přidána tabulka `runs` s migrací přes `/api/admin/migrate`
+- Všechny per-run tabulky (team_points, character_state, alarm_state, game_config, circle_members, team_units, point_log) rozšířeny o `run_id`
+- `lib/runs.ts`: helper `getActiveRunId()` pro všechny API routes
+- API routes (alarm, config, game-state, gift, kaichi, lesson, points) filtrují data dle aktivního běhu
+- Nová API route `/api/runs` (GET/POST/PATCH) — výpis, vytvoření a přepnutí aktivního běhu
+- `GameContext`: nové fieldy `activeRunId`, `runs`, `setActiveRun`, `createRun`
+- `GMDashboard`: dropdown pro přepínání běhů v headeru + nový tab "Běhy"
+- `RunSetupPanel`: správa běhů, přiřazení jednotek, členů kruhů a specializací
+
 ## [2026-04-27] - Fix type error v page.tsx
 
 - Router: odstraněn currentScreen (neexistuje v GameCtx), screen se nyní derivuje z currentUser.role

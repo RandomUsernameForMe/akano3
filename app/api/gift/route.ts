@@ -1,6 +1,7 @@
 import { sql } from "@/lib/db"
 import { CHARACTERS } from "@/lib/data"
 import { getActiveRunId } from "@/lib/runs"
+import { emitGameEvent } from "@/lib/event-bus"
 
 export async function POST(req: Request) {
   let poolInsufficient = false
@@ -30,6 +31,7 @@ export async function POST(req: Request) {
       `,
     ])
 
+    emitGameEvent({ type: "state-changed" })
     return new Response(null, { status: 204 })
   } catch (err) {
     if (poolInsufficient) return new Response("Nedostatečný pool bodů", { status: 422 })

@@ -1,3 +1,12 @@
+## [2026-04-28] - Real-time sync přes SSE
+
+- `lib/event-bus.ts` — singleton EventEmitter, `emitGameEvent` / `onGameEvent`
+- `app/api/events/route.ts` — SSE endpoint (text/event-stream), heartbeat 25s
+- Všechny mutation routy (alarm, points, lesson, kaichi, gift, config, qr, runs) emitují event po DB write
+- `lib/game-context.tsx` — nahrazen 3s polling za EventSource, alarm se aplikuje přímo z SSE payloadu (bez extra round-tripu), ostatní eventy triggerují `fetchGameState()`
+- Alarm se šíří na všechny připojené klienty okamžitě (< 100ms vs dřívějších ~3s)
+- Pozastavenou viditelnost tabu (visibilitychange) neblokuje příchod alarmů — SSE běží v pozadí
+
 ## [2026-04-28] - Seed endpoint pro mock data běhu 1
 
 - `POST /api/admin/seed` — resetuje point_log + team_points pro run 1, vloží 30 mock záznamů z INITIAL_POINT_LOG

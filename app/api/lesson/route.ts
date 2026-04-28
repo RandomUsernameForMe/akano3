@@ -1,5 +1,6 @@
 import { sql } from "@/lib/db"
 import { getActiveRunId } from "@/lib/runs"
+import { emitGameEvent } from "@/lib/event-bus"
 
 export async function POST(req: Request) {
   try {
@@ -39,6 +40,7 @@ export async function POST(req: Request) {
       return new Response("Bad request", { status: 400 })
     }
 
+    emitGameEvent({ type: "state-changed" })
     return new Response(null, { status: 204 })
   } catch {
     return new Response("Server error", { status: 500 })

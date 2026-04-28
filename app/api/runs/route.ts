@@ -1,6 +1,7 @@
 import { sql } from "@/lib/db"
 import { TEAMS, CHARACTERS } from "@/lib/data"
 import { getActiveRunId } from "@/lib/runs"
+import { emitGameEvent } from "@/lib/event-bus"
 
 export const dynamic = "force-dynamic"
 
@@ -53,6 +54,7 @@ export async function POST(req: Request) {
       ),
     ])
 
+    emitGameEvent({ type: "run-changed" })
     return Response.json({ id: newRunId })
   } catch (err) {
     console.error("[api/runs POST]", err)
@@ -70,6 +72,7 @@ export async function PATCH(req: Request) {
       sql`UPDATE runs SET is_active = TRUE WHERE id = ${body.runId}`,
     ])
 
+    emitGameEvent({ type: "run-changed" })
     return new Response(null, { status: 204 })
   } catch (err) {
     console.error("[api/runs PATCH]", err)

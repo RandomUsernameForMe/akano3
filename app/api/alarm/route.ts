@@ -1,6 +1,7 @@
 import { sql } from "@/lib/db"
 import { ALARM_COLORS } from "@/lib/constants"
 import { getActiveRunId } from "@/lib/runs"
+import { emitGameEvent } from "@/lib/event-bus"
 import type { AlarmState } from "@/lib/types"
 
 export async function POST(req: Request) {
@@ -10,6 +11,7 @@ export async function POST(req: Request) {
 
     if (body.action === "dismiss") {
       await sql`UPDATE alarm_state SET active = false, updated_at = NOW() WHERE run_id = ${runId}`
+      emitGameEvent({ type: "alarm", active: false })
     } else if (body.action === "trigger" && body.type) {
       const color = ALARM_COLORS[body.type]
       await sql`
@@ -17,6 +19,7 @@ export async function POST(req: Request) {
         SET active = true, type = ${body.type}, message = ${body.message ?? ""}, color = ${color}, updated_at = NOW()
         WHERE run_id = ${runId}
       `
+      emitGameEvent({ type: "alarm", active: true, alarmType: body.type, message: body.message ?? "", color })
     } else {
       return new Response("Bad request", { status: 400 })
     }

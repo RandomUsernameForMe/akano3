@@ -2,6 +2,7 @@ import { sql } from "@/lib/db"
 import { resolveTargetTeams } from "@/lib/utils"
 import { CHARACTERS } from "@/lib/data"
 import { getActiveRunId } from "@/lib/runs"
+import { emitGameEvent } from "@/lib/event-bus"
 import type { PointEntry } from "@/lib/types"
 
 export async function POST(req: Request) {
@@ -33,6 +34,7 @@ export async function POST(req: Request) {
       ),
     ])
 
+    emitGameEvent({ type: "state-changed" })
     return Response.json({ id, resolvedTeamIds })
   } catch (err) {
     console.error("[api/points]", err)

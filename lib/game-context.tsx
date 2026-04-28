@@ -139,7 +139,6 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   const [activeRunId,     setActiveRunId]     = useState<number | null>(null)
   const [runs,            setRuns]            = useState<RunSummary[]>([])
 
-  const pollingRef  = useRef<ReturnType<typeof setInterval> | null>(null)
   const offlineRef  = useRef(false)
   const failCountRef = useRef(0)
 
@@ -197,31 +196,52 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     }
   }, [applyGameState, addToast])
 
-  // Start polling when logged in, pause on background tab, stop on logout
-  // isLoggedIn (boolean) prevents the effect from re-running on every poll
-  // because applyGameState always creates a new currentUser object reference
+  // SSE real-time sync — replaces polling
+  // isLoggedIn (boolean) prevents the effect from re-running on every applyGameState call
   const isLoggedIn = currentUser !== null
   useEffect(() => {
-    if (!isLoggedIn) {
-      if (pollingRef.current) { clearInterval(pollingRef.current); pollingRef.current = null }
-      return
-    }
-    const start = () => {
-      if (pollingRef.current) return
-      fetchGameState()
-      pollingRef.current = setInterval(fetchGameState, 3000)
-    }
-    const stop = () => {
-      if (!pollingRef.current) return
-      clearInterval(pollingRef.current)
-      pollingRef.current = null
-    }
-    const onVisibilityChange = () => (document.hidden ? stop() : start())
+    if (!isLoggedIn) return
 
-    if (!document.hidden) start()
-    document.addEventListener("visibilitychange", onVisibilityChange)
-    return () => { stop(); document.removeEventListener("visibilitychange", onVisibilityChange) }
-  }, [isLoggedIn, fetchGameState])
+    fetchGameState()
+
+    const es = new EventSource("/api/events")
+    let offlineTimer: ReturnType<typeof setTimeout> | null = null
+
+    es.addEventListener("alarm", (e: MessageEvent) => {
+      const d = JSON.parse(e.data) as { active: boolean; alarmType?: AlarmState["type"]; message?: string; color?: string }
+      setAlarmState(prev =>
+        d.active
+          ? { active: true, type: d.alarmType!, message: d.message!, color: d.color! }
+          : { ...prev, active: false }
+      )
+    })
+    es.addEventListener("state-changed", () => fetchGameState())
+    es.addEventListener("config-changed", () => fetchGameState())
+    es.addEventListener("run-changed", () => fetchGameState())
+
+    es.onopen = () => {
+      if (offlineTimer) { clearTimeout(offlineTimer); offlineTimer = null }
+      if (offlineRef.current) { addToast("Spojení obnoveno", "success"); offlineRef.current = false; fetchGameState() }
+    }
+
+    es.onerror = () => {
+      if (!offlineRef.current && offlineTimer === null) {
+        offlineTimer = setTimeout(() => {
+          offlineTimer = null
+          if (!offlineRef.current) { addToast("Ztráta spojení se serverem", "error"); offlineRef.current = true }
+        }, 5000)
+      }
+    }
+
+    const onVisibility = () => { if (!document.hidden) fetchGameState() }
+    document.addEventListener("visibilitychange", onVisibility)
+
+    return () => {
+      es.close()
+      if (offlineTimer) clearTimeout(offlineTimer)
+      document.removeEventListener("visibilitychange", onVisibility)
+    }
+  }, [isLoggedIn, fetchGameState, addToast])
 
   const login = useCallback((code: string): Character | null => {
     const char = characters.find(c => c.code === code.trim())

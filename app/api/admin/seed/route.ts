@@ -25,7 +25,7 @@ export async function POST() {
         sql`
           INSERT INTO point_log
             (id, run_id, source_role, source_character_id, target_type, target_id,
-             resolved_team_ids, amount, action_type, note, created_at)
+             resolved_team_ids, amount, action_type, note, timestamp)
           VALUES
             (${e.id}, ${runId}, ${e.sourceRole}, ${e.sourceCharacterId},
              ${e.targetType}, ${e.targetId}, ${e.resolvedTeamIds},

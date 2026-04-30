@@ -21,7 +21,7 @@ export interface GameCtx {
   login:         (code: string) => Character | null
   logout:        () => void
   assignPoints:  (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">) => void
-  updateKaichi:  (characterId: string) => void
+  updateKaichi:  (characterId: string, level?: number) => void
   triggerAlarm:  (type: AlarmState["type"], message: string) => void
   dismissAlarm:  () => void
   setBroadcast:  (active: boolean) => void
@@ -237,14 +237,21 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     } catch { addToast("Chyba sítě", "error") }
   }, [addToast])
 
-  const updateKaichi = useCallback(async (characterId: string) => {
+  const updateKaichi = useCallback(async (characterId: string, level?: number) => {
     try {
-      const res = await fetch("/api/kaichi", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ characterId }) })
-      if (!res.ok) { addToast("Chyba při povýšení", "error"); return }
+      const res = await fetch("/api/kaichi", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ characterId, level }) })
+      if (!res.ok) { addToast("Chyba při změně kaichi", "error"); return }
       setCharacters(prev => {
-        const updated = prev.map(c => c.id === characterId && c.kaichiLevel < 8 ? { ...c, kaichiLevel: c.kaichiLevel + 1 } : c)
+        const updated = prev.map(c => {
+          if (c.id !== characterId) return c
+          const newLevel = level !== undefined ? Math.max(0, Math.min(8, level)) : Math.min(8, c.kaichiLevel + 1)
+          return { ...c, kaichiLevel: newLevel }
+        })
         const char = updated.find(c => c.id === characterId)
-        addToast(`${char?.name ?? "Postava"} povýšena na Kaichi ${romanNumeral(char?.kaichiLevel ?? 0)}`)
+        const newLevel = char?.kaichiLevel ?? 0
+        addToast(newLevel === 0
+          ? `${char?.name ?? "Postava"} resetována na Kaichi 0`
+          : `${char?.name ?? "Postava"} — Kaichi ${romanNumeral(newLevel)}`)
         return updated
       })
     } catch { addToast("Chyba sítě", "error") }

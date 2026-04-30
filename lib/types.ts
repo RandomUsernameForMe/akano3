@@ -47,3 +47,15 @@ export interface RunSummary {
   isActive: boolean
   createdAt: Date
 }
+
+export interface WikiArticle {
+  id: number
+  slug: string
+  title: string
+  content: string
+  category: string
+  kaichiRequired: number
+  sortOrder: number
+  createdAt: Date
+  updatedAt: Date
+}

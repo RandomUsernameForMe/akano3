@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react"
 import {
   IconPlus, IconDashboard, IconList, IconChartLine, IconStar,
-  IconQrcode, IconBell, IconSettings, IconTrophy, IconRepeat,
+  IconQrcode, IconBell, IconSettings, IconTrophy, IconRepeat, IconBook,
 } from "@tabler/icons-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -17,6 +17,7 @@ import { AlarmPanel } from "@/components/panels/alarm"
 import { QRPanel } from "@/components/panels/qr"
 import { GameSetupPanel } from "@/components/panels/game-setup"
 import { RunSetupPanel } from "@/components/panels/run-setup"
+import { WikiAdminPanel } from "@/components/panels/wiki-admin"
 
 export function GMDashboard() {
   const { teams, alarmState, qrCodes, runs, activeRunId, setActiveRun } = useGame()
@@ -115,6 +116,7 @@ export function GMDashboard() {
             ["qr","QR kódy",IconQrcode],
             ["alarm","Alarm",IconBell],
             ["runs","Běhy",IconRepeat],
+            ["wiki","Wiki",IconBook],
             ["settings","Nastavení",IconSettings],
           ].map(([v,label,Icon]) => (
             <TabsTrigger key={v as string} value={v as string}
@@ -152,6 +154,7 @@ export function GMDashboard() {
         <TabsContent value="qr"><QRPanel /></TabsContent>
         <TabsContent value="alarm"><AlarmPanel /></TabsContent>
         <TabsContent value="runs"><RunSetupPanel /></TabsContent>
+        <TabsContent value="wiki"><WikiAdminPanel /></TabsContent>
         <TabsContent value="settings"><GameSetupPanel /></TabsContent>
       </Tabs>
     </div>

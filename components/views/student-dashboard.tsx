@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useState, useEffect, useMemo } from "react"
+import React, { useState, useEffect, useMemo, useCallback } from "react"
 import {
   IconUser, IconUsers, IconTrophy, IconTarget, IconList, IconChartLine,
-  IconBook, IconStar, IconCircleCheck,
+  IconBook, IconStar, IconCircleCheck, IconBooks, IconChevronDown, IconChevronRight,
 } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -23,6 +23,8 @@ import { ScoreboardComponent } from "@/components/panels/scoreboard"
 import { ChartsPanel } from "@/components/panels/charts"
 import { TeamIcon } from "@/components/shared/team-icon"
 import { SpecBadge, RoleBadge } from "@/components/shared/badges"
+import type { WikiArticle } from "@/lib/types"
+import { WikiRenderer } from "@/components/shared/wiki-renderer"
 
 export function StudentDashboard() {
   const { currentUser, characters, teams, pointLog, lessonWindowActive, lessonWindowEnd, claimLesson, giftPoints } = useGame()
@@ -36,6 +38,12 @@ export function StudentDashboard() {
   const [giftConfirm,   setGiftConfirm]   = useState(false)
   const [giftSheetOpen, setGiftSheetOpen] = useState(false)
   const [lessonConfirm, setLessonConfirm] = useState(false)
+
+  // Wiki state
+  const [wikiArticles,  setWikiArticles]  = useState<WikiArticle[]>([])
+  const [wikiLoading,   setWikiLoading]   = useState(false)
+  const [wikiExpanded,  setWikiExpanded]  = useState<string | null>(null)
+  const [openCategories, setOpenCategories] = useState<Set<string>>(new Set())
 
   const teammates      = useMemo(() => characters.filter(c => c.role === "student" && c.id !== student?.id), [characters, student?.id])
   const giftTargetChar = characters.find(c => c.id === giftTarget)
@@ -52,35 +60,64 @@ export function StudentDashboard() {
     return () => clearInterval(iv)
   }, [lessonWindowEnd])
 
+  const loadWiki = useCallback(async () => {
+    if (!student?.id) return
+    setWikiLoading(true)
+    try {
+      const res = await fetch(`/api/wiki?characterId=${student.id}`)
+      if (res.ok) {
+        const data: WikiArticle[] = await res.json()
+        setWikiArticles(data)
+        // auto-open first category
+        if (data.length > 0) {
+          setOpenCategories(new Set([data[0].category]))
+        }
+      }
+    } finally {
+      setWikiLoading(false)
+    }
+  }, [student?.id])
+
   if (!student) return null
 
   const specColors: Record<string, string> = { combat:"#e05252", tactical:"#5268e0", support:"#52d4b4" }
   const specColor  = student.specialization ? specColors[student.specialization] : null
   const inputStyle = { backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)", height:48, fontSize:"0.95rem" }
 
+  const wikiCategories = [...new Set(wikiArticles.map(a => a.category))]
+
+  function toggleCategory(cat: string) {
+    setOpenCategories(prev => {
+      const next = new Set(prev)
+      if (next.has(cat)) next.delete(cat); else next.add(cat)
+      return next
+    })
+    setWikiExpanded(null)
+  }
+
   return (
-    <div style={{ maxWidth:480, margin:"0 auto", display:"flex", flexDirection:"column", minHeight:"100dvh" }}>
+    <div style={{ maxWidth: 860, margin: "0 auto", display: "flex", flexDirection: "column", minHeight: "100dvh" }}>
 
       {/* Sticky character header */}
       <div style={{
         position:"sticky", top:0, zIndex:20,
         backgroundColor:"var(--c-topbar)",
         borderBottom:"1px solid var(--c-border)",
-        padding:"18px 20px 16px",
+        padding:"14px 28px 12px",
       }}>
-        <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+        <div style={{ display:"flex", alignItems:"center", gap:14 }}>
           {specColor && (
             <div style={{ width:5, alignSelf:"stretch", borderRadius:3, backgroundColor:specColor, flexShrink:0 }} />
           )}
           <div style={{ flex:1, minWidth:0 }}>
-            <h1 style={{ fontSize:"1.9rem", fontWeight:900, color:"var(--c-text)", lineHeight:1.1, margin:0 }}>
+            <h1 style={{ fontSize:"1.7rem", fontWeight:900, color:"var(--c-text)", lineHeight:1.1, margin:0 }}>
               {student?.name}
             </h1>
             {team && (
-              <div style={{ display:"flex", alignItems:"center", gap:6, marginTop:5 }}>
-                <TeamIcon teamId={team.id} size={16} />
-                <span style={{ fontSize:"0.9rem", fontWeight:600, color:"var(--c-text-muted)" }}>{team.name}</span>
-                <span style={{ fontSize:"0.8rem", color:"var(--c-text-faint)" }}>#{teamRank}</span>
+              <div style={{ display:"flex", alignItems:"center", gap:6, marginTop:4 }}>
+                <TeamIcon teamId={team.id} size={15} />
+                <span style={{ fontSize:"0.88rem", fontWeight:600, color:"var(--c-text-muted)" }}>{team.name}</span>
+                <span style={{ fontSize:"0.78rem", color:"var(--c-text-faint)" }}>#{teamRank}</span>
                 {(student?.kaichiLevel ?? 0) > 0 && (
                   <span style={{
                     marginLeft:4,
@@ -97,7 +134,7 @@ export function StudentDashboard() {
           </div>
           <div style={{ textAlign:"right", flexShrink:0 }}>
             <p style={{ fontSize:"0.6rem", color:"var(--c-text-muted)", letterSpacing:"0.1em", marginBottom:1 }}>BODY TÝMU</p>
-            <p style={{ fontSize:"3.2rem", fontWeight:900, fontFamily:"monospace", color:"var(--c-accent)", lineHeight:1 }}>
+            <p style={{ fontSize:"2.8rem", fontWeight:900, fontFamily:"monospace", color:"var(--c-accent)", lineHeight:1 }}>
               {team?.points ?? 0}
             </p>
           </div>
@@ -115,26 +152,27 @@ export function StudentDashboard() {
           {([
             ["scoreboard","Žebříček", IconTrophy],
             ["people",    "Lidé",     IconUsers],
-            ["actions",   "Body",     IconTarget],
+            ["wiki",      "Informace", IconBooks],
           ] as [string, string, React.ElementType][]).map(([v, label, Icon]) => (
             <TabsTrigger
               key={v}
               value={v}
+              onClick={v === "wiki" ? loadWiki : undefined}
               style={{
-                display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
-                gap:5, padding:"14px 4px 12px", minHeight:72,
-                fontSize:"0.78rem", fontWeight:700, borderRadius:0,
+                display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center",
+                gap:8, padding:"10px 16px", minHeight:48,
+                fontSize:"0.82rem", fontWeight:700, borderRadius:0,
                 color:"rgba(107,15,26,0.4)",
                 letterSpacing:"0.02em",
               }}
             >
-              <Icon size={26} />
+              <Icon size={18} />
               {label}
             </TabsTrigger>
           ))}
         </TabsList>
 
-        <div style={{ padding:"20px 16px 32px" }}>
+        <div style={{ padding:"20px 24px 40px" }}>
 
           {/* ŽEBŘÍČEK */}
           <TabsContent value="scoreboard">
@@ -241,7 +279,108 @@ export function StudentDashboard() {
             </div>
           </TabsContent>
 
-          {/* AKCE */}
+          {/* INFORMACE (wiki) */}
+          <TabsContent value="wiki">
+            {wikiLoading ? (
+              <p style={{ color:"rgba(107,15,26,0.4)", textAlign:"center", padding:"40px 0" }}>Načítám…</p>
+            ) : wikiArticles.length === 0 ? (
+              <div style={{ textAlign:"center", padding:"60px 0", display:"flex", flexDirection:"column", alignItems:"center", gap:12 }}>
+                <IconBooks size={48} color="rgba(107,15,26,0.2)" strokeWidth={1.2} />
+                <p style={{ color:"rgba(107,15,26,0.35)", fontSize:"0.9rem" }}>Zatím žádné informace k dispozici.</p>
+              </div>
+            ) : (
+              <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+                {wikiCategories.map(cat => {
+                  const catArticles = wikiArticles.filter(a => a.category === cat)
+                  const isOpen = openCategories.has(cat)
+                  return (
+                    <div key={cat} style={{
+                      backgroundColor:"#fff", borderRadius:14,
+                      border:"1px solid rgba(107,15,26,0.1)",
+                      overflow:"hidden",
+                    }}>
+                      {/* Category header */}
+                      <button
+                        onClick={() => toggleCategory(cat)}
+                        style={{
+                          all:"unset", boxSizing:"border-box", width:"100%",
+                          display:"flex", alignItems:"center", justifyContent:"space-between",
+                          padding:"14px 20px", cursor:"pointer",
+                          backgroundColor: isOpen ? "rgba(107,15,26,0.04)" : "transparent",
+                        }}
+                      >
+                        <span style={{ fontWeight:700, fontSize:"0.95rem", color:"#1a0a0a" }}>{cat}</span>
+                        <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                          <span style={{ fontSize:"0.72rem", color:"rgba(107,15,26,0.35)" }}>
+                            {catArticles.length} {catArticles.length === 1 ? "článek" : catArticles.length < 5 ? "články" : "článků"}
+                          </span>
+                          {isOpen
+                            ? <IconChevronDown size={16} color="rgba(107,15,26,0.4)" />
+                            : <IconChevronRight size={16} color="rgba(107,15,26,0.4)" />
+                          }
+                        </div>
+                      </button>
+
+                      {/* Articles in category */}
+                      {isOpen && (
+                        <div style={{ borderTop:"1px solid rgba(107,15,26,0.08)" }}>
+                          {catArticles.map((article, idx) => {
+                            const isArticleOpen = wikiExpanded === String(article.id)
+                            return (
+                              <div key={article.id} style={{
+                                borderTop: idx > 0 ? "1px solid rgba(107,15,26,0.06)" : undefined,
+                              }}>
+                                <button
+                                  onClick={() => setWikiExpanded(isArticleOpen ? null : String(article.id))}
+                                  style={{
+                                    all:"unset", boxSizing:"border-box", width:"100%",
+                                    display:"flex", alignItems:"center", gap:12,
+                                    padding:"12px 20px 12px 28px", cursor:"pointer",
+                                  }}
+                                >
+                                  {article.kaichiRequired > 0 && (
+                                    <span style={{
+                                      width:20, height:20, borderRadius:"50%",
+                                      border:"1px solid #d4a017", backgroundColor:"#1a0a00",
+                                      display:"inline-flex", alignItems:"center", justifyContent:"center",
+                                      fontSize:"0.55rem", color:"#d4a017", fontFamily:"monospace", fontWeight:700,
+                                      flexShrink:0,
+                                    }}>
+                                      {romanNumeral(article.kaichiRequired)}
+                                    </span>
+                                  )}
+                                  <span style={{ flex:1, fontWeight:600, fontSize:"0.9rem", color:"#1a0a0a", textAlign:"left" }}>
+                                    {article.title}
+                                  </span>
+                                  {isArticleOpen
+                                    ? <IconChevronDown size={14} color="rgba(107,15,26,0.35)" />
+                                    : <IconChevronRight size={14} color="rgba(107,15,26,0.35)" />
+                                  }
+                                </button>
+                                {isArticleOpen && (
+                                  <div style={{
+                                    padding:"16px 28px 24px 28px",
+                                    borderTop:"1px solid rgba(107,15,26,0.06)",
+                                  }}>
+                                    <WikiRenderer
+                                      content={article.content}
+                                      kaichiLevel={student.kaichiLevel ?? 0}
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </TabsContent>
+
+          {/* AKCE — kept in code, tab trigger removed from UI */}
           <TabsContent value="actions">
             <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
 

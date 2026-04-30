@@ -1,0 +1,182 @@
+"use client"
+
+import React from "react"
+import { romanNumeral } from "@/lib/utils"
+
+interface Props {
+  content: string
+  kaichiLevel: number
+}
+
+type Block =
+  | { type: "md"; lines: string[] }
+  | { type: "redacted"; requiredLevel: number; lines: string[] }
+
+function parseBlocks(content: string): Block[] {
+  const rawLines = content.split("\n")
+  const blocks: Block[] = []
+  let currentMd: string[] = []
+  let i = 0
+
+  while (i < rawLines.length) {
+    const line = rawLines[i]
+    const fenceMatch = line.match(/^:::k(\d+)\s*$/)
+    if (fenceMatch) {
+      if (currentMd.length) {
+        blocks.push({ type: "md", lines: currentMd })
+        currentMd = []
+      }
+      const level = parseInt(fenceMatch[1])
+      const secretLines: string[] = []
+      i++
+      while (i < rawLines.length && rawLines[i].trim() !== ":::") {
+        secretLines.push(rawLines[i])
+        i++
+      }
+      blocks.push({ type: "redacted", requiredLevel: level, lines: secretLines })
+    } else {
+      currentMd.push(line)
+    }
+    i++
+  }
+  if (currentMd.length) blocks.push({ type: "md", lines: currentMd })
+  return blocks
+}
+
+function renderMdLine(line: string, idx: number): React.ReactNode {
+  // Headings
+  if (line.startsWith("### ")) return <h3 key={idx} style={{ fontSize:"1rem", fontWeight:800, color:"#1a0a0a", margin:"20px 0 6px" }}>{inline(line.slice(4))}</h3>
+  if (line.startsWith("## "))  return <h2 key={idx} style={{ fontSize:"1.15rem", fontWeight:800, color:"#6b0f1a", margin:"26px 0 8px", borderBottom:"1px solid rgba(107,15,26,0.12)", paddingBottom:4 }}>{inline(line.slice(3))}</h2>
+  if (line.startsWith("# "))   return <h1 key={idx} style={{ fontSize:"1.4rem", fontWeight:900, color:"#1a0a0a", margin:"0 0 14px" }}>{inline(line.slice(2))}</h1>
+  // HR
+  if (line.match(/^---+$/)) return <hr key={idx} style={{ border:"none", borderTop:"1px solid rgba(107,15,26,0.15)", margin:"18px 0" }} />
+  // Bullet list
+  if (line.startsWith("- ") || line.startsWith("* ")) {
+    return (
+      <div key={idx} style={{ display:"flex", gap:8, margin:"3px 0", paddingLeft:8 }}>
+        <span style={{ color:"#6b0f1a", fontWeight:900, flexShrink:0, marginTop:2 }}>·</span>
+        <span style={{ color:"#2a1010", fontSize:"0.9rem", lineHeight:1.65 }}>{inline(line.slice(2))}</span>
+      </div>
+    )
+  }
+  // Numbered list
+  const numMatch = line.match(/^(\d+)\. (.+)$/)
+  if (numMatch) {
+    return (
+      <div key={idx} style={{ display:"flex", gap:8, margin:"3px 0", paddingLeft:8 }}>
+        <span style={{ color:"#6b0f1a", fontWeight:700, flexShrink:0, minWidth:20, fontSize:"0.85rem" }}>{numMatch[1]}.</span>
+        <span style={{ color:"#2a1010", fontSize:"0.9rem", lineHeight:1.65 }}>{inline(numMatch[2])}</span>
+      </div>
+    )
+  }
+  // Blockquote
+  if (line.startsWith("> ")) {
+    return (
+      <div key={idx} style={{
+        borderLeft:"3px solid rgba(107,15,26,0.3)", paddingLeft:14, margin:"8px 0",
+        color:"rgba(42,16,16,0.7)", fontSize:"0.9rem", fontStyle:"italic",
+      }}>
+        {inline(line.slice(2))}
+      </div>
+    )
+  }
+  // Empty line
+  if (!line.trim()) return <div key={idx} style={{ height:10 }} />
+  // Normal paragraph
+  return <p key={idx} style={{ margin:"4px 0", color:"#2a1010", fontSize:"0.9rem", lineHeight:1.75 }}>{inline(line)}</p>
+}
+
+function inline(text: string): React.ReactNode {
+  // Parse **bold**, *italic*, `code`
+  const parts: React.ReactNode[] = []
+  const re = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g
+  let last = 0, m: RegExpExecArray | null
+  // eslint-disable-next-line no-cond-assign
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index))
+    if (m[2] != null) parts.push(<strong key={m.index} style={{ fontWeight:800, color:"#1a0a0a" }}>{m[2]}</strong>)
+    else if (m[3] != null) parts.push(<em key={m.index} style={{ color:"rgba(107,15,26,0.75)" }}>{m[3]}</em>)
+    else if (m[4] != null) parts.push(<code key={m.index} style={{ backgroundColor:"rgba(107,15,26,0.08)", padding:"1px 5px", borderRadius:4, fontSize:"0.85em", fontFamily:"monospace" }}>{m[4]}</code>)
+    last = m.index + m[0].length
+  }
+  if (last < text.length) parts.push(text.slice(last))
+  return parts.length === 1 && typeof parts[0] === "string" ? parts[0] : <>{parts}</>
+}
+
+function MdBlock({ lines }: { lines: string[] }) {
+  return <>{lines.map((l, i) => renderMdLine(l, i))}</>
+}
+
+function RedactedBlock({ lines, requiredLevel, unlocked }: { lines: string[]; requiredLevel: number; unlocked: boolean }) {
+  if (unlocked) {
+    return (
+      <div style={{
+        borderLeft:"2px solid rgba(212,160,23,0.5)", paddingLeft:14,
+        backgroundColor:"rgba(212,160,23,0.04)", borderRadius:"0 6px 6px 0",
+        padding:"10px 14px", margin:"10px 0",
+      }}>
+        <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:6 }}>
+          <span style={{
+            width:18, height:18, borderRadius:"50%",
+            border:"1px solid #d4a017", backgroundColor:"#1a0a00",
+            display:"inline-flex", alignItems:"center", justifyContent:"center",
+            fontSize:"0.5rem", color:"#d4a017", fontFamily:"monospace", fontWeight:700, flexShrink:0,
+          }}>
+            {romanNumeral(requiredLevel)}
+          </span>
+          <span style={{ fontSize:"0.65rem", color:"#d4a017", letterSpacing:"0.1em" }}>UTAJENO · KAICHI {romanNumeral(requiredLevel)}</span>
+        </div>
+        <MdBlock lines={lines} />
+      </div>
+    )
+  }
+
+  // Calculate approximate height for black bars
+  const charCount = lines.join(" ").length
+  const barCount = Math.max(1, Math.min(6, Math.ceil(charCount / 80)))
+
+  return (
+    <div style={{
+      margin:"10px 0",
+      backgroundColor:"rgba(10,4,4,0.06)",
+      border:"1px solid rgba(10,4,4,0.12)",
+      borderRadius:8, padding:"14px 16px",
+      userSelect:"none",
+    }}>
+      <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10 }}>
+        <span style={{ fontSize:"0.65rem", color:"rgba(107,15,26,0.4)", letterSpacing:"0.1em" }}>
+          ███ VYŽADUJE KAICHI {romanNumeral(requiredLevel)} ███
+        </span>
+      </div>
+      <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
+        {Array.from({ length: barCount }).map((_, i) => (
+          <div key={i} style={{
+            height:14, borderRadius:3,
+            backgroundColor:"#1a0a0a",
+            width: i === barCount - 1 ? `${40 + Math.random() * 45}%` : `${75 + Math.random() * 25}%`,
+            opacity:0.85,
+          }} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export function WikiRenderer({ content, kaichiLevel }: Props) {
+  const blocks = parseBlocks(content)
+  return (
+    <div>
+      {blocks.map((block, i) => {
+        if (block.type === "md") return <MdBlock key={i} lines={block.lines} />
+        return (
+          <RedactedBlock
+            key={i}
+            lines={block.lines}
+            requiredLevel={block.requiredLevel}
+            unlocked={kaichiLevel >= block.requiredLevel}
+          />
+        )
+      })}
+    </div>
+  )
+}

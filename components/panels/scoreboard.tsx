@@ -3,7 +3,7 @@
 import React, { useMemo } from "react"
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react"
 import { useGame } from "@/lib/game-context"
-import { UNITS, CIRCLES, CHARACTERS } from "@/lib/data"
+import { UNITS, CIRCLES } from "@/lib/data"
 import { resolvedCharsOf, charTeam } from "@/lib/utils"
 import { TeamDot } from "@/components/shared/team-icon"
 
@@ -39,13 +39,12 @@ export function ScoreboardComponent({
     }
     if (mode === "units") {
       return UNITS.map(u => {
-        const pts = u.teamIds.reduce((s,tid) => s + (teams.find(t=>t.id===tid)?.points??0), 0)
+        const pts = characters.filter(c => c.teamId && u.teamIds.includes(c.teamId)).reduce((s,c) => s + c.points, 0)
         return { id:u.id, name:u.name, points:pts, color:"#2a8a8a", rank:0, iconTeamId: undefined as string | undefined }
       }).sort((a,b)=>b.points-a.points).map((r,i)=>({...r, rank:i+1}))
     }
     return CIRCLES.map(c => {
-      const memberTeams = [...new Set(c.memberIds.map(mid => CHARACTERS.find(ch=>ch.id===mid)?.teamId).filter(Boolean) as string[])]
-      const pts = memberTeams.reduce((s,tid) => s + (teams.find(t=>t.id===tid)?.points??0), 0)
+      const pts = characters.filter(ch => c.memberIds.includes(ch.id)).reduce((s,ch) => s + ch.points, 0)
       return { id:c.id, name:c.name, points:pts, color:"#a052e0", rank:0, iconTeamId: undefined as string | undefined }
     }).sort((a,b)=>b.points-a.points).map((r,i)=>({...r, rank:i+1}))
   }, [mode, teams, characters])

@@ -1,26 +1,19 @@
 import { sql } from "@/lib/db"
-import { INITIAL_POINT_LOG, TEAMS } from "@/lib/data"
+import { INITIAL_POINT_LOG, CHARACTERS } from "@/lib/data"
 
 export const dynamic = "force-dynamic"
 
 // Seed mock point data for run 1.
-// Resets point_log and team_points for run 1, then inserts INITIAL_POINT_LOG.
+// Resets point_log and character_points for run 1, then inserts INITIAL_POINT_LOG
+// and each student's starting individual points (team totals derive from these).
 export async function POST() {
   try {
     const runId = 1
-
-    // Recalculate team totals from mock log
-    const teamTotals: Record<string, number> = {}
-    for (const team of TEAMS) teamTotals[team.id] = 0
-    for (const entry of INITIAL_POINT_LOG) {
-      for (const teamId of entry.resolvedTeamIds) {
-        teamTotals[teamId] = (teamTotals[teamId] ?? 0) + entry.amount
-      }
-    }
+    const pointChars = CHARACTERS.filter(c => c.role === "student" || c.role === "ruze")
 
     await sql.transaction([
-      sql`DELETE FROM point_log    WHERE run_id = ${runId}`,
-      sql`DELETE FROM team_points  WHERE run_id = ${runId}`,
+      sql`DELETE FROM point_log        WHERE run_id = ${runId}`,
+      sql`DELETE FROM character_points WHERE run_id = ${runId}`,
       ...INITIAL_POINT_LOG.map(e =>
         sql`
           INSERT INTO point_log
@@ -32,15 +25,15 @@ export async function POST() {
              ${e.amount}, ${e.actionType}, ${e.note ?? null}, ${e.timestamp.toISOString()})
         `
       ),
-      ...Object.entries(teamTotals).map(([teamId, points]) =>
+      ...pointChars.map(c =>
         sql`
-          INSERT INTO team_points (team_id, run_id, points)
-          VALUES (${teamId}, ${runId}, ${points})
+          INSERT INTO character_points (character_id, run_id, points)
+          VALUES (${c.id}, ${runId}, ${c.points})
         `
       ),
     ])
 
-    return Response.json({ ok: true, seeded: INITIAL_POINT_LOG.length, teams: teamTotals })
+    return Response.json({ ok: true, seeded: INITIAL_POINT_LOG.length, characters: pointChars.length })
   } catch (err) {
     console.error("[admin/seed]", err)
     return new Response(String(err), { status: 500 })

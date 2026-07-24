@@ -49,6 +49,18 @@ export async function POST() {
     await sql`ALTER TABLE team_units      ALTER COLUMN run_id SET NOT NULL`
     await sql`ALTER TABLE point_log       ALTER COLUMN run_id SET NOT NULL`
 
+    // Individual student points (team total is derived by summing members)
+    await sql`
+      CREATE TABLE IF NOT EXISTS character_points (
+        character_id TEXT NOT NULL,
+        run_id INT NOT NULL,
+        points INT NOT NULL DEFAULT 0,
+        PRIMARY KEY (character_id, run_id)
+      )
+    `
+    // Point attribution now records the individual recipients too
+    await sql`ALTER TABLE point_log ADD COLUMN IF NOT EXISTS resolved_character_ids TEXT[]`
+
     await sql`
       CREATE TABLE IF NOT EXISTS wiki_articles (
         id SERIAL PRIMARY KEY,

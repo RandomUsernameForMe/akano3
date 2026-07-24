@@ -7,7 +7,7 @@ import {
   Tooltip as RechartsTooltip, ResponsiveContainer,
 } from "recharts"
 import { useGame } from "@/lib/game-context"
-import { formatDateTime } from "@/lib/utils"
+import { formatDateTime, resolvedCharsOf, charTeam } from "@/lib/utils"
 import { TEAM_ICONS } from "@/lib/data"
 import { TeamIcon } from "@/components/shared/team-icon"
 import type { Team } from "@/lib/types"
@@ -53,13 +53,20 @@ export function DisplayScreen() {
     const latest = sortedLog.length ? sortedLog[sortedLog.length - 1].timestamp.getTime() : Date.now()
     const cutoff = latest - 12 * 60 * 60 * 1000
     const runningTotals: Record<string, number> = {}
+    // Per-entry team delta = amount × (# resolved characters in that team)
+    const teamDelta = (e: typeof sortedLog[number]) => {
+      const d: Record<string, number> = {}
+      resolvedCharsOf(e).forEach(cid => { const t = charTeam(cid); if (t) d[t] = (d[t] ?? 0) + e.amount })
+      return d
+    }
     teams.forEach(t => {
-      const loggedSum = sortedLog.reduce((s,e) => e.resolvedTeamIds.includes(t.id) ? s + e.amount : s, 0)
+      const loggedSum = sortedLog.reduce((s,e) => s + (teamDelta(e)[t.id] ?? 0), 0)
       runningTotals[t.id] = t.points - loggedSum
     })
     const buckets: Record<string, Record<string, number>> = {}
     sortedLog.forEach(e => {
-      e.resolvedTeamIds.forEach(tid => { runningTotals[tid] = (runningTotals[tid]??0) + e.amount })
+      const d = teamDelta(e)
+      for (const tid in d) runningTotals[tid] = (runningTotals[tid] ?? 0) + d[tid]
       if (e.timestamp.getTime() < cutoff) return
       const key = formatDateTime(e.timestamp)
       if (!buckets[key]) buckets[key] = { time: key as any }

@@ -21,7 +21,7 @@ import { WikiAdminPanel } from "@/components/panels/wiki-admin"
 
 export function GMDashboard() {
   const { teams, alarmState, qrCodes, runs, activeRunId, setActiveRun } = useGame()
-  const [sbMode,    setSbMode]    = useState<"teams" | "units" | "circles">("teams")
+  const [sbMode,    setSbMode]    = useState<"students" | "teams" | "units" | "circles">("teams")
   const [sheetOpen, setSheetOpen] = useState(false)
 
   const sorted    = useMemo(() => [...teams].sort((a,b) => b.points - a.points), [teams])

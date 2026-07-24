@@ -33,6 +33,7 @@ export function StudentDashboard() {
   const teamRank = useMemo(() => [...teams].sort((a,b)=>b.points-a.points).findIndex(t=>t.id===student?.teamId) + 1, [teams, student?.teamId])
 
   const [sbView,        setSbView]        = useState<"table" | "chart">("table")
+  const [sbMode,        setSbMode]        = useState<"students" | "teams" | "units" | "circles">("teams")
   const [giftTarget,    setGiftTarget]    = useState("")
   const [giftAmount,    setGiftAmount]    = useState(5)
   const [giftConfirm,   setGiftConfirm]   = useState(false)
@@ -133,9 +134,12 @@ export function StudentDashboard() {
             )}
           </div>
           <div style={{ textAlign:"right", flexShrink:0 }}>
-            <p style={{ fontSize:"0.6rem", color:"var(--c-text-muted)", letterSpacing:"0.1em", marginBottom:1 }}>BODY TÝMU</p>
+            <p style={{ fontSize:"0.6rem", color:"var(--c-text-muted)", letterSpacing:"0.1em", marginBottom:1 }}>TVÉ BODY</p>
             <p style={{ fontSize:"2.8rem", fontWeight:900, fontFamily:"monospace", color:"var(--c-accent)", lineHeight:1 }}>
-              {team?.points ?? 0}
+              {student?.points ?? 0}
+            </p>
+            <p style={{ fontSize:"0.68rem", color:"var(--c-text-muted)", marginTop:2 }}>
+              tým {team?.points ?? 0} b.
             </p>
           </div>
         </div>
@@ -194,7 +198,12 @@ export function StudentDashboard() {
               </div>
             </div>
             {sbView === "table"
-              ? <ScoreboardComponent highlightId={student?.teamId} />
+              ? <ScoreboardComponent
+                  mode={sbMode}
+                  showModeToggle
+                  onModeChange={setSbMode}
+                  highlightId={sbMode === "students" ? student?.id : student?.teamId}
+                />
               : <ChartsPanel />
             }
           </TabsContent>
@@ -576,7 +585,7 @@ export function StudentDashboard() {
           <AlertDialogHeader>
             <AlertDialogTitle style={{ color:"#1a0a0a" }}>Potvrdit body za hodinu</AlertDialogTitle>
             <AlertDialogDescription style={{ color:"#6b0f1a" }}>
-              Získáš <strong style={{color:"#2a8a8a"}}>+5 bodů</strong> pro tým <strong>{team?.name}</strong>.
+              Získáš <strong style={{color:"#2a8a8a"}}>+5 bodů</strong> pro sebe (pomůžou i týmu <strong>{team?.name}</strong>).
               V tomto okně lze uplatnit pouze jednou.
             </AlertDialogDescription>
           </AlertDialogHeader>

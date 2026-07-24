@@ -1,5 +1,5 @@
 import { sql } from "@/lib/db"
-import { TEAMS, CHARACTERS } from "@/lib/data"
+import { CHARACTERS } from "@/lib/data"
 import { getActiveRunId } from "@/lib/runs"
 
 export const dynamic = "force-dynamic"
@@ -31,10 +31,12 @@ export async function POST(req: Request) {
     `
     const newRunId = newRun.id as number
 
+    const pointChars = CHARACTERS.filter(c => c.role === "student" || c.role === "ruze")
+
     await sql.transaction([
-      // Body: 0 pro všechny týmy
-      ...TEAMS.map(t =>
-        sql`INSERT INTO team_points (team_id, run_id, points) VALUES (${t.id}, ${newRunId}, 0)`
+      // Body: 0 pro všechny hráče (týmový součet se dopočítá)
+      ...pointChars.map(c =>
+        sql`INSERT INTO character_points (character_id, run_id, points) VALUES (${c.id}, ${newRunId}, 0)`
       ),
       // Stav postav: výchozí hodnoty
       ...CHARACTERS.map(c =>

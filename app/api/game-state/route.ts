@@ -7,11 +7,11 @@ export async function GET() {
   try {
     const runId = await getActiveRunId()
 
-    const [alarm, config, teamPoints, charState, circleMembers, teamUnits, pointLog, qrCodes, runs] =
+    const [alarm, config, characterPoints, charState, circleMembers, teamUnits, pointLog, qrCodes, runs] =
       await Promise.all([
         sql`SELECT * FROM alarm_state WHERE run_id = ${runId} LIMIT 1`,
         sql`SELECT * FROM game_config WHERE run_id = ${runId} LIMIT 1`,
-        sql`SELECT team_id, points FROM team_points WHERE run_id = ${runId}`,
+        sql`SELECT character_id, points FROM character_points WHERE run_id = ${runId}`,
         sql`SELECT character_id, kaichi_level, peer_point_pool, lesson_claimed_this_window, specialization FROM character_state WHERE run_id = ${runId}`,
         sql`SELECT circle_id, character_id FROM circle_members WHERE run_id = ${runId}`,
         sql`SELECT team_id, unit_id FROM team_units WHERE run_id = ${runId}`,
@@ -25,7 +25,7 @@ export async function GET() {
       runs,
       alarm: alarm[0],
       config: config[0],
-      teamPoints,
+      characterPoints,
       charState,
       circleMembers,
       teamUnits,

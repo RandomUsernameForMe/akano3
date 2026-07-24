@@ -4,7 +4,10 @@ import React, { useMemo } from "react"
 import { IconChevronUp, IconChevronDown } from "@tabler/icons-react"
 import { useGame } from "@/lib/game-context"
 import { UNITS, CIRCLES, CHARACTERS } from "@/lib/data"
+import { resolvedCharsOf, charTeam } from "@/lib/utils"
 import { TeamDot } from "@/components/shared/team-icon"
+
+type ScoreMode = "students" | "teams" | "units" | "circles"
 
 export function ScoreboardComponent({
   mode = "teams",
@@ -13,40 +16,52 @@ export function ScoreboardComponent({
   onModeChange,
   showModeToggle = false,
 }: {
-  mode?: "teams" | "units" | "circles"
+  mode?: ScoreMode
   compact?: boolean
   highlightId?: string
-  onModeChange?: (m: "teams" | "units" | "circles") => void
+  onModeChange?: (m: ScoreMode) => void
   showModeToggle?: boolean
 }) {
-  const { teams, pointLog } = useGame()
+  const { teams, characters, pointLog } = useGame()
 
   const rows = useMemo(() => {
+    if (mode === "students") {
+      const teamColor = (tid?: string) => teams.find(t => t.id === tid)?.color ?? "#888"
+      return characters
+        .filter(c => c.role === "student" || c.role === "ruze")
+        .sort((a,b) => b.points - a.points)
+        .map((c,i) => ({ id: c.id, name: c.name, points: c.points, color: teamColor(c.teamId), rank: i+1, iconTeamId: c.teamId }))
+    }
     if (mode === "teams") {
       return [...teams].sort((a,b) => b.points - a.points).map((t,i) => ({
-        id: t.id, name: t.name, points: t.points, color: t.color, rank: i+1,
+        id: t.id, name: t.name, points: t.points, color: t.color, rank: i+1, iconTeamId: t.id,
       }))
     }
     if (mode === "units") {
       return UNITS.map(u => {
         const pts = u.teamIds.reduce((s,tid) => s + (teams.find(t=>t.id===tid)?.points??0), 0)
-        return { id:u.id, name:u.name, points:pts, color:"#2a8a8a", rank:0 }
+        return { id:u.id, name:u.name, points:pts, color:"#2a8a8a", rank:0, iconTeamId: undefined as string | undefined }
       }).sort((a,b)=>b.points-a.points).map((r,i)=>({...r, rank:i+1}))
     }
     return CIRCLES.map(c => {
       const memberTeams = [...new Set(c.memberIds.map(mid => CHARACTERS.find(ch=>ch.id===mid)?.teamId).filter(Boolean) as string[])]
       const pts = memberTeams.reduce((s,tid) => s + (teams.find(t=>t.id===tid)?.points??0), 0)
-      return { id:c.id, name:c.name, points:pts, color:"#a052e0", rank:0 }
+      return { id:c.id, name:c.name, points:pts, color:"#a052e0", rank:0, iconTeamId: undefined as string | undefined }
     }).sort((a,b)=>b.points-a.points).map((r,i)=>({...r, rank:i+1}))
-  }, [mode, teams])
+  }, [mode, teams, characters])
 
+  // Recent deltas keyed by both team and character, so any mode can show them
   const recentChanges = useMemo(() => {
     const cutoff = new Date(Date.now() - 120000)
-    const changes: Record<string, number> = {}
+    const team: Record<string, number> = {}, char: Record<string, number> = {}
     pointLog.filter(e => e.timestamp > cutoff).forEach(e => {
-      e.resolvedTeamIds.forEach(tid => { changes[tid] = (changes[tid]??0) + e.amount })
+      resolvedCharsOf(e).forEach(cid => {
+        char[cid] = (char[cid] ?? 0) + e.amount
+        const tid = charTeam(cid)
+        if (tid) team[tid] = (team[tid] ?? 0) + e.amount
+      })
     })
-    return changes
+    return { team, char }
   }, [pointLog])
 
   const fontSize = compact ? "0.9rem" : "1.1rem"
@@ -56,7 +71,7 @@ export function ScoreboardComponent({
     <div>
       {showModeToggle && (
         <div style={{ display:"flex", gap:8, marginBottom:12 }}>
-          {(["teams","units","circles"] as const).map(m => (
+          {(["students","teams","units","circles"] as const).map(m => (
             <button key={m} onClick={() => onModeChange?.(m)} style={{
               padding:"4px 12px", borderRadius:6, fontSize:"0.8rem", cursor:"pointer",
               backgroundColor: mode===m ? "var(--teal-700)" : "var(--c-bg-section)",
@@ -64,7 +79,7 @@ export function ScoreboardComponent({
               border: `1px solid ${mode===m ? "var(--teal-700)" : "var(--c-border-str)"}`,
               fontWeight: mode===m ? 700 : 400,
             }}>
-              {m==="teams" ? "Týmy" : m==="units" ? "Jednotky" : "Kruhy"}
+              {m==="students" ? "Studenti" : m==="teams" ? "Týmy" : m==="units" ? "Jednotky" : "Kruhy"}
             </button>
           ))}
         </div>
@@ -72,7 +87,7 @@ export function ScoreboardComponent({
 
       <div style={{ display:"flex", flexDirection:"column", gap:compact ? 4 : 6 }}>
         {rows.map(row => {
-          const change = recentChanges[row.id] ?? 0
+          const change = (mode === "students" ? recentChanges.char : recentChanges.team)[row.id] ?? 0
           const isHL   = row.id === highlightId
           const isLeader = row.rank === 1
           return (
@@ -95,7 +110,7 @@ export function ScoreboardComponent({
               }}>
                 {row.rank}
               </span>
-              <TeamDot color={row.color} teamId={row.id} />
+              <TeamDot color={row.color} teamId={row.iconTeamId ?? row.id} />
               <span style={{ flex:1, fontWeight:600, color:"var(--c-text)", fontSize }}>
                 {row.name}
               </span>

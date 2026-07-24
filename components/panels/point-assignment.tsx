@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/alert-dialog"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useGame } from "@/lib/game-context"
-import { TEAMS, UNITS, CIRCLES } from "@/lib/data"
+import { TEAMS, UNITS, CIRCLES, CHARACTERS } from "@/lib/data"
 import { ACTION_LABELS, ACTION_DEFAULT_PTS } from "@/lib/constants"
-import { resolveTargetTeams, getTeamName } from "@/lib/utils"
+import { resolveTargetCharacters, getCharName, getTeamName } from "@/lib/utils"
 import type { ActionType } from "@/lib/types"
+
+const POINT_CHARS = CHARACTERS.filter(c => c.role === "student" || c.role === "ruze")
+type TargetType = "student" | "team" | "unit" | "circle"
 
 export function PointAssignmentForm({
   onClose, canCorrect = false,
@@ -24,7 +27,7 @@ export function PointAssignmentForm({
   onClose?: () => void; canCorrect?: boolean
 }) {
   const { assignPoints, currentUser, addToast } = useGame()
-  const [targetType, setTargetType] = useState<"team" | "unit" | "circle">("team")
+  const [targetType, setTargetType] = useState<TargetType>("student")
   const [targetId,   setTargetId]   = useState("")
   const [actionType, setActionType] = useState<ActionType>("mission_success")
   const [amount,     setAmount]     = useState(20)
@@ -32,13 +35,15 @@ export function PointAssignmentForm({
   const [confirm,    setConfirm]    = useState(false)
 
   const targetOptions = useMemo(() => {
+    if (targetType === "student") return POINT_CHARS.map(c => ({ id:c.id, label:`${c.name} — ${getTeamName(c.teamId ?? "")}` }))
     if (targetType === "team") return TEAMS.map(t => ({ id:t.id, label:t.name }))
     if (targetType === "unit") return UNITS.map(u => ({ id:u.id, label:u.name }))
     return CIRCLES.map(c => ({ id:c.id, label:c.name }))
   }, [targetType])
 
-  const resolvedTeams = useMemo(() =>
-    targetId ? resolveTargetTeams(targetType, targetId).map(getTeamName).join(", ") : "—"
+  // Recipients (individual students) — each receives the full amount
+  const resolvedRecipients = useMemo(() =>
+    targetId ? resolveTargetCharacters(targetType, targetId).map(getCharName).join(", ") : "—"
   , [targetType, targetId])
 
   const actions = (canCorrect
@@ -71,14 +76,14 @@ export function PointAssignmentForm({
         {sectionHead("CÍL")}
         <RadioGroup
           value={targetType}
-          onValueChange={v => { setTargetType(v as "team"|"unit"|"circle"); setTargetId("") }}
+          onValueChange={v => { setTargetType(v as TargetType); setTargetId("") }}
           style={{ display:"flex", gap:8, marginBottom:8 }}
         >
-          {(["team","unit","circle"] as const).map(t => (
+          {(["student","team","unit","circle"] as const).map(t => (
             <div key={t} style={{ display:"flex", alignItems:"center", gap:6 }}>
               <RadioGroupItem value={t} id={`tt-${t}`} />
               <Label htmlFor={`tt-${t}`} style={{ color:"#1a0a0a", cursor:"pointer", fontSize:"0.85rem" }}>
-                {t==="team" ? "Tým" : t==="unit" ? "Jednotka" : "Kruh"}
+                {t==="student" ? "Student" : t==="team" ? "Tým" : t==="unit" ? "Jednotka" : "Kruh"}
               </Label>
             </div>
           ))}
@@ -99,7 +104,7 @@ export function PointAssignmentForm({
 
         {targetId && (
           <p style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.75rem", marginTop:4 }}>
-            <IconChevronRight size={11} style={{display:"inline"}} /> Přijmou body: <strong style={{color:"#6b0f1a"}}>{resolvedTeams}</strong>
+            <IconChevronRight size={11} style={{display:"inline"}} /> Každý dostane {amount > 0 ? "+" : ""}{amount} b.: <strong style={{color:"#6b0f1a"}}>{resolvedRecipients}</strong>
           </p>
         )}
 
@@ -149,7 +154,7 @@ export function PointAssignmentForm({
             <AlertDialogTitle style={{ color:"#1a0a0a" }}>Potvrdit zadání bodů</AlertDialogTitle>
             <AlertDialogDescription style={{ color:"#6b0f1a" }}>
               <strong style={{color:"#2a8a8a", fontSize:"1.1rem"}}>{amount > 0 ? "+" : ""}{amount} bodů</strong>
-              {" → "}<strong>{resolvedTeams}</strong>
+              {" → každému: "}<strong>{resolvedRecipients}</strong>
               <br />{ACTION_LABELS[actionType]}
               {note && <><br /><em style={{color:"rgba(107,15,26,0.45)"}}>„{note}"</em></>}
             </AlertDialogDescription>

@@ -4,7 +4,7 @@ import React, { useState, useCallback, useEffect, createContext, useContext, use
 import type { Team, Character, PointEntry, AlarmState, QRCode, Toast, RunSummary } from "./types"
 import { TEAMS, CHARACTERS, UNITS, CIRCLES } from "./data"
 import { ALARM_COLORS } from "./constants"
-import { getTeamName, romanNumeral } from "./utils"
+import { getTeamName, romanNumeral, charTeam } from "./utils"
 
 export interface GameCtx {
   teams:              Team[]
@@ -20,7 +20,7 @@ export interface GameCtx {
   setCurrentUser: (char: Character | null) => void
   login:         (code: string) => Character | null
   logout:        () => void
-  assignPoints:  (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">) => void
+  assignPoints:  (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds" | "resolvedCharacterIds">) => void
   updateKaichi:  (characterId: string, level?: number) => void
   triggerAlarm:  (type: AlarmState["type"], message: string) => void
   dismissAlarm:  () => void
@@ -47,6 +47,7 @@ export function useGame() {
 // Merge static CHARACTERS with mutable DB state
 function buildCharacters(
   charState: { character_id: string; kaichi_level: number; peer_point_pool: number; lesson_claimed_this_window: boolean; specialization: string | null }[],
+  characterPoints: { character_id: string; points: number }[],
   circleMembers: { circle_id: string; character_id: string }[],
   teamUnits: { team_id: string; unit_id: string }[]
 ): Character[] {
@@ -57,6 +58,8 @@ function buildCharacters(
   }
   const unitByTeam: Record<string, string> = {}
   for (const { team_id, unit_id } of teamUnits) unitByTeam[team_id] = unit_id
+  const pointsByChar: Record<string, number> = {}
+  for (const { character_id, points } of characterPoints) pointsByChar[character_id] = points
 
   return CHARACTERS.map(c => {
     const state = charState.find(s => s.character_id === c.id)
@@ -66,25 +69,32 @@ function buildCharacters(
       peerPointPool: state?.peer_point_pool ?? c.peerPointPool,
       lessonClaimedThisWindow: state?.lesson_claimed_this_window ?? false,
       specialization: (state?.specialization as Character["specialization"]) ?? c.specialization,
+      points: pointsByChar[c.id] ?? c.points,
       circleIds: circlesByChar[c.id] ?? c.circleIds,
       unitId: c.teamId ? (unitByTeam[c.teamId] ?? c.unitId) : c.unitId,
     }
   })
 }
 
-// Merge static TEAMS with DB points and unit assignments
+// Team total = sum of its members' individual points.
+function teamPointsFromChars(chars: Character[]): Record<string, number> {
+  const m: Record<string, number> = {}
+  for (const c of chars) if (c.teamId) m[c.teamId] = (m[c.teamId] ?? 0) + c.points
+  return m
+}
+
+// Derive teams from character points + unit assignments.
 function buildTeams(
-  teamPoints: { team_id: string; points: number }[],
+  chars: Character[],
   teamUnits: { team_id: string; unit_id: string }[]
 ): Team[] {
-  const pointsMap: Record<string, number> = {}
-  for (const { team_id, points } of teamPoints) pointsMap[team_id] = points
+  const pointsMap = teamPointsFromChars(chars)
   const unitMap: Record<string, string> = {}
   for (const { team_id, unit_id } of teamUnits) unitMap[team_id] = unit_id
 
   return TEAMS.map(t => ({
     ...t,
-    points: pointsMap[t.id] ?? t.points,
+    points: pointsMap[t.id] ?? 0,
     unitId: unitMap[t.id] ?? t.unitId,
   }))
 }
@@ -98,6 +108,7 @@ function parsePointLog(rows: Record<string, unknown>[]): PointEntry[] {
     targetType: r.target_type as PointEntry["targetType"],
     targetId: r.target_id as string,
     resolvedTeamIds: r.resolved_team_ids as string[],
+    resolvedCharacterIds: (r.resolved_character_ids as string[] | null) ?? [],
     amount: r.amount as number,
     actionType: r.action_type as PointEntry["actionType"],
     note: r.note as string | undefined,
@@ -146,7 +157,7 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   const applyGameState = useCallback((data: Record<string, unknown>) => {
     const alarm   = data.alarm as Record<string, unknown>
     const config  = data.config as Record<string, unknown>
-    const tp      = data.teamPoints as { team_id: string; points: number }[]
+    const cp      = data.characterPoints as { character_id: string; points: number }[]
     const cs      = data.charState as { character_id: string; kaichi_level: number; peer_point_pool: number; lesson_claimed_this_window: boolean; specialization: string | null }[]
     const cm      = data.circleMembers as { circle_id: string; character_id: string }[]
     const tu      = data.teamUnits as { team_id: string; unit_id: string }[]
@@ -159,8 +170,8 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     setAlarmState({ active: alarm.active as boolean, type: alarm.type as AlarmState["type"], message: alarm.message as string, color: alarm.color as string })
     setLessonWindowActive(config.lesson_window_active as boolean)
     setLessonWindowEnd(config.lesson_window_end ? new Date(config.lesson_window_end as string) : null)
-    const chars = buildCharacters(cs, cm, tu)
-    setTeams(buildTeams(tp, tu))
+    const chars = buildCharacters(cs, cp, cm, tu)
+    setTeams(buildTeams(chars, tu))
     setCharacters(chars)
     setCurrentUser(prev => prev ? (chars.find(c => c.id === prev.id) ?? prev) : null)
     setPointLog(parsePointLog(pl))
@@ -224,15 +235,21 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     setCurrentUser(null)
   }, [])
 
-  const assignPoints = useCallback(async (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds">) => {
+  const assignPoints = useCallback(async (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds" | "resolvedCharacterIds">) => {
     try {
       const res = await fetch("/api/points", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(entry) })
       if (!res.ok) { addToast("Chyba při zadávání bodů", "error"); return }
-      const { id, resolvedTeamIds } = await res.json()
-      // Optimistic update
-      const full: PointEntry = { ...entry, id, timestamp: new Date(), resolvedTeamIds }
+      const { id, resolvedTeamIds, resolvedCharacterIds } = await res.json()
+      // Optimistic update: credit each resolved character, mirror onto team totals
+      const full: PointEntry = { ...entry, id, timestamp: new Date(), resolvedTeamIds, resolvedCharacterIds }
+      const chars: string[] = resolvedCharacterIds
       setPointLog(prev => [full, ...prev])
-      setTeams(prev => prev.map(t => resolvedTeamIds.includes(t.id) ? { ...t, points: t.points + entry.amount } : t))
+      setCharacters(prev => prev.map(c => chars.includes(c.id) ? { ...c, points: c.points + entry.amount } : c))
+      setTeams(prev => {
+        const delta: Record<string, number> = {}
+        for (const cid of chars) { const t = charTeam(cid); if (t) delta[t] = (delta[t] ?? 0) + entry.amount }
+        return prev.map(t => delta[t.id] ? { ...t, points: t.points + delta[t.id] } : t)
+      })
       addToast(`${entry.amount > 0 ? "+" : ""}${entry.amount} bodů → ${resolvedTeamIds.map(getTeamName).join(", ")}`)
     } catch { addToast("Chyba sítě", "error") }
   }, [addToast])
@@ -305,7 +322,13 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     try {
       const res = await fetch("/api/gift", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ fromId, toId, amount }) })
       if (!res.ok) { addToast("Chyba při daru", "error"); return }
-      setCharacters(prev => prev.map(c => c.id === fromId ? { ...c, peerPointPool: c.peerPointPool - amount } : c))
+      // Sender loses pool; recipient gains individual points → recipient's team total rises
+      setCharacters(prev => prev.map(c =>
+        c.id === fromId ? { ...c, peerPointPool: c.peerPointPool - amount }
+        : c.id === toId ? { ...c, points: c.points + amount }
+        : c))
+      const toTeam = charTeam(toId)
+      if (toTeam) setTeams(prev => prev.map(t => t.id === toTeam ? { ...t, points: t.points + amount } : t))
     } catch { addToast("Chyba sítě", "error") }
   }, [addToast])
 
@@ -316,7 +339,7 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
       if (!res.ok) { addToast("Chyba", "error"); return }
       const student = characters.find(c => c.id === studentId)
       if (student?.teamId) {
-        await assignPoints({ sourceRole:"student", sourceCharacterId:studentId, targetType:"team", targetId:student.teamId, amount:5, actionType:"lesson", note:"Body za hodinu" })
+        await assignPoints({ sourceRole:"student", sourceCharacterId:studentId, targetType:"student", targetId:studentId, amount:5, actionType:"lesson", note:"Body za hodinu" })
       }
       setCharacters(prev => prev.map(c => c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c))
       addToast("Body za hodinu přidány!")

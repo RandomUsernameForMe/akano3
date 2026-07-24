@@ -21,8 +21,8 @@ export interface Circle  { id: string; name: string; memberIds: string[] }
 export interface Unit    { id: string; name: string; teamIds: [string, string] }
 export interface PointEntry {
   id: string; timestamp: Date; sourceRole: Role
-  sourceCharacterId: string; targetType: "team" | "unit" | "circle"
-  targetId: string; resolvedTeamIds: string[]
+  sourceCharacterId: string; targetType: "team" | "unit" | "circle" | "student"
+  targetId: string; resolvedTeamIds: string[]; resolvedCharacterIds?: string[]
   amount: number; actionType: ActionType; note?: string
 }
 export interface QRCode {

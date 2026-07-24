@@ -15,6 +15,7 @@ import { AlarmPanel } from "@/components/panels/alarm"
 
 export function TeacherDashboard() {
   const [sheetOpen, setSheetOpen] = useState(false)
+  const [sbMode,    setSbMode]    = useState<"students" | "teams" | "units" | "circles">("teams")
 
   return (
     <div>
@@ -62,8 +63,8 @@ export function TeacherDashboard() {
         <TabsContent value="overview">
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
             <div style={{ backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border)", borderRadius:10, padding:20 }}>
-              <p style={{ color:"var(--c-accent)", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:12 }}>ŽEBŘÍČEK TÝMŮ</p>
-              <ScoreboardComponent compact />
+              <p style={{ color:"var(--c-accent)", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:12 }}>ŽEBŘÍČEK</p>
+              <ScoreboardComponent mode={sbMode} compact showModeToggle onModeChange={setSbMode} />
             </div>
             <div style={{ backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border)", borderRadius:10, padding:20 }}>
               <p style={{ color:"var(--c-accent)", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:12 }}>POSLEDNÍ AKCE</p>

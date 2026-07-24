@@ -50,8 +50,6 @@ export function DisplayScreen() {
 
   const timeData = useMemo(() => {
     const sortedLog = [...pointLog].sort((a,b) => a.timestamp.getTime() - b.timestamp.getTime())
-    const latest = sortedLog.length ? sortedLog[sortedLog.length - 1].timestamp.getTime() : Date.now()
-    const cutoff = latest - 12 * 60 * 60 * 1000
     const runningTotals: Record<string, number> = {}
     const deltas = sortedLog.map(teamDeltaOf)
     teams.forEach(t => {
@@ -62,7 +60,6 @@ export function DisplayScreen() {
     sortedLog.forEach((e, i) => {
       const d = deltas[i]
       for (const tid in d) runningTotals[tid] = (runningTotals[tid] ?? 0) + d[tid]
-      if (e.timestamp.getTime() < cutoff) return
       const key = formatDateTime(e.timestamp)
       if (!buckets[key]) buckets[key] = { time: key as any }
       teams.forEach(t => { buckets[key][t.id] = runningTotals[t.id] ?? 0 })

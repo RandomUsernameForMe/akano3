@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect } from "react"
-import { useRouter } from "next/navigation"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { GameProvider, useGame } from "@/lib/game-context"
 import { LoginScreen } from "@/components/views/login"
@@ -9,14 +8,13 @@ import { ThemeProvider } from "@/lib/theme-context"
 import { ErrorBoundary } from "@/components/shared/error-boundary"
 
 function Router() {
-  const { currentUser } = useGame()
-  const router = useRouter()
+  const { logout } = useGame()
 
   useEffect(() => {
-    if (currentUser) router.replace(`/character/${currentUser.id}`)
-  }, [currentUser, router])
+    logout()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  if (currentUser) return null
   return <LoginScreen />
 }
 

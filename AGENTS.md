@@ -1,3 +1,6 @@
+# Worktrees
+Never use `isolation: "worktree"` when spawning agents in this project. Work directly on the current branch.
+
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
 

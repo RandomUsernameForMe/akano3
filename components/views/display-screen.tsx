@@ -20,7 +20,7 @@ function EndLabel({ cx, cy, index, lastIndex, team }: {
   return (
     <g transform={`translate(${cx + 10}, ${cy - 12})`}>
       <Icon size={24} color={team.color} strokeWidth={2} />
-      <text x={30} y={12} fill={team.color} fontSize={20} fontWeight={700} fontFamily="monospace" dominantBaseline="middle">
+      <text x={30} y={12} fill={team.color} fontSize={20} fontWeight={700} fontFamily="Space Mono, monospace" dominantBaseline="middle">
         {team.name}
       </text>
     </g>
@@ -33,7 +33,7 @@ function ClockDisplay() {
     const iv = setInterval(() => setTime(new Date().toLocaleTimeString("cs-CZ")), 1000)
     return () => clearInterval(iv)
   }, [])
-  return <span style={{ color:"rgba(255,255,255,0.55)", fontSize:"0.8rem", fontFamily:"monospace" }}>{time}</span>
+  return <span style={{ color:"rgba(255,255,255,0.55)", fontSize:"0.8rem", fontFamily:"var(--font-mono)" }}>{time}</span>
 }
 
 export function DisplayScreen() {
@@ -79,13 +79,14 @@ export function DisplayScreen() {
       }}>
         <IconBellRinging size={80} color="white" style={{ marginBottom:32 }} className="alarm-pulse" />
         <h1 className="alarm-flash-text" style={{
-          color:"#fff", fontSize:"clamp(2rem,8vw,6rem)", fontWeight:900,
-          textAlign:"center", padding:"0 40px", letterSpacing:"0.02em",
+          fontFamily:"var(--font-display)", textTransform:"uppercase",
+          color:"#fff", fontSize:"clamp(2rem,8vw,6rem)", fontWeight:700,
+          textAlign:"center", padding:"0 40px", letterSpacing:"0.03em",
           textShadow:"0 0 40px rgba(0,0,0,0.5)",
         }}>
           {alarmState.message || alarmState.type.toUpperCase()}
         </h1>
-        <p style={{ color:"rgba(255,255,255,0.6)", fontSize:"1.2rem", marginTop:24, letterSpacing:"0.2em" }}>
+        <p className="ds-overline" style={{ color:"rgba(255,255,255,0.6)", fontSize:"1.1rem", marginTop:24 }}>
           AKANO · ALARM SYSTÉM
         </p>
       </div>
@@ -95,7 +96,7 @@ export function DisplayScreen() {
   return (
     <div style={{
       position:"fixed", inset:0,
-      background:"radial-gradient(ellipse at 50% 0%, #8c1f2a 0%, #6b0f1a 50%, #3a0810 100%)",
+      backgroundColor:"#3A0808",   // DS flat oxblood ground — no gradient mush
       display:"flex", flexDirection:"column", overflow:"hidden",
     }}>
       {broadcastActive && (
@@ -110,15 +111,14 @@ export function DisplayScreen() {
       )}
 
       <div style={{ textAlign:"center", padding:"20px 0 10px", flexShrink:0 }}>
-        <h1 style={{
-          color:"rgba(255,255,255,0.9)", fontSize:"clamp(1rem,3vw,2rem)", fontWeight:900,
+        <h1 className="ds-label" style={{
+          color:"var(--sand-400)", fontSize:"clamp(1.2rem,3.4vw,2.4rem)", fontWeight:700,
           letterSpacing:"0.15em", margin:0,
         }}>
           AKANO
         </h1>
-        <p style={{
-          color:"rgba(255,255,255,0.4)", fontSize:"clamp(0.6rem,1.2vw,0.8rem)",
-          letterSpacing:"0.3em", marginTop:4, textTransform:"uppercase",
+        <p className="ds-overline" style={{
+          color:"rgba(255,255,255,0.4)", fontSize:"clamp(0.6rem,1.2vw,0.8rem)", marginTop:6,
         }}>
           {view === "scores" ? "Žebříček" : "Vývoj v čase"}
         </p>
@@ -138,7 +138,7 @@ export function DisplayScreen() {
                   borderRadius:10, transition:"all 0.5s ease",
                 }}>
                   <span style={{
-                    minWidth:"3ch", fontFamily:"monospace", fontWeight:900,
+                    minWidth:"3ch", fontFamily:"var(--font-mono)", fontWeight:900,
                     fontSize:"clamp(1.2rem,2.5vw,2.2rem)",
                     color: i === 0 ? "#d4a017" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "rgba(200,169,110,0.35)",
                   }}>{i + 1}</span>
@@ -149,7 +149,7 @@ export function DisplayScreen() {
                     fontWeight:700, color:"rgba(255,255,255,0.92)", letterSpacing:"0.04em",
                   }}>{team.name}</span>
                   <span style={{
-                    fontFamily:"monospace", fontWeight:900,
+                    fontFamily:"var(--font-mono)", fontWeight:900,
                     fontSize:"clamp(1.2rem,3vw,2.5rem)",
                     color: i === 0 ? "#c8a96e" : "rgba(255,255,255,0.88)", letterSpacing:"0.05em",
                   }}>{team.points}</span>
@@ -166,14 +166,14 @@ export function DisplayScreen() {
                 <CartesianGrid strokeDasharray="4 4" stroke="rgba(255,255,255,0.08)" />
                 <XAxis
                   dataKey="time"
-                  tick={{ fill:"rgba(255,255,255,0.75)", fontSize:18, fontFamily:"monospace" }}
+                  tick={{ fill:"rgba(255,255,255,0.75)", fontSize:18, fontFamily:"var(--font-mono)" }}
                   tickLine={false} axisLine={{ stroke:"rgba(255,255,255,0.12)" }}
                   angle={-35} textAnchor="end" height={70}
                   interval={Math.max(0, Math.floor(timeData.length / 6))}
                   tickFormatter={formatTimeOnly}
                 />
                 <YAxis
-                  tick={{ fill:"rgba(255,255,255,0.75)", fontSize:18, fontFamily:"monospace" }}
+                  tick={{ fill:"rgba(255,255,255,0.75)", fontSize:18, fontFamily:"var(--font-mono)" }}
                   tickLine={false} axisLine={{ stroke:"rgba(255,255,255,0.12)" }}
                   width={60} domain={["auto", "auto"]}
                 />
@@ -201,7 +201,7 @@ export function DisplayScreen() {
         display:"flex", justifyContent:"space-between", alignItems:"center",
         flexShrink:0,
       }}>
-        <span style={{ color:"rgba(255,255,255,0.3)", fontSize:"0.75rem", letterSpacing:"0.15em" }}>
+        <span className="ds-overline" style={{ color:"rgba(255,255,255,0.3)", fontSize:"0.72rem" }}>
           AKANO · SCOREBOARD
         </span>
         <div style={{ display:"flex", gap:6, alignItems:"center" }}>

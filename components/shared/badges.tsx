@@ -9,10 +9,10 @@ export function KaichiBadge({ level }: { level: number }) {
   if (!level) return null
   return (
     <span style={{
-      display:"inline-block", backgroundColor:"#1a0a00", color:"#d4a017",
-      fontFamily:"'Courier New', monospace", fontWeight:"bold",
+      display:"inline-block", backgroundColor:"var(--ink-900)", color:"var(--sand-500)",
+      fontFamily:"var(--font-mono)", fontWeight:"bold",
       padding:"2px 10px", borderRadius:"4px", fontSize:"0.8rem",
-      border:"1px solid #d4a01770", letterSpacing:"0.05em",
+      border:"1px solid rgba(224,176,128,0.45)", letterSpacing:"0.05em",
     }}>
       Kaichi {romanNumeral(level)}
     </span>
@@ -29,9 +29,9 @@ export function RoleBadge({ role }: { role: Role }) {
   }
   const [color, label] = map[role]
   return (
-    <span style={{
+    <span className="ds-label" style={{
       backgroundColor: color + "33", color, border:`1px solid ${color}66`,
-      padding:"2px 8px", borderRadius:"4px", fontSize:"0.75rem", fontWeight:600,
+      padding:"2px 8px", borderRadius:"4px", fontSize:"0.72rem",
     }}>
       {label}
     </span>
@@ -47,9 +47,9 @@ export function ActionBadge({ type }: { type: ActionType }) {
   }
   const c = colors[type]
   return (
-    <span style={{
+    <span className="ds-label" style={{
       backgroundColor: c + "22", color: c, border:`1px solid ${c}44`,
-      padding:"2px 7px", borderRadius:"4px", fontSize:"0.72rem", fontWeight:500,
+      padding:"2px 7px", borderRadius:"4px", fontSize:"0.68rem",
       whiteSpace:"nowrap",
     }}>
       {ACTION_LABELS[type]}
@@ -66,9 +66,9 @@ export function SpecBadge({ spec }: { spec?: Specialization }) {
   }
   const [c, label] = map[spec]
   return (
-    <span style={{
+    <span className="ds-label" style={{
       backgroundColor: c + "22", color: c, border:`1px solid ${c}44`,
-      padding:"1px 7px", borderRadius:"4px", fontSize:"0.72rem",
+      padding:"1px 7px", borderRadius:"4px", fontSize:"0.68rem",
     }}>
       {label}
     </span>

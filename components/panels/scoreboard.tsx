@@ -59,9 +59,9 @@ export function ScoreboardComponent({
           {(["teams","units","circles"] as const).map(m => (
             <button key={m} onClick={() => onModeChange?.(m)} style={{
               padding:"4px 12px", borderRadius:6, fontSize:"0.8rem", cursor:"pointer",
-              backgroundColor: mode===m ? "#2a8a8a" : "var(--c-bg-section)",
+              backgroundColor: mode===m ? "var(--teal-700)" : "var(--c-bg-section)",
               color: mode===m ? "#fff" : "var(--c-accent)",
-              border: `1px solid ${mode===m ? "#2a8a8a" : "var(--c-border-str)"}`,
+              border: `1px solid ${mode===m ? "var(--teal-700)" : "var(--c-border-str)"}`,
               fontWeight: mode===m ? 700 : 400,
             }}>
               {m==="teams" ? "Týmy" : m==="units" ? "Jednotky" : "Kruhy"}
@@ -74,20 +74,24 @@ export function ScoreboardComponent({
         {rows.map(row => {
           const change = recentChanges[row.id] ?? 0
           const isHL   = row.id === highlightId
+          const isLeader = row.rank === 1
           return (
             <div key={row.id} style={{
               display:"flex", alignItems:"center", gap:12,
               padding: compact ? "8px 12px" : "16px 20px",
-              borderRadius:8,
-              backgroundColor: isHL ? "rgba(42,138,138,0.1)" : "var(--c-bg-section)",
-              border: `1px solid ${isHL ? "rgba(42,138,138,0.4)" : "var(--c-border)"}`,
+              borderRadius:6,
+              backgroundColor: isHL ? "rgba(16,128,128,0.12)"
+                : isLeader ? "rgba(224,176,128,0.16)" : "var(--c-bg-section)",
+              border: `2px solid ${isHL ? "rgba(16,128,128,0.45)"
+                : isLeader ? "rgba(224,176,128,0.5)" : "var(--c-border)"}`,
+              boxShadow: isLeader ? "var(--shadow-print-sm)" : "none",
               transition:"all 0.3s",
             }}>
               <span style={{
                 minWidth: compact ? 24 : 32, fontWeight:900,
-                color: row.rank <= 3 ? "#b8860b" : "var(--c-text-faint)",
+                color: row.rank <= 3 ? "var(--sand-600)" : "var(--c-text-faint)",
                 fontSize: compact ? "0.85rem" : "1.1rem",
-                fontFamily:"monospace",
+                fontFamily:"var(--font-mono)",
               }}>
                 {row.rank}
               </span>
@@ -97,8 +101,8 @@ export function ScoreboardComponent({
               </span>
               {change !== 0 && (
                 <span style={{
-                  fontSize:"0.75rem", fontWeight:700,
-                  color: change > 0 ? "#2a8a5a" : "#e05252",
+                  fontFamily:"var(--font-mono)", fontSize:"0.78rem", fontWeight:700,
+                  color: change > 0 ? "var(--teal-700)" : "var(--oxblood-500)",
                   minWidth:50, textAlign:"right",
                 }}>
                   {change > 0
@@ -108,7 +112,7 @@ export function ScoreboardComponent({
                 </span>
               )}
               <span style={{
-                fontFamily:"monospace", fontWeight:900,
+                fontFamily:"var(--font-mono)", fontWeight:900,
                 color:"var(--c-accent)", fontSize: ptSize,
                 minWidth:60, textAlign:"right",
               }}>

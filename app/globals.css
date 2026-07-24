@@ -46,76 +46,105 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  /* Akano3 DS fonts: Spectral body serif, Oswald display, Space Mono meta, Rock Salt brush */
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
+  --font-brush: var(--font-brush);
+  /* Akano3 DS screen-print shadows — hard, warm-dark, offset (no blur) */
+  --shadow-print-sm: 2px 2px 0 rgba(20,18,16,0.16);
+  --shadow-print-md: 4px 4px 0 rgba(20,18,16,0.20);
+  --shadow-print-lg: 6px 6px 0 rgba(20,18,16,0.24);
+}
+
+/* ============================================================
+   AKANO3 DESIGN SYSTEM · palette (inlined from design-system/tokens)
+   Four-ink poster palette: oxblood night · sand warmth · teal cool
+   · ink outline · bone paper. Kept as raw scales so components can
+   reach any step; shadcn semantic tokens below map onto them.
+   ============================================================ */
+:root {
+  --oxblood-900: #3A0808; --oxblood-800: #520C0C; --oxblood-700: #701010;
+  --oxblood-600: #8A1D18; --oxblood-500: #A32B22; --oxblood-400: #C24A3E;
+  --sand-700: #B78A55; --sand-600: #C99C68; --sand-500: #E0B080;
+  --sand-400: #EAC49B; --sand-300: #F2D8B8; --sand-200: #F8E9D6;
+  --teal-900: #0A4A4A; --teal-800: #0C5F5F; --teal-700: #108080;
+  --teal-600: #1B9797; --teal-500: #2FAEAE; --teal-400: #5AC4C4;
+  --ink-900: #0C0B0A; --ink-800: #141210; --ink-700: #2A2622;
+  --ink-600: #46403A; --ink-500: #6B635A; --ink-400: #968C80; --ink-300: #C4BBAE;
+  --bone-200: #E7DECF; --bone-100: #F4ECDF;
+  --border-ink: 2px; /* signature outline weight */
 }
 
 :root {
-  /* Akano3 — neutral base, crimson primary, teal + gold accents */
-  --background:             oklch(0.987 0.001 60);   /* near-white, barely warm */
-  --foreground:             oklch(0.13  0.020 22);   /* dark text */
-  --card:                   oklch(1     0     0);    /* white */
-  --card-foreground:        oklch(0.13  0.020 22);
-  --popover:                oklch(1     0     0);
-  --popover-foreground:     oklch(0.13  0.020 22);
-  --primary:                oklch(0.33  0.120 17);   /* crimson #6b0f1a */
-  --primary-foreground:     oklch(1     0     0);
-  --secondary:              oklch(0.90  0.040 192);  /* teal tint */
-  --secondary-foreground:   oklch(0.20  0.060 192);
-  --muted:                  oklch(0.955 0.025 192);  /* very light teal */
-  --muted-foreground:       oklch(0.46  0.030 192);
-  --accent:                 oklch(0.73  0.072 74);   /* sandy gold #c8a96e */
-  --accent-foreground:      oklch(0.13  0.020 22);
-  --destructive:            oklch(0.577 0.245 27.325);
-  --border:                 oklch(0.90  0     0);    /* neutral gray border */
-  --input:                  oklch(1     0     0);    /* white inputs */
-  --ring:                   oklch(0.33  0.120 17);   /* crimson focus ring */
-  --chart-1:                oklch(0.57  0.080 196);  /* teal */
-  --chart-2:                oklch(0.33  0.120 17);   /* crimson */
-  --chart-3:                oklch(0.73  0.072 74);   /* gold */
-  --chart-4:                oklch(0.65  0.090 150);  /* green */
-  --chart-5:                oklch(0.60  0.100 270);  /* purple */
-  --radius:                 0.5rem;
-  --sidebar:                oklch(0.987 0.001 60);
-  --sidebar-foreground:     oklch(0.13  0.020 22);
-  --sidebar-primary:        oklch(0.33  0.120 17);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent:         oklch(0.90  0.040 192);
-  --sidebar-accent-foreground: oklch(0.20 0.060 192);
-  --sidebar-border:         oklch(0.90  0     0);
-  --sidebar-ring:           oklch(0.33  0.120 17);
+  /* Akano3 DS — light "paper" surface (bone ground, ink text, oxblood brand) */
+  --background:             #F4ECDF;   /* bone paper */
+  --foreground:             #141210;   /* ink */
+  --card:                   #FBF7F0;   /* paper, lifted off bone by DS ink keyline */
+  --card-foreground:        #141210;
+  --popover:                #FBF7F0;
+  --popover-foreground:     #141210;
+  --primary:                #701010;   /* oxblood */
+  --primary-foreground:     #F4ECDF;   /* bone */
+  --secondary:              #108080;   /* teal ground */
+  --secondary-foreground:   #F4ECDF;
+  --muted:                  #E7DECF;   /* bone-200 */
+  --muted-foreground:       #6B635A;   /* ink-500 */
+  --accent:                 #E0B080;   /* sand */
+  --accent-foreground:      #0C0B0A;   /* ink-900 */
+  --destructive:            #A32B22;   /* oxblood-500 danger */
+  --border:                 rgba(20,18,16,0.16);  /* ink hairline */
+  --input:                  #FFFFFF;
+  --ring:                   #E0B080;   /* sand focus */
+  --chart-1:                #108080;   /* teal */
+  --chart-2:                #701010;   /* oxblood */
+  --chart-3:                #E0B080;   /* sand */
+  --chart-4:                #2F7D4F;   /* success green */
+  --chart-5:                #1B9797;   /* info teal-600 */
+  --radius:                 0.375rem;  /* 6px — DS keeps corners crisp */
+  --sidebar:                #EFE6D6;   /* slightly deeper bone */
+  --sidebar-foreground:     #141210;
+  --sidebar-primary:        #701010;
+  --sidebar-primary-foreground: #F4ECDF;
+  --sidebar-accent:         #E0B080;
+  --sidebar-accent-foreground: #0C0B0A;
+  --sidebar-border:         rgba(20,18,16,0.16);
+  --sidebar-ring:           #E0B080;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Akano3 DS — "night" surface (oxblood ground, bone text, sand CTA) */
+  --background: #3A0808;   /* oxblood-900 */
+  --foreground: #F4ECDF;   /* bone */
+  --card: #520C0C;         /* oxblood-800 */
+  --card-foreground: #F4ECDF;
+  --popover: #520C0C;
+  --popover-foreground: #F4ECDF;
+  --primary: #E0B080;      /* sand CTA pops on night */
+  --primary-foreground: #3A0808;
+  --secondary: #0C5F5F;    /* teal-800 */
+  --secondary-foreground: #F4ECDF;
+  --muted: #520C0C;
+  --muted-foreground: #EAC49B;  /* sand-400 */
+  --accent: #E0B080;
+  --accent-foreground: #0C0B0A;
+  --destructive: #C24A3E;  /* oxblood-400 — readable on night */
+  --border: rgba(244,236,223,0.18);   /* bone hairline on night */
+  --input: rgba(244,236,223,0.07);
+  --ring: #E0B080;
+  --chart-1: #2FAEAE;
+  --chart-2: #E0B080;
+  --chart-3: #EAC49B;
+  --chart-4: #5AC4C4;
+  --chart-5: #C24A3E;
+  --sidebar: #2E0606;
+  --sidebar-foreground: #F4ECDF;
+  --sidebar-primary: #E0B080;
+  --sidebar-primary-foreground: #3A0808;
+  --sidebar-accent: #0C5F5F;
+  --sidebar-accent-foreground: #F4ECDF;
+  --sidebar-border: rgba(244,236,223,0.18);
+  --sidebar-ring: #E0B080;
 }
 
 @layer base {
@@ -130,44 +159,47 @@
   }
 }
 
-/* ── Akano3 theme tokens ──────────────────────────────────────────────────── */
+/* ── Akano3 theme tokens (--c-*: read directly by component inline styles) ── */
 :root {
-  --c-bg:           #faf7f2;
-  --c-bg-card:      #ffffff;
-  --c-bg-section:   rgba(107,15,26,0.03);
-  --c-border:       rgba(107,15,26,0.1);
-  --c-border-mid:   rgba(107,15,26,0.15);
-  --c-border-str:   rgba(107,15,26,0.2);
-  --c-text:         #1a0a0a;
-  --c-text-muted:   rgba(107,15,26,0.5);
-  --c-text-faint:   rgba(107,15,26,0.3);
-  --c-accent:       #6b0f1a;
-  --c-topbar:       #ffffff;
-  --c-input:        #ffffff;
-  --c-input-border: rgba(107,15,26,0.2);
+  --c-bg:           #F4ECDF;              /* bone paper */
+  --c-bg-card:      #FBF7F0;
+  --c-bg-section:   rgba(112,16,16,0.04); /* oxblood tint */
+  --c-border:       rgba(20,18,16,0.12);  /* ink */
+  --c-border-mid:   rgba(20,18,16,0.18);
+  --c-border-str:   rgba(20,18,16,0.28);
+  --c-text:         #141210;              /* ink */
+  --c-text-muted:   #6B635A;              /* ink-500 */
+  --c-text-faint:   #968C80;              /* ink-400 */
+  --c-accent:       #701010;              /* oxblood */
+  --c-topbar:       #FBF7F0;
+  --c-input:        #FFFFFF;
+  --c-input-border: rgba(20,18,16,0.22);
 }
 .dark {
-  --c-bg:           #130408;
-  --c-bg-card:      #1f0910;
-  --c-bg-section:   rgba(255,255,255,0.04);
-  --c-border:       rgba(255,255,255,0.1);
-  --c-border-mid:   rgba(255,255,255,0.14);
-  --c-border-str:   rgba(255,255,255,0.2);
-  --c-text:         rgba(255,255,255,0.92);
-  --c-text-muted:   rgba(255,255,255,0.45);
-  --c-text-faint:   rgba(255,255,255,0.25);
-  --c-accent:       #e05252;
-  --c-topbar:       #1a0508;
-  --c-input:        rgba(255,255,255,0.07);
-  --c-input-border: rgba(255,255,255,0.15);
+  --c-bg:           #3A0808;              /* oxblood night */
+  --c-bg-card:      #520C0C;
+  --c-bg-section:   rgba(244,236,223,0.05);
+  --c-border:       rgba(244,236,223,0.12);
+  --c-border-mid:   rgba(244,236,223,0.18);
+  --c-border-str:   rgba(244,236,223,0.28);
+  --c-text:         #F4ECDF;              /* bone */
+  --c-text-muted:   #EAC49B;              /* sand-400 */
+  --c-text-faint:   rgba(244,236,223,0.4);
+  --c-accent:       #E0B080;              /* sand — warm accent on night */
+  --c-topbar:       #2E0606;
+  --c-input:        rgba(244,236,223,0.07);
+  --c-input-border: rgba(244,236,223,0.18);
 }
 
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */
-.font-cinzel        { }
-.sand-card          { background:#c8a96e !important; color:#3a1a0a !important; }
-.sand-card *        { color:#3a1a0a !important; border-color:#b8965a !important; }
-.teal-btn           { background:#2a8a8a !important; color:#fff !important; }
-.teal-btn:hover     { background:#3aabab !important; }
+/* Poster label: Oswald, uppercase, wide tracking — for metadata/overlines/labels */
+.ds-label     { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.ds-overline  { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.22em; font-weight: 500; }
+.font-cinzel        { font-family: var(--font-brush); }  /* brand brush accent (Rock Salt) */
+.sand-card          { background:var(--sand-500) !important; color:var(--ink-900) !important; }
+.sand-card *        { color:var(--ink-900) !important; border-color:var(--sand-700) !important; }
+.teal-btn           { background:var(--teal-700) !important; color:var(--bone-100) !important; }
+.teal-btn:hover     { background:var(--teal-600) !important; }
 
 @keyframes alarm-pulse {
   0%,100% { opacity:1; background-color:#c0392b; }
@@ -194,4 +226,4 @@
 
 ::-webkit-scrollbar       { width:6px; height:6px; }
 ::-webkit-scrollbar-track { background:rgba(0,0,0,.04); }
-::-webkit-scrollbar-thumb { background:rgba(107,15,26,.2); border-radius:3px; }
+::-webkit-scrollbar-thumb { background:rgba(112,16,16,.28); border-radius:3px; }

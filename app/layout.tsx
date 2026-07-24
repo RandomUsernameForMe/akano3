@@ -1,16 +1,30 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Oswald, Spectral, Space_Mono, Rock_Salt } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Akano3 DS type system: Oswald display · Spectral body serif · Space Mono meta · Rock Salt brush
+const oswald = Oswald({
+  variable: "--font-display",
+  subsets: ["latin", "latin-ext"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const spectral = Spectral({
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin", "latin-ext"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-mono",
+  weight: ["400", "700"],
+  subsets: ["latin", "latin-ext"],
+});
+
+const rockSalt = Rock_Salt({
+  variable: "--font-brush",
+  weight: ["400"],
+  subsets: ["latin"], // Rock Salt: no latin-ext; brush accent only, no Czech running copy
 });
 
 export const metadata: Metadata = {
@@ -26,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="cs"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${oswald.variable} ${spectral.variable} ${spaceMono.variable} ${rockSalt.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>

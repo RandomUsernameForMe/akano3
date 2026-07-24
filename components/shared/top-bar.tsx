@@ -19,8 +19,8 @@ function BroadcastButton() {
             display:"flex", alignItems:"center", gap:6,
             padding:"6px 12px", borderRadius:6,
             backgroundColor: broadcastActive ? "#c0392b" : "transparent",
-            border: `1px solid ${broadcastActive ? "#c0392b" : "#a0263380"}`,
-            color: broadcastActive ? "#fff" : "#c8a96e",
+            border: `1px solid ${broadcastActive ? "#c0392b" : "rgba(224,176,128,0.45)"}`,
+            color: broadcastActive ? "#fff" : "var(--sand-400)",
             cursor:"pointer", fontSize:"0.8rem", fontWeight:600,
             transition:"all 0.2s",
           }}
@@ -44,15 +44,21 @@ export function TopBar({ showBroadcast = true }: { showBroadcast?: boolean }) {
     <div style={{
       display:"flex", alignItems:"center", justifyContent:"space-between",
       padding:"10px 24px",
-      backgroundColor:"var(--c-topbar)",
-      borderBottom:"1px solid var(--c-border)",
+      backgroundColor:"var(--oxblood-800)",   // brand band — always the night ground
+      borderBottom:"2px solid var(--ink-900)", // DS ink keyline
     }}>
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <button onClick={logout} style={{
+          display:"flex", alignItems:"center", gap:10,
           background:"transparent", border:"none", padding:0, cursor:"pointer",
-          color:"var(--c-accent)", fontWeight:700, fontSize:"1.1rem", letterSpacing:"0.02em",
         }}>
-          AKANO
+          <img src="/akano-logo.png" alt="" height={24} style={{ height:24, width:"auto", display:"block" }} />
+          <span style={{
+            fontFamily:"var(--font-display)", textTransform:"uppercase",
+            color:"var(--bone-100)", fontWeight:700, fontSize:"1.25rem", letterSpacing:"0.06em",
+          }}>
+            AKANO
+          </span>
         </button>
         {alarmState.active && (
           <span style={{ backgroundColor:"#c0392b33", color:"#e05252", border:"1px solid #c0392b55",
@@ -66,20 +72,20 @@ export function TopBar({ showBroadcast = true }: { showBroadcast?: boolean }) {
         {showBroadcast && <BroadcastButton />}
         {currentUser && (
           <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-            <span style={{ color:"var(--c-text)", fontSize:"0.85rem" }}>{currentUser.name}</span>
+            <span style={{ color:"var(--bone-100)", fontSize:"0.85rem" }}>{currentUser.name}</span>
             <RoleBadge role={currentUser.role} />
           </div>
         )}
         <button onClick={toggle} title={theme === "dark" ? "Světlý mód" : "Tmavý mód"} style={{
-          background:"transparent", border:"1px solid var(--c-border-str)",
-          color:"var(--c-text-muted)", padding:"5px 8px", borderRadius:6,
+          background:"transparent", border:"1px solid rgba(244,236,223,0.28)",
+          color:"var(--sand-400)", padding:"5px 8px", borderRadius:6,
           cursor:"pointer", display:"flex", alignItems:"center",
         }}>
           {theme === "dark" ? <IconSun size={14} /> : <IconMoon size={14} />}
         </button>
         <button onClick={logout} style={{
-          background:"transparent", border:"1px solid var(--c-border-str)",
-          color:"var(--c-text-muted)", padding:"5px 10px", borderRadius:6,
+          background:"transparent", border:"1px solid rgba(244,236,223,0.28)",
+          color:"var(--sand-400)", padding:"5px 10px", borderRadius:6,
           cursor:"pointer", display:"flex", alignItems:"center", gap:4,
           fontSize:"0.8rem",
         }}>

@@ -55,6 +55,20 @@ export function resolvedCharsOf(entry: { resolvedCharacterIds?: string[]; resolv
   return entry.resolvedTeamIds.flatMap(teamMemberIds)
 }
 
+// Per-team point delta of a log entry, matching the era it was written in:
+//  - new (per-student) entries: amount × (# credited chars in the team)
+//  - legacy (team/unit/circle) entries: amount once per resolved team, since
+//    the historical team totals accumulated under the old team-level semantics.
+export function teamDeltaOf(entry: { resolvedCharacterIds?: string[]; resolvedTeamIds: string[]; amount: number }): Record<string, number> {
+  const d: Record<string, number> = {}
+  if (entry.resolvedCharacterIds?.length) {
+    for (const cid of entry.resolvedCharacterIds) { const t = CHAR_TEAM[cid]; if (t) d[t] = (d[t] ?? 0) + entry.amount }
+  } else {
+    for (const t of entry.resolvedTeamIds) d[t] = (d[t] ?? 0) + entry.amount
+  }
+  return d
+}
+
 // Random-weighted split of `total` into integer shares summing exactly to total.
 // Rounding drift is folded into the last share. `weights` must be positive.
 export function splitPointsWeighted(total: number, weights: number[]): number[] {

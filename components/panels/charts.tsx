@@ -7,7 +7,7 @@ import {
 } from "recharts"
 import { IconShield } from "@tabler/icons-react"
 import { useGame } from "@/lib/game-context"
-import { formatDateTime, resolvedCharsOf, charTeam } from "@/lib/utils"
+import { formatDateTime, teamDeltaOf } from "@/lib/utils"
 import { TEAM_ICONS } from "@/lib/data"
 import type { Team } from "@/lib/types"
 
@@ -35,18 +35,13 @@ export function ChartsPanel({ singleTeamId }: { singleTeamId?: string }) {
     const cutoff = latest - 6 * 60 * 60 * 1000
     const buckets: Record<string, Record<string, number>> = {}
     const runningTotals: Record<string, number> = {}
-    // Per-entry team delta = amount × (# resolved characters in that team)
-    const teamDelta = (e: typeof sortedLog[number]) => {
-      const d: Record<string, number> = {}
-      resolvedCharsOf(e).forEach(cid => { const t = charTeam(cid); if (t) d[t] = (d[t] ?? 0) + e.amount })
-      return d
-    }
+    const deltas = sortedLog.map(teamDeltaOf)
     teams.forEach(t => {
-      const loggedSum = sortedLog.reduce((s,e) => s + (teamDelta(e)[t.id] ?? 0), 0)
+      const loggedSum = deltas.reduce((s,d) => s + (d[t.id] ?? 0), 0)
       runningTotals[t.id] = t.points - loggedSum
     })
-    sortedLog.forEach(e => {
-      const d = teamDelta(e)
+    sortedLog.forEach((e, i) => {
+      const d = deltas[i]
       for (const tid in d) runningTotals[tid] = (runningTotals[tid] ?? 0) + d[tid]
       if (e.timestamp.getTime() < cutoff) return
       const key = formatDateTime(e.timestamp)

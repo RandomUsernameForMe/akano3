@@ -45,3 +45,6 @@ next-env.d.ts
 
 # mcp config (contains oauth secret)
 .mcp.json
+
+# local brand art
+AkanoFin02.png

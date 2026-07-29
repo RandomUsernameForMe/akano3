@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { GameProvider, useGame } from "@/lib/game-context"
 import { GMDashboard } from "@/components/views/gm-dashboard"
-import { TeacherDashboard, RuzeDashboard } from "@/components/views/teacher-dashboard"
+import { TeacherDashboard } from "@/components/views/teacher-dashboard"
+import { RuzeDashboard } from "@/components/views/ruze-dashboard"
 import { StudentDashboard } from "@/components/views/student-dashboard"
 import { DisplayScreen } from "@/components/views/display-screen"
 import { AlarmBannerStrip } from "@/components/shared/alarm-banner"
@@ -27,16 +28,19 @@ function CharacterRouter() {
   const role = currentUser.role
   if (role === "display") return <DisplayScreen />
 
-  // Per-role DS ground: student/růže = bone paper (root), teacher = teal night, GM = ink backstage
-  const themeClass = role === "teacher" ? "theme-teal" : role === "gm" ? "theme-ink" : ""
+  // Per-role DS ground: student = bone paper (root), růže = hacked paper, teacher = teal night, GM = ink backstage
+  const themeClass =
+    role === "teacher" ? "theme-teal" :
+    role === "gm"      ? "theme-ink"  :
+    role === "ruze"    ? "theme-ruze" : ""
 
   return (
     <div className={themeClass} style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
       <AlarmBannerStrip />
       <TopBar showBroadcast={["gm","teacher","ruze"].includes(role)} />
-      {role === "student" ? (
+      {role === "student" || role === "ruze" ? (
         <>
-          <StudentDashboard />
+          {role === "student" ? <StudentDashboard /> : <RuzeDashboard />}
           <ToastContainer />
         </>
       ) : (
@@ -44,7 +48,6 @@ function CharacterRouter() {
           <div style={{ maxWidth:1400, margin:"0 auto", padding:"24px 16px" }}>
             {role === "gm"      && <GMDashboard />}
             {role === "teacher" && <TeacherDashboard />}
-            {role === "ruze"    && <RuzeDashboard />}
           </div>
           <ToastContainer />
         </>

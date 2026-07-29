@@ -6,6 +6,14 @@ import type { PointEntry } from "@/lib/types"
 export async function POST(req: Request) {
   try {
     const body = await req.json() as Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds" | "resolvedCharacterIds">
+
+    // Růže is limited to small nudges on individual students.
+    // ponytail: role comes from the client (no session auth anywhere in this API) —
+    // consistency guard, not security; real auth would need sessions.
+    if (body.sourceRole === "ruze" && (body.targetType !== "student" || Math.abs(body.amount) > 5)) {
+      return new Response("Ruze may only assign ±5 points to individual students", { status: 400 })
+    }
+
     const runId = await getActiveRunId()
 
     const resolvedCharacterIds = resolveTargetCharacters(body.targetType, body.targetId)

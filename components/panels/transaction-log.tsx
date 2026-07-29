@@ -6,11 +6,31 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useGame } from "@/lib/game-context"
-import { TEAMS } from "@/lib/data"
+import { TEAMS, CHARACTERS } from "@/lib/data"
 import { ACTION_LABELS } from "@/lib/constants"
 import { formatDateTime, getCharName, getTargetName, getTeamName } from "@/lib/utils"
 import { ActionBadge, RoleBadge } from "@/components/shared/badges"
 import { TeamDot } from "@/components/shared/team-icon"
+
+// Růže masquerade: her entries display a fake teacher (deterministic per entry
+// id, stable across renders/devices) and occasionally glitch pink to reveal her.
+const TEACHERS = CHARACTERS.filter(c => c.role === "teacher")
+const hashId = (s: string) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return Math.abs(h) }
+
+function SourceCell({ id, sourceCharacterId, sourceRole }: { id: string; sourceCharacterId: string; sourceRole: import("@/lib/types").Role }) {
+  if (sourceRole !== "ruze") {
+    return <>{getCharName(sourceCharacterId)}<RoleBadge role={sourceRole} /></>
+  }
+  const h = hashId(id)
+  const fake = TEACHERS[h % TEACHERS.length]
+  const delay = { animationDelay: `${h % 9}s` }
+  return (
+    <span style={{ position:"relative", display:"inline-flex", alignItems:"center" }}>
+      <span className="mask-fake" style={delay}>{fake?.name ?? "???"}<RoleBadge role="teacher" /></span>
+      <span className="mask-real" style={{ ...delay, fontFamily:"var(--font-mono)", fontWeight:700 }}>RŮŽE_</span>
+    </span>
+  )
+}
 
 export function TransactionLog({
   maxRows, canExport = false, hideFilters = false,
@@ -120,13 +140,13 @@ export function TransactionLog({
               </TableRow>
             )}
             {filtered.map(e => (
-              <TableRow key={e.id} style={{ borderColor:"var(--c-border)" }}>
+              <TableRow key={e.id} className={e.sourceRole === "ruze" ? "mask-row" : undefined}
+                style={{ borderColor:"var(--c-border)", ...(e.sourceRole === "ruze" ? { animationDelay:`${hashId(e.id) % 9}s` } : {}) }}>
                 <TableCell style={{ color:"var(--c-text-muted)", fontSize:"0.78rem", whiteSpace:"nowrap", fontFamily:"monospace" }}>
                   {formatDateTime(e.timestamp)}
                 </TableCell>
                 <TableCell style={{ color:"var(--c-text)", fontSize:"0.82rem" }}>
-                  {getCharName(e.sourceCharacterId)}
-                  <RoleBadge role={e.sourceRole} />
+                  <SourceCell id={e.id} sourceCharacterId={e.sourceCharacterId} sourceRole={e.sourceRole} />
                 </TableCell>
                 <TableCell><ActionBadge type={e.actionType} /></TableCell>
                 <TableCell style={{ color:"var(--c-text)", fontSize:"0.82rem" }}>

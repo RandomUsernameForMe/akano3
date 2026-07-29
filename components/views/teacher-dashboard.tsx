@@ -81,4 +81,3 @@ export function TeacherDashboard() {
   )
 }
 
-export function RuzeDashboard() { return <TeacherDashboard /> }

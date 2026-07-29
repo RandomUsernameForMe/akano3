@@ -284,6 +284,51 @@
   --c-success:      #5BBF87;
 }
 
+.theme-ruze {
+  /* Akano3 DS — Růže "hacked student" surface. Light student base; pink is a
+     deliberately alien element outside the four-ink palette. */
+  --c-accent:   #C2185B;               /* deep rose — AA on paper */
+  --primary:    #C2185B;
+  --primary-foreground: #FBF7F0;
+  --ring:       #FF2E88;
+  --pink-hot:   #FF2E88;               /* borders/chips/glitch/large text only */
+  --pink-soft:  #FF6FA5;
+  --hack-bg:    #12040C;
+  --hack-text:  #FF6FA5;
+}
+
+/* ── Růže glitch utilities ── */
+.glitch-title { position:relative; display:inline-block; }
+.glitch-title::before, .glitch-title::after {
+  content:attr(data-t); position:absolute; left:0; top:0; pointer-events:none;
+}
+.glitch-title::before { transform:translate(-2px,-1px); color:#FF2E88; opacity:0.7; }
+.glitch-title::after  { transform:translate(2px,1px);  color:#2FAEAE; opacity:0.6; }
+.torn-card {
+  clip-path: polygon(0 0, 100% 0, 100% 86%, 92% 91%, 96% 100%, 60% 96%, 38% 100%, 19% 93%, 0 98%);
+}
+.hack-scanlines {
+  background-image: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,46,136,0.05) 3px 4px);
+}
+@keyframes hack-jitter {
+  0%, 96%, 100% { transform:none; }
+  97% { transform:translate(1.5px,-1px); }
+  98% { transform:translate(-1.5px,1px); }
+}
+.hack-jitter { animation: hack-jitter 5s steps(1) infinite; }
+
+/* Log masquerade: ruze rows show a fake teacher, occasionally glitching pink.
+   Two stacked spans toggled by long-cycle keyframes — pure CSS, no timers. */
+@keyframes mask-fake { 0%, 91%, 99%, 100% { opacity:1; } 92%, 98% { opacity:0; } }
+@keyframes mask-real { 0%, 91%, 99%, 100% { opacity:0; } 92%, 98% { opacity:1; } }
+@keyframes mask-row  {
+  0%, 91%, 99%, 100% { background:transparent; }
+  92%, 98% { background:rgba(255,46,136,0.12); }
+}
+.mask-fake { animation: mask-fake 9s steps(1) infinite; }
+.mask-real { animation: mask-real 9s steps(1) infinite; position:absolute; left:0; top:0; color:#FF2E88 !important; }
+.mask-row  { animation: mask-row  9s steps(1) infinite; }
+
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */
 /* Poster label: Oswald, uppercase, wide tracking — for metadata/overlines/labels */
 .ds-label     { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }

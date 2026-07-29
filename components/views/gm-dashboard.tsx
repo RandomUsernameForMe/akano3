@@ -52,6 +52,8 @@ export function GMDashboard() {
 
   return (
     <div>
+      {/* Růže leaves traces in the system — rare faint rose blip */}
+      <img src="/ruze-rose.png" alt="" className="rose-ambient" />
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
         <div style={{ display:"flex", alignItems:"center", gap:12 }}>
           <h1 style={{ color:"var(--c-text)", fontSize:"1.5rem", fontWeight:700 }}>

@@ -424,6 +424,29 @@
   }
 }
 .mask-blip { display:inline-block; animation: mask-blip 9s linear infinite; }
+/* rose flash synced to the name blip (same duration+delay set inline per entry) */
+@keyframes mask-blip-rose {
+  0%, 95.4%, 99.5%, 100% { opacity:0; }
+  95.6%, 98.2% { opacity:0.9; }
+}
+.mask-blip-rose {
+  position:absolute; left:100%; top:50%; height:26px; width:auto;
+  transform:translate(2px,-55%) rotate(-14deg);
+  pointer-events:none; opacity:0;
+  animation: mask-blip-rose 9s linear infinite;
+  filter:drop-shadow(0 0 5px rgba(255,46,136,0.6));
+}
+/* ambient "something is in the system" rose for teacher/GM dashboards */
+@keyframes rose-ambient {
+  0%, 96%, 99%, 100% { opacity:0; }
+  96.5%, 98.5% { opacity:0.15; }
+}
+.rose-ambient {
+  position:fixed; right:24px; bottom:24px; height:120px; width:auto;
+  pointer-events:none; z-index:30; opacity:0; transform:rotate(-10deg);
+  animation: rose-ambient 29s linear infinite;
+  filter:drop-shadow(0 0 8px rgba(255,46,136,0.4));
+}
 
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */
 /* Poster label: Oswald, uppercase, wide tracking — for metadata/overlines/labels */

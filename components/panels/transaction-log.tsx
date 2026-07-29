@@ -23,11 +23,14 @@ function SourceCell({ id, sourceCharacterId, sourceRole }: { id: string; sourceC
   }
   const h = hashId(id)
   const fake = TEACHERS[h % TEACHERS.length]
+  // randomized cycle per entry: 7–13s period, phase-shifted — rows blip out of sync
+  const timing = { animationDuration: `${7 + (h % 7)}s`, animationDelay: `${(h >> 3) % 13}s` }
   return (
-    <>
-      <span className="mask-blip" style={{ animationDelay:`${h % 9}s` }}>{fake?.name ?? "???"}</span>
+    <span style={{ position:"relative", display:"inline-flex", alignItems:"center" }}>
+      <span className="mask-blip" style={timing}>{fake?.name ?? "???"}</span>
+      <img src="/ruze-rose.png" alt="" className="mask-blip-rose" style={timing} />
       <RoleBadge role="teacher" />
-    </>
+    </span>
   )
 }
 

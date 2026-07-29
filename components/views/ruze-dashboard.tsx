@@ -49,7 +49,7 @@ function RuzeHackSheet() {
           display:"flex", alignItems:"center", gap:8, ...mono,
         }}
       >
-        <IconTerminal2 size={16} /> + PŘIDĚLIT BODY_
+        <IconTerminal2 size={16} /> UPRAVIT BODY_
       </SheetTrigger>
       <SheetContent
         className="hack-scanlines"
@@ -157,8 +157,10 @@ export function RuzeDashboard() {
           </span>
         </div>
         <StudentDashboard />
-        <RuzeHackSheet />
       </div>
+      {/* outside .ruze-skew — its transform would turn position:fixed into
+          scroll-following (transform creates a containing block) */}
+      <RuzeHackSheet />
     </div>
   )
 }

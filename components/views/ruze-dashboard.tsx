@@ -140,7 +140,7 @@ export function RuzeDashboard() {
       {/* slice glitch sweeping the whole screen */}
       <div className="ruze-slices" />
       <div className="torn-strip" />
-      <div className="ruze-skew" style={{ position:"relative", zIndex:1 }}>
+      <div className="ruze-skew ruze-pinkwash" style={{ position:"relative", zIndex:1 }}>
         <div style={{
           maxWidth:1400, margin:"0 auto", padding:"16px 16px 0",
           display:"flex", justifyContent:"space-between", alignItems:"center",

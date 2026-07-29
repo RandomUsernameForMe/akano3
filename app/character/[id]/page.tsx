@@ -23,21 +23,28 @@ function CharacterRouter() {
     if (currentUser === null) router.replace("/")
   }, [currentUser, router])
 
-  if (!currentUser) return null
-
-  const role = currentUser.role
-  if (role === "display") return <DisplayScreen />
-
-  // Per-role DS ground: student = bone paper (root), růže = hacked paper, teacher = teal night, GM = ink backstage
+  // Per-role DS ground: student = bone paper (root), růže = hacked terminal, teacher = teal night, GM = ink backstage
+  const role = currentUser?.role
   const themeClass =
     role === "teacher" ? "theme-teal" :
     role === "gm"      ? "theme-ink"  :
     role === "ruze"    ? "theme-ruze" : ""
 
+  // Mirror the theme onto <body>: sheets/selects/dialogs render in portals
+  // outside this tree and would otherwise resolve theme vars against :root.
+  useEffect(() => {
+    if (!themeClass) return
+    document.body.classList.add(themeClass)
+    return () => document.body.classList.remove(themeClass)
+  }, [themeClass])
+
+  if (!currentUser) return null
+  if (role === "display") return <DisplayScreen />
+
   return (
     <div className={themeClass} style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
       <AlarmBannerStrip />
-      <TopBar showBroadcast={["gm","teacher","ruze"].includes(role)} />
+      <TopBar showBroadcast={["gm","teacher","ruze"].includes(role ?? "")} />
       {role === "student" || role === "ruze" ? (
         <>
           {role === "student" ? <StudentDashboard /> : <RuzeDashboard />}

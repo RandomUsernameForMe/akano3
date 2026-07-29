@@ -297,18 +297,21 @@
   --popover-foreground: #F8E7EF;
   --primary: #FF2E88;      /* hot magenta CTA */
   --primary-foreground: #12040C;
-  --secondary: #0C5F5F;    /* teal untouched — not oxblood */
-  --secondary-foreground: #F4ECDF;
+  --secondary: #C2185B;    /* deep rose — no teal in her world */
+  --secondary-foreground: #F8E7EF;
   --muted: #1F0A17;
   --muted-foreground: #D48FAE;
   --accent: #FF6FA5;
   --accent-foreground: #12040C;
-  --destructive: #FF6F61;  /* coral — distinct from her magenta */
+  --destructive: #FF4D9E;  /* deep hot pink danger */
   --border: rgba(255,111,165,0.20);
   --input: rgba(255,111,165,0.08);
   --ring: #FF2E88;
+  --chart-1: #FF6FA5;
   --chart-2: #FF2E88;
-  --chart-3: #FF6FA5;
+  --chart-3: #FFB3D1;
+  --chart-4: #D48FAE;
+  --chart-5: #C2185B;
 
   --c-bg:           #12040C;
   --c-bg-card:      #1F0A17;
@@ -323,8 +326,8 @@
   --c-topbar:       #1A0611;
   --c-input:        rgba(255,111,165,0.08);
   --c-input-border: rgba(255,111,165,0.35);
-  --c-teal:         #2FAEAE;
-  --c-success:      #5BBF87;
+  --c-teal:         #FF6FA5;             /* no teal in her world — soft pink */
+  --c-success:      #FF9EC4;             /* light pink */
   --c-brandband:    #1A0611;             /* topbar brand band — hacked over */
 
   --pink-hot:   #FF2E88;
@@ -381,6 +384,9 @@
   96% { transform:none; }
 }
 .ruze-skew { animation: ruze-skew 9s steps(1) infinite; }
+/* monochrome pink wash — maps EVERY hue (gold, teal, team colors, spec badges)
+   onto the pink family by luminance; black/white stay black/white-ish */
+.ruze-pinkwash { filter: grayscale(1) sepia(1) saturate(2.2) hue-rotate(-80deg) brightness(1.03); }
 /* code leaking down the screen edges */
 @keyframes code-fall { from { transform:translateY(-50%); } to { transform:translateY(0); } }
 .code-rain {

@@ -87,6 +87,7 @@ export function LoginScreen() {
                   letterSpacing:"0.1em",
                   fontFamily:"var(--font-mono)",
                   fontSize:"1rem",
+                  color:"var(--c-text)",
                 }}
               />
             </div>

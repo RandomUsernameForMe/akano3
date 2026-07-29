@@ -406,21 +406,24 @@
   clip-path: polygon(0 2%, 3% 0, 100% 0, 100% 91%, 97% 96%, 91% 92%, 85% 100%, 40% 98%, 12% 100%, 0 95%);
 }
 
-/* Log masquerade: ruze rows show a fake teacher, occasionally glitching pink.
-   Two stacked spans toggled by long-cycle keyframes — pure CSS, no timers. */
-@keyframes mask-fake { 0%, 91%, 99%, 100% { opacity:1; } 92%, 98% { opacity:0; } }
-@keyframes mask-real { 0%, 91%, 99%, 100% { opacity:0; } 92%, 98% { opacity:1; } }
-@keyframes mask-row  {
-  0%, 91%, 99%, 100% { background:transparent; }
-  92%, 98% { background:rgba(255,46,136,0.12); }
+/* Log masquerade: ruze rows show a fake teacher whose NAME briefly turns pink
+   with a blur/jerk glitch (~0.35s of a 9s cycle) — no text swap, GM reads the
+   blip. Pure CSS, no timers. */
+@keyframes mask-blip {
+  0%, 95.4%, 99.5%, 100% { color:inherit; filter:none; transform:none; text-shadow:none; }
+  95.6% {
+    color:#FF2E88; filter:blur(1.6px);
+    transform:translateX(-2px) skewX(-8deg);
+    text-shadow:2px 0 rgba(255,46,136,0.8), -2px 0 rgba(47,174,174,0.6);
+  }
+  96.8% { color:#FF2E88; filter:blur(0.5px); transform:translateX(2px); }
+  98.2% {
+    color:#FF2E88; filter:none;
+    transform:translateX(-1px) skewX(5deg);
+    text-shadow:1px 0 rgba(255,46,136,0.7);
+  }
 }
-.mask-fake { animation: mask-fake 9s steps(1) infinite; }
-.mask-real {
-  animation: mask-real 9s steps(1) infinite;
-  opacity:0;               /* hidden by default — also covers the animation-delay window */
-  position:absolute; left:0; top:0; pointer-events:none; color:#FF2E88 !important;
-}
-.mask-row  { animation: mask-row  9s steps(1) infinite; }
+.mask-blip { display:inline-block; animation: mask-blip 9s linear infinite; }
 
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */
 /* Poster label: Oswald, uppercase, wide tracking — for metadata/overlines/labels */

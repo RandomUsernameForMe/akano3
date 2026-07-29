@@ -23,12 +23,11 @@ function SourceCell({ id, sourceCharacterId, sourceRole }: { id: string; sourceC
   }
   const h = hashId(id)
   const fake = TEACHERS[h % TEACHERS.length]
-  const delay = { animationDelay: `${h % 9}s` }
   return (
-    <span style={{ position:"relative", display:"inline-flex", alignItems:"center" }}>
-      <span className="mask-fake" style={delay}>{fake?.name ?? "???"}<RoleBadge role="teacher" /></span>
-      <span className="mask-real" style={{ ...delay, fontFamily:"var(--font-mono)", fontWeight:700 }}>RŮŽE_</span>
-    </span>
+    <>
+      <span className="mask-blip" style={{ animationDelay:`${h % 9}s` }}>{fake?.name ?? "???"}</span>
+      <RoleBadge role="teacher" />
+    </>
   )
 }
 
@@ -140,8 +139,7 @@ export function TransactionLog({
               </TableRow>
             )}
             {filtered.map(e => (
-              <TableRow key={e.id} className={e.sourceRole === "ruze" ? "mask-row" : undefined}
-                style={{ borderColor:"var(--c-border)", ...(e.sourceRole === "ruze" ? { animationDelay:`${hashId(e.id) % 9}s` } : {}) }}>
+              <TableRow key={e.id} style={{ borderColor:"var(--c-border)" }}>
                 <TableCell style={{ color:"var(--c-text-muted)", fontSize:"0.78rem", whiteSpace:"nowrap", fontFamily:"monospace" }}>
                   {formatDateTime(e.timestamp)}
                 </TableCell>

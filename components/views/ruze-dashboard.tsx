@@ -114,24 +114,33 @@ function RuzeHackSheet() {
 
 export function RuzeDashboard() {
   return (
-    <div className="hack-scanlines">
+    <div className="hack-scanlines" style={{ position:"relative" }}>
+      {/* rose watermark bleeding through the whole page — vandalized system */}
       <div style={{
-        maxWidth:1400, margin:"0 auto", padding:"16px 16px 0",
-        display:"flex", justifyContent:"space-between", alignItems:"center",
-      }}>
-        <span className="glitch-title" data-t="RŮŽE // STUDENT+"
-          style={{ fontFamily:"var(--font-display)", fontWeight:800, fontSize:"1.1rem", letterSpacing:"0.06em", color:"var(--c-text)" }}>
-          RŮŽE // STUDENT+
-        </span>
-        <span style={{
-          fontFamily:"var(--font-mono)", fontSize:"0.68rem", fontWeight:700,
-          backgroundColor:"var(--pink-hot)", color:"#FBF7F0", padding:"3px 9px", borderRadius:2,
+        position:"fixed", inset:0, pointerEvents:"none", zIndex:0,
+        backgroundImage:"url(/ruze-rose.png)", backgroundRepeat:"no-repeat",
+        backgroundPosition:"center 30%", backgroundSize:"min(80vw, 700px)",
+        opacity:0.07, transform:"rotate(8deg)",
+      }} />
+      <div style={{ position:"relative", zIndex:1 }}>
+        <div style={{
+          maxWidth:1400, margin:"0 auto", padding:"16px 16px 0",
+          display:"flex", justifyContent:"space-between", alignItems:"center",
         }}>
-          ACCESS: OVERRIDE
-        </span>
+          <span className="glitch-title" data-t="RŮŽE // STUDENT+"
+            style={{ fontFamily:"var(--font-display)", fontWeight:800, fontSize:"1.1rem", letterSpacing:"0.06em", color:"var(--pink-hot)" }}>
+            RŮŽE // STUDENT+
+          </span>
+          <span style={{
+            fontFamily:"var(--font-mono)", fontSize:"0.68rem", fontWeight:700,
+            backgroundColor:"var(--pink-hot)", color:"#12040C", padding:"3px 9px", borderRadius:2,
+          }}>
+            ACCESS: OVERRIDE
+          </span>
+        </div>
+        <StudentDashboard />
+        <RuzeHackSheet />
       </div>
-      <StudentDashboard />
-      <RuzeHackSheet />
     </div>
   )
 }

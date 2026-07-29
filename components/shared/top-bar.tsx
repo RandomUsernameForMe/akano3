@@ -40,25 +40,36 @@ function BroadcastButton() {
 export function TopBar({ showBroadcast = true }: { showBroadcast?: boolean }) {
   const { currentUser, logout, alarmState } = useGame()
   const { theme, toggle } = useTheme()
+  const hacked = currentUser?.role === "ruze"   // Růže vandalized the brand band
   return (
     <div style={{
       display:"flex", alignItems:"center", justifyContent:"space-between",
       padding:"10px 24px",
-      backgroundColor:"var(--oxblood-800)",   // brand band — always the night ground
-      borderBottom:"2px solid var(--ink-900)", // DS ink keyline
+      backgroundColor:"var(--c-brandband)",    // brand band — oxblood night (hacked over for Růže)
+      borderBottom: hacked ? "2px solid var(--pink-hot)" : "2px solid var(--ink-900)", // DS ink keyline
     }}>
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
         <button onClick={logout} style={{
           display:"flex", alignItems:"center", gap:10,
           background:"transparent", border:"none", padding:0, cursor:"pointer",
+          position:"relative",
         }}>
-          <img src="/akano-logo.png" alt="" height={24} style={{ height:24, width:"auto", display:"block" }} />
+          <img src="/akano-logo.png" alt="" height={24} style={{ height:24, width:"auto", display:"block", opacity: hacked ? 0.45 : 1 }} />
           <span style={{
             fontFamily:"var(--font-display)", textTransform:"uppercase",
             color:"var(--bone-100)", fontWeight:700, fontSize:"1.25rem", letterSpacing:"0.06em",
+            opacity: hacked ? 0.45 : 1,
           }}>
             AKANO
           </span>
+          {hacked && (
+            /* rose sprayed across the logo — vandal sticker */
+            <img src="/ruze-rose.png" alt="" style={{
+              position:"absolute", left:-14, top:-16, height:56, width:"auto",
+              transform:"rotate(-14deg)", pointerEvents:"none",
+              filter:"drop-shadow(0 0 6px rgba(255,46,136,0.6))",
+            }} />
+          )}
         </button>
         {alarmState.active && (
           <span style={{ backgroundColor:"#A32B2233", color:"#e05252", border:"1px solid #A32B2255",

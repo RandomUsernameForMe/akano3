@@ -8,14 +8,13 @@ Builds on: 2026-07-29-role-themes-design.md (deferred section)
 Růže is an in-game hacker: a student who "overrode her permissions" and can
 award points to other students. UI is deliberately cool, not realistic.
 
-## Aesthetic — hybrid "A+C" (user-approved via mockups)
+## Aesthetic — design C "ovládnutí" (user revised 2026-07-29, was hybrid A+C)
 
-- **Base (A, "průnik"):** her screen is the student bone-paper view, with the
-  hack leaking through — glitch title, `ACCESS: OVERRIDE` chip, torn card
-  corners, pink accents.
-- **Hack surfaces (C, "ovládnutí"):** the point-giving tool is a full dark
-  terminal takeover — near-black `#12040C` sheet, hot pink neon, code rain,
-  `EXECUTE` button. Escalation from paper to terminal is the story.
+Full dark terminal takeover: her entire screen runs on near-black `#12040C`
+with the magenta/pink family replacing every oxblood token. Vandalized brand:
+recolored rose graffiti (public/ruze-rose.png, generated from user-supplied
+art) sprayed across the AKANO topbar logo (dimmed under it) and bled into the
+page background as a muted watermark. Scanlines + glitch title on top.
 
 ## Palette (deliberately outside the DS four-ink palette — alien element)
 

@@ -231,6 +231,7 @@
   --c-input-border: rgba(20,18,16,0.22);
   --c-teal:         #0E7474;              /* info teal, AA on paper */
   --c-success:      #2F7D4F;
+  --c-brandband:    #520C0C;              /* topbar brand band — oxblood night everywhere */
 }
 .theme-teal {
   --c-bg:           #083C3C;              /* deep teal night */
@@ -285,45 +286,48 @@
 }
 
 .theme-ruze {
-  /* Akano3 DS — Růže "system takeover". Every oxblood token is replaced by the
-     magenta/pink family; paper itself is tinted pink. Deliberately alien to the
-     four-ink palette — she owns this screen. */
-  --background: #F7E9F0;   /* pink-tinted paper */
-  --foreground: #141210;
-  --card: #FCF4F8;
-  --card-foreground: #141210;
-  --popover: #FCF4F8;
-  --popover-foreground: #141210;
-  --primary: #C2185B;      /* deep rose CTA */
-  --primary-foreground: #FBF7F0;
-  --secondary: #108080;    /* teal untouched — not oxblood */
+  /* Akano3 DS — Růže "system takeover", full dark terminal (design C).
+     Every oxblood token replaced by the magenta/pink family on near-black;
+     deliberately alien to the four-ink palette — she owns this screen. */
+  --background: #12040C;   /* hack night */
+  --foreground: #F8E7EF;   /* pink-tinted bone */
+  --card: #1F0A17;
+  --card-foreground: #F8E7EF;
+  --popover: #1F0A17;
+  --popover-foreground: #F8E7EF;
+  --primary: #FF2E88;      /* hot magenta CTA */
+  --primary-foreground: #12040C;
+  --secondary: #0C5F5F;    /* teal untouched — not oxblood */
   --secondary-foreground: #F4ECDF;
-  --muted: #F2DEE8;
-  --muted-foreground: #7E5B6C;  /* mauve */
-  --accent: #F48FB1;       /* soft pink replaces sand */
-  --accent-foreground: #141210;
-  --destructive: #A3125C;  /* magenta danger */
-  --border: rgba(194,24,91,0.20);
-  --input: #FFFFFF;
+  --muted: #1F0A17;
+  --muted-foreground: #D48FAE;
+  --accent: #FF6FA5;
+  --accent-foreground: #12040C;
+  --destructive: #FF6F61;  /* coral — distinct from her magenta */
+  --border: rgba(255,111,165,0.20);
+  --input: rgba(255,111,165,0.08);
   --ring: #FF2E88;
-  --chart-2: #C2185B;
-  --chart-3: #F48FB1;
+  --chart-2: #FF2E88;
+  --chart-3: #FF6FA5;
 
-  --c-bg:           #F7E9F0;
-  --c-bg-card:      #FCF4F8;
-  --c-bg-section:   rgba(194,24,91,0.05);
-  --c-border:       rgba(194,24,91,0.16);
-  --c-border-mid:   rgba(194,24,91,0.28);
-  --c-border-str:   rgba(194,24,91,0.45);
-  --c-text:         #141210;
-  --c-text-muted:   #7E5B6C;
-  --c-text-faint:   rgba(126,91,108,0.75);
-  --c-accent:       #C2185B;
-  --c-topbar:       #F3DEE9;
-  --c-input:        #FFFFFF;
-  --c-input-border: rgba(194,24,91,0.35);
+  --c-bg:           #12040C;
+  --c-bg-card:      #1F0A17;
+  --c-bg-section:   rgba(255,46,136,0.06);
+  --c-border:       rgba(255,111,165,0.14);
+  --c-border-mid:   rgba(255,111,165,0.26);
+  --c-border-str:   rgba(255,111,165,0.45);
+  --c-text:         #F8E7EF;
+  --c-text-muted:   #D48FAE;
+  --c-text-faint:   rgba(248,231,239,0.55);
+  --c-accent:       #FF2E88;
+  --c-topbar:       #1A0611;
+  --c-input:        rgba(255,111,165,0.08);
+  --c-input-border: rgba(255,111,165,0.35);
+  --c-teal:         #2FAEAE;
+  --c-success:      #5BBF87;
+  --c-brandband:    #1A0611;             /* topbar brand band — hacked over */
 
-  --pink-hot:   #FF2E88;               /* borders/chips/glitch/large text only */
+  --pink-hot:   #FF2E88;
   --pink-soft:  #FF6FA5;
   --hack-bg:    #12040C;
   --hack-text:  #FF6FA5;

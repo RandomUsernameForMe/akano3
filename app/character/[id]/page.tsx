@@ -20,17 +20,21 @@ function CharacterRouter() {
   const router = useRouter()
 
   useEffect(() => {
-    if (currentUser === null) router.replace("/")
+    if (currentUser === null) {
+      sessionStorage.removeItem("ruze-hidden")
+      router.replace("/")
+    }
   }, [currentUser, router])
 
-  // Růže panic-hide: chip toggles her special access off, the page then renders
-  // as a plain student profile. Persisted so a refresh can't blow her cover.
-  const [ruzeHidden, setRuzeHidden] = useState(false)
+  // Růže panic-hide: defaults ON each login (plain student profile), the chip
+  // reveals her special access. sessionStorage so a refresh keeps her choice
+  // but a fresh login starts back in cover.
+  const [ruzeHidden, setRuzeHidden] = useState(true)
   useEffect(() => {
-    setRuzeHidden(localStorage.getItem("ruze-hidden") === "1")
+    setRuzeHidden(sessionStorage.getItem("ruze-hidden") !== "0")
   }, [])
   const toggleRuzeHidden = () => setRuzeHidden(v => {
-    localStorage.setItem("ruze-hidden", v ? "0" : "1")
+    sessionStorage.setItem("ruze-hidden", v ? "0" : "1")
     return !v
   })
 

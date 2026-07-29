@@ -56,10 +56,24 @@ text), verified computationally as done for login.
 | `teacher-dashboard.tsx` | runs under `.theme-teal`; fix stray old-teal hex          |
 | `gm-dashboard.tsx`    | runs under `.theme-ink`; fix stray hex                     |
 | `display-screen.tsx`  | minor: normalize stray hex (keep gold)                     |
-| Růže (`RuzeDashboard`)| student theme for now; own identity deferred — user will supply detailed instructions in a separate round |
+| Růže (`RuzeDashboard`)| student theme for now; own identity deferred to a separate update (see below) |
+
+## Deferred: Růže update (separate spec, right after this migration)
+
+Direction agreed 2026-07-29; NOT part of this migration:
+
+- **Character:** Růže is an in-game hacker who "overrode her permissions" —
+  a student who can also award points to other students.
+- **UI:** hybrid between student and teacher — student dashboard plus a
+  point-giving capability.
+- **Theme:** rose/pink color identity (`.theme-ruze` on top of the theme
+  system this spec builds).
+- **Aesthetic:** rugged / torn-apart / hacked look — glitch effects, torn
+  edges, code spilling out. Deliberately cool, not realistic.
+- Gets its own brainstorm round (visual mockups of glitch variants) + spec.
 
 ## Out of scope
 
-- Růže's own theme/content (awaiting user instructions)
+- Růže's own theme/content (deferred above)
 - Login (already migrated, commit 50e3048)
 - Any logic/data changes — purely visual

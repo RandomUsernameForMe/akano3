@@ -53,6 +53,7 @@ function RuzeHackSheet() {
       </SheetTrigger>
       <SheetContent
         className="hack-scanlines"
+        showCloseButton={false}
         style={{ backgroundColor:"var(--hack-bg)", borderLeft:"2px solid var(--pink-hot)", minWidth:380, color:"var(--hack-text)" }}
       >
         <SheetHeader>
@@ -61,7 +62,7 @@ function RuzeHackSheet() {
           </SheetTitle>
         </SheetHeader>
 
-        <div style={{ marginTop:16, display:"flex", flexDirection:"column", gap:14 }}>
+        <div style={{ padding:"0 16px 16px", display:"flex", flexDirection:"column", gap:14 }}>
           <pre style={{ ...mono, fontSize:"0.68rem", color:"var(--pink-hot)", opacity:0.55, margin:0, lineHeight:1.5 }}>
 {`> scan /students ... ${TARGETS.length} targets
 > limits: ±${RUZE_LIMIT} pts // per action

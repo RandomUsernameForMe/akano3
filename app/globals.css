@@ -285,12 +285,44 @@
 }
 
 .theme-ruze {
-  /* Akano3 DS — Růže "hacked student" surface. Light student base; pink is a
-     deliberately alien element outside the four-ink palette. */
-  --c-accent:   #C2185B;               /* deep rose — AA on paper */
-  --primary:    #C2185B;
+  /* Akano3 DS — Růže "system takeover". Every oxblood token is replaced by the
+     magenta/pink family; paper itself is tinted pink. Deliberately alien to the
+     four-ink palette — she owns this screen. */
+  --background: #F7E9F0;   /* pink-tinted paper */
+  --foreground: #141210;
+  --card: #FCF4F8;
+  --card-foreground: #141210;
+  --popover: #FCF4F8;
+  --popover-foreground: #141210;
+  --primary: #C2185B;      /* deep rose CTA */
   --primary-foreground: #FBF7F0;
-  --ring:       #FF2E88;
+  --secondary: #108080;    /* teal untouched — not oxblood */
+  --secondary-foreground: #F4ECDF;
+  --muted: #F2DEE8;
+  --muted-foreground: #7E5B6C;  /* mauve */
+  --accent: #F48FB1;       /* soft pink replaces sand */
+  --accent-foreground: #141210;
+  --destructive: #A3125C;  /* magenta danger */
+  --border: rgba(194,24,91,0.20);
+  --input: #FFFFFF;
+  --ring: #FF2E88;
+  --chart-2: #C2185B;
+  --chart-3: #F48FB1;
+
+  --c-bg:           #F7E9F0;
+  --c-bg-card:      #FCF4F8;
+  --c-bg-section:   rgba(194,24,91,0.05);
+  --c-border:       rgba(194,24,91,0.16);
+  --c-border-mid:   rgba(194,24,91,0.28);
+  --c-border-str:   rgba(194,24,91,0.45);
+  --c-text:         #141210;
+  --c-text-muted:   #7E5B6C;
+  --c-text-faint:   rgba(126,91,108,0.75);
+  --c-accent:       #C2185B;
+  --c-topbar:       #F3DEE9;
+  --c-input:        #FFFFFF;
+  --c-input-border: rgba(194,24,91,0.35);
+
   --pink-hot:   #FF2E88;               /* borders/chips/glitch/large text only */
   --pink-soft:  #FF6FA5;
   --hack-bg:    #12040C;
@@ -326,7 +358,11 @@
   92%, 98% { background:rgba(255,46,136,0.12); }
 }
 .mask-fake { animation: mask-fake 9s steps(1) infinite; }
-.mask-real { animation: mask-real 9s steps(1) infinite; position:absolute; left:0; top:0; color:#FF2E88 !important; }
+.mask-real {
+  animation: mask-real 9s steps(1) infinite;
+  opacity:0;               /* hidden by default — also covers the animation-delay window */
+  position:absolute; left:0; top:0; pointer-events:none; color:#FF2E88 !important;
+}
 .mask-row  { animation: mask-row  9s steps(1) infinite; }
 
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */

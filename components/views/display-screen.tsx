@@ -36,16 +36,15 @@ function ClockDisplay() {
   return <span style={{ color:"rgba(255,255,255,0.55)", fontSize:"0.8rem", fontFamily:"var(--font-mono)" }}>{time}</span>
 }
 
-const VIEWS = ["teamScores", "studentScores", "teamChart", "studentChart"] as const
+const VIEWS = ["studentScores", "teamChart"] as const
 type View = typeof VIEWS[number]
 const VIEW_TITLE: Record<View, string> = {
-  teamScores: "Žebříček týmů", studentScores: "Žebříček studentů",
-  teamChart: "Vývoj týmů v čase", studentChart: "Vývoj studentů v čase",
+  studentScores: "Žebříček studentů", teamChart: "Vývoj týmů v čase",
 }
 
 export function DisplayScreen() {
   const { teams, characters, pointLog, alarmState, broadcastActive } = useGame()
-  const [view, setView] = useState<View>("teamScores")
+  const [view, setView] = useState<View>("studentScores")
   const [progress, setProgress] = useState(0)   // 0..1 until next auto-rotate
   const ROTATE_MS = 18000
   const cycleStart = useRef(Date.now())
@@ -67,11 +66,10 @@ export function DisplayScreen() {
   }, [])
 
   const sorted = useMemo(() => [...teams].sort((a,b) => b.points - a.points), [teams])
-  const teamColor = (tid?: string) => teams.find(t => t.id === tid)?.color ?? "#c8a96e"
+  const teamColor = (tid?: string) => teams.find(t => t.id === tid)?.color ?? "#E0B080"
   const students = useMemo(() =>
     characters.filter(c => c.role === "student" || c.role === "ruze").sort((a,b) => b.points - a.points)
   , [characters])
-  const topStudents = useMemo(() => students.slice(0, 10), [students])
 
   const timeData = useMemo(() => {
     const sortedLog = [...pointLog].sort((a,b) => a.timestamp.getTime() - b.timestamp.getTime())
@@ -91,31 +89,6 @@ export function DisplayScreen() {
     })
     return Object.values(buckets)
   }, [teams, pointLog])
-
-  // Per-student running totals. Legacy entries have no per-student attribution,
-  // so lines stay flat at the baseline until individual awards move them.
-  const studentTimeData = useMemo(() => {
-    const sortedLog = [...pointLog].sort((a,b) => a.timestamp.getTime() - b.timestamp.getTime())
-    const charDelta = (e: typeof sortedLog[number]) => {
-      const d: Record<string, number> = {}
-      if (e.resolvedCharacterIds?.length) for (const c of e.resolvedCharacterIds) d[c] = (d[c] ?? 0) + e.amount
-      return d
-    }
-    const deltas = sortedLog.map(charDelta)
-    const running: Record<string, number> = {}
-    topStudents.forEach(s => {
-      running[s.id] = s.points - deltas.reduce((acc,d) => acc + (d[s.id] ?? 0), 0)
-    })
-    const buckets: Record<string, Record<string, number>> = {}
-    sortedLog.forEach((e, i) => {
-      const d = deltas[i]
-      for (const cid in d) if (cid in running) running[cid] = (running[cid] ?? 0) + d[cid]
-      const key = formatDateTime(e.timestamp)
-      if (!buckets[key]) buckets[key] = { time: key as any }
-      topStudents.forEach(s => { buckets[key][s.id] = running[s.id] ?? 0 })
-    })
-    return Object.values(buckets)
-  }, [topStudents, pointLog])
 
   const formatTimeOnly = (val: string) => val?.slice(-5) ?? val
 
@@ -160,9 +133,9 @@ export function DisplayScreen() {
 
       {broadcastActive && (
         <div style={{
-          backgroundColor:"#2a8a8a33", borderBottom:"1px solid #2a8a8a60",
+          backgroundColor:"color-mix(in srgb, var(--c-teal) 20%, transparent)", borderBottom:"1px solid color-mix(in srgb, var(--c-teal) 38%, transparent)",
           padding:"6px 24px", textAlign:"right",
-          color:"#2a8a8a", fontSize:"0.8rem", fontWeight:600,
+          color:"var(--c-teal)", fontSize:"0.8rem", fontWeight:600,
         }}>
           <IconVolume size={13} style={{display:"inline",marginRight:6}} />
           ŽIVÉ VYSÍLÁNÍ
@@ -185,48 +158,47 @@ export function DisplayScreen() {
 
       <div style={{ flex:1, overflow:"hidden", padding:"0 32px 8px", display:"flex", flexDirection:"column" }}>
 
-        {(view === "teamScores" || view === "studentScores") && (
-          <div style={{ flex:1, overflowY:"auto" }}>
-            <div style={{ maxWidth:900, margin:"0 auto", display:"flex", flexDirection:"column", gap: view === "studentScores" ? 5 : 8 }}>
-              {(view === "teamScores"
-                ? sorted.map(t => ({ id:t.id, name:t.name, points:t.points, teamId:t.id }))
-                : students.map(s => ({ id:s.id, name:s.name, points:s.points, teamId:s.teamId }))
-              ).map((row, i) => (
-                <div key={row.id} style={{
-                  display:"flex", alignItems:"center", gap:20,
-                  padding: view === "studentScores" ? "clamp(4px,1vh,10px) 28px" : "clamp(8px,1.5vh,18px) 28px",
-                  backgroundColor: i === 0 ? "rgba(200,160,60,0.12)" : "rgba(255,255,255,0.05)",
-                  border: `1px solid ${i === 0 ? "rgba(200,160,60,0.35)" : "rgba(255,255,255,0.12)"}`,
-                  borderRadius:10, transition:"all 0.5s ease",
-                }}>
-                  <span style={{
-                    minWidth:"3ch", fontFamily:"var(--font-mono)", fontWeight:900,
-                    fontSize:"clamp(1rem,2.2vw,2rem)",
-                    color: i === 0 ? "#d4a017" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "rgba(200,169,110,0.35)",
-                  }}>{i + 1}</span>
-                  {row.teamId && <TeamIcon teamId={row.teamId} size={26} strokeWidth={1.5} />}
-                  <span style={{
-                    flex:1,
-                    fontSize:"clamp(0.9rem,2vw,1.8rem)",
-                    fontWeight:700, color:"rgba(255,255,255,0.92)", letterSpacing:"0.04em",
-                  }}>{row.name}</span>
-                  <span style={{
-                    fontFamily:"var(--font-mono)", fontWeight:900,
-                    fontSize:"clamp(1.1rem,2.6vw,2.3rem)",
-                    color: i === 0 ? "#c8a96e" : "rgba(255,255,255,0.88)", letterSpacing:"0.05em",
-                  }}>{row.points}</span>
-                </div>
-              ))}
+        {view === "studentScores" && (
+          <div style={{ flex:1, overflow:"hidden", display:"flex", alignItems:"center" }}>
+            <div style={{ maxWidth:1500, width:"100%", margin:"0 auto", columnCount:2, columnGap:24 }}>
+              {students.map((s, i) => {
+                const accent = teamColor(s.teamId)
+                return (
+                  <div key={s.id} style={{
+                    breakInside:"avoid", marginBottom:6,
+                    display:"flex", alignItems:"center", gap:16,
+                    padding:"clamp(4px,0.9vh,10px) 22px",
+                    backgroundColor: `${accent}1f`,      // team tint
+                    border:"1px solid rgba(255,255,255,0.12)",
+                    borderLeft:`5px solid ${accent}`,
+                    borderRadius:10, transition:"all 0.5s ease",
+                  }}>
+                    <span style={{
+                      minWidth:"2.5ch", fontFamily:"var(--font-mono)", fontWeight:900,
+                      fontSize:"clamp(0.85rem,1.5vw,1.5rem)",
+                      color: i === 0 ? "#d4a017" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "rgba(224,176,128,0.35)",
+                    }}>{i + 1}</span>
+                    {s.teamId && <TeamIcon teamId={s.teamId} size={22} strokeWidth={1.5} />}
+                    <span style={{
+                      flex:1, minWidth:0, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis",
+                      fontSize:"clamp(0.8rem,1.4vw,1.4rem)",
+                      fontWeight:700, color:accent, letterSpacing:"0.04em",
+                    }}>{s.name}</span>
+                    <span style={{
+                      fontFamily:"var(--font-mono)", fontWeight:900,
+                      fontSize:"clamp(0.9rem,1.7vw,1.7rem)",
+                      color:"rgba(255,255,255,0.92)", letterSpacing:"0.05em",
+                    }}>{s.points}</span>
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
 
-        {(view === "teamChart" || view === "studentChart") && (() => {
-          const isTeam = view === "teamChart"
-          const data = isTeam ? timeData : studentTimeData
-          const lines = isTeam
-            ? sorted.map(t => ({ id:t.id, name:t.name, color:t.color, iconTeamId:t.id }))
-            : topStudents.map(s => ({ id:s.id, name:s.name, color:teamColor(s.teamId), iconTeamId:s.teamId }))
+        {view === "teamChart" && (() => {
+          const data = timeData
+          const lines = sorted.map(t => ({ id:t.id, name:t.name, color:t.color, iconTeamId:t.id }))
           return (
             <div style={{ flex:1, display:"flex", flexDirection:"column", maxWidth:1100, margin:"0 auto", width:"100%" }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -246,13 +218,13 @@ export function DisplayScreen() {
                     width={60} domain={["auto", "auto"]}
                   />
                   <RechartsTooltip
-                    contentStyle={{ backgroundColor:"rgba(30,5,10,0.95)", border:"1px solid rgba(200,169,110,0.3)", color:"#e8d5b0", borderRadius:6, fontSize:16 }}
-                    labelStyle={{ color:"rgba(200,169,110,0.7)", fontSize:"0.9rem" }}
+                    contentStyle={{ backgroundColor:"rgba(30,5,10,0.95)", border:"1px solid rgba(224,176,128,0.3)", color:"#F2D8B8", borderRadius:6, fontSize:16 }}
+                    labelStyle={{ color:"rgba(224,176,128,0.7)", fontSize:"0.9rem" }}
                   />
                   {lines.map(ln => (
                     <Line
                       key={ln.id} type="monotone" dataKey={ln.id} name={ln.name}
-                      stroke={ln.color} strokeWidth={isTeam ? 4 : 3}
+                      stroke={ln.color} strokeWidth={4}
                       dot={(props: any) => <EndLabel {...props} lastIndex={data.length - 1} color={ln.color} name={ln.name} iconTeamId={ln.iconTeamId} />}
                       activeDot={{ r:7, fill:ln.color }}
                     />

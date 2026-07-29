@@ -31,7 +31,7 @@ export function GMDashboard() {
 
   const statCard = (icon: React.ElementType, label: string, value: string | number, accent?: string) => {
     const Icon = icon
-    const color = accent ?? "#6b0f1a"
+    const color = accent ?? "#E0B080"
     return (
       <div style={{
         backgroundColor:"var(--c-bg-card)", borderRadius:10, padding:"16px 20px",
@@ -74,8 +74,8 @@ export function GMDashboard() {
               </select>
               {activeRun && (
                 <span style={{
-                  backgroundColor:"rgba(42,138,90,0.15)", color:"#2a8a5a",
-                  border:"1px solid rgba(42,138,90,0.3)", fontSize:"0.72rem",
+                  backgroundColor:"rgba(47,125,79,0.15)", color:"var(--c-success)",
+                  border:"1px solid rgba(47,125,79,0.3)", fontSize:"0.72rem",
                   padding:"3px 10px", borderRadius:20, fontWeight:700,
                 }}>
                   AKTIVNÍ
@@ -87,7 +87,7 @@ export function GMDashboard() {
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger
             render={<button />}
-            style={{ backgroundColor:"#2a8a8a", color:"#fff", fontWeight:700,
+            style={{ backgroundColor:"var(--c-teal)", color:"#F4ECDF", fontWeight:700,
               padding:"8px 16px", borderRadius:6, border:"none", cursor:"pointer",
               display:"flex", alignItems:"center", gap:6, fontSize:"0.875rem" }}
           >
@@ -131,7 +131,7 @@ export function GMDashboard() {
           <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:12, marginBottom:24 }}>
             {statCard(IconTrophy, "Vedoucí tým",  leader?.name ?? "—")}
             {statCard(IconQrcode, "Aktivní QR",    activeQRs, "#d4a017")}
-            {statCard(IconBell,   "Alarm",         alarmState.active ? "AKTIVNÍ" : "Klid", alarmState.active ? "#c0392b" : "#2a8a5a")}
+            {statCard(IconBell,   "Alarm",         alarmState.active ? "AKTIVNÍ" : "Klid", alarmState.active ? "#D96A5C" : "#5BBF87")}
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20 }}>
             <div style={{ backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border)", borderRadius:10, padding:20 }}>

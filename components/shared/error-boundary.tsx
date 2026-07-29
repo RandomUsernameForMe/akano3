@@ -16,7 +16,7 @@ export class ErrorBoundary extends React.Component<
       return (
         <div style={{
           minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center",
-          justifyContent:"center", backgroundColor:"#faf7f2", color:"#6b0f1a",
+          justifyContent:"center", backgroundColor:"#F4ECDF", color:"#701010",
           gap:16, padding:32,
         }}>
           <p style={{ fontWeight:700, fontSize:"1.1rem" }}>Nastala neočekávaná chyba</p>
@@ -24,7 +24,7 @@ export class ErrorBoundary extends React.Component<
             {this.state.error.message}
           </pre>
           <button onClick={() => this.setState({ error: null })} style={{
-            padding:"8px 20px", backgroundColor:"#6b0f1a", color:"#fff",
+            padding:"8px 20px", backgroundColor:"#701010", color:"#F4ECDF",
             border:"none", borderRadius:6, cursor:"pointer",
           }}>
             Zkusit znovu

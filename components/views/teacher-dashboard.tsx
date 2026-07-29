@@ -26,7 +26,7 @@ export function TeacherDashboard() {
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger
             render={<button />}
-            style={{ backgroundColor:"#2a8a8a", color:"#fff", fontWeight:700,
+            style={{ backgroundColor:"var(--c-teal)", color:"#F4ECDF", fontWeight:700,
               padding:"8px 16px", borderRadius:6, border:"none", cursor:"pointer",
               display:"flex", alignItems:"center", gap:6, fontSize:"0.875rem" }}
           >

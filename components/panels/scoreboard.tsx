@@ -40,7 +40,7 @@ export function ScoreboardComponent({
     if (mode === "units") {
       return UNITS.map(u => {
         const pts = characters.filter(c => c.teamId && u.teamIds.includes(c.teamId)).reduce((s,c) => s + c.points, 0)
-        return { id:u.id, name:u.name, points:pts, color:"#2a8a8a", rank:0, iconTeamId: undefined as string | undefined }
+        return { id:u.id, name:u.name, points:pts, color:"var(--c-teal)", rank:0, iconTeamId: undefined as string | undefined }
       }).sort((a,b)=>b.points-a.points).map((r,i)=>({...r, rank:i+1}))
     }
     return CIRCLES.map(c => {
@@ -74,7 +74,7 @@ export function ScoreboardComponent({
             <button key={m} onClick={() => onModeChange?.(m)} style={{
               padding:"4px 12px", borderRadius:6, fontSize:"0.8rem", cursor:"pointer",
               backgroundColor: mode===m ? "var(--teal-700)" : "var(--c-bg-section)",
-              color: mode===m ? "#fff" : "var(--c-accent)",
+              color: mode===m ? "#F4ECDF" : "var(--c-accent)",
               border: `1px solid ${mode===m ? "var(--teal-700)" : "var(--c-border-str)"}`,
               fontWeight: mode===m ? 700 : 400,
             }}>

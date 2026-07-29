@@ -15,10 +15,10 @@ const SPECIALIZATIONS = [
 ]
 
 const selectStyle: React.CSSProperties = {
-  backgroundColor: "#fff",
-  border: "1px solid rgba(107,15,26,0.2)",
+  backgroundColor: "var(--c-input)",
+  border: "1px solid var(--c-input-border)",
   borderRadius: 6,
-  color: "#1a0a0a",
+  color: "var(--c-text)",
   fontSize: "0.82rem",
   padding: "4px 8px",
   cursor: "pointer",
@@ -27,13 +27,13 @@ const selectStyle: React.CSSProperties = {
 function section(title: string, children: React.ReactNode) {
   return (
     <div style={{
-      backgroundColor: "rgba(107,15,26,0.03)",
-      border: "1px solid rgba(107,15,26,0.1)",
+      backgroundColor: "var(--c-bg-section)",
+      border: "1px solid var(--c-border)",
       borderRadius: 10,
       padding: 20,
       marginBottom: 16,
     }}>
-      <p style={{ color: "#6b0f1a", fontSize: "0.75rem", letterSpacing: "0.1em", marginBottom: 14 }}>{title}</p>
+      <p style={{ color: "var(--c-accent)", fontSize: "0.75rem", letterSpacing: "0.1em", marginBottom: 14 }}>{title}</p>
       {children}
     </div>
   )
@@ -97,18 +97,18 @@ export function RunSetupPanel() {
               <div key={run.id} style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between",
                 padding: "10px 14px", borderRadius: 8,
-                backgroundColor: run.isActive ? "rgba(42,138,90,0.1)" : "rgba(107,15,26,0.04)",
-                border: `1px solid ${run.isActive ? "rgba(42,138,90,0.4)" : "rgba(107,15,26,0.1)"}`,
+                backgroundColor: run.isActive ? "rgba(47,125,79,0.1)" : "var(--c-bg-section)",
+                border: `1px solid ${run.isActive ? "rgba(47,125,79,0.4)" : "var(--c-border)"}`,
               }}>
                 <div>
-                  <span style={{ fontWeight: 700, color: "#1a0a0a", fontSize: "0.9rem" }}>{run.name}</span>
+                  <span style={{ fontWeight: 700, color: "var(--c-text)", fontSize: "0.9rem" }}>{run.name}</span>
                   {run.isActive && (
                     <span style={{
-                      marginLeft: 10, backgroundColor: "#2a8a5a", color: "#fff",
+                      marginLeft: 10, backgroundColor: "var(--c-success)", color: "#F4ECDF",
                       fontSize: "0.7rem", padding: "2px 8px", borderRadius: 20, fontWeight: 700,
                     }}>AKTIVNÍ</span>
                   )}
-                  <p style={{ color: "rgba(107,15,26,0.45)", fontSize: "0.72rem", marginTop: 2 }}>
+                  <p style={{ color: "var(--c-text-muted)", fontSize: "0.72rem", marginTop: 2 }}>
                     #{run.id} · {run.createdAt.toLocaleDateString("cs-CZ")}
                   </p>
                 </div>
@@ -117,7 +117,7 @@ export function RunSetupPanel() {
                     onClick={() => setActiveRun(run.id)}
                     style={{
                       display: "flex", alignItems: "center", gap: 5,
-                      backgroundColor: "#2a8a8a", color: "#fff", border: "none",
+                      backgroundColor: "var(--c-teal)", color: "#F4ECDF", border: "none",
                       borderRadius: 6, padding: "6px 12px", cursor: "pointer", fontSize: "0.8rem", fontWeight: 700,
                     }}
                   >
@@ -134,14 +134,14 @@ export function RunSetupPanel() {
               value={newRunName}
               onChange={e => setNewRunName(e.target.value)}
               onKeyDown={e => e.key === "Enter" && handleCreateRun()}
-              style={{ flex: 1, backgroundColor: "#fff", border: "1px solid rgba(107,15,26,0.2)", color: "#1a0a0a" }}
+              style={{ flex: 1, backgroundColor: "var(--c-input)", border: "1px solid var(--c-input-border)", color: "var(--c-text)" }}
             />
             <button
               onClick={handleCreateRun}
               disabled={creating || !newRunName.trim()}
               style={{
                 display: "flex", alignItems: "center", gap: 5,
-                backgroundColor: "#6b0f1a", color: "#fff", border: "none",
+                backgroundColor: "var(--c-accent)", color: "#F4ECDF", border: "none",
                 borderRadius: 6, padding: "0 16px", cursor: "pointer", fontSize: "0.85rem", fontWeight: 700,
                 opacity: creating || !newRunName.trim() ? 0.5 : 1,
               }}
@@ -159,9 +159,9 @@ export function RunSetupPanel() {
             const currentUnitId = liveTeam?.unitId ?? staticTeam.unitId
             return (
               <div key={staticTeam.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ color: "#1a0a0a", fontSize: "0.85rem", minWidth: 120 }}>
+                <span style={{ color: "var(--c-text)", fontSize: "0.85rem", minWidth: 120 }}>
                   {getTeamName(staticTeam.id)}
-                  {savingTeam === staticTeam.id && <span style={{ color: "rgba(107,15,26,0.4)", fontSize: "0.75rem", marginLeft: 6 }}>ukládám…</span>}
+                  {savingTeam === staticTeam.id && <span style={{ color: "var(--c-text-muted)", fontSize: "0.75rem", marginLeft: 6 }}>ukládám…</span>}
                 </span>
                 <select
                   value={currentUnitId}
@@ -187,9 +187,9 @@ export function RunSetupPanel() {
               .map(c => c.id)
             return (
               <div key={circle.id}>
-                <p style={{ color: "#6b0f1a", fontSize: "0.8rem", marginBottom: 6, fontWeight: 600 }}>
+                <p style={{ color: "var(--c-accent)", fontSize: "0.8rem", marginBottom: 6, fontWeight: 600 }}>
                   {circle.name}
-                  {savingCircle === circle.id && <span style={{ color: "rgba(107,15,26,0.4)", fontSize: "0.72rem", marginLeft: 6 }}>ukládám…</span>}
+                  {savingCircle === circle.id && <span style={{ color: "var(--c-text-muted)", fontSize: "0.72rem", marginLeft: 6 }}>ukládám…</span>}
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {students.map(student => {
@@ -205,9 +205,9 @@ export function RunSetupPanel() {
                         }}
                         style={{
                           padding: "3px 10px", borderRadius: 20, fontSize: "0.78rem", cursor: "pointer",
-                          border: `1px solid ${checked ? "#6b0f1a" : "rgba(107,15,26,0.2)"}`,
-                          backgroundColor: checked ? "#6b0f1a" : "transparent",
-                          color: checked ? "#fff" : "rgba(107,15,26,0.7)",
+                          border: `1px solid ${checked ? "var(--c-accent)" : "var(--c-border-mid)"}`,
+                          backgroundColor: checked ? "var(--c-accent)" : "transparent",
+                          color: checked ? "#F4ECDF" : "var(--c-text-muted)",
                           fontWeight: checked ? 700 : 400,
                         }}
                       >
@@ -229,9 +229,9 @@ export function RunSetupPanel() {
             const currentSpec = liveChar?.specialization ?? ""
             return (
               <div key={student.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ color: "#1a0a0a", fontSize: "0.85rem", minWidth: 160 }}>
+                <span style={{ color: "var(--c-text)", fontSize: "0.85rem", minWidth: 160 }}>
                   {student.name}
-                  {savingSpec === student.id && <span style={{ color: "rgba(107,15,26,0.4)", fontSize: "0.75rem", marginLeft: 6 }}>ukládám…</span>}
+                  {savingSpec === student.id && <span style={{ color: "var(--c-text-muted)", fontSize: "0.75rem", marginLeft: 6 }}>ukládám…</span>}
                 </span>
                 <select
                   value={currentSpec ?? ""}

@@ -9,7 +9,7 @@ export function AlarmBannerStrip() {
   if (!alarmState.active) return null
   return (
     <div style={{
-      backgroundColor:"#c0392b", color:"#fff",
+      backgroundColor:"#A32B22", color:"#F4ECDF",
       padding:"6px 16px", textAlign:"center",
       fontSize:"0.85rem", fontWeight:700, letterSpacing:"0.05em",
     }}>

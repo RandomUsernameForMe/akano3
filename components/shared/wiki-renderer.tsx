@@ -45,17 +45,17 @@ function parseBlocks(content: string): Block[] {
 
 function renderMdLine(line: string, idx: number): React.ReactNode {
   // Headings
-  if (line.startsWith("### ")) return <h3 key={idx} style={{ fontSize:"1rem", fontWeight:800, color:"#1a0a0a", margin:"20px 0 6px" }}>{inline(line.slice(4))}</h3>
-  if (line.startsWith("## "))  return <h2 key={idx} style={{ fontSize:"1.15rem", fontWeight:800, color:"#6b0f1a", margin:"26px 0 8px", borderBottom:"1px solid rgba(107,15,26,0.12)", paddingBottom:4 }}>{inline(line.slice(3))}</h2>
-  if (line.startsWith("# "))   return <h1 key={idx} style={{ fontSize:"1.4rem", fontWeight:900, color:"#1a0a0a", margin:"0 0 14px" }}>{inline(line.slice(2))}</h1>
+  if (line.startsWith("### ")) return <h3 key={idx} style={{ fontSize:"1rem", fontWeight:800, color:"var(--c-text)", margin:"20px 0 6px" }}>{inline(line.slice(4))}</h3>
+  if (line.startsWith("## "))  return <h2 key={idx} style={{ fontSize:"1.15rem", fontWeight:800, color:"var(--c-accent)", margin:"26px 0 8px", borderBottom:"1px solid var(--c-border)", paddingBottom:4 }}>{inline(line.slice(3))}</h2>
+  if (line.startsWith("# "))   return <h1 key={idx} style={{ fontSize:"1.4rem", fontWeight:900, color:"var(--c-text)", margin:"0 0 14px" }}>{inline(line.slice(2))}</h1>
   // HR
-  if (line.match(/^---+$/)) return <hr key={idx} style={{ border:"none", borderTop:"1px solid rgba(107,15,26,0.15)", margin:"18px 0" }} />
+  if (line.match(/^---+$/)) return <hr key={idx} style={{ border:"none", borderTop:"1px solid var(--c-border)", margin:"18px 0" }} />
   // Bullet list
   if (line.startsWith("- ") || line.startsWith("* ")) {
     return (
       <div key={idx} style={{ display:"flex", gap:8, margin:"3px 0", paddingLeft:8 }}>
-        <span style={{ color:"#6b0f1a", fontWeight:900, flexShrink:0, marginTop:2 }}>·</span>
-        <span style={{ color:"#2a1010", fontSize:"0.9rem", lineHeight:1.65 }}>{inline(line.slice(2))}</span>
+        <span style={{ color:"var(--c-accent)", fontWeight:900, flexShrink:0, marginTop:2 }}>·</span>
+        <span style={{ color:"var(--c-text)", fontSize:"0.9rem", lineHeight:1.65 }}>{inline(line.slice(2))}</span>
       </div>
     )
   }
@@ -64,8 +64,8 @@ function renderMdLine(line: string, idx: number): React.ReactNode {
   if (numMatch) {
     return (
       <div key={idx} style={{ display:"flex", gap:8, margin:"3px 0", paddingLeft:8 }}>
-        <span style={{ color:"#6b0f1a", fontWeight:700, flexShrink:0, minWidth:20, fontSize:"0.85rem" }}>{numMatch[1]}.</span>
-        <span style={{ color:"#2a1010", fontSize:"0.9rem", lineHeight:1.65 }}>{inline(numMatch[2])}</span>
+        <span style={{ color:"var(--c-accent)", fontWeight:700, flexShrink:0, minWidth:20, fontSize:"0.85rem" }}>{numMatch[1]}.</span>
+        <span style={{ color:"var(--c-text)", fontSize:"0.9rem", lineHeight:1.65 }}>{inline(numMatch[2])}</span>
       </div>
     )
   }
@@ -73,8 +73,8 @@ function renderMdLine(line: string, idx: number): React.ReactNode {
   if (line.startsWith("> ")) {
     return (
       <div key={idx} style={{
-        borderLeft:"3px solid rgba(107,15,26,0.3)", paddingLeft:14, margin:"8px 0",
-        color:"rgba(42,16,16,0.7)", fontSize:"0.9rem", fontStyle:"italic",
+        borderLeft:"3px solid var(--c-border-mid)", paddingLeft:14, margin:"8px 0",
+        color:"var(--c-text-muted)", fontSize:"0.9rem", fontStyle:"italic",
       }}>
         {inline(line.slice(2))}
       </div>
@@ -83,7 +83,7 @@ function renderMdLine(line: string, idx: number): React.ReactNode {
   // Empty line
   if (!line.trim()) return <div key={idx} style={{ height:10 }} />
   // Normal paragraph
-  return <p key={idx} style={{ margin:"4px 0", color:"#2a1010", fontSize:"0.9rem", lineHeight:1.75 }}>{inline(line)}</p>
+  return <p key={idx} style={{ margin:"4px 0", color:"var(--c-text)", fontSize:"0.9rem", lineHeight:1.75 }}>{inline(line)}</p>
 }
 
 function inline(text: string): React.ReactNode {
@@ -94,9 +94,9 @@ function inline(text: string): React.ReactNode {
   // eslint-disable-next-line no-cond-assign
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) parts.push(text.slice(last, m.index))
-    if (m[2] != null) parts.push(<strong key={m.index} style={{ fontWeight:800, color:"#1a0a0a" }}>{m[2]}</strong>)
-    else if (m[3] != null) parts.push(<em key={m.index} style={{ color:"rgba(107,15,26,0.75)" }}>{m[3]}</em>)
-    else if (m[4] != null) parts.push(<code key={m.index} style={{ backgroundColor:"rgba(107,15,26,0.08)", padding:"1px 5px", borderRadius:4, fontSize:"0.85em", fontFamily:"monospace" }}>{m[4]}</code>)
+    if (m[2] != null) parts.push(<strong key={m.index} style={{ fontWeight:800, color:"var(--c-text)" }}>{m[2]}</strong>)
+    else if (m[3] != null) parts.push(<em key={m.index} style={{ color:"var(--c-text-muted)" }}>{m[3]}</em>)
+    else if (m[4] != null) parts.push(<code key={m.index} style={{ backgroundColor:"var(--c-bg-section)", padding:"1px 5px", borderRadius:4, fontSize:"0.85em", fontFamily:"monospace" }}>{m[4]}</code>)
     last = m.index + m[0].length
   }
   if (last < text.length) parts.push(text.slice(last))
@@ -138,13 +138,13 @@ function RedactedBlock({ lines, requiredLevel, unlocked }: { lines: string[]; re
   return (
     <div style={{
       margin:"10px 0",
-      backgroundColor:"rgba(10,4,4,0.06)",
-      border:"1px solid rgba(10,4,4,0.12)",
+      backgroundColor:"var(--c-bg-section)",
+      border:"1px solid var(--c-border)",
       borderRadius:8, padding:"14px 16px",
       userSelect:"none",
     }}>
       <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10 }}>
-        <span style={{ fontSize:"0.65rem", color:"rgba(107,15,26,0.4)", letterSpacing:"0.1em" }}>
+        <span style={{ fontSize:"0.65rem", color:"var(--c-text-muted)", letterSpacing:"0.1em" }}>
           ███ VYŽADUJE KAICHI {romanNumeral(requiredLevel)} ███
         </span>
       </div>
@@ -152,7 +152,7 @@ function RedactedBlock({ lines, requiredLevel, unlocked }: { lines: string[]; re
         {Array.from({ length: barCount }).map((_, i) => (
           <div key={i} style={{
             height:14, borderRadius:3,
-            backgroundColor:"#1a0a0a",
+            backgroundColor:"var(--c-text)",
             width: i === barCount - 1 ? `${40 + Math.random() * 45}%` : `${75 + Math.random() * 25}%`,
             opacity:0.85,
           }} />

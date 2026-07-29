@@ -92,8 +92,8 @@ export function TransactionLog({
           )}
           {canExport && (
             <button onClick={handleExport} style={{
-              marginLeft:"auto", background:"#2a8a8a22", border:"1px solid #2a8a8a60",
-              color:"#2a8a8a", padding:"4px 12px", borderRadius:6, cursor:"pointer", fontSize:"0.8rem",
+              marginLeft:"auto", background:"color-mix(in srgb, var(--c-teal) 13%, transparent)", border:"1px solid color-mix(in srgb, var(--c-teal) 38%, transparent)",
+              color:"var(--c-teal)", padding:"4px 12px", borderRadius:6, cursor:"pointer", fontSize:"0.8rem",
               display:"flex", alignItems:"center", gap:6,
             }}>
               <IconDownload size={13} /> Export CSV
@@ -140,7 +140,7 @@ export function TransactionLog({
                     </span>
                   ))}
                 </TableCell>
-                <TableCell style={{ fontWeight:700, fontFamily:"monospace", color: e.amount > 0 ? "#2a8a5a" : "#e05252" }}>
+                <TableCell style={{ fontWeight:700, fontFamily:"monospace", color: e.amount > 0 ? "var(--c-success)" : "var(--destructive)" }}>
                   {e.amount > 0 ? "+" : ""}{e.amount}
                 </TableCell>
                 <TableCell style={{ color:"var(--c-text-muted)", fontSize:"0.78rem", maxWidth:200 }}>

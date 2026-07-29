@@ -83,7 +83,7 @@ export function StudentDashboard() {
 
   const specColors: Record<string, string> = { combat:"#e05252", tactical:"#5268e0", support:"#52d4b4" }
   const specColor  = student.specialization ? specColors[student.specialization] : null
-  const inputStyle = { backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)", height:48, fontSize:"0.95rem" }
+  const inputStyle = { backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)", height:48, fontSize:"0.95rem" }
 
   const wikiCategories = [...new Set(wikiArticles.map(a => a.category))]
 
@@ -166,7 +166,7 @@ export function StudentDashboard() {
                 display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"center",
                 gap:8, padding:"10px 16px", minHeight:48,
                 fontSize:"0.82rem", fontWeight:700, borderRadius:0,
-                color:"rgba(107,15,26,0.4)",
+                color:"var(--c-text-muted)",
                 letterSpacing:"0.02em",
               }}
             >
@@ -181,15 +181,15 @@ export function StudentDashboard() {
           {/* ŽEBŘÍČEK */}
           <TabsContent value="scoreboard">
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:14 }}>
-              <p style={{ fontSize:"0.72rem", letterSpacing:"0.09em", color:"rgba(107,15,26,0.4)", margin:0 }}>AKTUÁLNÍ ŽEBŘÍČEK</p>
+              <p style={{ fontSize:"0.72rem", letterSpacing:"0.09em", color:"var(--c-text-muted)", margin:0 }}>AKTUÁLNÍ ŽEBŘÍČEK</p>
               <div style={{ display:"flex", gap:4 }}>
                 {(["table","chart"] as const).map(v => (
                   <button key={v} onClick={() => setSbView(v)} style={{
                     all:"unset", boxSizing:"border-box",
                     padding:"5px 10px", borderRadius:8, cursor:"pointer",
-                    backgroundColor: sbView === v ? "#6b0f1a" : "transparent",
-                    color: sbView === v ? "#fff" : "rgba(107,15,26,0.4)",
-                    border: `1px solid ${sbView === v ? "#6b0f1a" : "rgba(107,15,26,0.18)"}`,
+                    backgroundColor: sbView === v ? "var(--c-accent)" : "transparent",
+                    color: sbView === v ? "#F4ECDF" : "var(--c-text-muted)",
+                    border: `1px solid ${sbView === v ? "var(--c-accent)" : "var(--c-border-mid)"}`,
                     display:"flex", alignItems:"center",
                   }}>
                     {v === "table" ? <IconList size={16} /> : <IconChartLine size={16} />}
@@ -218,7 +218,7 @@ export function StudentDashboard() {
                   <div key={t.id}>
                     <div style={{ display:"flex", alignItems:"center", gap:7, marginBottom:8 }}>
                       <TeamIcon teamId={t.id} size={16} />
-                      <span style={{ fontSize:"0.72rem", fontWeight:700, letterSpacing:"0.08em", color:"rgba(107,15,26,0.45)" }}>
+                      <span style={{ fontSize:"0.72rem", fontWeight:700, letterSpacing:"0.08em", color:"var(--c-text-muted)" }}>
                         {t.name.toUpperCase()}
                       </span>
                     </div>
@@ -226,27 +226,28 @@ export function StudentDashboard() {
                       {members.map(c => (
                         <div key={c.id} style={{
                           display:"flex", alignItems:"center", gap:12,
-                          backgroundColor:"#fff", borderRadius:14, padding:"12px 16px",
+                          backgroundColor:"var(--c-bg-card)", borderRadius:6, padding:"12px 16px",
                           border: c.id === student?.id
-                            ? "1.5px solid rgba(42,138,138,0.45)"
-                            : "1px solid rgba(107,15,26,0.08)",
+                            ? "2px solid rgba(16,128,128,0.45)"
+                            : "2px solid var(--c-border-mid)",
+                          boxShadow:"var(--shadow-print-sm)",
                         }}>
                           <div style={{
                             width:40, height:40, borderRadius:"50%", flexShrink:0,
-                            backgroundColor: c.id === student?.id ? "rgba(42,138,138,0.1)" : "rgba(107,15,26,0.05)",
+                            backgroundColor: c.id === student?.id ? "rgba(16,128,128,0.1)" : "var(--c-bg-section)",
                             display:"flex", alignItems:"center", justifyContent:"center",
                           }}>
-                            <IconUser size={20} color={c.id === student?.id ? "#2a8a8a" : "rgba(107,15,26,0.28)"} />
+                            <IconUser size={20} color={c.id === student?.id ? "var(--c-teal)" : "var(--c-text-muted)"} />
                           </div>
                           <div style={{ flex:1, minWidth:0 }}>
                             <div style={{ display:"flex", alignItems:"center", gap:6 }}>
-                              <span style={{ fontWeight:700, fontSize:"0.95rem", color:"#1a0a0a" }}>{c.name}</span>
+                              <span style={{ fontWeight:700, fontSize:"0.95rem", color:"var(--c-text)" }}>{c.name}</span>
                               {c.id === student?.id && (
-                                <span style={{ fontSize:"0.65rem", color:"#2a8a8a", backgroundColor:"rgba(42,138,138,0.1)", padding:"1px 7px", borderRadius:20 }}>ty</span>
+                                <span style={{ fontSize:"0.65rem", color:"var(--c-teal)", backgroundColor:"rgba(16,128,128,0.1)", padding:"1px 7px", borderRadius:20 }}>ty</span>
                               )}
                             </div>
                             {c.nickname && (
-                              <p style={{ color:"rgba(107,15,26,0.38)", fontSize:"0.75rem", fontStyle:"italic", margin:0 }}>„{c.nickname}"</p>
+                              <p style={{ color:"var(--c-text-muted)", fontSize:"0.75rem", fontStyle:"italic", margin:0 }}>„{c.nickname}"</p>
                             )}
                           </div>
                           <SpecBadge spec={c.specialization} />
@@ -259,7 +260,7 @@ export function StudentDashboard() {
 
               <div>
                 <div style={{ marginBottom:8 }}>
-                  <span style={{ fontSize:"0.72rem", fontWeight:700, letterSpacing:"0.08em", color:"rgba(107,15,26,0.45)" }}>
+                  <span style={{ fontSize:"0.72rem", fontWeight:700, letterSpacing:"0.08em", color:"var(--c-text-muted)" }}>
                     DOSPĚLÍ
                   </span>
                 </div>
@@ -267,18 +268,19 @@ export function StudentDashboard() {
                   {CHARACTERS.filter(c => c.role === "teacher" || c.role === "gm").map(c => (
                     <div key={c.id} style={{
                       display:"flex", alignItems:"center", gap:12,
-                      backgroundColor:"#fff", borderRadius:14, padding:"12px 16px",
-                      border:"1px solid rgba(107,15,26,0.08)",
+                      backgroundColor:"var(--c-bg-card)", borderRadius:6, padding:"12px 16px",
+                      border:"2px solid var(--c-border-mid)",
+                      boxShadow:"var(--shadow-print-sm)",
                     }}>
                       <div style={{
                         width:40, height:40, borderRadius:"50%", flexShrink:0,
-                        backgroundColor:"rgba(107,15,26,0.05)",
+                        backgroundColor:"var(--c-bg-section)",
                         display:"flex", alignItems:"center", justifyContent:"center",
                       }}>
-                        <IconUser size={20} color="rgba(107,15,26,0.28)" />
+                        <IconUser size={20} color="var(--c-text-muted)" />
                       </div>
                       <div style={{ flex:1 }}>
-                        <span style={{ fontWeight:700, fontSize:"0.95rem", color:"#1a0a0a" }}>{c.name}</span>
+                        <span style={{ fontWeight:700, fontSize:"0.95rem", color:"var(--c-text)" }}>{c.name}</span>
                       </div>
                       <RoleBadge role={c.role} />
                     </div>
@@ -291,11 +293,11 @@ export function StudentDashboard() {
           {/* INFORMACE (wiki) */}
           <TabsContent value="wiki">
             {wikiLoading ? (
-              <p style={{ color:"rgba(107,15,26,0.4)", textAlign:"center", padding:"40px 0" }}>Načítám…</p>
+              <p style={{ color:"var(--c-text-muted)", textAlign:"center", padding:"40px 0" }}>Načítám…</p>
             ) : wikiArticles.length === 0 ? (
               <div style={{ textAlign:"center", padding:"60px 0", display:"flex", flexDirection:"column", alignItems:"center", gap:12 }}>
-                <IconBooks size={48} color="rgba(107,15,26,0.2)" strokeWidth={1.2} />
-                <p style={{ color:"rgba(107,15,26,0.35)", fontSize:"0.9rem" }}>Zatím žádné informace k dispozici.</p>
+                <IconBooks size={48} color="var(--c-text-faint)" strokeWidth={1.2} />
+                <p style={{ color:"var(--c-text-muted)", fontSize:"0.9rem" }}>Zatím žádné informace k dispozici.</p>
               </div>
             ) : (
               <div style={{ display:"flex", flexDirection:"column", gap:8 }}>
@@ -304,8 +306,9 @@ export function StudentDashboard() {
                   const isOpen = openCategories.has(cat)
                   return (
                     <div key={cat} style={{
-                      backgroundColor:"#fff", borderRadius:14,
-                      border:"1px solid rgba(107,15,26,0.1)",
+                      backgroundColor:"var(--c-bg-card)", borderRadius:6,
+                      border:"2px solid var(--c-border-mid)",
+                      boxShadow:"var(--shadow-print-sm)",
                       overflow:"hidden",
                     }}>
                       {/* Category header */}
@@ -315,29 +318,29 @@ export function StudentDashboard() {
                           all:"unset", boxSizing:"border-box", width:"100%",
                           display:"flex", alignItems:"center", justifyContent:"space-between",
                           padding:"14px 20px", cursor:"pointer",
-                          backgroundColor: isOpen ? "rgba(107,15,26,0.04)" : "transparent",
+                          backgroundColor: isOpen ? "var(--c-bg-section)" : "transparent",
                         }}
                       >
-                        <span style={{ fontWeight:700, fontSize:"0.95rem", color:"#1a0a0a" }}>{cat}</span>
+                        <span style={{ fontWeight:700, fontSize:"0.95rem", color:"var(--c-text)" }}>{cat}</span>
                         <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-                          <span style={{ fontSize:"0.72rem", color:"rgba(107,15,26,0.35)" }}>
+                          <span style={{ fontSize:"0.72rem", color:"var(--c-text-muted)" }}>
                             {catArticles.length} {catArticles.length === 1 ? "článek" : catArticles.length < 5 ? "články" : "článků"}
                           </span>
                           {isOpen
-                            ? <IconChevronDown size={16} color="rgba(107,15,26,0.4)" />
-                            : <IconChevronRight size={16} color="rgba(107,15,26,0.4)" />
+                            ? <IconChevronDown size={16} color="var(--c-text-muted)" />
+                            : <IconChevronRight size={16} color="var(--c-text-muted)" />
                           }
                         </div>
                       </button>
 
                       {/* Articles in category */}
                       {isOpen && (
-                        <div style={{ borderTop:"1px solid rgba(107,15,26,0.08)" }}>
+                        <div style={{ borderTop:"1px solid var(--c-border)" }}>
                           {catArticles.map((article, idx) => {
                             const isArticleOpen = wikiExpanded === String(article.id)
                             return (
                               <div key={article.id} style={{
-                                borderTop: idx > 0 ? "1px solid rgba(107,15,26,0.06)" : undefined,
+                                borderTop: idx > 0 ? "1px solid var(--c-border)" : undefined,
                               }}>
                                 <button
                                   onClick={() => setWikiExpanded(isArticleOpen ? null : String(article.id))}
@@ -358,18 +361,18 @@ export function StudentDashboard() {
                                       {romanNumeral(article.kaichiRequired)}
                                     </span>
                                   )}
-                                  <span style={{ flex:1, fontWeight:600, fontSize:"0.9rem", color:"#1a0a0a", textAlign:"left" }}>
+                                  <span style={{ flex:1, fontWeight:600, fontSize:"0.9rem", color:"var(--c-text)", textAlign:"left" }}>
                                     {article.title}
                                   </span>
                                   {isArticleOpen
-                                    ? <IconChevronDown size={14} color="rgba(107,15,26,0.35)" />
-                                    : <IconChevronRight size={14} color="rgba(107,15,26,0.35)" />
+                                    ? <IconChevronDown size={14} color="var(--c-text-muted)" />
+                                    : <IconChevronRight size={14} color="var(--c-text-muted)" />
                                   }
                                 </button>
                                 {isArticleOpen && (
                                   <div style={{
                                     padding:"16px 28px 24px 28px",
-                                    borderTop:"1px solid rgba(107,15,26,0.06)",
+                                    borderTop:"1px solid var(--c-border)",
                                   }}>
                                     <WikiRenderer
                                       content={article.content}
@@ -402,35 +405,35 @@ export function StudentDashboard() {
                   display:"flex", alignItems:"center", gap:20,
                   width:"100%", minHeight:108, borderRadius:20, padding:"24px",
                   backgroundColor: student?.lessonClaimedThisWindow
-                    ? "rgba(107,15,26,0.04)"
-                    : lessonWindowActive ? "#2a8a8a" : "rgba(107,15,26,0.06)",
+                    ? "var(--c-bg-section)"
+                    : lessonWindowActive ? "var(--c-teal)" : "var(--c-bg-section)",
                   border: `2px solid ${
                     student?.lessonClaimedThisWindow
-                      ? "rgba(107,15,26,0.1)"
-                      : lessonWindowActive ? "#2a8a8a" : "rgba(107,15,26,0.12)"
+                      ? "var(--c-border)"
+                      : lessonWindowActive ? "var(--c-teal)" : "var(--c-border)"
                   }`,
                   cursor: (!lessonWindowActive || student?.lessonClaimedThisWindow) ? "default" : "pointer",
                   transition:"all 0.2s",
                 }}
               >
                 {student?.lessonClaimedThisWindow
-                  ? <IconCircleCheck size={44} color="rgba(107,15,26,0.22)" strokeWidth={1.4} />
-                  : <IconBook size={44} color={lessonWindowActive ? "#fff" : "rgba(107,15,26,0.22)"} strokeWidth={1.4} />
+                  ? <IconCircleCheck size={44} color="var(--c-text-muted)" strokeWidth={1.4} />
+                  : <IconBook size={44} color={lessonWindowActive ? "#F4ECDF" : "var(--c-text-muted)"} strokeWidth={1.4} />
                 }
                 <div>
                   <p style={{
                     fontSize:"1.25rem", fontWeight:800, lineHeight:1.2, margin:0,
                     color: student?.lessonClaimedThisWindow
-                      ? "rgba(107,15,26,0.3)"
-                      : lessonWindowActive ? "#fff" : "rgba(107,15,26,0.35)",
+                      ? "var(--c-text-muted)"
+                      : lessonWindowActive ? "#F4ECDF" : "var(--c-text-muted)",
                   }}>
                     Body za hodinu
                   </p>
                   <p style={{
                     fontSize:"0.88rem", margin:"5px 0 0",
                     color: student?.lessonClaimedThisWindow
-                      ? "rgba(107,15,26,0.22)"
-                      : lessonWindowActive ? "rgba(255,255,255,0.72)" : "rgba(107,15,26,0.3)",
+                      ? "var(--c-text-muted)"
+                      : lessonWindowActive ? "rgba(255,255,255,0.72)" : "var(--c-text-muted)",
                   }}>
                     {student?.lessonClaimedThisWindow
                       ? "Již uplatněno v tomto okně"
@@ -450,23 +453,23 @@ export function StudentDashboard() {
                   all:"unset", boxSizing:"border-box",
                   display:"flex", alignItems:"center", gap:20,
                   width:"100%", minHeight:108, borderRadius:20, padding:"24px",
-                  backgroundColor: (student?.peerPointPool ?? 0) > 0 ? "#6b0f1a" : "rgba(107,15,26,0.06)",
-                  border: `2px solid ${(student?.peerPointPool ?? 0) > 0 ? "#6b0f1a" : "rgba(107,15,26,0.12)"}`,
+                  backgroundColor: (student?.peerPointPool ?? 0) > 0 ? "var(--c-accent)" : "var(--c-bg-section)",
+                  border: `2px solid ${(student?.peerPointPool ?? 0) > 0 ? "var(--c-accent)" : "var(--c-border)"}`,
                   cursor: (student?.peerPointPool ?? 0) <= 0 ? "default" : "pointer",
                   transition:"all 0.2s",
                 }}
               >
-                <IconStar size={44} color={(student?.peerPointPool ?? 0) > 0 ? "#d4a017" : "rgba(107,15,26,0.22)"} strokeWidth={1.4} />
+                <IconStar size={44} color={(student?.peerPointPool ?? 0) > 0 ? "#d4a017" : "var(--c-text-muted)"} strokeWidth={1.4} />
                 <div>
                   <p style={{
                     fontSize:"1.25rem", fontWeight:800, lineHeight:1.2, margin:0,
-                    color: (student?.peerPointPool ?? 0) > 0 ? "#fff" : "rgba(107,15,26,0.35)",
+                    color: (student?.peerPointPool ?? 0) > 0 ? "#F4ECDF" : "var(--c-text-muted)",
                   }}>
                     Darovat body
                   </p>
                   <p style={{
                     fontSize:"0.88rem", margin:"5px 0 0",
-                    color: (student?.peerPointPool ?? 0) > 0 ? "rgba(255,255,255,0.65)" : "rgba(107,15,26,0.3)",
+                    color: (student?.peerPointPool ?? 0) > 0 ? "rgba(255,255,255,0.65)" : "var(--c-text-muted)",
                   }}>
                     {(student?.peerPointPool ?? 0) > 0
                       ? `Zbývá ti ${student?.peerPointPool} bodů`
@@ -477,24 +480,24 @@ export function StudentDashboard() {
 
               <Sheet open={giftSheetOpen} onOpenChange={setGiftSheetOpen}>
                 <SheetContent side="bottom" style={{
-                  backgroundColor:"#f0f8f8",
-                  border:"1px solid rgba(107,15,26,0.15)",
+                  backgroundColor:"var(--c-bg-section)",
+                  border:"1px solid var(--c-border)",
                   borderRadius:"20px 20px 0 0",
                   padding:"24px 20px 40px",
                 }}>
                   <SheetHeader style={{ marginBottom:20 }}>
-                    <SheetTitle style={{ color:"#1a0a0a", fontSize:"1.3rem" }}>Darovat body</SheetTitle>
+                    <SheetTitle style={{ color:"var(--c-text)", fontSize:"1.3rem" }}>Darovat body</SheetTitle>
                   </SheetHeader>
                   <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
                     <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:4 }}>
-                      <span style={{ fontSize:"0.8rem", color:"rgba(107,15,26,0.5)" }}>Zbývá ti</span>
+                      <span style={{ fontSize:"0.8rem", color:"var(--c-text-muted)" }}>Zbývá ti</span>
                       <span style={{ fontFamily:"monospace", fontWeight:900, fontSize:"1.5rem",
-                        color:(student?.peerPointPool ?? 0) > 0 ? "#2a8a8a" : "#e05252" }}>
+                        color:(student?.peerPointPool ?? 0) > 0 ? "var(--c-teal)" : "var(--destructive)" }}>
                         {student?.peerPointPool ?? 0} bodů
                       </span>
                     </div>
                     <Progress value={((student?.peerPointPool ?? 0) / 20) * 100}
-                      style={{ height:6, marginBottom:4, backgroundColor:"rgba(107,15,26,0.08)" }} />
+                      style={{ height:6, marginBottom:4, backgroundColor:"var(--c-border)" }} />
                     <Select value={giftTarget} onValueChange={(v) => setGiftTarget(v ?? "")}>
                       <SelectTrigger style={inputStyle}><SelectValue placeholder="Vyber spolužáka…" /></SelectTrigger>
                       <SelectContent>
@@ -510,14 +513,14 @@ export function StudentDashboard() {
                         onChange={e => setGiftAmount(Math.min(student?.peerPointPool ?? 0, Math.max(1, Number(e.target.value))))}
                         min={1} max={student?.peerPointPool ?? 0}
                         style={{ ...inputStyle, width:110 }} />
-                      <span style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.85rem" }}>
+                      <span style={{ color:"var(--c-text-muted)", fontSize:"0.85rem" }}>
                         max {student?.peerPointPool ?? 0}
                       </span>
                     </div>
                     <Button
                       disabled={!giftTarget || giftAmount <= 0 || (student?.peerPointPool ?? 0) <= 0}
                       onClick={() => { setGiftSheetOpen(false); setGiftConfirm(true) }}
-                      style={{ backgroundColor:"#6b0f1a", color:"#fff", height:56, fontSize:"1.05rem", fontWeight:700, borderRadius:14 }}
+                      style={{ backgroundColor:"var(--c-accent)", color:"#F4ECDF", height:56, fontSize:"1.05rem", fontWeight:700, borderRadius:14 }}
                     >
                       Darovat {giftAmount} {giftAmount === 1 ? "bod" : giftAmount < 5 ? "body" : "bodů"}
                     </Button>
@@ -532,11 +535,11 @@ export function StudentDashboard() {
                   .slice(0, 30)
                 return (
                   <div style={{ marginTop:24 }}>
-                    <p style={{ fontSize:"0.72rem", letterSpacing:"0.09em", color:"rgba(107,15,26,0.4)", marginBottom:10 }}>
+                    <p style={{ fontSize:"0.72rem", letterSpacing:"0.09em", color:"var(--c-text-muted)", marginBottom:10 }}>
                       LOG BODŮ TÝMU
                     </p>
                     {teamLog.length === 0 && (
-                      <p style={{ color:"rgba(107,15,26,0.3)", fontSize:"0.85rem", textAlign:"center", padding:"20px 0" }}>
+                      <p style={{ color:"var(--c-text-muted)", fontSize:"0.85rem", textAlign:"center", padding:"20px 0" }}>
                         Žádné záznamy
                       </p>
                     )}
@@ -544,26 +547,27 @@ export function StudentDashboard() {
                       {teamLog.map(e => (
                         <div key={e.id} style={{
                           display:"flex", alignItems:"center", gap:12,
-                          backgroundColor:"#fff", borderRadius:12, padding:"10px 14px",
-                          border:"1px solid rgba(107,15,26,0.08)",
+                          backgroundColor:"var(--c-bg-card)", borderRadius:6, padding:"10px 14px",
+                          border:"2px solid var(--c-border-mid)",
+                          boxShadow:"var(--shadow-print-sm)",
                         }}>
                           <span style={{
                             minWidth:44, textAlign:"center",
                             fontFamily:"monospace", fontWeight:900, fontSize:"1rem",
-                            color: e.amount > 0 ? "#2a8a5a" : "#e05252",
+                            color: e.amount > 0 ? "var(--c-success)" : "var(--destructive)",
                           }}>
                             {e.amount > 0 ? "+" : ""}{e.amount}
                           </span>
                           <div style={{ flex:1, minWidth:0 }}>
-                            <p style={{ margin:0, fontSize:"0.85rem", fontWeight:600, color:"#1a0a0a" }}>
+                            <p style={{ margin:0, fontSize:"0.85rem", fontWeight:600, color:"var(--c-text)" }}>
                               {ACTION_LABELS[e.actionType]}
                             </p>
-                            <p style={{ margin:"2px 0 0", fontSize:"0.72rem", color:"rgba(107,15,26,0.45)" }}>
+                            <p style={{ margin:"2px 0 0", fontSize:"0.72rem", color:"var(--c-text-muted)" }}>
                               {getCharName(e.sourceCharacterId)} → {getTargetName(e.targetType, e.targetId)}
                               {e.note && <span> · {e.note}</span>}
                             </p>
                           </div>
-                          <span style={{ fontSize:"0.68rem", color:"rgba(107,15,26,0.3)", fontFamily:"monospace", flexShrink:0 }}>
+                          <span style={{ fontSize:"0.68rem", color:"var(--c-text-muted)", fontFamily:"monospace", flexShrink:0 }}>
                             {formatDateTime(e.timestamp)}
                           </span>
                         </div>
@@ -581,39 +585,39 @@ export function StudentDashboard() {
 
       {/* Lesson confirm */}
       <AlertDialog open={lessonConfirm} onOpenChange={setLessonConfirm}>
-        <AlertDialogContent style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+        <AlertDialogContent style={{ backgroundColor:"var(--c-bg-card)", border:"1px solid var(--c-border-mid)" }}>
           <AlertDialogHeader>
-            <AlertDialogTitle style={{ color:"#1a0a0a" }}>Potvrdit body za hodinu</AlertDialogTitle>
-            <AlertDialogDescription style={{ color:"#6b0f1a" }}>
-              Získáš <strong style={{color:"#2a8a8a"}}>+5 bodů</strong> pro sebe (pomůžou i týmu <strong>{team?.name}</strong>).
+            <AlertDialogTitle style={{ color:"var(--c-text)" }}>Potvrdit body za hodinu</AlertDialogTitle>
+            <AlertDialogDescription style={{ color:"var(--c-accent)" }}>
+              Získáš <strong style={{color:"var(--c-teal)"}}>+5 bodů</strong> pro sebe (pomůžou i týmu <strong>{team?.name}</strong>).
               V tomto okně lze uplatnit pouze jednou.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel style={{ borderColor:"rgba(107,15,26,0.2)", color:"#6b0f1a" }}>Zpět</AlertDialogCancel>
+            <AlertDialogCancel style={{ borderColor:"var(--c-border-mid)", color:"var(--c-accent)" }}>Zpět</AlertDialogCancel>
             <AlertDialogAction onClick={() => { if (student) { claimLesson(student.id); setLessonConfirm(false) } }}
-              style={{ backgroundColor:"#2a8a8a", color:"#fff" }}>Potvrdit</AlertDialogAction>
+              style={{ backgroundColor:"var(--c-teal)", color:"#F4ECDF" }}>Potvrdit</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
 
       {/* Gift confirm */}
       <AlertDialog open={giftConfirm} onOpenChange={setGiftConfirm}>
-        <AlertDialogContent style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+        <AlertDialogContent style={{ backgroundColor:"var(--c-bg-card)", border:"1px solid var(--c-border-mid)" }}>
           <AlertDialogHeader>
-            <AlertDialogTitle style={{ color:"#1a0a0a" }}>Darovat body</AlertDialogTitle>
-            <AlertDialogDescription style={{ color:"#6b0f1a" }}>
-              Darovat <strong style={{color:"#2a8a8a"}}>{giftAmount} bodů</strong> hráči{" "}
+            <AlertDialogTitle style={{ color:"var(--c-text)" }}>Darovat body</AlertDialogTitle>
+            <AlertDialogDescription style={{ color:"var(--c-accent)" }}>
+              Darovat <strong style={{color:"var(--c-teal)"}}>{giftAmount} bodů</strong> hráči{" "}
               <strong>{giftTargetChar?.name}</strong> ({getTeamName(giftTargetChar?.teamId ?? "")})?
               <br />Ze svého poolu zbyde <strong>{(student?.peerPointPool ?? 0) - giftAmount} bodů</strong>.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel style={{ borderColor:"rgba(107,15,26,0.2)", color:"#6b0f1a" }}>Zpět</AlertDialogCancel>
+            <AlertDialogCancel style={{ borderColor:"var(--c-border-mid)", color:"var(--c-accent)" }}>Zpět</AlertDialogCancel>
             <AlertDialogAction onClick={() => {
               if (student) giftPoints(student.id, giftTarget, giftAmount)
               setGiftTarget(""); setGiftConfirm(false)
-            }} style={{ backgroundColor:"#6b0f1a", color:"#fff" }}>
+            }} style={{ backgroundColor:"var(--c-accent)", color:"#F4ECDF" }}>
               Darovat
             </AlertDialogAction>
           </AlertDialogFooter>

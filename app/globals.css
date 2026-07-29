@@ -147,6 +147,61 @@
   --sidebar-ring: #E0B080;
 }
 
+.theme-teal {
+  /* Akano3 DS — teacher "teal night" surface (deep teal ground, bone text, sand CTA)
+     Surfaces sit one step deeper than the teal scale so colored text clears AA. */
+  --background: #083C3C;   /* deeper than teal-900 */
+  --foreground: #F4ECDF;   /* bone */
+  --card: #0A4A4A;         /* teal-900 */
+  --card-foreground: #F4ECDF;
+  --popover: #0A4A4A;
+  --popover-foreground: #F4ECDF;
+  --primary: #E0B080;      /* sand CTA */
+  --primary-foreground: #0C0B0A;
+  --secondary: #8A1D18;    /* oxblood-600 */
+  --secondary-foreground: #F4ECDF;
+  --muted: #0A4A4A;
+  --muted-foreground: #EAC49B;  /* sand-400 */
+  --accent: #E0B080;
+  --accent-foreground: #0C0B0A;
+  --destructive: #F0B0A6;  /* lightened oxblood — AA on teal-900 card */
+  --border: rgba(244,236,223,0.18);
+  --input: rgba(244,236,223,0.07);
+  --ring: #E0B080;
+  --chart-1: #5AC4C4;
+  --chart-2: #E0B080;
+  --chart-3: #EAC49B;
+  --chart-4: #2FAEAE;
+  --chart-5: #E0897D;
+}
+
+.theme-ink {
+  /* Akano3 DS — GM "ink backstage" surface (ink ground, bone text, oxblood CTA) */
+  --background: #141210;   /* ink-800 */
+  --foreground: #F4ECDF;
+  --card: #2A2622;         /* ink-700 */
+  --card-foreground: #F4ECDF;
+  --popover: #2A2622;
+  --popover-foreground: #F4ECDF;
+  --primary: #D96A5C;      /* oxblood-400 lightened for AA with ink text */
+  --primary-foreground: #0C0B0A;
+  --secondary: #0C5F5F;    /* teal-800 */
+  --secondary-foreground: #F4ECDF;
+  --muted: #2A2622;
+  --muted-foreground: #C4BBAE;  /* ink-300 */
+  --accent: #E0B080;
+  --accent-foreground: #0C0B0A;
+  --destructive: #E0897D;
+  --border: rgba(244,236,223,0.16);
+  --input: rgba(244,236,223,0.07);
+  --ring: #E0B080;
+  --chart-1: #2FAEAE;
+  --chart-2: #E0B080;
+  --chart-3: #EAC49B;
+  --chart-4: #5AC4C4;
+  --chart-5: #D96A5C;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -174,6 +229,42 @@
   --c-topbar:       #FBF7F0;
   --c-input:        #FFFFFF;
   --c-input-border: rgba(20,18,16,0.22);
+  --c-teal:         #0E7474;              /* info teal, AA on paper */
+  --c-success:      #2F7D4F;
+}
+.theme-teal {
+  --c-bg:           #083C3C;              /* deep teal night */
+  --c-bg-card:      #0A4A4A;
+  --c-bg-section:   rgba(244,236,223,0.05);
+  --c-border:       rgba(244,236,223,0.12);
+  --c-border-mid:   rgba(244,236,223,0.18);
+  --c-border-str:   rgba(244,236,223,0.28);
+  --c-text:         #F4ECDF;              /* bone */
+  --c-text-muted:   #EAC49B;              /* sand-400 */
+  --c-text-faint:   rgba(244,236,223,0.65);
+  --c-accent:       #E0B080;              /* sand */
+  --c-topbar:       #062E2E;
+  --c-input:        rgba(244,236,223,0.07);
+  --c-input-border: rgba(244,236,223,0.18);
+  --c-teal:         #5AC4C4;              /* teal-400 — info reads on teal ground */
+  --c-success:      #8FD8AC;
+}
+.theme-ink {
+  --c-bg:           #141210;              /* ink backstage */
+  --c-bg-card:      #2A2622;
+  --c-bg-section:   rgba(244,236,223,0.05);
+  --c-border:       rgba(244,236,223,0.12);
+  --c-border-mid:   rgba(244,236,223,0.16);
+  --c-border-str:   rgba(244,236,223,0.26);
+  --c-text:         #F4ECDF;              /* bone */
+  --c-text-muted:   #C4BBAE;              /* ink-300 */
+  --c-text-faint:   rgba(244,236,223,0.6);
+  --c-accent:       #E0B080;              /* sand */
+  --c-topbar:       #0C0B0A;
+  --c-input:        rgba(244,236,223,0.07);
+  --c-input-border: rgba(244,236,223,0.18);
+  --c-teal:         #2FAEAE;              /* teal-500 — reads on ink */
+  --c-success:      #5BBF87;
 }
 .dark {
   --c-bg:           #3A0808;              /* oxblood night */
@@ -189,6 +280,8 @@
   --c-topbar:       #2E0606;
   --c-input:        rgba(244,236,223,0.07);
   --c-input-border: rgba(244,236,223,0.18);
+  --c-teal:         #2FAEAE;              /* teal-500 — reads on oxblood night */
+  --c-success:      #5BBF87;
 }
 
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */
@@ -219,7 +312,7 @@
 .toast-slide { animation: slide-in-right 0.3s ease-out; }
 
 @keyframes rank-update {
-  0%   { background: rgba(42,138,138,0.15); }
+  0%   { background: rgba(16,128,128,0.15); }
   100% { background: transparent; }
 }
 .rank-flash { animation: rank-update 1s ease-out; }

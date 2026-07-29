@@ -46,7 +46,7 @@ export function KaichiPanel({ canEdit = false }: { canEdit?: boolean }) {
     <div>
       <div style={{ display:"flex", gap:8, marginBottom:16, alignItems:"center" }}>
         <Select value={filterTeam} onValueChange={(v) => setFilterTeam(v ?? "")}>
-          <SelectTrigger style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)", maxWidth:180, height:32 }}>
+          <SelectTrigger style={{ backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)", maxWidth:180, height:32 }}>
             <SelectValue placeholder="Filtr — Tým" />
           </SelectTrigger>
           <SelectContent>
@@ -59,17 +59,17 @@ export function KaichiPanel({ canEdit = false }: { canEdit?: boolean }) {
       <div style={{ overflowX:"auto" }}>
         <Table>
           <TableHeader>
-            <TableRow style={{ borderColor:"#a0263330" }}>
+            <TableRow style={{ borderColor:"var(--c-border-mid)" }}>
               {["Jméno","Postava","Tým","Úroveň Kaichi", ...(canEdit ? ["Změnit"] : [])].map(h => (
-                <TableHead key={h} style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.75rem", letterSpacing:"0.05em" }}>{h}</TableHead>
+                <TableHead key={h} style={{ color:"var(--c-text-muted)", fontSize:"0.75rem", letterSpacing:"0.05em" }}>{h}</TableHead>
               ))}
             </TableRow>
           </TableHeader>
           <TableBody>
             {students.map(c => (
-              <TableRow key={c.id} style={{ borderColor:"rgba(107,15,26,0.08)" }}>
-                <TableCell style={{ color:"#1a0a0a", fontWeight:600 }}>{c.name}</TableCell>
-                <TableCell style={{ color:"rgba(107,15,26,0.45)", fontStyle:"italic" }}>{c.nickname ?? "—"}</TableCell>
+              <TableRow key={c.id} style={{ borderColor:"var(--c-border)" }}>
+                <TableCell style={{ color:"var(--c-text)", fontWeight:600 }}>{c.name}</TableCell>
+                <TableCell style={{ color:"var(--c-text-muted)", fontStyle:"italic" }}>{c.nickname ?? "—"}</TableCell>
                 <TableCell>
                   <span style={{ display:"flex", alignItems:"center", gap:6 }}>
                     <TeamDot color={TEAMS.find(t=>t.id===c.teamId)?.color??"#888"} teamId={c.teamId} />
@@ -85,9 +85,9 @@ export function KaichiPanel({ canEdit = false }: { canEdit?: boolean }) {
                     >
                       <SelectTrigger style={{
                         height:30, fontSize:"0.8rem", width:100,
-                        backgroundColor: "rgba(107,15,26,0.04)",
-                        border:"1px solid rgba(107,15,26,0.18)",
-                        color:"#1a0a0a",
+                        backgroundColor: "var(--c-bg-section)",
+                        border:"1px solid var(--c-border-mid)",
+                        color:"var(--c-text)",
                       }}>
                         <SelectValue />
                       </SelectTrigger>
@@ -108,35 +108,35 @@ export function KaichiPanel({ canEdit = false }: { canEdit?: boolean }) {
       </div>
 
       <AlertDialog open={!!pending} onOpenChange={v => !v && setPending(null)}>
-        <AlertDialogContent style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+        <AlertDialogContent style={{ backgroundColor:"var(--c-bg-card)", border:"1px solid var(--c-border-mid)" }}>
           <AlertDialogHeader>
-            <AlertDialogTitle style={{ color:"#1a0a0a" }}>
+            <AlertDialogTitle style={{ color:"var(--c-text)" }}>
               {isPromotion ? "Povýšit Kaichi" : "Snížit Kaichi"}
             </AlertDialogTitle>
-            <AlertDialogDescription style={{ color:"#6b0f1a", fontSize:"0.9rem", lineHeight:1.6 }}>
+            <AlertDialogDescription style={{ color:"var(--c-accent)", fontSize:"0.9rem", lineHeight:1.6 }}>
               Změnit <strong>{pendingChar?.name}</strong>:{" "}
               Kaichi <strong style={{ color:"#d4a017" }}>
                 {pendingChar?.kaichiLevel === 0 ? "0" : romanNumeral(pendingChar?.kaichiLevel ?? 0)}
               </strong>
               {" → "}
-              <strong style={{ color: isPromotion ? "#2a8a8a" : "#e05252" }}>
+              <strong style={{ color: isPromotion ? "var(--c-teal)" : "var(--destructive)" }}>
                 {pending?.level === 0 ? "0" : romanNumeral(pending?.level ?? 0)}
               </strong>
               {!isPromotion && (
-                <><br /><span style={{ fontSize:"0.8rem", color:"rgba(107,15,26,0.5)" }}>
+                <><br /><span style={{ fontSize:"0.8rem", color:"var(--c-text-muted)" }}>
                   Snížení kaichi odebere přístup k utajeným informacím.
                 </span></>
               )}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel style={{ borderColor:"rgba(107,15,26,0.2)", color:"#6b0f1a" }}>Zrušit</AlertDialogCancel>
+            <AlertDialogCancel style={{ borderColor:"var(--c-border-mid)", color:"var(--c-accent)" }}>Zrušit</AlertDialogCancel>
             <AlertDialogAction
               onClick={confirm}
               style={{
-                backgroundColor: isPromotion ? "#2a8a8a22" : "#e0525222",
-                color: isPromotion ? "#2a8a8a" : "#e05252",
-                border: `1px solid ${isPromotion ? "#2a8a8a60" : "#e0525260"}`,
+                backgroundColor: isPromotion ? "color-mix(in srgb, var(--c-teal) 13%, transparent)" : "color-mix(in srgb, var(--destructive) 13%, transparent)",
+                color: isPromotion ? "var(--c-teal)" : "var(--destructive)",
+                border: `1px solid ${isPromotion ? "color-mix(in srgb, var(--c-teal) 38%, transparent)" : "color-mix(in srgb, var(--destructive) 38%, transparent)"}`,
               }}>
               Potvrdit
             </AlertDialogAction>

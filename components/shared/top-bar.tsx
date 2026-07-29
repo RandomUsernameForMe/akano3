@@ -18,9 +18,9 @@ function BroadcastButton() {
           style={{
             display:"flex", alignItems:"center", gap:6,
             padding:"6px 12px", borderRadius:6,
-            backgroundColor: broadcastActive ? "#c0392b" : "transparent",
-            border: `1px solid ${broadcastActive ? "#c0392b" : "rgba(224,176,128,0.45)"}`,
-            color: broadcastActive ? "#fff" : "var(--sand-400)",
+            backgroundColor: broadcastActive ? "var(--destructive)" : "transparent",
+            border: `1px solid ${broadcastActive ? "var(--destructive)" : "rgba(224,176,128,0.45)"}`,
+            color: broadcastActive ? "#F4ECDF" : "var(--sand-400)",
             cursor:"pointer", fontSize:"0.8rem", fontWeight:600,
             transition:"all 0.2s",
           }}
@@ -61,7 +61,7 @@ export function TopBar({ showBroadcast = true }: { showBroadcast?: boolean }) {
           </span>
         </button>
         {alarmState.active && (
-          <span style={{ backgroundColor:"#c0392b33", color:"#e05252", border:"1px solid #c0392b55",
+          <span style={{ backgroundColor:"#A32B2233", color:"#e05252", border:"1px solid #A32B2255",
             padding:"2px 10px", borderRadius:20, fontSize:"0.72rem", fontWeight:700, letterSpacing:"0.04em" }}>
             <IconBellRinging size={11} style={{ display:"inline", marginRight:4 }} />
             ALARM

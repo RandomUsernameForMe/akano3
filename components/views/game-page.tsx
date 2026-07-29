@@ -28,16 +28,19 @@ export function GamePage({ id }: { id: string }) {
   if (!char) return null
   if (char.role === "display") return <DisplayScreen />
 
+  // Per-role DS ground: student/růže = bone paper (root), teacher = teal night, GM = ink backstage
+  const themeClass = char.role === "teacher" ? "theme-teal" : char.role === "gm" ? "theme-ink" : ""
+
   return (
-    <div style={{
-      minHeight:"100vh", color:"#1a0a0a", position:"relative", overflow:"hidden",
-      background:"radial-gradient(ellipse at 65% -5%, #deeee8 0%, #faf7f2 52%)",
+    <div className={themeClass} style={{
+      minHeight:"100vh", color:"var(--c-text)", position:"relative", overflow:"hidden",
+      backgroundColor:"var(--c-bg)",
     }}>
       <div style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0 }}>
         {[8, 22, 78, 92].map(pct => (
           <div key={pct} style={{
             position:"absolute", top:0, bottom:0, left:`${pct}%`,
-            width:1, background:"linear-gradient(to bottom, transparent, rgba(107,15,26,0.06), transparent)",
+            width:1, backgroundColor:"var(--c-border)",
           }} />
         ))}
       </div>

@@ -21,7 +21,7 @@ export function KaichiBadge({ level }: { level: number }) {
 
 export function RoleBadge({ role }: { role: Role }) {
   const map: Record<Role, [string, string]> = {
-    gm:      ["#2a8a8a","GM"],
+    gm:      ["#108080","GM"],
     teacher: ["#5252e0","Učitel"],
     ruze:    ["#e052b4","Růže"],
     student: ["#52b0e0","Student"],
@@ -40,9 +40,9 @@ export function RoleBadge({ role }: { role: Role }) {
 
 export function ActionBadge({ type }: { type: ActionType }) {
   const colors: Record<ActionType, string> = {
-    mission_success:"#2a8a5a", mission_fail:"#c0392b", lesson:"#5252e0",
+    mission_success:"#2F7D4F", mission_fail:"#A32B22", lesson:"#5252e0",
     shidosei:"#d4a017",        informant:"#e07832",    monster:"#a052e0",
-    simulation:"#52b0e0",      qr_quest:"#2a8a8a",     peer_gift:"#e052b4",
+    simulation:"#52b0e0",      qr_quest:"#108080",     peer_gift:"#e052b4",
     correction:"#888",
   }
   const c = colors[type]
@@ -60,7 +60,7 @@ export function ActionBadge({ type }: { type: ActionType }) {
 export function SpecBadge({ spec }: { spec?: Specialization }) {
   if (!spec) return null
   const map: Record<Specialization, [string, string]> = {
-    combat:   ["#e05252","Boj"],
+    combat:   ["#A32B22","Boj"],
     tactical: ["#5268e0","Taktika"],
     support:  ["#52d4b4","Podpora"],
   }

@@ -65,7 +65,7 @@ export function PointAssignmentForm({
   }
 
   const sectionHead = (label: string) => (
-    <p style={{ color:"#6b0f1a", fontSize:"0.72rem", letterSpacing:"0.1em", marginBottom:6, marginTop:16 }}>
+    <p style={{ color:"var(--c-accent)", fontSize:"0.72rem", letterSpacing:"0.1em", marginBottom:6, marginTop:16 }}>
       {label}
     </p>
   )
@@ -82,7 +82,7 @@ export function PointAssignmentForm({
           {(["student","team","unit","circle"] as const).map(t => (
             <div key={t} style={{ display:"flex", alignItems:"center", gap:6 }}>
               <RadioGroupItem value={t} id={`tt-${t}`} />
-              <Label htmlFor={`tt-${t}`} style={{ color:"#1a0a0a", cursor:"pointer", fontSize:"0.85rem" }}>
+              <Label htmlFor={`tt-${t}`} style={{ color:"var(--c-text)", cursor:"pointer", fontSize:"0.85rem" }}>
                 {t==="student" ? "Student" : t==="team" ? "Tým" : t==="unit" ? "Jednotka" : "Kruh"}
               </Label>
             </div>
@@ -90,7 +90,7 @@ export function PointAssignmentForm({
         </RadioGroup>
 
         <Select value={targetId} onValueChange={(v) => setTargetId(v ?? "")}>
-          <SelectTrigger style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+          <SelectTrigger style={{ backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }}>
             <SelectValue placeholder="Vyber cíl…">
               {targetId ? (targetOptions.find(o => o.id === targetId)?.label ?? targetId) : undefined}
             </SelectValue>
@@ -103,8 +103,8 @@ export function PointAssignmentForm({
         </Select>
 
         {targetId && (
-          <p style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.75rem", marginTop:4 }}>
-            <IconChevronRight size={11} style={{display:"inline"}} /> Každý dostane {amount > 0 ? "+" : ""}{amount} b.: <strong style={{color:"#6b0f1a"}}>{resolvedRecipients}</strong>
+          <p style={{ color:"var(--c-text-muted)", fontSize:"0.75rem", marginTop:4 }}>
+            <IconChevronRight size={11} style={{display:"inline"}} /> Každý dostane {amount > 0 ? "+" : ""}{amount} b.: <strong style={{color:"var(--c-accent)"}}>{resolvedRecipients}</strong>
           </p>
         )}
 
@@ -113,7 +113,7 @@ export function PointAssignmentForm({
           setActionType(v as ActionType)
           setAmount(ACTION_DEFAULT_PTS[v as ActionType] || 10)
         }}>
-          <SelectTrigger style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+          <SelectTrigger style={{ backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }}>
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -127,7 +127,7 @@ export function PointAssignmentForm({
           value={amount}
           onChange={e => setAmount(Number(e.target.value))}
           min={canCorrect ? undefined : 1}
-          style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}
+          style={{ backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }}
         />
 
         {sectionHead("POZNÁMKA (nepovinné)")}
@@ -136,32 +136,32 @@ export function PointAssignmentForm({
           onChange={e => setNote(e.target.value)}
           placeholder="Stručný popis…"
           rows={2}
-          style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)", resize:"none" }}
+          style={{ backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)", resize:"none" }}
         />
 
         <Button
           onClick={() => setConfirm(true)}
           disabled={!targetId}
-          style={{ marginTop:20, backgroundColor:"#2a8a8a", color:"#fff", fontWeight:700 }}
+          style={{ marginTop:20, backgroundColor:"var(--c-teal)", color:"#F4ECDF", fontWeight:700 }}
         >
           <IconCheck size={16} style={{marginRight:6}} /> Zadat body
         </Button>
       </div>
 
       <AlertDialog open={confirm} onOpenChange={setConfirm}>
-        <AlertDialogContent style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+        <AlertDialogContent style={{ backgroundColor:"var(--c-bg-card)", border:"1px solid var(--c-border-mid)" }}>
           <AlertDialogHeader>
-            <AlertDialogTitle style={{ color:"#1a0a0a" }}>Potvrdit zadání bodů</AlertDialogTitle>
-            <AlertDialogDescription style={{ color:"#6b0f1a" }}>
-              <strong style={{color:"#2a8a8a", fontSize:"1.1rem"}}>{amount > 0 ? "+" : ""}{amount} bodů</strong>
+            <AlertDialogTitle style={{ color:"var(--c-text)" }}>Potvrdit zadání bodů</AlertDialogTitle>
+            <AlertDialogDescription style={{ color:"var(--c-accent)" }}>
+              <strong style={{color:"var(--c-teal)", fontSize:"1.1rem"}}>{amount > 0 ? "+" : ""}{amount} bodů</strong>
               {" → každému: "}<strong>{resolvedRecipients}</strong>
               <br />{ACTION_LABELS[actionType]}
-              {note && <><br /><em style={{color:"rgba(107,15,26,0.45)"}}>„{note}"</em></>}
+              {note && <><br /><em style={{color:"var(--c-text-muted)"}}>„{note}"</em></>}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel style={{ borderColor:"rgba(107,15,26,0.2)", color:"#6b0f1a" }}>Zpět</AlertDialogCancel>
-            <AlertDialogAction onClick={handleSubmit} style={{ backgroundColor:"#2a8a8a" }}>Potvrdit</AlertDialogAction>
+            <AlertDialogCancel style={{ borderColor:"var(--c-border-mid)", color:"var(--c-accent)" }}>Zpět</AlertDialogCancel>
+            <AlertDialogAction onClick={handleSubmit} style={{ backgroundColor:"var(--c-teal)" }}>Potvrdit</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

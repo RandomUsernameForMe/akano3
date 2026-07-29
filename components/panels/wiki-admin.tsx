@@ -133,7 +133,7 @@ export function WikiAdminPanel() {
         </p>
         {!creating && !editing && (
           <Button onClick={startCreate} style={{
-            backgroundColor: "#2a8a8a", color: "#fff", fontSize: "0.875rem",
+            backgroundColor: "var(--c-teal)", color: "#F4ECDF", fontSize: "0.875rem",
             display: "flex", alignItems: "center", gap: 6,
           }}>
             <IconPlus size={15} /> Nový článek
@@ -213,11 +213,11 @@ export function WikiAdminPanel() {
             />
           </div>
           {error && (
-            <p style={{ color: "#e05252", fontSize: "0.85rem", marginBottom: 12 }}>{error}</p>
+            <p style={{ color: "var(--destructive)", fontSize: "0.85rem", marginBottom: 12 }}>{error}</p>
           )}
           <div style={{ display: "flex", gap: 10 }}>
             <Button onClick={saveForm} disabled={saving} style={{
-              backgroundColor: "#2a8a8a", color: "#fff",
+              backgroundColor: "var(--c-teal)", color: "#F4ECDF",
               display: "flex", alignItems: "center", gap: 6,
             }}>
               <IconCheck size={15} /> {saving ? "Ukládám…" : "Uložit"}
@@ -282,14 +282,14 @@ export function WikiAdminPanel() {
                     <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
                       <button onClick={() => startEdit(a)} style={{
                         all: "unset", cursor: "pointer", padding: "6px 10px", borderRadius: 6,
-                        backgroundColor: "rgba(42,138,138,0.12)", color: "#2a8a8a",
+                        backgroundColor: "rgba(16,128,128,0.12)", color: "var(--c-teal)",
                         display: "flex", alignItems: "center",
                       }}>
                         <IconEdit size={15} />
                       </button>
                       <button onClick={() => setDeleteTarget(a)} style={{
                         all: "unset", cursor: "pointer", padding: "6px 10px", borderRadius: 6,
-                        backgroundColor: "rgba(224,82,82,0.1)", color: "#e05252",
+                        backgroundColor: "color-mix(in srgb, var(--destructive) 10%, transparent)", color: "var(--destructive)",
                         display: "flex", alignItems: "center",
                       }}>
                         <IconTrash size={15} />
@@ -313,7 +313,7 @@ export function WikiAdminPanel() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel style={{ borderColor: "var(--c-border)", color: "var(--c-text-muted)" }}>Zpět</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmDelete} style={{ backgroundColor: "#e05252", color: "#fff" }}>
+            <AlertDialogAction onClick={confirmDelete} style={{ backgroundColor: "var(--destructive)", color: "#F4ECDF" }}>
               Smazat
             </AlertDialogAction>
           </AlertDialogFooter>

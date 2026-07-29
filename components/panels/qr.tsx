@@ -32,30 +32,30 @@ export function QRPanel() {
   }
 
   const statusColor = (s: QRCode["status"]) =>
-    s==="active" ? "#2a8a5a" : s==="used" ? "#c8a96e80" : "#e05252"
+    s==="active" ? "var(--c-success)" : s==="used" ? "#E0B08080" : "var(--destructive)"
 
   return (
     <div>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:16 }}>
-        <p style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.8rem" }}>{qrCodes.length} kódů celkem</p>
-        <Button onClick={() => setShowForm(v => !v)} style={{ backgroundColor:"#2a8a8a", color:"#fff", fontSize:"0.8rem" }}>
+        <p style={{ color:"var(--c-text-muted)", fontSize:"0.8rem" }}>{qrCodes.length} kódů celkem</p>
+        <Button onClick={() => setShowForm(v => !v)} style={{ backgroundColor:"var(--c-teal)", color:"#F4ECDF", fontSize:"0.8rem" }}>
           <IconPlus size={14} style={{marginRight:6}} /> Generovat QR
         </Button>
       </div>
 
       {showForm && (
-        <div style={{ backgroundColor:"rgba(107,15,26,0.03)", border:"1px solid rgba(107,15,26,0.1)",
+        <div style={{ backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border)",
           borderRadius:10, padding:20, marginBottom:20 }}>
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
             <div style={{ gridColumn:"1/-1" }}>
-              <Label style={{ color:"#6b0f1a", fontSize:"0.75rem" }}>POPIS / NÁZEV</Label>
+              <Label style={{ color:"var(--c-accent)", fontSize:"0.75rem" }}>POPIS / NÁZEV</Label>
               <Input value={label} onChange={e => setLabel(e.target.value)} placeholder="např. Sklep — průzkum"
-                style={{ marginTop:4, backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }} />
+                style={{ marginTop:4, backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }} />
             </div>
             <div>
-              <Label style={{ color:"#6b0f1a", fontSize:"0.75rem" }}>TYP CÍLE</Label>
+              <Label style={{ color:"var(--c-accent)", fontSize:"0.75rem" }}>TYP CÍLE</Label>
               <Select value={targetType} onValueChange={v => { setTargetType(v as "team"|"unit"|"circle"); setTargetId("") }}>
-                <SelectTrigger style={{ marginTop:4, backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+                <SelectTrigger style={{ marginTop:4, backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }}>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -66,9 +66,9 @@ export function QRPanel() {
               </Select>
             </div>
             <div>
-              <Label style={{ color:"#6b0f1a", fontSize:"0.75rem" }}>CÍL</Label>
+              <Label style={{ color:"var(--c-accent)", fontSize:"0.75rem" }}>CÍL</Label>
               <Select value={targetId} onValueChange={(v) => setTargetId(v ?? "")}>
-                <SelectTrigger style={{ marginTop:4, backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+                <SelectTrigger style={{ marginTop:4, backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }}>
                   <SelectValue placeholder="Vyber…" />
                 </SelectTrigger>
                 <SelectContent>
@@ -77,14 +77,14 @@ export function QRPanel() {
               </Select>
             </div>
             <div>
-              <Label style={{ color:"#6b0f1a", fontSize:"0.75rem" }}>BODY</Label>
+              <Label style={{ color:"var(--c-accent)", fontSize:"0.75rem" }}>BODY</Label>
               <Input type="number" value={points} onChange={e => setPoints(Number(e.target.value))} min={1}
-                style={{ marginTop:4, backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }} />
+                style={{ marginTop:4, backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }} />
             </div>
             <div>
-              <Label style={{ color:"#6b0f1a", fontSize:"0.75rem" }}>PLATNOST</Label>
+              <Label style={{ color:"var(--c-accent)", fontSize:"0.75rem" }}>PLATNOST</Label>
               <Select value={validity} onValueChange={v => setValidity(v as "once"|"timed"|"repeat")}>
-                <SelectTrigger style={{ marginTop:4, backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }}>
+                <SelectTrigger style={{ marginTop:4, backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }}>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -97,11 +97,11 @@ export function QRPanel() {
           </div>
           <div style={{ display:"flex", gap:8, marginTop:12 }}>
             <Button onClick={handleGenerate} disabled={!label || !targetId}
-              style={{ backgroundColor:"#2a8a8a", color:"#fff" }}>
+              style={{ backgroundColor:"var(--c-teal)", color:"#F4ECDF" }}>
               <IconQrcode size={14} style={{marginRight:6}} /> Vygenerovat
             </Button>
             <Button variant="outline" onClick={() => setShowForm(false)}
-              style={{ borderColor:"rgba(107,15,26,0.2)", color:"#6b0f1a" }}>Zrušit</Button>
+              style={{ borderColor:"var(--c-border-mid)", color:"var(--c-accent)" }}>Zrušit</Button>
           </div>
         </div>
       )}
@@ -109,30 +109,30 @@ export function QRPanel() {
       <div style={{ overflowX:"auto" }}>
         <Table>
           <TableHeader>
-            <TableRow style={{ borderColor:"#a0263330" }}>
+            <TableRow style={{ borderColor:"var(--c-border-mid)" }}>
               {["Název","Cíl","Body","Platnost","Naskenováno","Stav","Token"].map(h => (
-                <TableHead key={h} style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.75rem" }}>{h}</TableHead>
+                <TableHead key={h} style={{ color:"var(--c-text-muted)", fontSize:"0.75rem" }}>{h}</TableHead>
               ))}
             </TableRow>
           </TableHeader>
           <TableBody>
             {qrCodes.map(q => (
-              <TableRow key={q.id} style={{ borderColor:"rgba(107,15,26,0.08)" }}>
-                <TableCell style={{ color:"#1a0a0a", fontWeight:600 }}>{q.label}</TableCell>
-                <TableCell style={{ color:"#6b0f1a", fontSize:"0.82rem" }}>
+              <TableRow key={q.id} style={{ borderColor:"var(--c-border)" }}>
+                <TableCell style={{ color:"var(--c-text)", fontWeight:600 }}>{q.label}</TableCell>
+                <TableCell style={{ color:"var(--c-accent)", fontSize:"0.82rem" }}>
                   {getTargetName(q.targetType, q.targetId)}
                 </TableCell>
                 <TableCell style={{ color:"#d4a017", fontFamily:"monospace", fontWeight:700 }}>+{q.points}</TableCell>
-                <TableCell style={{ color:"rgba(107,15,26,0.45)", fontSize:"0.8rem" }}>
+                <TableCell style={{ color:"var(--c-text-muted)", fontSize:"0.8rem" }}>
                   {q.validity === "once" ? "Jednorázový" : q.validity === "timed" ? "Časový" : "Opakovaný"}
                 </TableCell>
-                <TableCell style={{ color:"#6b0f1a", fontFamily:"monospace" }}>{q.timesScanned}×</TableCell>
+                <TableCell style={{ color:"var(--c-accent)", fontFamily:"monospace" }}>{q.timesScanned}×</TableCell>
                 <TableCell>
                   <span style={{ color:statusColor(q.status), fontSize:"0.8rem", fontWeight:600 }}>
                     {q.status === "active" ? "Aktivní" : q.status === "used" ? "Použitý" : "Expirovaný"}
                   </span>
                 </TableCell>
-                <TableCell style={{ color:"rgba(107,15,26,0.3)", fontFamily:"monospace", fontSize:"0.75rem" }}>{q.token}</TableCell>
+                <TableCell style={{ color:"var(--c-text-muted)", fontFamily:"monospace", fontSize:"0.75rem" }}>{q.token}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -40,13 +40,13 @@ export function AlarmPanel() {
               ALARM AKTIVNÍ
             </span>
           </div>
-          <p style={{ color:"#1a0a0a", fontSize:"1rem", marginBottom:16 }}>{alarmState.message || alarmState.type.toUpperCase()}</p>
-          <Button onClick={dismissAlarm} style={{ backgroundColor:"#c0392b", color:"#fff", fontWeight:700, padding:"10px 32px" }}>
+          <p style={{ color:"var(--c-text)", fontSize:"1rem", marginBottom:16 }}>{alarmState.message || alarmState.type.toUpperCase()}</p>
+          <Button onClick={dismissAlarm} style={{ backgroundColor:"#c0392b", color:"#F4ECDF", fontWeight:700, padding:"10px 32px" }}>
             <IconX size={16} style={{marginRight:6}} /> Zrušit alarm
           </Button>
         </div>
       ) : (
-        <p style={{ color:"#2a8a5a", fontSize:"0.85rem", marginBottom:16, display:"flex", alignItems:"center", gap:6 }}>
+        <p style={{ color:"var(--c-success)", fontSize:"0.85rem", marginBottom:16, display:"flex", alignItems:"center", gap:6 }}>
           <IconCircleCheck size={16} /> Žádný alarm není aktivní
         </p>
       )}
@@ -77,24 +77,24 @@ export function AlarmPanel() {
         <div style={{ marginTop:16 }}>
           <Input value={customMsg} onChange={e => { setCustomMsg(e.target.value); setConfirmMsg(e.target.value) }}
             placeholder="Zpráva alarmu…"
-            style={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)" }} />
+            style={{ backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)" }} />
         </div>
       )}
 
       <AlertDialog open={!!confirmType} onOpenChange={v => !v && setConfirmType(null)}>
-        <AlertDialogContent style={{ backgroundColor:"#7d1520", border:"1px solid #c0392b" }}>
+        <AlertDialogContent style={{ backgroundColor:"var(--c-bg-card)", border:"1px solid var(--destructive)" }}>
           <AlertDialogHeader>
-            <AlertDialogTitle style={{ color:"#1a0a0a" }}>Spustit alarm?</AlertDialogTitle>
-            <AlertDialogDescription style={{ color:"#6b0f1a" }}>
-              Alarm <strong style={{ color:"#e05252" }}>{confirmMsg}</strong> se zobrazí na všech obrazovkách.
+            <AlertDialogTitle style={{ color:"var(--c-text)" }}>Spustit alarm?</AlertDialogTitle>
+            <AlertDialogDescription style={{ color:"var(--c-accent)" }}>
+              Alarm <strong style={{ color:"var(--destructive)" }}>{confirmMsg}</strong> se zobrazí na všech obrazovkách.
               <br /><span style={{ fontSize:"0.8rem" }}>Tuto akci uvidí všichni hráči.</span>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel style={{ borderColor:"rgba(107,15,26,0.2)", color:"#6b0f1a" }}>Zpět</AlertDialogCancel>
+            <AlertDialogCancel style={{ borderColor:"var(--c-border-mid)", color:"var(--c-accent)" }}>Zpět</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => { if (confirmType) { triggerAlarm(confirmType, confirmMsg); setConfirmType(null) } }}
-              style={{ backgroundColor:"#c0392b", color:"#fff" }}>
+              style={{ backgroundColor:"var(--destructive)", color:"#F4ECDF" }}>
               Spustit alarm
             </AlertDialogAction>
           </AlertDialogFooter>

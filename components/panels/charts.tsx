@@ -62,7 +62,7 @@ export function ChartsPanel({ singleTeamId }: { singleTeamId?: string }) {
         <p style={{ color:"var(--c-accent)", fontSize:"0.8rem", letterSpacing:"0.08em", marginBottom:16 }}>VÝVOJ BODŮ V ČASE</p>
         <ResponsiveContainer width="100%" height={320}>
           <LineChart data={timeData} margin={{ top: 10, right: 160, bottom: 40, left: 10 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#a0263318" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--c-border)" />
             <XAxis
               dataKey="time"
               tick={{ fill:"var(--c-text-muted)", fontSize:12, fontFamily:"monospace" }}
@@ -79,7 +79,7 @@ export function ChartsPanel({ singleTeamId }: { singleTeamId?: string }) {
               domain={["auto", "auto"]}
             />
             <RechartsTooltip
-              contentStyle={{ backgroundColor:"#fff", border:"1px solid rgba(107,15,26,0.2)", color:"#1a0a0a", fontSize:13 }}
+              contentStyle={{ backgroundColor:"var(--c-bg-card)", border:"1px solid var(--c-border-mid)", color:"var(--c-text)", fontSize:13 }}
             />
             {displayTeams.map(t => (
               <Line key={t.id} type="monotone" dataKey={t.id} name={t.name}

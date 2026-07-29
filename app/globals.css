@@ -373,7 +373,8 @@
 .ruze-slices {
   position:fixed; inset:0; pointer-events:none; z-index:40;
   background: repeating-linear-gradient(0deg, rgba(255,46,136,0.28) 0 2px, transparent 2px 7px);
-  mix-blend-mode: screen;
+  /* no mix-blend-mode: full-viewport blending forces per-frame compositing of
+     the whole page; plain overlay looks near-identical on the dark ground */
   animation: ruze-slices 7s steps(1) infinite;
 }
 /* occasional whole-content skew jolt (applied to inner content, not fixed layers) */
@@ -385,7 +386,11 @@
 }
 .ruze-skew { animation: ruze-skew 9s steps(1) infinite; }
 /* monochrome pink wash — maps EVERY hue (gold, teal, team colors, spec badges)
-   onto the pink family by luminance; black/white stay black/white-ish */
+   onto the pink family by luminance; black/white stay black/white-ish.
+   ponytail: filter over the whole dashboard re-rasterizes on every inner
+   repaint (2s data polling, charts) — the single biggest paint cost of her
+   view. If weak hardware chokes, delete this class; theme tokens are already
+   pink, only data-driven colors (team dots, gold, spec badges) lose the wash */
 .ruze-pinkwash { filter: grayscale(1) sepia(1) saturate(2.2) hue-rotate(-80deg) brightness(1.03); }
 /* code leaking down the screen edges */
 @keyframes code-fall { from { transform:translateY(-50%); } to { transform:translateY(0); } }
@@ -446,6 +451,18 @@
   pointer-events:none; z-index:30; opacity:0; transform:rotate(-10deg);
   animation: rose-ambient 29s linear infinite;
   filter:drop-shadow(0 0 8px rgba(255,46,136,0.4));
+}
+
+/* perf: long log views — only the first ~40 rows run the blip animation;
+   deeper rows keep the fake name statically (blur+text-shadow per row adds up) */
+tr:nth-child(n+41) .mask-blip,
+tr:nth-child(n+41) .mask-blip-rose { animation:none; }
+
+/* accessibility + weak hardware: kill the decorative glitch motion */
+@media (prefers-reduced-motion: reduce) {
+  .ruze-slices, .ruze-skew, .code-rain > pre, .hack-jitter,
+  .mask-blip, .mask-blip-rose, .rose-ambient { animation:none; }
+  .ruze-slices { display:none; }
 }
 
 /* ── Akano3 custom styles ─────────────────────────────────────────────────── */

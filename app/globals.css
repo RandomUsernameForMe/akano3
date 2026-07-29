@@ -353,6 +353,53 @@
 }
 .hack-jitter { animation: hack-jitter 5s steps(1) infinite; }
 
+/* ── Růže heavy glitch layer — torn, leaking, corrupted ── */
+/* chromatic aberration on every heading in her world */
+.theme-ruze h1, .theme-ruze h2, .theme-ruze h3, .theme-ruze .ds-label {
+  text-shadow: 2px 0 rgba(255,46,136,0.55), -2px 0 rgba(47,174,174,0.45);
+}
+/* periodic horizontal slice-glitch sweeping the screen */
+@keyframes ruze-slices {
+  0%, 88%, 100% { clip-path: inset(0 0 100% 0); opacity:0; transform:none; }
+  89% { clip-path: inset(12% 0 78% 0); opacity:1; transform:translateX(-6px); }
+  91% { clip-path: inset(64% 0 22% 0); opacity:1; transform:translateX(5px); }
+  93% { clip-path: inset(38% 0 52% 0); opacity:1; transform:translateX(-3px); }
+  95% { clip-path: inset(80% 0 6% 0);  opacity:1; transform:translateX(7px); }
+  96% { opacity:0; }
+}
+.ruze-slices {
+  position:fixed; inset:0; pointer-events:none; z-index:40;
+  background: repeating-linear-gradient(0deg, rgba(255,46,136,0.28) 0 2px, transparent 2px 7px);
+  mix-blend-mode: screen;
+  animation: ruze-slices 7s steps(1) infinite;
+}
+/* occasional whole-content skew jolt (applied to inner content, not fixed layers) */
+@keyframes ruze-skew {
+  0%, 93%, 100% { transform:none; }
+  94% { transform: skewX(1.4deg) translateX(2px); }
+  95% { transform: skewX(-0.9deg) translateX(-3px); }
+  96% { transform:none; }
+}
+.ruze-skew { animation: ruze-skew 9s steps(1) infinite; }
+/* code leaking down the screen edges */
+@keyframes code-fall { from { transform:translateY(-50%); } to { transform:translateY(0); } }
+.code-rain {
+  position:fixed; top:0; bottom:0; overflow:hidden; pointer-events:none; z-index:0;
+  font-family:var(--font-mono); font-size:10px; line-height:1.5;
+  color:var(--pink-hot); opacity:0.16; white-space:pre;
+}
+.code-rain > pre { margin:0; animation: code-fall 28s linear infinite; }
+/* jagged tear strip */
+.torn-strip {
+  height:12px; background:var(--pink-hot); opacity:0.8; pointer-events:none;
+  clip-path: polygon(0 40%, 4% 10%, 9% 55%, 15% 20%, 22% 70%, 28% 15%, 35% 60%, 41% 25%, 48% 75%, 55% 10%, 62% 55%, 68% 30%, 75% 65%, 82% 12%, 88% 58%, 94% 28%, 100% 50%, 100% 100%, 0 100%);
+}
+/* ponytail: inline-style attribute hook — every DS print card in her view gets
+   torn corners; brittle if the shadow token rename ever happens */
+.theme-ruze [style*="shadow-print-sm"] {
+  clip-path: polygon(0 2%, 3% 0, 100% 0, 100% 91%, 97% 96%, 91% 92%, 85% 100%, 40% 98%, 12% 100%, 0 95%);
+}
+
 /* Log masquerade: ruze rows show a fake teacher, occasionally glitching pink.
    Two stacked spans toggled by long-cycle keyframes — pure CSS, no timers. */
 @keyframes mask-fake { 0%, 91%, 99%, 100% { opacity:1; } 92%, 98% { opacity:0; } }

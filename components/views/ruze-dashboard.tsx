@@ -112,7 +112,19 @@ function RuzeHackSheet() {
   )
 }
 
+const FAKE_CODE = `> ssh root@akano.school ......... OK
+> priv_esc --exploit CVE-∞ ....... OK
+while(true){ pts = steal(sys)
+  if(caught) never(); }
+0xFF2E88 >> /dev/school
+inject --target STU_* --pts ±5
+auth bypass ..................... OK
+grant ruze WRITE ................ OK
+rm -rf /oxblood && paint --pink
+`
+
 export function RuzeDashboard() {
+  const codeText = Array.from({ length: 8 }, () => FAKE_CODE).join("\n")
   return (
     <div className="hack-scanlines" style={{ position:"relative" }}>
       {/* rose watermark bleeding through the whole page — vandalized system */}
@@ -122,7 +134,13 @@ export function RuzeDashboard() {
         backgroundPosition:"center 30%", backgroundSize:"min(80vw, 700px)",
         opacity:0.07, transform:"rotate(8deg)",
       }} />
-      <div style={{ position:"relative", zIndex:1 }}>
+      {/* code leaking down both edges */}
+      <div className="code-rain" style={{ left:4 }}><pre>{codeText}</pre></div>
+      <div className="code-rain" style={{ right:4, textAlign:"right" }}><pre style={{ animationDelay:"-9s" }}>{codeText}</pre></div>
+      {/* slice glitch sweeping the whole screen */}
+      <div className="ruze-slices" />
+      <div className="torn-strip" />
+      <div className="ruze-skew" style={{ position:"relative", zIndex:1 }}>
         <div style={{
           maxWidth:1400, margin:"0 auto", padding:"16px 16px 0",
           display:"flex", justifyContent:"space-between", alignItems:"center",

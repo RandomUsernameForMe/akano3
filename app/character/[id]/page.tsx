@@ -27,8 +27,11 @@ function CharacterRouter() {
   const role = currentUser.role
   if (role === "display") return <DisplayScreen />
 
+  // Per-role DS ground: student/růže = bone paper (root), teacher = teal night, GM = ink backstage
+  const themeClass = role === "teacher" ? "theme-teal" : role === "gm" ? "theme-ink" : ""
+
   return (
-    <div style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
+    <div className={themeClass} style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
       <AlarmBannerStrip />
       <TopBar showBroadcast={["gm","teacher","ruze"].includes(role)} />
       {role === "student" ? (

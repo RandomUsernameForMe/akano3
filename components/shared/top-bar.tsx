@@ -37,10 +37,10 @@ function BroadcastButton() {
   )
 }
 
-export function TopBar({ showBroadcast = true }: { showBroadcast?: boolean }) {
+export function TopBar({ showBroadcast = true, ruzeHidden = false }: { showBroadcast?: boolean; ruzeHidden?: boolean }) {
   const { currentUser, logout, alarmState } = useGame()
   const { theme, toggle } = useTheme()
-  const hacked = currentUser?.role === "ruze"   // Růže vandalized the brand band
+  const hacked = currentUser?.role === "ruze" && !ruzeHidden   // Růže vandalized the brand band (unless she's hiding)
   return (
     <div style={{
       display:"flex", alignItems:"center", justifyContent:"space-between",

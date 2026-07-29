@@ -123,8 +123,30 @@ grant ruze WRITE ................ OK
 rm -rf /oxblood && paint --pink
 `
 
-export function RuzeDashboard() {
+export function RuzeDashboard({ hidden, onToggle }: { hidden: boolean; onToggle: () => void }) {
   const codeText = Array.from({ length: 8 }, () => FAKE_CODE).join("\n")
+
+  if (hidden) {
+    // panic mode — plain student profile, only an unremarkable chip leads back
+    return (
+      <div>
+        <div style={{
+          maxWidth:1400, margin:"0 auto", padding:"16px 16px 0",
+          display:"flex", justifyContent:"flex-end",
+        }}>
+          <button onClick={onToggle} style={{
+            fontFamily:"var(--font-mono)", fontSize:"0.68rem", fontWeight:600,
+            backgroundColor:"var(--c-bg-section)", color:"var(--c-text-faint)",
+            border:"1px solid var(--c-border)", padding:"3px 9px", borderRadius:2, cursor:"pointer",
+          }}>
+            ACCESS: STANDARD
+          </button>
+        </div>
+        <StudentDashboard />
+      </div>
+    )
+  }
+
   return (
     <div className="hack-scanlines" style={{ position:"relative" }}>
       {/* rose watermark bleeding through the whole page — vandalized system */}
@@ -149,12 +171,13 @@ export function RuzeDashboard() {
             style={{ fontFamily:"var(--font-display)", fontWeight:800, fontSize:"1.1rem", letterSpacing:"0.06em", color:"var(--pink-hot)" }}>
             RŮŽE // STUDENT+
           </span>
-          <span style={{
+          <button onClick={onToggle} style={{
             fontFamily:"var(--font-mono)", fontSize:"0.68rem", fontWeight:700,
             backgroundColor:"var(--pink-hot)", color:"#12040C", padding:"3px 9px", borderRadius:2,
+            border:"none", cursor:"pointer",
           }}>
             ACCESS: OVERRIDE
-          </span>
+          </button>
         </div>
         <StudentDashboard />
       </div>

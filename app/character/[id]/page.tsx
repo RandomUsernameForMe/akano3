@@ -1,6 +1,6 @@
 "use client"
 
-import React, { use, useEffect } from "react"
+import React, { use, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { GameProvider, useGame } from "@/lib/game-context"
@@ -23,12 +23,23 @@ function CharacterRouter() {
     if (currentUser === null) router.replace("/")
   }, [currentUser, router])
 
+  // Růže panic-hide: chip toggles her special access off, the page then renders
+  // as a plain student profile. Persisted so a refresh can't blow her cover.
+  const [ruzeHidden, setRuzeHidden] = useState(false)
+  useEffect(() => {
+    setRuzeHidden(localStorage.getItem("ruze-hidden") === "1")
+  }, [])
+  const toggleRuzeHidden = () => setRuzeHidden(v => {
+    localStorage.setItem("ruze-hidden", v ? "0" : "1")
+    return !v
+  })
+
   // Per-role DS ground: student = bone paper (root), růže = hacked terminal, teacher = teal night, GM = ink backstage
   const role = currentUser?.role
   const themeClass =
     role === "teacher" ? "theme-teal" :
     role === "gm"      ? "theme-ink"  :
-    role === "ruze"    ? "theme-ruze" : ""
+    role === "ruze"    ? (ruzeHidden ? "" : "theme-ruze") : ""
 
   // Mirror the theme onto <body>: sheets/selects/dialogs render in portals
   // outside this tree and would otherwise resolve theme vars against :root.
@@ -44,10 +55,12 @@ function CharacterRouter() {
   return (
     <div className={themeClass} style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
       <AlarmBannerStrip />
-      <TopBar showBroadcast={["gm","teacher","ruze"].includes(role ?? "")} />
+      <TopBar showBroadcast={["gm","teacher","ruze"].includes(role ?? "")} ruzeHidden={ruzeHidden} />
       {role === "student" || role === "ruze" ? (
         <>
-          {role === "student" ? <StudentDashboard /> : <RuzeDashboard />}
+          {role === "student"
+            ? <StudentDashboard />
+            : <RuzeDashboard hidden={ruzeHidden} onToggle={toggleRuzeHidden} />}
           <ToastContainer />
         </>
       ) : (

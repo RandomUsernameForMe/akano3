@@ -103,15 +103,8 @@ skončila 2100 → **43 let**.
 ustavení Shin Junkinu. „Před dvaceti lety" u nulté generace nejspíš mířilo na
 ustavení státu.
 
-**K10 — Akano1 vs Akano2.** Timeline dává Akano1 2133 a Akano2 2134, rok po
-sobě — což zdánlivě neunese „Akano1 základka, Akano2 druhý stupeň, později".
-→ Návrh: **rozpor to není, jen chybí věta.** Akano1 se rozpadlo prakticky
-okamžitě — tentýž dokument říká, že do něj polovina dětí ani nenastoupila,
-protože je monstra odlovila mezi přihláškou a přijetím. Akano2 v 2134 je
-restart, ne navazující stupeň. Data sedí na věk: Akano1 2133 (děti 5–9 let,
-základka), Akano2 2134–2138 (6–14, druhý stupeň, masakr na konci), Akano3 od
-2139 (11–15), teď 2143 (15–19). Do knihovny napsat explicitně, že Akano1
-netrvalo ani rok.
+**K10 — Akano1 vs Akano2.** Viz *Zdroje vyžadující revizi* níže. Rozpor je
+skutečný a řeší se přepsáním zdroje, ne výkladem.
 
 **K11 — Názvy původů.** *Geopolitika* a designák: Místní / Oceánský /
 Pevninský. Tab *Původ (WIP)* má nadpisy Místní / Vedlejší / Cizí, ale ve
@@ -139,6 +132,43 @@ pouze poslední 3–4 znaky, protože speciální vlastnost, nebezpečnost a
 identifikační znak **je nutné** vědět." Věta si odporuje sama se sebou.
 → Návrh: čte se „…protože stačí vědět speciální vlastnost, nebezpečnost a
 identifikační znak". Příklady v dokumentu tomu odpovídají (N4O, TN3C, N7K).
+
+## Zdroje vyžadující revizi
+
+Místa, kde zdrojový dokument nese neaktuální design. Knihovna z nich **nesmí**
+čerpat, dokud nebudou přepsané.
+
+### Svět Akano3 › Režim › Upravené děti (DONE) — sekce „Zajímavé odpovězené otázky"
+
+**Status: POTŘEBUJE REVIZI.** Tab je označen DONE, ale jeho závěrečná část
+popisuje překonaný design.
+
+Neplatí:
+
+- „Protože všechny děti v projektu Akano byly víceméně narozený podobně,
+  znamená to že první Akano mělo být spíše základka, opravdu na přípravu na
+  nový život od mládí. Akano2 bylo pořád na stejnou generaci ale později, tedy
+  druhý stupeň, a Akano3 je teď střední."
+- „Akano a Akano2 byly akademie na budování nové generace lidí" ve smyslu
+  jedné generace vedené od dětství.
+- „Proč končí ročník různě staré postavy? … všechny postavy jsou ze stejného
+  období zhruba 3 let před zhruba 18 lety" — datace nesedí na „narozeny
+  2124–2128" z tabu *Historie 100 let*.
+
+**Kánon:** **Všechna Akana byly střední školy.** Tři po sobě jdoucí kohorty,
+ne jedna generace provedená stupni. Timeline pak sedí bez úprav: Akano1 2133,
+Akano2 2134–2138 (masakr), Akano3 od 2139, dnes 2143.
+
+**Otevřená otázka, kterou to odemyká:** pokud byla Akano1 střední škola v roce
+2133, její studenti se narodili kolem 2115–2119 — tedy **před** vlnou
+transmutace, kterou *Upravené děti* datují „před zhruba dvaceti lety" (≈2123).
+Buď byla vlna delší a starší, než tab uvádí, nebo Akano1 a Akano2 nebyly
+školami pro děti šepotu a jejich zánik pod útoky monster měl jinou příčinu.
+Tohle knihovna potřebuje vědět, než napíše článek *Akano1 a Akano2* i článek
+*Akano3: projekt* — celý „proč Akano existuje" na tom stojí.
+
+Do vyřešení: fáze 2 píše o Akanu3 bez odkazu na Akano1/2 a bez datace vlny
+transmutace. Článek *Akano1 a Akano2* se odkládá do fáze 3.
 
 ## Model obsahu
 

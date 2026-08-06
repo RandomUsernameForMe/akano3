@@ -69,7 +69,20 @@ její formulace „Cukujomi napadl Zemi a prohrál" se v knihovně objeví pouze
 citovaná doktrína, nikdy jako vypravěčský fakt.
 
 **K4 — Kaichi 0 neexistuje.** Nejnižší úroveň je I, nároková v 10 letech.
-`lib/data.ts` má devět postav s `kaichiLevel: 0` — chyba, přepsat na II–IV.
+
+Stav v `lib/data.ts`: devět postav má `kaichiLevel: 0`, ale jsou to GM,
+šest učitelů a dvě obrazovky — **ne studenti**. Opravit je potřeba takto:
+
+- **Učitelé** (TCH1–TCH6) → **V–VII**. Jsou to dospělí ve školských a
+  velitelských strukturách, kaichi 0 je u nich nesmysl.
+- **GM a obrazovky** (GM1, DSP1, DSP2) → nediegetické, kaichi je u nich
+  bezvýznamné. GM čte knihovnu přes admin API, které gating obchází.
+  Ponechat 0.
+- **Studenti s kaichi I** (S012 Ren, S024 Haruka) → **II nebo III**. Kaichi II
+  je nároková v 15 letech a všem studentům je 15–19. Kaichi I je u nich
+  nemožná.
+- **Studenti s kaichi V** (S007 Ikai, S019 Shiho) → **IV**. Kaichi V se uděluje
+  za dokončení Akademie; student ji mít na začátku nemůže.
 Placeholderová škála (0 Novicové / I–II Učni / III–IV Praktici / V–VI Mistři /
 VII–VIII Velitelé, povyšuje Rada) zaniká celá.
 
@@ -307,10 +320,18 @@ Přidávat parser tabulek kvůli dvěma místům se nevyplatí.
 
 | Změna | Soubor | Rozsah |
 |---|---|---|
-| Blok `:::reviseN` | `components/shared/wiki-renderer.tsx` | ~40 ř. |
-| Knihovna do dashboardů učitel / Růže / dospělí | příslušné views | ~10 ř. na view |
-| `kaichiLevel: 0` → II–IV u 9 postav | `lib/data.ts` | 9 ř. |
+| Parser do vlastního modulu + blok `:::reviseN` | `lib/wiki-blocks.ts` (nový), `components/shared/wiki-renderer.tsx` | ~90 ř. |
+| Knihovna do učitelského dashboardu | `components/panels/wiki.tsx` (nový), `components/views/teacher-dashboard.tsx`, `components/views/student-dashboard.tsx` | ~120 ř. |
+| Oprava kaichi úrovní (viz K4) | `lib/data.ts` | 11 ř. |
 | Nový obsah | `app/api/admin/seed-wiki/route.ts` | přepis `ARTICLES` |
+
+**Růže knihovnu už má** — `ruze-dashboard.tsx` renderuje `<StudentDashboard />`,
+takže dostane všechno, co dostanou studenti. Přidávat se musí jen učitelům.
+
+**Testování bez nové závislosti.** Node 24 umí `node --test` a nativní stripování
+typů, takže `lib/wiki-blocks.test.mjs` může importovat `./wiki-blocks.ts` přímo.
+Žádný vitest, žádný jest. `.mjs` není v `tsconfig.json` v `include`, takže
+`next build` se ho nedotkne.
 
 ### `:::reviseN`
 

@@ -76,35 +76,73 @@ VII–VIII Velitelé, povyšuje Rada) zaniká celá.
 **K5 — Kanji.** 階知 „úroveň poznání". Placeholderové 開知 „Otevřené poznání"
 zaniká.
 
-### Návrhy k odsouhlasení
+**K6 — Mocnosti.** *Historie 2120* a *Upravené děti* říkají tři velmoci;
+*Geopolitika* vyjmenovává čtyři další vedle Shin Junkinu.
+→ **Tři velmoci** (Shin Junkin, Konfederace, Pakt Europa) plus **dvě menší
+mocnosti** mimo velmocenský status: Meridián (putovní, bez území) a Země obrody
+(mikrostáty). „Velmoc" a „mocnost" nejsou totéž — oba zdroje platí. V *Historii
+2120* dostane „národ 2 inspirovaný Amerikou" jméno Konfederace a „národ 3
+inspirovaný Evropou" jméno Pakt Europa.
 
-**K6 — Kolik je mocností.** *Historie 2120* a *Upravené děti* říkají tři
-velmoci; *Geopolitika* vyjmenovává čtyři další vedle Shin Junkinu.
-→ Návrh: **tři velmoci** (Shin Junkin, Konfederace, Pakt Europa) plus dvě
-menší mocnosti mimo velmocenský status (Meridián — putovní, bez území; Země
-obrody — mikrostáty). „Velmoc" a „mocnost" nejsou totéž. Opravit *Historii
-2120*, kde „národ 2 / národ 3" jsou nepojmenované, na Konfederaci a Pakt Europa.
+**K7 — Časová osa.** *Historie* si protiřečí sama: nadpis 2100 + „po pěti
+letech" dává úder 2105, ale nadpis 2111 + „po deseti letech" dává úder 2101.
+*Lovci* píší „Během války (2095–2100)".
+→ Závazná osa:
 
-**K7 — Datace války.** *Historie*: válka 2100, „po pěti letech".
-*Lovci/Historie*: „Během války (2095–2100)".
-→ Návrh: **válka 2095–2100**. „Nastává 2100" v *Historii* označuje finále
-(atomový úder), ne začátek. Text upřesnit.
+| Rok | Událost |
+|---|---|
+| 2095–2100 | Rozpad, frakční boje, miliony mrtvých. **Předehra, ne válka.** |
+| 2100 | Vyhlášená Světová válka konce |
+| 2101 | Atomový úder, desky se dávají do pohybu |
+| 2101–2111 | Ozvěna zkázy — tektonická fáze |
+| 2111 | Desky se zastavují |
+| 2111–2120 | Přežívání, mrchožrouti, putující lovci. **Zatím bez názvu.** |
+| 2120 | Ustavení Shin Junkinu |
+| 2143 | Současnost — 42 let od úderu, 23 let od vzniku státu |
 
-**K8 — Konec Ozvěny zkázy.** *Historie*: pohyb desek se zastavuje 2111.
-*Lovci/Historie*: „Ozvěny zkázy (2101–2120)", „jedenáct let".
-→ Návrh: **tektonika se zastaví 2111** (11 let, sedí na „jedenáct let").
-Období „Ozvěna zkázy" jako epocha rozvratu ale trvá do **2120**, kdy vzniká
-Shin Junkin. Dva různé konce dvou různých věcí, ne rozpor. V knihovně rozlišit.
+Opravit: „po pěti letech šílených hrůz" v *Historii* (válka trvala rok);
+„(2095–2100)" v *Lovcích* označuje předehru, ne válku.
 
-**K9 — Jak dávno.** *Upravené děti*: „před zhruba třiceti lety proběhla
-světová válka". *Lovci*: „generálové z války před 20 lety". Teď je 2143, válka
-skončila 2100 → **43 let**.
-→ Návrh: obě čísla jsou chyba. Používat 43 let od konce války, ~23 let od
-ustavení Shin Junkinu. „Před dvaceti lety" u nulté generace nejspíš mířilo na
-ustavení státu.
+**K8 — Ozvěna zkázy (亡響 Bōkyō).** = **jen tektonická fáze 2101–2111.**
+V *Lovcích* opravit „(2101–2120)" na „(2101–2111)". Období 2111–2120 zůstává
+nepojmenované — je to ale doba vzniku loveckého kovenantu a putujících lovců,
+takže si název nejspíš zaslouží. **Otevřené.**
+
+**K9 — Kulatá čísla.** *Upravené děti*: „před zhruba třiceti lety proběhla
+světová válka". *Lovci/Výcvik*: „generálové z války před 20 lety".
+→ Obě čísla jsou chyba, správně **42 let** od úderu. „Před 30 lety" v
+*Geopolitice* („ještě před 30 lety ležely na dně oceánu") je naopak správně —
+míří na 2111, tedy 32 let. Nechat.
 
 **K10 — Akano1 vs Akano2.** Viz *Zdroje vyžadující revizi* níže. Rozpor je
 skutečný a řeší se přepsáním zdroje, ne výkladem.
+
+**K15 — Generace lovců.** Tab *Lovci* je počítá dvakrát a pokaždé jinak: sekce
+*Výcvik* má tři generace počínaje válečnými generály, sekce *Historie* má
+nultou až druhou a hráčské postavy řadí do druhé.
+→ Závazné, **liší se od obou verzí ve zdroji**:
+
+| Generace | Kdo | Dnes |
+|---|---|---|
+| **Nultá** | Zabíječi monster z doby **před válkou**. Tehdy se jim ještě neříkalo lovci — název dostali zpětně. | 65+, většina mrtvá |
+| **První** | Ti, kdo po zkáze chodili světem a chránili lidi. Šedivé cestovní pláště, lovecký kovenant. | 50–70 |
+| **Druhá** | Jejich učedníci přes shidōsei; a všichni akreditovaní po ustavení státu. | 25–50 |
+| **Třetí** | Studenti projektu Akano. **Hráčské postavy.** | 15–19 |
+
+Důsledky:
+
+- „Generálové a hrdinové z války" nejsou lovci. Válka se vedla proti lidem, ne
+  proti monstrům — tentýž tab to říká v sekci *Historie*. Věta ve *Výcviku*
+  zaniká celá.
+- Putující lovci v šedivých pláštích jsou **první** generace, ne nultá.
+- Jestřáb (鷹, Taka), který si vzal učednici a stal se monstrem, je **první**
+  generace.
+- Hráčské postavy jsou **třetí**, ne druhá.
+- Věkové pásmo „nultá 55–75, první 30–55" ze zdroje neplatí, viz tabulka.
+- Že se nulté generaci tehdy neříkalo lovci, je dobrý materiál pro Kaichi I
+  („co jsou lovci") — termín má datum vzniku.
+
+### Návrhy k odsouhlasení
 
 **K11 — Názvy původů.** *Geopolitika* a designák: Místní / Oceánský /
 Pevninský. Tab *Původ (WIP)* má nadpisy Místní / Vedlejší / Cizí, ale ve

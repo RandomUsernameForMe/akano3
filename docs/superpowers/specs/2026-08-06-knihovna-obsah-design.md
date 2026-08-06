@@ -1,0 +1,306 @@
+# Knihovna Akano3 — naplnění skutečným obsahem
+
+Datum: 2026-08-06
+
+Nahrazuje placeholderový obsah v `app/api/admin/seed-wiki/route.ts` (Velký Pád,
+Rada Devíti, Klan Červeného Draka, Seikido, Prvotní Pečeti) skutečným herním
+světem z Google Docs. Placeholdery se světem Akano3 nesdílejí nic — jde o
+kompletní přepis, ne editaci.
+
+## Zdroje
+
+| Dokument | ID | Role |
+|---|---|---|
+| Svět Akano3 | `1rMpHPnuOnQE0EywZ2Z6-MVX4V3gPw7fmrA8EbpWONLM` | Primární zdroj pravdy |
+| Kruhy | `1H4lfMlb4URmjONweoUYUMQMXChdI7bzucYxVpyxa9Vg` | Zdroj pro články o kruzích |
+| Designový dokument | `1z2Ddso47RfYnhu-bW4xB4rY5BWoVh2IxMbpy-H28T84` | Mimo rozsah. Nese jen strohý náčrt settingu, knihovna ho needituje ani neduplikuje. |
+
+Přístup přes MCP `google-workspace`, účet `guth.jarkovsky.tomas@gmail.com`.
+
+## Rozhodnutí
+
+| # | Otázka | Rozhodnutí |
+|---|---|---|
+| R1 | Účel knihovny | Referenční příručka během hry + předehra/atmosféra. **Ne** primárně odměna za kaichi, **ne** primárně palivo pro konflikt. |
+| R2 | Význam kaichi gradientu | Smíšeně podle tématu — někde jen více detailu, jinde vyšší úroveň přepisuje nižší. Režim se rozhoduje článek po článku. |
+| R3 | Rozsah vůči designáku | Knihovna nese svět kompletně. Designák zůstává strohý, neřešíme ho. |
+| R4 | Diegetický hlas | **Státní/školní terminál.** Oficiální databáze Akano3, kurátorovaná režimem. Suchý, autoritativní, místy propagandistický. |
+| R5 | Přístup | Všechny role — student, učitel, Růže, dospělí. Každý má nějaké kaichi. |
+| R6 | Kaichi ve hře | Start II–IV, roste během hry, na ceremoniálu V. |
+| R7 | Tón na nárokových úrovních (I–III) | **Ospravedlnění, ne přiznání.** Fakt se předá úplně, ale zabalený do doktríny. Sedí na radikální konfucianismus režimu. |
+| R8 | Délka článku | 1500–2500 znaků. Nadpis, 2–3 sekce, 1–2 utajené bloky. |
+| R9 | Pořadí plnění | Svislý řez (3 články napříč I–VIII), pak šířka. |
+
+## Kánon — vyřešené rozpory
+
+Zdroje si na 17 místech odporují. Rozhodnutí níže jsou závazná pro veškerý
+psaný obsah. Neuzavřené položky nesou návrh k dodatečnému schválení.
+
+### Vyřešeno
+
+**K1 — Mapa tajemství podle kaichi.** *Tajemství (DONE)* je závazné.
+*Ukončení studia (WIP)* má překlep: „Slavnostní odhalení KAICHI VI" má být
+**KAICHI V**.
+
+| Kaichi | Milník | Tajemství |
+|---|---|---|
+| I | 10 let | Dřív jsme byli vyspělejší civilizace. Lidstvo žije, protože zabíjíme monstra. Co jsou lovci. |
+| II | 15 let | Před ~40 lety proběhla genocida. Pustina za oceánem je po našich atomovkách. |
+| III | 18 let | Lidé se můžou stát monstry. |
+| IV | Mimořádná služba režimu | Návrat: jde to vrátit, každý lovec má 1 shot vrátit jedno monstrum na člověka. |
+| V | Dokončení Akademie | Lovci nesmí mít rodinu — a je tomu fyzicky zabráněno. |
+| VI | Vstup mezi lovce | Návrat (IV) je lež. |
+| VII | Strategické elity | Kdo ztratí význam/řád, stává se monstrem. Fašismus je záměr, ne selhání. |
+| VIII | „Pečující" | Měsíc je tělo mrtvého monstra. |
+
+Řetěz je vnitřně konzistentní: VI se dozvíš „když se opravdu staneš lovcem",
+což je přesně milník VI. Veřejně se uznává 7 úrovní; VIII není potvrzena.
+
+**K2 — Kdo dostane Kaichi VI.** Ceremoniál uděluje **V** všem absolventům.
+**VI** dostávají jen ti, kdo skutečně vstoupí mezi lovce (nebo do výzkumu či
+velení). Plyne z K1.
+
+**K3 — Co je Měsíc.** Platí *Vznik Země (DONE)*: Cukujomi je tvořivá entita,
+vyslala Kaguju, každý zásah ji vyčerpával, zemřela spokojená ~10 000 let zpět.
+Věta „Měsíc je tělo mrtvého monstra" zůstává doslova jako Kaichi VIII, ale je
+to **režimní rámování**, které ospravedlňuje těžbu. Sekce
+`______starší verze ____` v tabu *Junkin a monstra* je neplatná jako kosmologie;
+její formulace „Cukujomi napadl Zemi a prohrál" se v knihovně objeví pouze jako
+citovaná doktrína, nikdy jako vypravěčský fakt.
+
+**K4 — Kaichi 0 neexistuje.** Nejnižší úroveň je I, nároková v 10 letech.
+`lib/data.ts` má devět postav s `kaichiLevel: 0` — chyba, přepsat na II–IV.
+Placeholderová škála (0 Novicové / I–II Učni / III–IV Praktici / V–VI Mistři /
+VII–VIII Velitelé, povyšuje Rada) zaniká celá.
+
+**K5 — Kanji.** 階知 „úroveň poznání". Placeholderové 開知 „Otevřené poznání"
+zaniká.
+
+### Návrhy k odsouhlasení
+
+**K6 — Kolik je mocností.** *Historie 2120* a *Upravené děti* říkají tři
+velmoci; *Geopolitika* vyjmenovává čtyři další vedle Shin Junkinu.
+→ Návrh: **tři velmoci** (Shin Junkin, Konfederace, Pakt Europa) plus dvě
+menší mocnosti mimo velmocenský status (Meridián — putovní, bez území; Země
+obrody — mikrostáty). „Velmoc" a „mocnost" nejsou totéž. Opravit *Historii
+2120*, kde „národ 2 / národ 3" jsou nepojmenované, na Konfederaci a Pakt Europa.
+
+**K7 — Datace války.** *Historie*: válka 2100, „po pěti letech".
+*Lovci/Historie*: „Během války (2095–2100)".
+→ Návrh: **válka 2095–2100**. „Nastává 2100" v *Historii* označuje finále
+(atomový úder), ne začátek. Text upřesnit.
+
+**K8 — Konec Ozvěny zkázy.** *Historie*: pohyb desek se zastavuje 2111.
+*Lovci/Historie*: „Ozvěny zkázy (2101–2120)", „jedenáct let".
+→ Návrh: **tektonika se zastaví 2111** (11 let, sedí na „jedenáct let").
+Období „Ozvěna zkázy" jako epocha rozvratu ale trvá do **2120**, kdy vzniká
+Shin Junkin. Dva různé konce dvou různých věcí, ne rozpor. V knihovně rozlišit.
+
+**K9 — Jak dávno.** *Upravené děti*: „před zhruba třiceti lety proběhla
+světová válka". *Lovci*: „generálové z války před 20 lety". Teď je 2143, válka
+skončila 2100 → **43 let**.
+→ Návrh: obě čísla jsou chyba. Používat 43 let od konce války, ~23 let od
+ustavení Shin Junkinu. „Před dvaceti lety" u nulté generace nejspíš mířilo na
+ustavení státu.
+
+**K10 — Akano1 vs Akano2.** Timeline dává Akano1 2133 a Akano2 2134, rok po
+sobě — což zdánlivě neunese „Akano1 základka, Akano2 druhý stupeň, později".
+→ Návrh: **rozpor to není, jen chybí věta.** Akano1 se rozpadlo prakticky
+okamžitě — tentýž dokument říká, že do něj polovina dětí ani nenastoupila,
+protože je monstra odlovila mezi přihláškou a přijetím. Akano2 v 2134 je
+restart, ne navazující stupeň. Data sedí na věk: Akano1 2133 (děti 5–9 let,
+základka), Akano2 2134–2138 (6–14, druhý stupeň, masakr na konci), Akano3 od
+2139 (11–15), teď 2143 (15–19). Do knihovny napsat explicitně, že Akano1
+netrvalo ani rok.
+
+**K11 — Názvy původů.** *Geopolitika* a designák: Místní / Oceánský /
+Pevninský. Tab *Původ (WIP)* má nadpisy Místní / Vedlejší / Cizí, ale ve
+vlastním textu píše „místní, oceánský a pevninský".
+→ Návrh: **Místní / Oceánský / Pevninský** jsou oficiální režimní termíny
+(a jdou do knihovny). *Vedlejší / Cizí* jsou hovorové, hanlivé — použít je v
+knihovně jen jako doloženou lidovou mluvu, ne jako klasifikaci.
+
+**K12 — Shuten-dōji.** Bestiář říká „není to doopravdy monstrum, je to člověk
+zbavený smyslu", a přitom mu dává kód monstra FS9I8N8O (pán lidožroutů).
+→ Návrh: rozdělit. **FS9I8N8O = pán lidožroutů**, běžné monstrum. **Shuten-dōji
+je samostatná entita** bez kódu, nebo s kódem obsahujícím `X` (mnoho o něm
+nevíme). Zároveň: „člověk zbavený smyslu" **je** monstrum podle metafyziky —
+formulace v bestiáři je nepřesná, správně zní „bývalý lovec".
+
+**K13 — Miasma a veřejnost.** „Veřejnost ví, že miasma je nebezpečná" ×
+„obecně se spíš o ní tolik neví".
+→ Návrh: veřejnost ví **že** je nebezpečná a jak se chránit; neví **jak
+funguje**, ani že je surovinou pro detektor lži. Není to rozpor, jen chybějící
+rozlišení. V knihovně: Kaichi I nese ochranu a příznaky, Kaichi IV nese
+detektor lži.
+
+**K14 — Kód monster v běžné mluvě.** „V běžné řeči se neříká celý kód, ale
+pouze poslední 3–4 znaky, protože speciální vlastnost, nebezpečnost a
+identifikační znak **je nutné** vědět." Věta si odporuje sama se sebou.
+→ Návrh: čte se „…protože stačí vědět speciální vlastnost, nebezpečnost a
+identifikační znak". Příklady v dokumentu tomu odpovídají (N4O, TN3C, N7K).
+
+## Model obsahu
+
+### Kategorie
+
+Placeholderové kategorie (Svět, Politika, Frakce, Historie, Věda & Technologie,
+Osobnosti) zanikají. Nové:
+
+| Kategorie | Obsah | Zdrojový tab |
+|---|---|---|
+| Svět | Shin Junkin, regiony, mocnosti, původ | Geopolitika, Původ |
+| Historie | 2031 → 2143 | Historie 100 let, Lovci/Historie |
+| Řád a společnost | Kaichi, řád a význam, detektor lži, zákony | Tajemství, Miasma |
+| Lovci | Kasta, Ryōdan, trojice, divize, generace, tabu | Lovci |
+| Akano3 | Škola, specializace, shidōsei, hodnocení, kruhy, ukončení | Akano3, Specializace, Mentoring, Ukončení studia, doc *Kruhy* |
+| Monstra | Klasifikace, bestiář, miasma | Bestiář, Miasma, designák/Lov |
+| Junkin | Látka, transmutace, těžba, rafinace, pečeti | Junkin a monstra |
+
+Kosmologie (Cukujomi, Kaguja, dualita) **nedostává vlastní kategorii**. Je to
+materiál Kaichi VII–VIII a žije jako utajené bloky uvnitř *Junkin* a
+*Historie*. Prázdná kategorie by prozrazovala, že něco existuje.
+
+### Pravidla gatingu
+
+- `kaichiRequired > 0` se používá **jen** tam, kde by i samotný název článku byl
+  prozrazením. Odhad 2–3 články z ~40.
+- Všechno ostatní má `kaichiRequired: 0`; vrstvení řeší `:::kN` uvnitř textu.
+- Důvod: skrytý článek znamená, že hráč neví, že mu něco chybí. Článek s
+  černými pruhy znamená, že to ví — a to je motor.
+
+### Formát článku
+
+Šablona odpovídající rendereru (`components/shared/wiki-renderer.tsx`):
+
+```
+# Název
+
+Odstavec s definicí. **Tučně** klíčový termín, *kurzívou* japonský přepis.
+
+---
+
+## Sekce
+
+- odrážka
+- odrážka
+
+> Citace z doktríny nebo výpovědi
+
+:::k3
+Utajená vrstva.
+:::
+```
+
+Renderer **neumí tabulky**. Kaichi škála i kódy monster se píší odrážkami.
+Přidávat parser tabulek kvůli dvěma místům se nevyplatí.
+
+## Změny v kódu
+
+| Změna | Soubor | Rozsah |
+|---|---|---|
+| Blok `:::reviseN` | `components/shared/wiki-renderer.tsx` | ~40 ř. |
+| Knihovna do dashboardů učitel / Růže / dospělí | příslušné views | ~10 ř. na view |
+| `kaichiLevel: 0` → II–IV u 9 postav | `lib/data.ts` | 9 ř. |
+| Nový obsah | `app/api/admin/seed-wiki/route.ts` | přepis `ARTICLES` |
+
+### `:::reviseN`
+
+Vyšší úroveň prohlašuje nižší za neplatnou. Bez toho nejde napsat Kaichi VI
+(„Návrat je lež"), což je navržená pointa hry.
+
+Chování:
+- Pod úrovní `N` se blok **nezobrazuje vůbec** — ani jako černé pruhy. Revize
+  nesmí prozradit, že revize existuje.
+- Nad úrovní `N` se zobrazí červeně orámovaný blok s hlavičkou
+  `REVIZE · KAICHI <N>` a text bezprostředně předcházejícího `md` bloku se
+  vykreslí přeškrtnutě.
+
+```
+Každý lovec má právo na jeden Návrat.   <- přeškrtnuté
+┌─ REVIZE · KAICHI VI ────────────────┐
+│ Výše uvedené je dezinformační       │
+│ opatření. Návrat neexistuje.        │
+└─────────────────────────────────────┘
+```
+
+Odlišení od `:::kN`: `kN` **přidává** (a pod úrovní ukazuje černé pruhy),
+`reviseN` **ruší** (a pod úrovní je neviditelný).
+
+### Známé omezení
+
+`POST /api/admin/seed-wiki` provádí `DELETE FROM wiki_articles` před vložením.
+Přeseedování zahodí veškeré úpravy provedené GM přes wiki-admin panel. Zatím
+přijatelné — obsah se píše v repu, admin panel slouží k opravám během hry.
+Před ostrým během neseedovat.
+
+## Inventář článků
+
+Celkem ~40. Rozdělení do fází níže.
+
+**Svět** — Shin Junkin · Jižní provincie, Nové pásmo, Okraj · Ostatní mocnosti ·
+Původ
+
+**Historie** — Zlatá generace (2031–2095) · Světová válka konce (2095–2100) ·
+Ozvěna zkázy (2101–2120) · Ustavení Shin Junkinu (2120–2143) · Svět před
+Zlatou generací
+
+**Řád a společnost** — Systém Kaichi · Řád, význam a role · Detektor lži a
+zkoušky loajality · Lovecký zákoník
+
+**Lovci** — Lovci: kasta a privilegia · Ústřední lovecký řád · Pravidlo trojic ·
+Generace lovců · Divize · Lovci a armáda · Rudý plášť a Jestřáb · Návrat
+
+**Akano3** — Akano3: projekt · Akano1 a Akano2 · Specializace · Týmy a
+jednotky · Shidōsei · Hodnocení · Kruhy (6 článků z docu *Kruhy*) · Ukončení
+studia a akreditace
+
+**Monstra** — Co jsou monstra · Klasifikace a kódy · Miasma · Bestiář:
+lidožrouti · Bestiář: kaibyō · Bestiář: lišky · Bestiář: inugami · Bestiář:
+shuten-dōji · Čichač
+
+**Junkin** — Junkin: látka · Transmutace · Těžba a rafinace · Měsíc
+
+### Umístění tajemství
+
+| Kaichi | Nese článek |
+|---|---|
+| I | Svět před Zlatou generací; Lovci: kasta; Co jsou monstra |
+| II | Světová válka konce; Ostatní mocnosti |
+| III | Co jsou monstra; Řád, význam a role |
+| IV | Návrat; Detektor lži |
+| V | Ukončení studia; Lovci: kasta |
+| VI | Návrat (`:::revise6`) |
+| VII | Řád, význam a role; Junkin: látka |
+| VIII | Měsíc; Junkin: látka |
+
+## Postup
+
+**Fáze 0 — kánonový ledger.** `docs/kanon.md`: rozpor → rozhodnutí → které taby
+v Google Docs opravit. Založit z tabulek výše. Bez něj se stejné rozpory budou
+rozhodovat opakovaně a různě.
+
+**Fáze 1 — svislý řez.** Tři články napříč celou škálou I–VIII:
+`Systém Kaichi` (ověří škálu a hlas), `Lovci: kasta a privilegia` (nese trojice,
+rodinu i odkaz na Návrat), `Miasma` (nejvíc herně používaná, ověří příručkový
+režim). Plus `:::reviseN` v rendereru, protože článek `Návrat` se bez něj
+nenapíše. Tady se ladí formát; teprve pak se sype zbytek.
+
+**Fáze 2 — Kaichi I–III napříč všemi kategoriemi.** ~20 článků. Vrstva, kterou
+reálně čte každá postava. Bez ní je knihovna prázdná i pro hráče s Kaichi IV.
+
+**Fáze 3 — Kaichi IV–VIII.** Krátké bloky do už napsaných článků, ne nové
+články.
+
+**Fáze 4 — Bestiář.** Zvlášť: pět monster má ve zdroji jen nadpisy (kaligrafické
+monstrum, inugami, čichač, dva bezejmenné). Bude potřeba obsah **dopsat**, ne
+přeložit. Vyžaduje samostatné kolo rozhodnutí.
+
+## Mimo rozsah
+
+- Editace designového dokumentu.
+- Hacking knihovny Růží (vidět nad svoje kaichi). Růže dostává jen běžný
+  přístup podle svého kaichi.
+- Podpora tabulek v rendereru.
+- Opravy zdrojových Google Docs. Ledger je eviduje, ale zápis do docs je
+  samostatné rozhodnutí.

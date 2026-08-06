@@ -142,34 +142,36 @@ Důsledky:
 - Že se nulté generaci tehdy neříkalo lovci, je dobrý materiál pro Kaichi I
   („co jsou lovci") — termín má datum vzniku.
 
-### Návrhy k odsouhlasení
+**K11 — Názvy původů.** → Závazné jsou **Místní / Vedlejší / Cizí**, tedy
+nadpisy z tabu *Původ*:
 
-**K11 — Názvy původů.** *Geopolitika* a designák: Místní / Oceánský /
-Pevninský. Tab *Původ (WIP)* má nadpisy Místní / Vedlejší / Cizí, ale ve
-vlastním textu píše „místní, oceánský a pevninský".
-→ Návrh: **Místní / Oceánský / Pevninský** jsou oficiální režimní termíny
-(a jdou do knihovny). *Vedlejší / Cizí* jsou hovorové, hanlivé — použít je v
-knihovně jen jako doloženou lidovou mluvu, ne jako klasifikaci.
+| Původ | Kdo | Poznámka |
+|---|---|---|
+| Místní | Shin Junkin | Nejvyšší společenská skupina |
+| Vedlejší | Zbytek Oceánie — Jižní provincie, Nové pásmo, Okraj | Geneticky nerozlišitelní od Místních |
+| Cizí | Pevniny — Amerika, Evropa | „Hlavní vlastnost je ŽE TO NA NĚM JE VIDĚT" |
 
-**K12 — Shuten-dōji.** Bestiář říká „není to doopravdy monstrum, je to člověk
-zbavený smyslu", a přitom mu dává kód monstra FS9I8N8O (pán lidožroutů).
-→ Návrh: rozdělit. **FS9I8N8O = pán lidožroutů**, běžné monstrum. **Shuten-dōji
-je samostatná entita** bez kódu, nebo s kódem obsahujícím `X` (mnoho o něm
-nevíme). Zároveň: „člověk zbavený smyslu" **je** monstrum podle metafyziky —
-formulace v bestiáři je nepřesná, správně zní „bývalý lovec".
+Sada *Místní / Oceánský / Pevninský* z *Geopolitiky* a designáku zaniká.
+Opravu designáku dělá autor, knihovna do něj nesahá.
 
-**K13 — Miasma a veřejnost.** „Veřejnost ví, že miasma je nebezpečná" ×
-„obecně se spíš o ní tolik neví".
-→ Návrh: veřejnost ví **že** je nebezpečná a jak se chránit; neví **jak
-funguje**, ani že je surovinou pro detektor lži. Není to rozpor, jen chybějící
-rozlišení. V knihovně: Kaichi I nese ochranu a příznaky, Kaichi IV nese
-detektor lži.
+**K12 — Shuten-dōji.** → Kód **FS9I8N8O** platí jako **oficiální klasifikace
+režimu**. Shuten-dōji ale monstrum není — je to člověk, bývalý lovec. Že se
+režim i lovci spletli, je **velké odhalení na hře**.
 
-**K14 — Kód monster v běžné mluvě.** „V běžné řeči se neříká celý kód, ale
-pouze poslední 3–4 znaky, protože speciální vlastnost, nebezpečnost a
-identifikační znak **je nutné** vědět." Věta si odporuje sama se sebou.
-→ Návrh: čte se „…protože stačí vědět speciální vlastnost, nebezpečnost a
-identifikační znak". Příklady v dokumentu tomu odpovídají (N4O, TN3C, N7K).
+Důsledek pro knihovnu: článek *Bestiář: shuten-dōji* nese **pouze oficiální
+verzi**. Pravda do knihovny nepatří v žádné kaichi vrstvě — odhalení se
+odehrává hrou, ne čtením. Zbytek bestiáře smí obsahovat vodítka (chová se
+cíleně, plášť sešitý z plášťů lovců, „lovec lovců"), ale nikde nesmí padnout
+závěr. Formulace „není to doopravdy monstrum" ze zdroje se do knihovny
+nepřenáší.
+
+**K13 — Miasma a veřejnost.** → Veřejnost ví, **že** je miasma nebezpečná, a
+zná **příznaky**. Že je surovinou pro **detektor lži**, je **Kaichi III**.
+Není to rozpor, jen chybějící rozlišení.
+
+**K14 — Kód monster v běžné mluvě.** → Překlep ve zdroji. Správně: „…protože
+**stačí vědět** speciální vlastnost, nebezpečnost a identifikační znak."
+Příklady tomu odpovídají — N4O lidožrouti, TN3C čichač, N7K lišky.
 
 ## Zdroje vyžadující revizi
 
@@ -338,8 +340,8 @@ shuten-dōji · Čichač
 |---|---|
 | I | Svět před Zlatou generací; Lovci: kasta; Co jsou monstra |
 | II | Světová válka konce; Ostatní mocnosti |
-| III | Co jsou monstra; Řád, význam a role |
-| IV | Návrat; Detektor lži |
+| III | Co jsou monstra; Řád, význam a role; Miasma (že je surovinou pro detektor lži) |
+| IV | Návrat |
 | V | Ukončení studia; Lovci: kasta |
 | VI | Návrat (`:::revise6`) |
 | VII | Řád, význam a role; Junkin: látka |

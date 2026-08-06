@@ -96,7 +96,7 @@ letech" dává úder 2105, ale nadpis 2111 + „po deseti letech" dává úder 2
 | 2101 | Atomový úder, desky se dávají do pohybu |
 | 2101–2111 | Ozvěna zkázy — tektonická fáze |
 | 2111 | Desky se zastavují |
-| 2111–2120 | Přežívání, mrchožrouti, putující lovci. **Zatím bez názvu.** |
+| 2111–2120 | **巡灯 (Juntō) — „Putující světla"**. Přežívání, mrchožrouti, putující lovci, vznik kovenantu a prvních shidōsei |
 | 2120 | Ustavení Shin Junkinu |
 | 2143 | Současnost — 42 let od úderu, 23 let od vzniku státu |
 
@@ -104,9 +104,16 @@ Opravit: „po pěti letech šílených hrůz" v *Historii* (válka trvala rok);
 „(2095–2100)" v *Lovcích* označuje předehru, ne válku.
 
 **K8 — Ozvěna zkázy (亡響 Bōkyō).** = **jen tektonická fáze 2101–2111.**
-V *Lovcích* opravit „(2101–2120)" na „(2101–2111)". Období 2111–2120 zůstává
-nepojmenované — je to ale doba vzniku loveckého kovenantu a putujících lovců,
-takže si název nejspíš zaslouží. **Otevřené.**
+V *Lovcích* opravit „(2101–2120)" na „(2101–2111)".
+
+Období **2111–2120** dostává název **巡灯 (Juntō) — „Putující světla"**.
+巡 obchůzka, 灯 lampa. Míří na lovce v šedivých cestovních pláštích, kteří
+putovali z populačního centra do centra. Je to **lidový název, ne úřední** —
+stát tehdy neexistoval, takže éru pojmenovala kolektivní paměť, ne úřad.
+Terminál ho přebírá, protože jiný neexistuje.
+
+Éra nese: lovecký kovenant, první shidōsei, zásadu trojic, případ Jestřába,
+přechod od šedivých plášťů k rudým.
 
 **K9 — Kulatá čísla.** *Upravené děti*: „před zhruba třiceti lety proběhla
 světová válka". *Lovci/Výcvik*: „generálové z války před 20 lety".
@@ -178,6 +185,24 @@ Příklady tomu odpovídají — N4O lidožrouti, TN3C čichač, N7K lišky.
 Místa, kde zdrojový dokument nese neaktuální design. Knihovna z nich **nesmí**
 čerpat, dokud nebudou přepsané.
 
+### Značky zapsané do Google Docu (2026-08-06)
+
+Všechny jsou inline v hranatých závorkách, začínají `⚠`, nesou datum. Jdou
+odstranit hledáním `⚠`.
+
+| Tab | `tab_id` | Kotva | Co říká |
+|---|---|---|---|
+| Historie 100 let | `t.0` | „Po pěti letech šílených hrůz…" | Celá závazná časová osa, úder 2101 |
+| Lovci | `t.6cq2viovbhqf` | „První generace lovců byli generálové…" | Věta neplatí, čtyři generace |
+| Lovci | `t.6cq2viovbhqf` | „Pro nás je zajímavý že tedy rozlišujeme tři druhy…" | Generací jsou čtyři, věková pásma neplatí |
+| Lovci | `t.6cq2viovbhqf` | „Jedenáct let extrémních výkyvů…" | Ozvěna zkázy 2101–2111, nová éra Juntō |
+| Upravené děti | `t.f1iutbve7u9h` | „Byla to krátká vlna…" | Datace i délka vlny neplatí |
+| Upravené děti | `t.f1iutbve7u9h` | „Zajímavé odpovězené otázky:" | Vše níže překonané, Akana byly střední školy |
+| Junkin a monstra | `t.2omdcjeiinql` | „Tsukoyomi napadl zemi a prohrál" | Neplatí jako kosmologie, jen jako doktrína režimu |
+
+Neoznačeno zůstává: *Geopolitika* (názvy původů, K11) a *Bestiář*
+(Shuten-dōji, K12) — obojí čeká na to, až se k nim dostane psaní.
+
 ### Svět Akano3 › Režim › Upravené děti (DONE)
 
 **Status: POTŘEBUJE REVIZI.** Tab je označen DONE, ale nese překonaný design na
@@ -206,12 +231,22 @@ Souvisí s (a): Akano1 jako střední škola v 2133 má studenty narozené ~2115
 tedy před takto datovanou vlnou. Buď byla vlna delší a starší, nebo Akano1 a
 Akano2 nebyly školami pro děti šepotu a jejich zánik má jinou příčinu.
 
-**Dopad na knihovnu.** Na tomhle stojí „proč Akano vůbec existuje" — tedy
-premisa hry. Do vyřešení:
+**Dopad na knihovnu je malý.** „Proč Akano existuje" na vlně transmutace
+**nestojí** — Akano existuje prostě proto, že je potřeba chránit lidstvo před
+monstry a monstra zabíjet. To je plnohodnotný a soběstačný důvod a je to i ten,
+který režim uvádí. Tsugumi Keikaku je vrstva navíc, ne základ.
 
-- fáze 2 píše *Akano3: projekt* bez datace vlny a bez odkazu na předchůdce
-- článek *Akano1 a Akano2* se odkládá do fáze 3
+Do vyřešení:
+
 - žádný článek neuvádí konkrétní rok ani délku vlny transmutace
+- článek *Akano1 a Akano2* se odkládá do fáze 3
+- *Akano3: projekt* se píše ve fázi 2 normálně, bez odkazu na děti šepotu
+
+**Samostatná otázka, zatím nerozhodnutá:** patří projekt Tsugumi Keikaku do
+knihovny vůbec? Zdroj sám říká „není cíl, aby tohle byla velká zápletka, ani
+velké odhalení, tohle zní jako věc, kterou se může 80 % postav dozvědět **po
+hře**". Pokud to platí, je to materiál pro organizátory, ne pro terminál — a
+platí na něj stejný precedens jako na Shuten-dōjiho (K12).
 
 ## Model obsahu
 
@@ -314,9 +349,9 @@ Celkem ~40. Rozdělení do fází níže.
 **Svět** — Shin Junkin · Jižní provincie, Nové pásmo, Okraj · Ostatní mocnosti ·
 Původ
 
-**Historie** — Zlatá generace (2031–2095) · Světová válka konce (2095–2100) ·
-Ozvěna zkázy (2101–2120) · Ustavení Shin Junkinu (2120–2143) · Svět před
-Zlatou generací
+**Historie** — Svět před Zlatou generací · Zlatá generace (2031–2095) ·
+Rozpad a Světová válka konce (2095–2101) · Ozvěna zkázy (2101–2111) ·
+Putující světla (2111–2120) · Ustavení Shin Junkinu (2120–2143)
 
 **Řád a společnost** — Systém Kaichi · Řád, význam a role · Detektor lži a
 zkoušky loajality · Lovecký zákoník

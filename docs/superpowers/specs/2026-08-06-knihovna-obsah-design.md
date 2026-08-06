@@ -138,37 +138,40 @@ identifikační znak". Příklady v dokumentu tomu odpovídají (N4O, TN3C, N7K)
 Místa, kde zdrojový dokument nese neaktuální design. Knihovna z nich **nesmí**
 čerpat, dokud nebudou přepsané.
 
-### Svět Akano3 › Režim › Upravené děti (DONE) — sekce „Zajímavé odpovězené otázky"
+### Svět Akano3 › Režim › Upravené děti (DONE)
 
-**Status: POTŘEBUJE REVIZI.** Tab je označen DONE, ale jeho závěrečná část
-popisuje překonaný design.
+**Status: POTŘEBUJE REVIZI.** Tab je označen DONE, ale nese překonaný design na
+dvou místech. Značky zapsány přímo do Google Docu 2026-08-06 (tab
+`t.f1iutbve7u9h`).
 
-Neplatí:
+**(a) Stupňovitost Akan — sekce „Zajímavé odpovězené otázky".** Neplatí:
 
-- „Protože všechny děti v projektu Akano byly víceméně narozený podobně,
-  znamená to že první Akano mělo být spíše základka, opravdu na přípravu na
-  nový život od mládí. Akano2 bylo pořád na stejnou generaci ale později, tedy
-  druhý stupeň, a Akano3 je teď střední."
-- „Akano a Akano2 byly akademie na budování nové generace lidí" ve smyslu
-  jedné generace vedené od dětství.
-- „Proč končí ročník různě staré postavy? … všechny postavy jsou ze stejného
-  období zhruba 3 let před zhruba 18 lety" — datace nesedí na „narozeny
-  2124–2128" z tabu *Historie 100 let*.
+- „první Akano mělo být spíše základka… Akano2 bylo pořád na stejnou generaci
+  ale později, tedy druhý stupeň, a Akano3 je teď střední"
+- „Akano a Akano2 byly akademie na budování nové generace lidí" ve smyslu jedné
+  generace vedené od dětství
+- „všechny postavy jsou ze stejného období zhruba 3 let před zhruba 18 lety" —
+  nesedí na „narozeny 2124–2128" z tabu *Historie 100 let*
 
-**Kánon:** **Všechna Akana byly střední školy.** Tři po sobě jdoucí kohorty,
-ne jedna generace provedená stupni. Timeline pak sedí bez úprav: Akano1 2133,
-Akano2 2134–2138 (masakr), Akano3 od 2139, dnes 2143.
+**Kánon:** **Všechna Akana byly střední školy.** Tři po sobě jdoucí kohorty, ne
+jedna generace provedená stupni. Timeline sedí bez úprav: Akano1 2133, Akano2
+2134–2138 (masakr), Akano3 od 2139, dnes 2143.
 
-**Otevřená otázka, kterou to odemyká:** pokud byla Akano1 střední škola v roce
-2133, její studenti se narodili kolem 2115–2119 — tedy **před** vlnou
-transmutace, kterou *Upravené děti* datují „před zhruba dvaceti lety" (≈2123).
-Buď byla vlna delší a starší, než tab uvádí, nebo Akano1 a Akano2 nebyly
-školami pro děti šepotu a jejich zánik pod útoky monster měl jinou příčinu.
-Tohle knihovna potřebuje vědět, než napíše článek *Akano1 a Akano2* i článek
-*Akano3: projekt* — celý „proč Akano existuje" na tom stojí.
+**(b) Datace vlny transmutace.** Neplatí „Byla to krátká vlna, ale do nějaké
+míry velká část dětí narozena před zruba dvaceti lety byla nějakým způsobem
+upravena." Ani délka („krátká"), ani datace („před zhruba dvaceti lety", ≈2123)
+nejsou závazné.
 
-Do vyřešení: fáze 2 píše o Akanu3 bez odkazu na Akano1/2 a bez datace vlny
-transmutace. Článek *Akano1 a Akano2* se odkládá do fáze 3.
+Souvisí s (a): Akano1 jako střední škola v 2133 má studenty narozené ~2115–2119,
+tedy před takto datovanou vlnou. Buď byla vlna delší a starší, nebo Akano1 a
+Akano2 nebyly školami pro děti šepotu a jejich zánik má jinou příčinu.
+
+**Dopad na knihovnu.** Na tomhle stojí „proč Akano vůbec existuje" — tedy
+premisa hry. Do vyřešení:
+
+- fáze 2 píše *Akano3: projekt* bez datace vlny a bez odkazu na předchůdce
+- článek *Akano1 a Akano2* se odkládá do fáze 3
+- žádný článek neuvádí konkrétní rok ani délku vlny transmutace
 
 ## Model obsahu
 

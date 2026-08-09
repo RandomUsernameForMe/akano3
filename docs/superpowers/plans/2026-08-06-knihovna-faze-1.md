@@ -970,6 +970,14 @@ Miasma je surovinou detektoru lži.
 Její neurotoxický účinek krátkodobě otupuje mysl. Subjekt je vnímavější a méně schopný klamu. Jedna dávka odpovídá jedné otázce.
 
 Proto se detektor lži nepoužívá plošně a nelze se jím denně ptát každého. Není to opatrnost. Je to spotřeba.
+:::
+
+:::k6
+Konečný stupeň nákazy nikoho nezabíjí. Organismus v něm vydrží týdny.
+
+Zdravotnický personál má pro tento stav stálý rozkaz, který se nezapisuje do dokumentace a nepředává ústně nikomu mimo strukturu. Pacient v konečném stupni se neléčí ani nepřeváží. Ukončuje se.
+
+Důvod není milosrdenství. Rozložená osobnost, která přestala držet svůj význam, je jeden z nejspolehlivějších zdrojů nových monster, jaké známe. A stane se to uvnitř zařízení, mezi lidmi.
 :::`,
   },
 ]
@@ -1001,7 +1009,7 @@ Přihlas se postupně jako:
 | `STU-002` | III | V *Miasmě* je blok o detektoru lži odemčený |
 | `STU-001` | IV | V *Návratu* je text o Návratu odemčený, revize stále neviditelná |
 | `TCH-003` | V | V *Lovcích* odemčené oba bloky o trojicích a rodině. V *Návratu* revize **není vidět** — Ibuki nebyl lovec. |
-| `TCH-004` | VI | V *Návratu* je text o Návratu **přeškrtnutý** a pod ním červený blok `REVIZE · KAICHI VI` |
+| `TCH-004` | VI | V *Návratu* je text o Návratu **přeškrtnutý** a pod ním červený blok `REVIZE · KAICHI VI`. V *Miasmě* odemčený blok o konečném stupni. |
 | `TCH-002` | VII | V *Systému Kaichi* odemčený blok o stabilitě. Blok Kaichi VIII stále zamčený. |
 
 - [ ] **Step 5: Commit**
@@ -1017,6 +1025,8 @@ git commit -m "feat: skutečný obsah knihovny, fáze 1 — Kaichi, Lovci, Návr
 
 Během psaní článků vznikly dvě věci, které spec neurčuje. Ani jedna neblokuje fázi 1, ale obě potřebují rozhodnutí, než se napíše fáze 2.
 
-1. **Rozkaz o konečném stupni nákazy.** Zdroj (*Miasma*) říká: „Obecná znalost je že člověk v tomhle stavu umírá, ale není to pravda, zdravotníci mají rozkaz zabít člověka v této fázi." Tohle tajemství není v mapě Kaichi I–VIII. V článku *Miasma* zatím **není** — nechtěl jsem tiše přidávat kánon. Nabízí se Kaichi V, ale je to volba, ne odvození.
+1. ~~Rozkaz o konečném stupni nákazy.~~ **Vyřešeno 2026-08-09: Kaichi VI.** Je to rozkaz, ne fakt o světě — kdo ho zná, je uvnitř struktury, která ho vydává. Ve hře ho tedy drží Nakamura, Arakami, Karasu a Okuda; studenti nikdy. Zapsáno jako `:::k6` blok v článku *Miasma*.
+
+Potvrzuje to zároveň obecné pravidlo, které spec explicitně neříká: **jeden stupeň kaichi může nést víc než jedno tajemství.** Mapa I–VIII je páteř, ne úplný výčet.
 
 2. ~~Rozdělení kaichi mezi učitele.~~ **Vyřešeno 2026-08-09.** Arakami VI, Shiranagi V, Nakamura VII, Ibuki V, Karasu VI, Okuda VI. Zdrojový dokument pro dospělé hráčské postavy (D001–D006) zatím neexistuje — dok *Vedlejší postavy* obsahuje jiné postavy — takže rozdělení je rozhodnutí autora, ne odvození z dokumentu.

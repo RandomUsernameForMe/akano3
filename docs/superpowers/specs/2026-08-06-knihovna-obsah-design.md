@@ -399,7 +399,7 @@ shuten-dōji · Čichač
 | III | Co jsou monstra; Řád, význam a role; Miasma (že je surovinou pro detektor lži) |
 | IV | Návrat |
 | V | Ukončení studia; Lovci: kasta |
-| VI | Návrat (`:::revise6`) |
+| VI | Návrat (`:::revise6`); Miasma (rozkaz o konečném stupni nákazy) |
 | VII | Řád, význam a role; Junkin: látka |
 | VIII | Měsíc; Junkin: látka |
 

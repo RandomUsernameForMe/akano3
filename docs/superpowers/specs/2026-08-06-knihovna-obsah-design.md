@@ -56,6 +56,40 @@ psaný obsah. Neuzavřené položky nesou návrh k dodatečnému schválení.
 Řetěz je vnitřně konzistentní: VI se dozvíš „když se opravdu staneš lovcem",
 což je přesně milník VI. Veřejně se uznává 7 úrovní; VIII není potvrzena.
 
+**K1b — Hlavní a vedlejší tajemství.** *(Zásada sdělená autorem 2026-08-09.)*
+
+Každý stupeň Kaichi má **právě jedno hlavní tajemství** — to z tabulky v K1.
+S postupem se odemyká i další vědění, ale to jsou **vedlejší tajemství**.
+
+Rozdíl mezi hlavním a vedlejším je věcný, ne dekorativní:
+
+- **Hlavní tajemství** je to, kvůli čemu stupeň existuje. Je jedno za stupeň,
+  je pojmenovatelné jednou větou a mění pohled na svět.
+- **Vedlejší tajemství** jsou provozní, technické a doplňkové znalosti, které
+  se s tou úrovní důvěry přirozeně pojí. Může jich být libovolně mnoho.
+
+**Otevřené:** jak tenhle rozdíl zobrazit v aplikaci. Dnes vypadají oba typy
+stejně — zlatý blok `UTAJENO · KAICHI N`. Hlavní tajemství by se mělo odlišit,
+ale jak, zatím rozhodnuto není. Do vyřešení se píše obojí stejně.
+
+Stav k 2026-08-09:
+
+| Stupeň | Hlavní tajemství | Vedlejší v knihovně |
+|---|---|---|
+| I | Junkin se získává z těl monster — proto je lovíme | Proč se nosí těla; kvóta Řádu je uzavřený systém |
+| II | Genocida: údery vypustili předchůdci Shin Junkinu | Surový junkin sám tvoří monstra |
+| III | Lidé se můžou stát monstry | Miasma je surovinou detektoru lži; existence Čichače |
+| IV | Návrat: každý lovec má jeden | — *(žádné)* |
+| V | Lovci nesmí mít rodinu, je tomu fyzicky zabráněno | Trojice není doporučení, ale podmínka akreditace |
+| VI | Návrat je lež | Stínová divize; rozkaz o konečném stupni nákazy; transmutace je rituál; nosiči junkinu jsou lidé; Rituální kruh učí transmutovat |
+| VII | Ztráta významu tvoří monstrum — řád je záměrná prevence | Protiváha: transmutace monstra vyrábí |
+| VIII | Měsíc je tělo mrtvého monstra | — *(mimo aplikaci, viz K16)* |
+
+**Nerovnováha, kterou to odhalilo:** Kaichi IV nemá vedlejší tajemství žádné,
+Kaichi VI jich má pět. Není to nutně chyba — VI je vstup do důvěrných struktur,
+takže se s ním odemyká hodně provozního vědění — ale při doplňování obsahu to
+stojí za zvážení.
+
 **K2 — Kdo dostane Kaichi VI.** Ceremoniál uděluje **V** všem absolventům.
 **VI** dostávají jen ti, kdo skutečně vstoupí mezi lovce (nebo do výzkumu či
 velení). Plyne z K1.

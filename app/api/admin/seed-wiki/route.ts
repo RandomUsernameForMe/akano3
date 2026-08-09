@@ -493,6 +493,287 @@ Bez kompletní trojice se akreditace neuděluje. Kdo přijde o člena a nenajde 
 Náhrada se přitom hledá jen výjimečně a spojení dvou neúplných trojic je vzácnost, ne postup.
 :::`,
   },
+
+  // ─── MONSTRA ───────────────────────────────────────────────────────────────
+  {
+    slug: "co-jsou-monstra",
+    title: "Co jsou monstra",
+    category: "Monstra",
+    kaichi_required: 0,
+    sort_order: 2,
+    content: `# Co jsou monstra
+
+**Monstra** (鬼 — *Oni*) se objevila všude, kde se lidstvo po Ozvěně zkázy pokusilo znovu něco postavit. Nejsou to zvířata a nejsou to nemoci. Jsou to bytosti, jejichž jediným trvalým rysem je, že **ničí to, co má smysl**.
+
+Nejvíc tedy ničí lidi a lidskou práci.
+
+---
+
+## Co mají společného
+
+Skoro nic. Liší se tvarem, silou, inteligencí i způsobem, jakým útočí. Některá vypadají jako zvířata, jiná jako lidé, některá nevypadají jako nic.
+
+Společné mají tři věci:
+
+- Objevují se tam, kde se něco buduje. Ne v pustině.
+- Míří na význam, ne na kořist. Zabíjejí i tam, kde nemají co získat.
+- Když je zabiješ, zůstane v jejich těle **junkin**.
+
+To poslední je důvod, proč lidstvo přežilo. Monstra jsou dnes jediný dostupný zdroj suroviny, na které stojí celá civilizace.
+
+> *Lidstvo žije, protože zabíjíme monstra. Není to metafora ani heslo. Je to popis.*
+
+---
+
+## Odkud se berou
+
+Vznikají jako **protiváha**. Kdykoli je něčemu rychle a násilně přiřazen nový význam, objeví se vedle toho síla, která ten význam rozbíjí.
+
+Přehradíš potok a uděláš rybník. Rybník má smysl: napájí, živí, slouží. A brzy poté se u něj začne topit lidi něco, co tam dřív nebylo.
+
+Proto je manipulace s junkinem regulovaná. Nejde o opatrnost úřadů. Jde o to, že každý zásah do světa má cenu, a tu cenu platí někdo jiný než ten, kdo zasáhl.
+
+:::k3
+Monstra nevznikají jen ve světě kolem. Vznikají i z lidí.
+
+Člověk, který ztratí svůj význam — místo, roli, důvod vstát ráno — se může změnit v monstrum. Nestává se to každému a nestává se to hned. Ale stává se to.
+
+Není to nemoc a nedá se to očkovat. Nejde to poznat pohledem a proměněný o sobě zpravidla neví, dokud není hotová.
+:::
+
+:::k7
+Tohle je celé jádro věci.
+
+Junkin potřebuje význam, aby držel tvar. Člověk má dva zdroje významu: **ikigai** — vlastní, vnitřní, nalezený smysl bytí — a **řád**, tedy roli, kterou mu přidělí společnost.
+
+Ikigai je spolehlivější, ale najde si ho málokdo a snadno se ztrácí. Řád je slabší, zato ho lze zajistit každému a nezávisí na tom, jestli si ho člověk zaslouží.
+
+Shin Junkin proto nevynucuje řád z mocichtivosti. Vynucuje ho jako **prevenci**. Člověk bez místa v systému je člověk, který se může proměnit — a proměna se neděje o samotě v poli, ale mezi ostatními.
+
+Tvrdost tohoto uspořádání není přehmat. Je to zvolená cena.
+:::`,
+  },
+  {
+    slug: "klasifikace-monster",
+    title: "Klasifikace a kódy",
+    category: "Monstra",
+    kaichi_required: 0,
+    sort_order: 3,
+    content: `# Klasifikace a kódy
+
+Monstra mají lidové názvy a mají **režimní kód**. Lidový název řekne, na co se díváš. Kód řekne, co s tebou udělá.
+
+Kód se skládá z pěti údajů a identifikačního znaku.
+
+---
+
+## Typ
+
+Podle toho, **jak** útočí na lidi.
+
+- **F** — fyzický: hrubou silou
+- **P** — psychický: klamem, lstí, iluzemi
+- **Z** — zvláštní: nějak jinak
+
+---
+
+## Síla — S1 až S10
+
+Čistě fyzická nebezpečnost.
+
+Člověk je klasifikován jako **S4**. Od trojice akreditovaných lovců se očekává, že porazí **S8**. Trojici studentů se posílá nanejvýš proti **S6**.
+
+---
+
+## Inteligence — I1 až I10
+
+Schopnost dedukce, řeči, učení, používání nástrojů.
+
+Člověk se považuje za **I8**. Monstrum s vyšší inteligencí než tvojí tě přechytračí. Počítej s tím dřív, než na něj sáhneš.
+
+---
+
+## Speciální vlastnost
+
+Písmeno, kterým se předává to nejdůležitější.
+
+- **T** — monstrum je toxické, šíří nebo využívá miasmu. Maska není doporučení.
+- **X** — mnoho o něm nevíme
+
+---
+
+## Nebezpečnost — N1 až N10
+
+Souhrnné hodnocení, které bere v úvahu všechno předchozí. Není to průměr. Je to odhad, jak pravděpodobně tě to zabije.
+
+---
+
+## Identifikační znak
+
+Písmeno abecedy. Rozlišuje monstra, kterým vyšel stejný kód.
+
+---
+
+## Jak se to čte
+
+Celý kód se skládá za sebe. Když některý údaj neznáme, píše se malé **x**.
+
+- \`FS7I5N4O\` — lidožrouti
+- \`FS9I8N8O\` — pán lidožroutů
+- \`PS3I8N7K\` — lišky
+- \`ZS2I6N5N\` — kočky
+- \`ZS6I8TN6I\` — psí duch
+- \`ZS2I7TN3C\` — čichač
+
+V řeči se celý kód nepoužívá. Stačí **poslední tři až čtyři znaky** — speciální vlastnost, nebezpečnost a identifikační znak. Tedy *N4O* jsou lidožrouti, *TN3C* je čichač, *N7K* jsou lišky.
+
+Síla a inteligence jsou pro plánování. To ostatní potřebuješ znát v běhu.`,
+  },
+
+  // ─── JUNKIN ────────────────────────────────────────────────────────────────
+  {
+    slug: "junkin",
+    title: "Junkin",
+    category: "Junkin",
+    kaichi_required: 0,
+    sort_order: 1,
+    content: `# Junkin
+
+**Junkin** (純金 — *čisté zlato*) je látka, na které stojí veškerá technologie Shin Junkinu. Energie, výroba potravin, medicína, zbraně, filtry. Bez junkinu se civilizace zastaví během měsíců.
+
+Není to kov, přestože se tak jmenuje, a není to palivo. Je to **čistý potenciál** — možnost, aby něco získalo tvar a smysl.
+
+---
+
+## Dva stavy
+
+**Surový junkin** je hmota. Vypadá jako hornina. Je nestabilní a sám o sobě nebezpečný: v jeho okolí se spontánně tvoří monstra.
+
+**Rafinovaný junkin** už hmota není. Rituálním pečetěním se stabilizuje a zapečetí do člověka nebo do stroje. Teprve v tomhle stavu s ním jde pracovat.
+
+---
+
+## Odkud se bere
+
+Junkin je teoreticky ve všem. Ve většině věcí je ale pevně vázaný a nemá smysl se ho pokoušet získat.
+
+Surový junkin lze získat jen ze dvou míst:
+
+1. **Z Měsíce.** Tuhle cestu lidstvo ztratilo.
+2. **Z těl monster.** Tahle zbyla.
+
+Proto je potřeba zabíjet monstra. Ne jen kvůli bezpečí. Kvůli surovině.
+
+---
+
+## Proč to nestačí
+
+Z jednoho monstra je stopové množství. Celý Ústřední lovecký řád ročně nevytěží ani zlomek toho, co se spotřebovávalo za Zlaté generace.
+
+Junkin proto není zboží. Je to přídělová položka a hospodaří se s ním jako se zdrojem, který nelze nahradit — protože nelze.
+
+:::k8
+Měsíc není ložisko a není to nebeské těleso s výskytem vzácné horniny.
+
+Měsíc je **tělo**. Mrtvé, obrovské a plné junkinu, protože junkin je to, z čeho bylo.
+
+Civilizace, která přežila konec světa, přežila díky tomu, že těžila mrtvolu. A až lovci přinesou surovinu z monstra, dělají v malém přesně totéž.
+:::`,
+  },
+  {
+    slug: "transmutace",
+    title: "Transmutace",
+    category: "Junkin",
+    kaichi_required: 0,
+    sort_order: 2,
+    content: `# Transmutace
+
+**Transmutace** je proměna věci tím, že se jí uměle přidá nový význam. Vezmeš dřevo a bez práce, bez nástrojů a bez času z něj uděláš ptačí budku.
+
+Je to jediný důvod, proč byla Zlatá generace možná — a je to jediný důvod, proč skončila.
+
+---
+
+## Význam a rituál
+
+Věci získávají význam neustále a většinou pomalu. Čajový obřad. Otevření obchodu. Postavený dům, do kterého se někdo nastěhuje. Tomu se říká **rituál** a probíhá to samo, přirozeně, po celou historii.
+
+Transmutace je totéž, jen okamžitě a násilím. Zapečetěný junkin vloží do předmětu význam, který by jinak vznikal roky, nebo by nevznikl vůbec.
+
+---
+
+## Cena
+
+Význam se nedá vytvořit z ničeho. Když někde vznikne, jinde vznikne jeho opak.
+
+Přirozený rituál je pomalý, takže je ta protiváha malá a rozptýlená. Průmyslová transmutace je okamžitá a obrovská — a stejně velká je i její stopa.
+
+Tohle je celé vysvětlení, proč byl svět před Pádem plný zázraků a proč je teď plný monster. Nezměnil se svět. Změnilo se, jak rychle do něj lidé sahali.
+
+---
+
+## Regulace
+
+Manipulace s junkinem podléhá povolení. Neregistrovaná transmutace je trestný čin bez ohledu na to, co se transmutovalo a jestli tím někdo utrpěl.
+
+Trestá se, i když dopadne dobře. **Zvlášť** když dopadne dobře.
+
+---
+
+## Pečeť
+
+Pečeť, která junkin drží stabilizovaný, je slabá a nevydrží dlouho. U nezkušeného uživatele povolí.
+
+Když povolí, junkin se vrátí do surového stavu — uvnitř toho, kdo ho nesl.
+
+> *Z transmutéra, kterému praskne pečeť, se nestává mrtvola. Stává se z něj práce pro lovce.*`,
+  },
+  {
+    slug: "tezba-a-rafinace",
+    title: "Těžba a rafinace",
+    category: "Junkin",
+    kaichi_required: 0,
+    sort_order: 3,
+    content: `# Těžba a rafinace
+
+---
+
+## Sklizeň
+
+Tělo zabitého monstra obsahuje stopové množství surového junkinu. Vydolovat ho je práce podpůrné specializace a je součástí výcviku.
+
+Odtud pravidlo, které se studentům opakuje od prvního dne: **výprava, která se vrátí bez těla, splnila půlku úkolu.** Mrtvé monstrum na místě je bezpečí. Mrtvé monstrum doručené je bezpečí i surovina.
+
+Tělo se transportuje celé. Rozebírat monstrum v terénu je zakázané — surový junkin bez pečeti si v okolí najde tvar.
+
+---
+
+## Rafinace
+
+Surový junkin je chaos. Použít ho přímo nelze.
+
+Rafinace probíhá **rituálním pečetěním** — soustavou pečetí a bariér zvaných **Kekkai**, které surovinu stabilizují a uzavřou do nosiče: do stroje, nebo do člověka.
+
+Postup provádějí výhradně akreditovaná zařízení. Není veřejný a jeho části podléhají vyšším stupňům poznání.
+
+---
+
+## Hospodaření
+
+Junkin je přídělová položka. Rozděluje ho stát podle priorit, které se veřejně neoznamují.
+
+Nejvyšší lovecká asociace má vlastní kvótu, protože bez rafinovaného junkinu nefunguje vybavení, filtry ani zbraně. Kvóta se odvozuje od toho, kolik junkinu lovci přinesou.
+
+Systém je tedy uzavřený: **lovci si na svoje vybavení vydělávají tím, co ulovili.** Čím horší rok, tím horší vybavení, tím horší rok.
+
+---
+
+## Zlatá generace
+
+Za Zlaté generace se junkin těžil na Měsíci v objemech, které dnes nejdou popsat. Nikdo nehladověl, nikdo nestonal a jedenáct miliard lidí žilo líp než dnes žije kdokoli.
+
+Ta těžba je pryč a nevrátí se snadno. Kdo tvrdí opak, obvykle něco prodává.`,
+  },
 ]
 
 export async function POST() {

@@ -236,31 +236,35 @@ Akano3 je třetí projekt toho jména. **Akano1** a **Akano2** skončily obě po
 
 Tým je nejmenší jednotka organizovaného lovu. Má přesně tři členy, každého s jinou specializací. Kombinace všech tří pokrývá vše, co lov monstra vyžaduje.
 
----
-
-## 衝科 — Shōka, Odbor střetu
-
+:::karta 衝科 — Shōka, Odbor střetu
 *Bojová specializace.*
 
-- **Úloha:** přímý střet s cílem, eliminační síla, ochrana týmu
-- **Zaměření:** fyzický boj, těžké zbraně, útočné manévry, odolnost
-- **Odpovědnost:** je první v kontaktu s monstrem a drží ho pod tlakem
+**Úloha:** přímý střet s cílem, eliminační síla, ochrana týmu
 
-## 策科 — Sakuka, Odbor strategie
+**Zaměření:** fyzický boj, těžké zbraně, útočné manévry, odolnost
 
+**Odpovědnost:** je první v kontaktu s monstrem a drží ho pod tlakem
+:::
+
+:::karta 策科 — Sakuka, Odbor strategie
 *Taktická specializace.*
 
-- **Úloha:** navigace, velení, orientace v zóně
-- **Zaměření:** mapy, senzory, rozhodování, koordinace týmu
-- **Odpovědnost:** řídí misi, analyzuje situaci, stopuje monstrum, mění plán za pochodu
+**Úloha:** navigace, velení, orientace v zóně
 
-## 援科 — Enka, Odbor podpory
+**Zaměření:** mapy, senzory, rozhodování, koordinace týmu
 
+**Odpovědnost:** řídí misi, analyzuje situaci, stopuje monstrum, mění plán za pochodu
+:::
+
+:::karta 援科 — Enka, Odbor podpory
 *Podpůrná specializace.*
 
-- **Úloha:** léčení, opravy, zásobování, transport těla monstra
-- **Zaměření:** medicínská péče, technická podpora, manipulace s monstry
-- **Odpovědnost:** zajišťuje, že se tým vrátí i s nákladem
+**Úloha:** léčení, opravy, zásobování, transport těla monstra
+
+**Zaměření:** medicínská péče, technická podpora, manipulace s monstry
+
+**Odpovědnost:** zajišťuje, že se tým vrátí i s nákladem
+:::
 
 ---
 
@@ -1108,43 +1112,39 @@ Je to jediné místo, kde stát připouští, že něčemu nerozumí zcela.`,
     sort_order: 2,
     content: `# Regiony Oceánie
 
-Území pod vlivem Shin Junkinu, která nejsou Shin Junkin.
+Území pod vlivem Shin Junkinu, která nejsou Shin Junkin. Všechna tři dodávají suroviny, pracovní sílu a vojáky. Všechna tři dostávají ochranu a příděly.
 
----
-
-## Jižní provincie
-
+:::karta Jižní provincie
 Bývalé Filipíny, Tchaj-wan, Indonésie a Guinea.
 
-Mikrostáty vojensky podrobené Shin Junkinu. Formálně mají vlastní správu, fakticky dodávají, co se po nich chce. Podmínky k životu jsou snesitelné, společenské postavení jejich obyvatel nikoli.
+Mikrostáty vojensky podrobené Shin Junkinu. Formálně mají vlastní správu, fakticky dodávají, co se po nich chce.
 
----
+**Život:** snesitelný
 
-## Nové pásmo
+**Postavení:** nízké
+:::
 
-Pásy ostrovů na východě, které vytvořil pohyb desek.
+:::karta Nové pásmo
+Pásy ostrovů na východě, které vytvořil pohyb desek. Ještě před třiceti lety ležely na dně oceánu, takže tam není skoro žádná zeleň, život ani stabilní půda.
 
-Ještě před třiceti lety ležely na dně oceánu, takže tam není skoro žádná zeleň, život ani stabilní půda. Zato je pásmo poseté sopkami, z nichž část je stále činná, a s nimi vulkanickými elektrárnami a těžebními doly.
+Je poseté sopkami, vulkanickými elektrárnami a doly. Jediné území obrácené k Pacifiku, za kterým leží **Konfederace**, a proto silně militarizované.
 
-Je to nehostinná průmyslová a silně militarizovaná oblast. Důvod je jednoduchý: Nové pásmo je jediné území obrácené k Pacifiku, za kterým leží **Konfederace**.
+**Život:** tvrdý, průmyslový
 
----
+**Postavení:** dělnické
+:::
 
-## Okraj
-
-Okraj bývalé Asie: Korea, Čína, Vietnam.
-
-Není to ucelené území, ale série pevností a bašt na rozbitém kontinentu.
+:::karta Okraj
+Okraj bývalé Asie: Korea, Čína, Vietnam. Není to ucelené území, ale série pevností a bašt na rozbitém kontinentu.
 
 Velké pevniny jsou poseté monstry a obyvatelné jen stěží. Na Čínu navíc ve válce dopadly nukleární zbraně a značná část Okraje je neobyvatelná dodnes.
 
-Sloužit na Okraji je trest i vyznamenání, podle toho, koho se zeptáš.
+**Život:** nebezpečný
+
+**Postavení:** sloužit zde je trest i vyznamenání
+:::
 
 ---
-
-## Jak to spolu souvisí
-
-Všechna tři území dodávají Shin Junkinu suroviny, pracovní sílu a vojáky. Všechna tři z něj dostávají ochranu a příděly.
 
 Zda je ta výměna spravedlivá, není otázka, která by se veřejně kladla.`,
   },
@@ -1158,45 +1158,35 @@ Zda je ta výměna spravedlivá, není otázka, která by se veřejně kladla.`,
 
 Po válce zbyly tři velmoci. Vedle nich existují dvě menší mocnosti bez velmocenského postavení.
 
----
-
-## Konfederace
-
+:::karta Konfederace
 *Velmoc. Hlavní protivník Shin Junkinu.*
 
 Několik pobřežních států bývalé Ameriky, propojených obrněnými vlaky, které projíždějí vybombardovaným a monstry zaplněným vnitrozemím.
 
 Stojí na individualismu, tedy na přesvědčení, že jednotlivec je víc než celek. Z pohledu Shin Junkinu je to přesně ta chyba, která svět zabila, zopakovaná znovu a vědomě.
+:::
 
----
-
-## Pakt Europa
-
+:::karta Pakt Europa
 *Velmoc. Izolacionisté.*
 
 Odstřihli se od světa a velmi přísně omezili užívání junkinu. Monstra u nich proto skoro nejsou, zaplatili za to však technologickým zaostáváním, které dohnat nedokážou.
+:::
 
----
-
-## Meridián
-
+:::karta Meridián
 *Menší mocnost. Bez území.*
 
 Putovní národ. Plovoucí ostrovy a spojené lodě křižující Pacifik a Atlantik, živí se vytahováním technologií a paliva ze strojů na dně oceánů.
 
-Pokusili se usadit v Austrálii. Shin Junkin je zničil, protože to bylo příliš blízko.
+Pokusili se usadit v Austrálii. Shin Junkin je zničil, protože to bylo příliš blízko. Meridián přijímá uprchlíky a vyhnance odkudkoli.
+:::
 
-Meridián přijímá uprchlíky a vyhnance odkudkoli, žijí v něm proto i skupiny Vedlejších a Místních.
-
----
-
-## Země obrody
-
+:::karta Země obrody
 *Menší mocnost. Mikrostáty.*
 
 Na jihu Afriky a Ameriky. Junkin odvrhly úplně a snaží se s monstry žít v souladu.
 
 Obyvatelé Shin Junkinu o nich buď nevědí, nebo se jejich naivitě smějí.
+:::
 
 ---
 
@@ -1435,27 +1425,29 @@ První generace, která se lovcem nestává tím, že by ji někdo našel a vzal
 
 Ryōdan se dělí na divize podle toho, proti čemu jeho lovci stojí.
 
----
+:::karta Lovci
+Základní a nejpočetnější divize. Fyzická monstra, fyzický terén, fyzický střet.
 
-## Lovci
+**Pracují:** po trojicích
 
-Základní a nejpočetnější divize. Fyzická monstra, fyzický terén, fyzický střet. Pracují po trojicích.
+**Ví se o nich:** všechno
+:::
 
----
+:::karta Virtuální divize
+Trojice specializované na informační prostor. Ne každé monstrum má tělo a ne každé se dá potkat na ulici.
 
-## Virtuální divize
+**Pracují:** po trojicích, se stejným rozdělením rolí
 
-Trojice specializované na **informační prostor**.
+**Ví se o nich:** že existují
+:::
 
-Ne každé monstrum má tělo a ne každé se dá potkat na ulici. Virtuální lovci pracují po třech se stejným rozdělením rolí jako ostatní, jen v prostředí, do kterého se nedá vejít.
-
-O jejich existenci se běžně ví. O jejich práci téměř nic.
-
----
-
-## Stínová divize
-
+:::karta Stínová divize
 Existence této divize není tajemstvím. Její náplň se veřejně nerozebírá.
+
+**Pracují:** neuvedeno
+
+**Ví se o nich:** jméno
+:::
 
 :::k6
 Stínová divize slouží k eliminaci vnitřních hrozeb: lidí, neposlušných lovců a všeho, co je nutné vyřešit tiše a co nelze svěřit armádě ani soudu.

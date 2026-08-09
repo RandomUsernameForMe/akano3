@@ -756,36 +756,42 @@ Po vystoupeních následuje volná zábava. Nevystupují všechny kruhy, ale vš
     sort_order: 2,
     content: `# Transmutace
 
-**Transmutace** je proměna věci tím, že se jí uměle přidá nový význam. Vezmeš dřevo a bez práce, bez nástrojů a bez času z něj uděláš ptačí budku.
+**Transmutace** je proměna věci v jinou věc — bez práce, bez nástrojů a bez času. Vezmeš dřevo a máš ptačí budku.
 
-Je to jediná schopnost, kvůli které byla Zlatá generace možná.
+Je to jediná schopnost, kvůli které byla Zlatá generace možná, a jediný důvod, proč se junkin kdy těžil.
 
 ---
 
-## Význam a rituál
+## Co se o ní ví
 
-Věci získávají význam neustále a většinou pomalu. Čajový obřad. Otevření obchodu. Postavený dům, do kterého se někdo nastěhuje. Tomu se říká **rituál** a probíhá to samo, po celou historii.
+Že existuje. Že k ní je potřeba junkin. A že ji smí provádět jen ten, kdo k tomu má povolení.
 
-Transmutace je totéž, jen okamžitě. Zapečetěný junkin vloží do předmětu význam, který by jinak vznikal roky — nebo by nevznikl nikdy.
+Jak přesně probíhá, se neučí. Ani na Akademii, ani nikde jinde, kam se student dostane. Není to opomenutí osnov — postup samotný je klasifikovaný a jeho části podléhají stupňům poznání, kterých většina obyvatel nikdy nedosáhne.
 
 ---
 
 ## Regulace
 
-Manipulace s junkinem podléhá povolení. Neregistrovaná transmutace je trestný čin bez ohledu na to, co se transmutovalo a jestli tím někdo utrpěl.
+Neregistrovaná transmutace je trestný čin bez ohledu na to, co se transmutovalo a jestli tím někdo utrpěl.
 
-Trestá se, i když dopadne dobře. **Zvlášť** když dopadne dobře.
+Trestá se, i když dopadne dobře. **Zvlášť** když dopadne dobře — úspěch bez povolení znamená, že se postup dostal ven.
 
-Studentům Akademie je transmutace zakázána bez výjimky až do akreditace.
+Studentům Akademie je transmutace zakázána bez výjimky až do akreditace. Toto pravidlo nemá výjimku pro nadané, pro pokročilé ani pro nouzi.
 
-:::k3
-Pečeť, která junkin drží stabilizovaný, je slabá a nevydrží dlouho. U nezkušeného uživatele povolí.
+> *Neptej se, jak to funguje. Ptej se, komu to bylo dovoleno.*
 
-Když povolí, junkin se vrátí do surového stavu — **uvnitř toho, kdo ho nesl**.
+:::k6
+Junkin drží tvar jen tehdy, když má **význam**.
 
-Z transmutéra, kterému praskne pečeť, se nestává mrtvola. Stává se z něj práce pro lovce. Zpravidla do několika minut a zpravidla mezi lidmi, kteří ho znali.
+Význam vzniká normálně a pomalu — čajovým obřadem, otevřením obchodu, domem, do kterého se někdo nastěhuje. Tomu se říká **rituál** a probíhá to samo, po celou historii.
 
-Tohle je skutečný důvod přísnosti předpisů. Nejde o daně z transmutace ani o státní monopol. Jde o to, že amatér s junkinem není nebezpečný sobě.
+Transmutace je totéž provedené naráz. Zapečetěný junkin vloží do předmětu význam, který by jinak vznikal roky nebo nevznikl vůbec.
+
+**Pečeť** je to, co surový junkin drží stabilizovaný a použitelný. Je slabá a nevydrží dlouho. U nezkušeného uživatele povolí.
+
+Když povolí, junkin se vrátí do surového stavu — **uvnitř toho, kdo ho nesl**. Z transmutéra, kterému praskne pečeť, se nestává mrtvola. Stává se z něj práce pro lovce.
+
+Tohle je skutečný důvod přísnosti předpisů. Nejde o monopol ani o poplatky. Jde o to, že amatér s junkinem není nebezpečný sobě.
 :::
 
 :::k7
@@ -797,7 +803,7 @@ Z toho plyne věta, kterou nikdo neřekne nahlas a která je celá pravda o tomt
 
 **Monstra nejsou nepřítel, který na nás přišel zvenčí. Jsou to odpad naší vlastní výroby.**
 
-Svět před Pádem nebyl plný zázraků a potom plný monster proto, že by se svět změnil. Změnilo se, jak rychle do něj lidé sahali — a každý zázrak měl svůj stín, který se někde zhmotnil.
+Svět nebyl nejdřív plný zázraků a potom plný monster proto, že by se svět změnil. Změnilo se, jak rychle do něj lidé sahali — a každý zázrak měl svůj stín, který se někde zhmotnil.
 
 Shin Junkin to ví. Pokračuje v tom, protože alternativou je zastavit se, a zastavit se znamená zemřít pomaleji.
 :::`,
@@ -844,7 +850,7 @@ Systém je tedy uzavřený: **lovci si na svoje vybavení vydělávají tím, co
 Zákaz rozebírat monstrum v terénu má stejný důvod jako všechno ostatní kolem surového junkinu. Bez pečeti si v okolí najde tvar.
 :::
 
-:::k5
+:::k6
 Rafinace probíhá **rituálním pečetěním** — soustavou pečetí a bariér zvaných **Kekkai**, které surovinu stabilizují a uzavřou do nosiče.
 
 Veřejnost si pod nosičem představuje stroj. Stroje se používají také.

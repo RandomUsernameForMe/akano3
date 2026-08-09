@@ -750,7 +750,7 @@ Junkinu je v současnosti extrémně málo. Využívá se proto výhradně na pr
 :::k3
 Jedním ze současných zdrojů junkinu jsou **monstra**. V těle zabitého monstra zůstane stopové množství suroviny, a proto se monstra loví.
 
-Součástí školních misí někdy bývá dotáhnout tělo zpět, ale není to pravidlo. Zabít monstrum je důležitější než ho vytěžit a výprava, která tělo nechá na místě, úkol nezkazila.
+Součástí školních misí někdy bývá i dotáhnout tělo zpět, nejen zabít.
 
 Kvóta Ústředního loveckého řádu se odvozuje od toho, kolik suroviny lovci přinesou. Systém je uzavřený: lovci si na vybavení vydělávají tím, co ulovili. Čím horší rok, tím horší vybavení a tím horší další rok.
 

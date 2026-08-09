@@ -76,17 +76,21 @@ Stav k 2026-08-09:
 
 | Stupeň | Hlavní tajemství | Vedlejší v knihovně |
 |---|---|---|
-| I | Junkin se získává z těl monster — proto je lovíme | Proč se nosí těla; kvóta Řádu je uzavřený systém |
+| I | *(v knihovně bez obsahu — viz poznámka pod tabulkou)* | — |
 | II | Genocida: údery vypustili předchůdci Shin Junkinu | Surový junkin sám tvoří monstra |
-| III | Lidé se můžou stát monstry | Miasma je surovinou detektoru lži; existence Čichače |
-| IV | Návrat: každý lovec má jeden | — *(žádné)* |
+| III | Lidé se můžou stát monstry | Miasma je surovinou detektoru lži; existence Čichače; junkin se získává z těl monster; proč se nosí těla |
+| IV | Návrat: každý lovec má jeden | Junkin má dva stavy, surový sám tvoří monstra |
 | V | Lovci nesmí mít rodinu, je tomu fyzicky zabráněno | Trojice není doporučení, ale podmínka akreditace |
 | VI | Návrat je lež | Stínová divize; rozkaz o konečném stupni nákazy; transmutace je rituál; nosiči junkinu jsou lidé; Rituální kruh učí transmutovat |
 | VII | Ztráta významu tvoří monstrum — řád je záměrná prevence | Protiváha: transmutace monstra vyrábí |
 | VIII | Měsíc je tělo mrtvého monstra | — *(mimo aplikaci, viz K16)* |
 
-**Nerovnováha, kterou to odhalilo:** Kaichi IV nemá vedlejší tajemství žádné,
-Kaichi VI jich má pět. Není to nutně chyba — VI je vstup do důvěrných struktur,
+**Kaichi I nemá v knihovně obsah.** Rozhodnuto 2026-08-09: fakt „junkin se
+získává z těl monster" byl posunut na **Kaichi III** a s ním i „proč se nosí
+těla" v článku *Těžba a rafinace*. Kánonové hlavní tajemství první úrovně tím
+zůstává v platnosti, ale terminál ho nepředává — podobně jako Kaichi VIII.
+
+**Nerovnováha, kterou to odhalilo:** Kaichi VI má pět vedlejších tajemství. Není to nutně chyba — VI je vstup do důvěrných struktur,
 takže se s ním odemyká hodně provozního vědění — ale při doplňování obsahu to
 stojí za zvážení.
 

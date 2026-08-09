@@ -757,7 +757,7 @@ Studentům se od prvního dne opakuje, že výprava, která se vrátí bez těla
 
 Tělo se transportuje celé. Rozebírat monstrum v terénu je zakázáno.
 
-:::k1
+:::k3
 To „něco navíc" je junkin. Tělo se odevzdává, protože se z něj surovina získává, a kvóta Ústředního loveckého řádu se odvozuje od toho, kolik jí lovci přinesou.
 
 Systém je uzavřený: lovci si na vybavení vydělávají tím, co ulovili. Čím horší rok, tím horší vybavení a tím horší další rok.

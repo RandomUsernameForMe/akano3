@@ -162,6 +162,14 @@ function RedactedBlock({ lines, requiredLevel, unlocked, struck }: {
 }
 
 
+
+/** Kolik sloupců chceme pro daný počet karet, aby žádná neosiřela. */
+function sloupce(pocet: number): number {
+  if (pocet % 3 === 0) return 3
+  if (pocet % 2 === 0) return 2
+  return Math.min(pocet, 3)
+}
+
 type CardBlockT = Extract<Block, { type: "card" }>
 
 /** Sloučí sousední karty do jednoho pole, aby se vykreslily do společné mřížky. */
@@ -206,7 +214,10 @@ export function WikiRenderer({ content, kaichiLevel }: Props) {
           return (
             <div key={i} style={{
               display:"grid", gap:10, margin:"12px 0",
-              gridTemplateColumns:"repeat(auto-fit, minmax(240px, 1fr))",
+              // Počet sloupců se odvozuje od počtu karet, ne od šířky: jinak by
+              // čtyři karty na širokém displeji vyšly 3+1 a jedna by osiřela.
+              // minmax drží spodní hranici, takže na úzkém displeji zůstane jeden sloupec.
+              gridTemplateColumns: `repeat(auto-fit, minmax(${Math.floor(680 / sloupce(block.length))}px, 1fr))`,
             }}>
               {block.map((c, j) => <CardBlock key={j} title={c.title} lines={c.lines} />)}
             </div>

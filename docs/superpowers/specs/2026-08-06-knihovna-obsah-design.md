@@ -370,6 +370,11 @@ zůstali na starých úrovních. Opraveno jednorázovým `UPDATE` proti běhu 1.
 Platí obecně: **jakákoli budoucí změna herních dat v `data.ts` vyžaduje buď nový
 běh, nebo zásah do `character_state`.** Samotná editace souboru nestačí.
 
+V praxi to zatím není překážka — současné běhy jsou testovací a jdou přemazat
+(potvrzeno 2026-08-09). Nejjednodušší cesta po změně `data.ts` je proto **založit
+nový běh**, ne psát UPDATE. Počítat s tím ale bude potřeba, až poběží ostrá hra:
+tam se kaichi mění průběžně přes GM panel a `data.ts` je jen výchozí stav.
+
 `POST /api/admin/seed-wiki` provádí `DELETE FROM wiki_articles` před vložením.
 Přeseedování zahodí veškeré úpravy provedené GM přes wiki-admin panel. Zatím
 přijatelné — obsah se píše v repu, admin panel slouží k opravám během hry.

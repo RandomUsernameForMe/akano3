@@ -635,48 +635,35 @@ Síla a inteligence jsou pro plánování. To ostatní potřebuješ znát v běh
     sort_order: 1,
     content: `# Junkin
 
-**Junkin** (純金 — *čisté zlato*) je látka, na které stojí veškerá technologie Shin Junkinu. Energie, výroba potravin, medicína, zbraně, filtry. Bez junkinu se civilizace zastaví během měsíců.
+**Junkin** (純金 — *čisté zlato*) je látka, na které stála Zlatá generace a na které dodnes stojí veškerá technologie Shin Junkinu. Energie, výroba potravin, medicína, zbraně, filtry.
 
-Není to kov, přestože se tak jmenuje, a není to palivo. Je to **čistý potenciál** — možnost, aby něco získalo tvar a smysl.
+O junkinu se veřejně ví trojí:
 
----
+- **Těžil se na Měsíci.** Přístup k té těžbě lidstvo ztratilo.
+- **Umí měnit hmotu.** Přemění věc v jinou věc bez práce a bez času. Tomu se říká **transmutace**.
+- **Je ho zoufale málo.** Není to zboží, je to přídělová položka. Manipulace s ním vyžaduje povolení a neoprávněné nakládání se trestá.
 
-## Dva stavy
+Všechno ostatní o junkinu podléhá vyšším stupňům poznání. Není to formalita. Junkin je jediná látka, u které stát reguluje i to, co se o ní smí vědět.
 
-**Surový junkin** je hmota. Vypadá jako hornina. Je nestabilní a sám o sobě nebezpečný: v jeho okolí se spontánně tvoří monstra.
+:::k1
+Měsíc už není zdroj. Zdroj jsou **monstra**.
 
-**Rafinovaný junkin** už hmota není. Rituálním pečetěním se stabilizuje a zapečetí do člověka nebo do stroje. Teprve v tomhle stavu s ním jde pracovat.
+V těle každého zabitého monstra zůstane stopové množství junkinu. Je to jediný způsob, jak dnes lidstvo surovinu získává — a jediný důvod, proč je lov organizovaný, financovaný a povinný.
 
----
+Tohle je odpověď na otázku, kterou si dřív nebo později položí každé dítě: **proč se monstra loví, místo aby se jim lidé vyhýbali.**
 
-## Odkud se bere
+Nevyhýbáme se jim, protože bez nich do měsíce zhasneme.
+:::
 
-Junkin je teoreticky ve všem. Ve většině věcí je ale pevně vázaný a nemá smysl se ho pokoušet získat.
+:::k2
+Junkin má dva stavy a rozdíl mezi nimi je otázka života.
 
-Surový junkin lze získat jen ze dvou míst:
+**Surový junkin** je hmota. Vypadá jako hornina, dá se vzít do ruky a je **nestabilní**. Sám od sebe, bez zásahu člověka, v okolí **tvoří monstra**. Neuhlídaný nález surového junkinu je proto hlášen jako mimořádná událost a řeší se stejně jako výskyt monstra.
 
-1. **Z Měsíce.** Tuhle cestu lidstvo ztratilo.
-2. **Z těl monster.** Tahle zbyla.
+**Rafinovaný junkin** už hmota není. Rituálním pečetěním se stabilizuje a teprve pak s ním jde pracovat.
 
-Proto je potřeba zabíjet monstra. Ne jen kvůli bezpečí. Kvůli surovině.
-
----
-
-## Proč to nestačí
-
-Z jednoho monstra je stopové množství. Celý Ústřední lovecký řád ročně nevytěží ani zlomek toho, co se spotřebovávalo za Zlaté generace.
-
-Junkin proto není zboží. Je to přídělová položka a hospodaří se s ním jako se zdrojem, který nelze nahradit — protože nelze.
-
----
-
-## Měsíc
-
-Proč je na Měsíci junkin a proč zrovna tam, databáze neuvádí.
-
-Otázka je stará jako těžba sama a odpovědi na ni se pohybují od geologických po náboženské. Oficiální stanovisko státu zní, že původ suroviny není pro její využití podstatný.
-
-Kdo se ptá dál, obvykle se dál nedostane.`,
+Mezi nálezem a pečetí je tedy vždycky časové okno, ve kterém se surovina chová jako hrozba. Zkrátit ho na nulu se dosud nepodařilo.
+:::`,
   },
 
   // ─── AKANO3: kruhy ─────────────────────────────────────────────────────────
@@ -771,25 +758,15 @@ Po vystoupeních následuje volná zábava. Nevystupují všechny kruhy, ale vš
 
 **Transmutace** je proměna věci tím, že se jí uměle přidá nový význam. Vezmeš dřevo a bez práce, bez nástrojů a bez času z něj uděláš ptačí budku.
 
-Je to jediný důvod, proč byla Zlatá generace možná — a je to jediný důvod, proč skončila.
+Je to jediná schopnost, kvůli které byla Zlatá generace možná.
 
 ---
 
 ## Význam a rituál
 
-Věci získávají význam neustále a většinou pomalu. Čajový obřad. Otevření obchodu. Postavený dům, do kterého se někdo nastěhuje. Tomu se říká **rituál** a probíhá to samo, přirozeně, po celou historii.
+Věci získávají význam neustále a většinou pomalu. Čajový obřad. Otevření obchodu. Postavený dům, do kterého se někdo nastěhuje. Tomu se říká **rituál** a probíhá to samo, po celou historii.
 
-Transmutace je totéž, jen okamžitě a násilím. Zapečetěný junkin vloží do předmětu význam, který by jinak vznikal roky, nebo by nevznikl vůbec.
-
----
-
-## Cena
-
-Význam se nedá vytvořit z ničeho. Když někde vznikne, jinde vznikne jeho opak.
-
-Přirozený rituál je pomalý, takže je ta protiváha malá a rozptýlená. Průmyslová transmutace je okamžitá a obrovská — a stejně velká je i její stopa.
-
-Tohle je celé vysvětlení, proč byl svět před Pádem plný zázraků a proč je teď plný monster. Nezměnil se svět. Změnilo se, jak rychle do něj lidé sahali.
+Transmutace je totéž, jen okamžitě. Zapečetěný junkin vloží do předmětu význam, který by jinak vznikal roky — nebo by nevznikl nikdy.
 
 ---
 
@@ -799,15 +776,31 @@ Manipulace s junkinem podléhá povolení. Neregistrovaná transmutace je trestn
 
 Trestá se, i když dopadne dobře. **Zvlášť** když dopadne dobře.
 
----
+Studentům Akademie je transmutace zakázána bez výjimky až do akreditace.
 
-## Pečeť
-
+:::k3
 Pečeť, která junkin drží stabilizovaný, je slabá a nevydrží dlouho. U nezkušeného uživatele povolí.
 
-Když povolí, junkin se vrátí do surového stavu — uvnitř toho, kdo ho nesl.
+Když povolí, junkin se vrátí do surového stavu — **uvnitř toho, kdo ho nesl**.
 
-> *Z transmutéra, kterému praskne pečeť, se nestává mrtvola. Stává se z něj práce pro lovce.*`,
+Z transmutéra, kterému praskne pečeť, se nestává mrtvola. Stává se z něj práce pro lovce. Zpravidla do několika minut a zpravidla mezi lidmi, kteří ho znali.
+
+Tohle je skutečný důvod přísnosti předpisů. Nejde o daně z transmutace ani o státní monopol. Jde o to, že amatér s junkinem není nebezpečný sobě.
+:::
+
+:::k7
+Význam nelze vytvořit z ničeho. Když někde vznikne, jinde vznikne **jeho opak**.
+
+Přirozený rituál je pomalý, takže protiváha je malá a rozptýlená — kolem vodopádu, který se tvoří tisíc let, se možná časem objeví něco, co k němu chodí topit lidi. Průmyslová transmutace je okamžitá a obrovská. Stejně velká je i její stopa.
+
+Z toho plyne věta, kterou nikdo neřekne nahlas a která je celá pravda o tomto světě:
+
+**Monstra nejsou nepřítel, který na nás přišel zvenčí. Jsou to odpad naší vlastní výroby.**
+
+Svět před Pádem nebyl plný zázraků a potom plný monster proto, že by se svět změnil. Změnilo se, jak rychle do něj lidé sahali — a každý zázrak měl svůj stín, který se někde zhmotnil.
+
+Shin Junkin to ví. Pokračuje v tom, protože alternativou je zastavit se, a zastavit se znamená zemřít pomaleji.
+:::`,
   },
   {
     slug: "tezba-a-rafinace",
@@ -819,41 +812,49 @@ Když povolí, junkin se vrátí do surového stavu — uvnitř toho, kdo ho nes
 
 ---
 
-## Sklizeň
+## Měsíční těžba
 
-Tělo zabitého monstra obsahuje stopové množství surového junkinu. Vydolovat ho je práce podpůrné specializace a je součástí výcviku.
+Za Zlaté generace se junkin těžil na odvrácené straně Měsíce v objemech, které dnes nejdou popsat. Nikdo nehladověl, nikdo nestonal a jedenáct miliard lidí žilo líp než dnes žije kdokoli.
 
-Odtud pravidlo, které se studentům opakuje od prvního dne: **výprava, která se vrátí bez těla, splnila půlku úkolu.** Mrtvé monstrum na místě je bezpečí. Mrtvé monstrum doručené je bezpečí i surovina.
-
-Tělo se transportuje celé. Rozebírat monstrum v terénu je zakázané — surový junkin bez pečeti si v okolí najde tvar.
+Ta těžba je pryč. Kdo tvrdí, že se snadno vrátí, obvykle něco prodává.
 
 ---
 
-## Rafinace
+## Příděly
 
-Surový junkin je chaos. Použít ho přímo nelze.
+Junkin dnes rozděluje stát podle priorit, které se veřejně neoznamují.
 
-Rafinace probíhá **rituálním pečetěním** — soustavou pečetí a bariér zvaných **Kekkai**, které surovinu stabilizují a uzavřou do nosiče: do stroje, nebo do člověka.
-
-Postup provádějí výhradně akreditovaná zařízení. Není veřejný a jeho části podléhají vyšším stupňům poznání.
+Ústřední lovecký řád má vlastní kvótu, protože bez rafinovaného junkinu nefunguje vybavení, filtry ani zbraně. Výše té kvóty se odvíjí od výkonu lovců.
 
 ---
 
-## Hospodaření
+## Proč se nosí těla
 
-Junkin je přídělová položka. Rozděluje ho stát podle priorit, které se veřejně neoznamují.
+Studentům se od prvního dne opakuje: **výprava, která se vrátí bez těla, splnila půlku úkolu.** Mrtvé monstrum na místě je bezpečí. Mrtvé monstrum doručené je bezpečí i něco navíc.
 
-Nejvyšší lovecká asociace má vlastní kvótu, protože bez rafinovaného junkinu nefunguje vybavení, filtry ani zbraně. Kvóta se odvozuje od toho, kolik junkinu lovci přinesou.
+Tělo se transportuje celé. Rozebírat monstrum v terénu je zakázáno.
+
+:::k1
+To „něco navíc" je junkin.
+
+Tělo se odevzdává, protože se z něj surovina získává — a kvóta Ústředního loveckého řádu se odvozuje přesně od toho, kolik jí lovci přinesou.
 
 Systém je tedy uzavřený: **lovci si na svoje vybavení vydělávají tím, co ulovili.** Čím horší rok, tím horší vybavení, tím horší rok.
 
----
+Zákaz rozebírat monstrum v terénu má stejný důvod jako všechno ostatní kolem surového junkinu. Bez pečeti si v okolí najde tvar.
+:::
 
-## Zlatá generace
+:::k5
+Rafinace probíhá **rituálním pečetěním** — soustavou pečetí a bariér zvaných **Kekkai**, které surovinu stabilizují a uzavřou do nosiče.
 
-Za Zlaté generace se junkin těžil na Měsíci v objemech, které dnes nejdou popsat. Nikdo nehladověl, nikdo nestonal a jedenáct miliard lidí žilo líp než dnes žije kdokoli.
+Veřejnost si pod nosičem představuje stroj. Stroje se používají také.
 
-Ta těžba je pryč a nevrátí se snadno. Kdo tvrdí opak, obvykle něco prodává.`,
+Většina rafinovaného junkinu ve Shin Junkinu je ale zapečetěna **do lidí**. Nosič není zařízení. Nosič je člověk, který junkin drží ve svém těle a transmutuje jím tak dlouho, dokud pečeť vydrží.
+
+Je to práce. Je placená, je dobrovolná a nikdo o ní nemluví. Nosiči nemají odznak ani titul a v evidenci jsou vedeni pod povoláním, které dělali předtím.
+
+Kolik jich je, databáze neuvádí.
+:::`,
   },
 
   // ─── HISTORIE ──────────────────────────────────────────────────────────────

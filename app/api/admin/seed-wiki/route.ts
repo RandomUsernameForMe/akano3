@@ -735,6 +735,14 @@ Provádí rituály sloužící společnosti — při svátcích, při zahájení
 
 Kruh má vlastní obřadní úbory a vlastní hierarchii v čele s **hlavním rituálníkem**, kterého si volí.
 
+:::k6
+Obřady pro společnost jsou pravda, ale ne celá.
+
+Rituální kruh se učí **transmutovat junkin**. Transmutace je rituál — přesné pohyby a přesné odříkání — a tenhle kruh je jediné místo na Akademii, kde se ta dovednost předává.
+
+Ví se o tom málo a mluví se o tom ještě míň. Absolvent Rituálního kruhu má otevřenou kariérní cestu, která nevede přes lovectví a o které se studentům neříká.
+:::
+
 ---
 
 ## Oslava života
@@ -762,11 +770,15 @@ Je to jediná schopnost, kvůli které byla Zlatá generace možná, a jediný d
 
 ---
 
-## Co se o ní ví
+## Střežená dovednost
 
-Že existuje. Že k ní je potřeba junkin. A že ji smí provádět jen ten, kdo k tomu má povolení.
+**Transmutace junkinu je přísně střežená dovednost.** To je o ní veřejně známo a je to zároveň všechno, co je o ní veřejně známo.
 
-Jak přesně probíhá, se neučí. Ani na Akademii, ani nikde jinde, kam se student dostane. Není to opomenutí osnov — postup samotný je klasifikovaný a jeho části podléhají stupňům poznání, kterých většina obyvatel nikdy nedosáhne.
+Že existuje. Že k ní je potřeba junkin. Že ji smí provádět jen ten, kdo k tomu má oprávnění, a že těch je málo.
+
+Jak přesně probíhá, se neučí. Ani na Akademii, ani nikde jinde, kam se student dostane. Není to opomenutí osnov — postup je klasifikovaný a jeho části podléhají stupňům poznání, kterých většina obyvatel nikdy nedosáhne.
+
+Kdo se o postup zajímá nahlas, bývá zaznamenán.
 
 ---
 
@@ -781,6 +793,16 @@ Studentům Akademie je transmutace zakázána bez výjimky až do akreditace. To
 > *Neptej se, jak to funguje. Ptej se, komu to bylo dovoleno.*
 
 :::k6
+Transmutace není technický postup. Je to **rituál**.
+
+Nejde o zařízení, do kterého se něco vloží a zmáčkne se tlačítko. Jde o přesné pohyby, přesné pořadí a přesné odříkání — o úkon, který musí být proveden celý a správně, jinak není proveden vůbec.
+
+Proto se nedá zautomatizovat a proto je transmutérů tak málo. Nejsou vzácní kvůli surovině. Jsou vzácní proto, že se to musí umět.
+
+Na Akademii se tomu učí **Rituální kruh**. Navenek provádí obřady pro společnost — a to je pravda, jen ne celá. Studenti, kteří jím projdou, jsou nejbližší, co má stát k budoucím transmutérům.
+
+---
+
 Junkin drží tvar jen tehdy, když má **význam**.
 
 Význam vzniká normálně a pomalu — čajovým obřadem, otevřením obchodu, domem, do kterého se někdo nastěhuje. Tomu se říká **rituál** a probíhá to samo, po celou historii.

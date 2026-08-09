@@ -1391,45 +1391,39 @@ Napětí mezi řádem a státem je trvalé, oboustranně uznávané a záměrné
     sort_order: 4,
     content: `# Generace lovců
 
-Lovci se dělí podle toho, kdy se jimi stali. Není to hodnost ani zásluha, ale údaj o tom, jaký svět dotyčný zažil.
+Lovci se mezi sebou dělí podle toho, kdy se jimi stali. Je to neformální označení, které se nikde neeviduje a nemá vliv na postavení. Říká, jaký svět dotyčný zažil.
 
----
-
-## Nultá generace
-
-Zabíječi monster z doby před válkou, vojáci zvláštních armádních složek. Tehdy se jim neříkalo lovci, ten název dostali zpětně.
+:::karta Nultá generace
+Zabíječi monster z doby **před válkou**, vojáci zvláštních armádních složek. Tehdy se jim neříkalo lovci, ten název dostali zpětně.
 
 Nedělili se na specializace a fungovali samostatně. Zažili Zlatou generaci a pamatují si ji.
 
-Dnes je jim pětašedesát a víc. Většina už nežije.
+**Dnes:** pětašedesát a víc, většina už nežije.
+:::
 
----
-
-## První generace
-
+:::karta První generace
 Ti, kdo po zkáze chodili světem a chránili lidi. Postavy v šedivých cestovních pláštích, které přicházely mezi populační centra.
 
-Vznikl s nimi lovecký kovenant. Válku si pamatují, dobu před ní ne, byli tehdy děti z rozbitých měst.
+Vznikl s nimi lovecký kovenant. Válku si pamatují, dobu před ní ne: byli tehdy děti z rozbitých měst.
 
-Dnes je jim padesát až sedmdesát.
+**Dnes:** padesát až sedmdesát.
+:::
 
----
-
-## Druhá generace
-
-Jejich učedníci přes Shidōsei a poté všichni, kdo se stali lovci po ustavení Shin Junkinu v roce 2120.
+:::karta Druhá generace
+Učedníci první generace přes Shidōsei a poté všichni, kdo se stali lovci po ustavení Shin Junkinu v roce 2120.
 
 První generace, která lovectví nevynalezla, ale zdědila. Vyrostla v hotové instituci s licencemi, zákoníkem a rozpočtem.
 
-Dnes je jim pětadvacet až padesát a tvoří většinu činných lovců.
+**Dnes:** pětadvacet až padesát, tvoří většinu činných lovců.
+:::
 
----
-
-## Třetí generace
-
+:::karta Třetí generace
 Studenti projektu Akano.
 
-První generace, která se lovcem nestává tím, že by ji někdo našel a vzal si ji k sobě, ale tím, že projde školou. Jak to lovectví změní, se teprve ukáže.`,
+První generace, která se lovcem nestává tím, že by ji někdo našel a vzal si ji k sobě, ale tím, že projde školou. Jak to lovectví změní, se teprve ukáže.
+
+**Dnes:** patnáct až devatenáct.
+:::`,
   },
   {
     slug: "divize-lovcu",

@@ -2,7 +2,7 @@
 
 import React from "react"
 import { romanNumeral } from "@/lib/utils"
-import { parseBlocks } from "@/lib/wiki-blocks"
+import { parseBlocks, type Block } from "@/lib/wiki-blocks"
 
 interface Props {
   content: string
@@ -161,11 +161,57 @@ function RedactedBlock({ lines, requiredLevel, unlocked, struck }: {
   )
 }
 
+
+type CardBlockT = Extract<Block, { type: "card" }>
+
+/** Sloučí sousední karty do jednoho pole, aby se vykreslily do společné mřížky. */
+function groupCards(blocks: Block[]): (Block | CardBlockT[])[] {
+  const out: (Block | CardBlockT[])[] = []
+  for (const b of blocks) {
+    if (b.type === "card") {
+      const last = out[out.length - 1]
+      if (Array.isArray(last)) last.push(b)
+      else out.push([b])
+    } else {
+      out.push(b)
+    }
+  }
+  return out
+}
+
+function CardBlock({ title, lines }: { title: string; lines: string[] }) {
+  return (
+    <div style={{
+      border:"1px solid var(--c-border-mid)", borderRadius:8,
+      backgroundColor:"var(--c-bg-section)", padding:"12px 16px 14px",
+    }}>
+      <div style={{
+        fontWeight:800, fontSize:"0.85rem", color:"var(--c-accent)",
+        letterSpacing:"0.04em", marginBottom:8,
+        borderBottom:"1px solid var(--c-border)", paddingBottom:6,
+      }}>
+        {title}
+      </div>
+      <MdBlock lines={lines} />
+    </div>
+  )
+}
+
 export function WikiRenderer({ content, kaichiLevel }: Props) {
   const blocks = parseBlocks(content)
   return (
     <div>
-      {blocks.map((block, i) => {
+      {groupCards(blocks).map((block, i) => {
+        if (Array.isArray(block)) {
+          return (
+            <div key={i} style={{
+              display:"grid", gap:10, margin:"12px 0",
+              gridTemplateColumns:"repeat(auto-fit, minmax(240px, 1fr))",
+            }}>
+              {block.map((c, j) => <CardBlock key={j} title={c.title} lines={c.lines} />)}
+            </div>
+          )
+        }
         switch (block.type) {
           case "md": {
             const struck = block.revisedAtLevel != null && kaichiLevel >= block.revisedAtLevel
@@ -187,6 +233,9 @@ export function WikiRenderer({ content, kaichiLevel }: Props) {
             // Pod úrovní se revize nesmí projevit vůbec — ani jako černé pruhy.
             if (kaichiLevel < block.requiredLevel) return null
             return <RevisionBlock key={i} lines={block.lines} requiredLevel={block.requiredLevel} />
+          case "card":
+            // Karty řeší groupCards výše; sem se samostatná karta nedostane.
+            return null
           default: {
             const exhaustive: never = block
             return exhaustive

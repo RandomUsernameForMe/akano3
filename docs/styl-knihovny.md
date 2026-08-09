@@ -80,7 +80,20 @@ Odstavec s definicí. **Tučně** klíčový termín, *kurzívou* japonský pře
 :::k3
 Utajená vrstva.
 :::
+
+:::karta Nadpis okénka
+Obsah karty. Sousední karty se vykreslí do společné mřížky.
+
+**Pole:** hodnota
+:::
 ```
+
+**Karty** používej na paralelní výčty, kde má čtenář porovnávat: generace, divize,
+mocnosti, specializace. Uvnitř karty drž u všech stejnou sadu polí, jinak se
+porovnávat nedají.
+
+Řádek uvozený tučným štítkem (`**Dnes:** …`) se počítá jako datové pole, ne jako
+věta, a pravidlo o krátkých větách se na něj nevztahuje.
 
 Renderer neumí tabulky. Výčty se píší odrážkami.
 

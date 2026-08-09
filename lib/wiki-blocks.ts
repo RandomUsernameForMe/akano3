@@ -1,6 +1,7 @@
 // Parser pro custom fence bloky v markdownu knihovny.
 // `:::kN … :::` označuje tajemství — skryté pod úrovní N, zobrazené od N výš.
 // `:::reviseN … :::` označuje revizi — vyšší úroveň prohlašuje, že předchozí blok byl lež.
+// `:::karta Nadpis … :::` je orámované okénko. Sousední karty se vykreslí do mřížky.
 
 /**
  * Bloky drží pořadí, ve kterém byly v textu. Revidovaný blok (ten s
@@ -12,8 +13,10 @@ export type Block =
   | { type: "md"; lines: string[]; revisedAtLevel?: number }
   | { type: "secret"; requiredLevel: number; lines: string[]; revisedAtLevel?: number }
   | { type: "revision"; requiredLevel: number; lines: string[] }
+  | { type: "card"; title: string; lines: string[] }
 
 const FENCE = /^:::(k|revise)(\d+)\s*$/
+const KARTA = /^:::karta\s+(.+?)\s*$/
 
 /** Odštěpí poslední odstavec (souvislou skupinu neprázdných řádků na konci). */
 function splitTrailingParagraph(lines: string[]): [string[], string[]] {
@@ -38,7 +41,25 @@ export function parseBlocks(content: string): Block[] {
     }
   }
 
+  /** Posbírá řádky až po uzavírací `:::` a nechá `i` na tom uzavíracím řádku. */
+  const readBody = () => {
+    const body: string[] = []
+    i++
+    while (i < rawLines.length && rawLines[i].trim() !== ":::") {
+      body.push(rawLines[i])
+      i++
+    }
+    return body
+  }
+
   while (i < rawLines.length) {
+    const karta = rawLines[i].match(KARTA)
+    if (karta) {
+      flushMd()
+      blocks.push({ type: "card", title: karta[1], lines: readBody() })
+      i++
+      continue
+    }
     const match = rawLines[i].match(FENCE)
     if (match) {
       const kind = match[1]
@@ -51,12 +72,7 @@ export function parseBlocks(content: string): Block[] {
       } else {
         flushMd()
       }
-      const body: string[] = []
-      i++
-      while (i < rawLines.length && rawLines[i].trim() !== ":::") {
-        body.push(rawLines[i])
-        i++
-      }
+      const body = readBody()
       if (kind === "k") {
         blocks.push({ type: "secret", requiredLevel, lines: body })
       } else {

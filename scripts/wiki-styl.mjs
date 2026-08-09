@@ -13,6 +13,8 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const SEED = resolve(ROOT, "app/api/admin/seed-wiki/route.ts")
 
 const STRUKTURNI = /^(#|-|>|\||:::|\d+\.)/
+// Řádek uvozený tučným štítkem (`**Dnes:** …`) je datové pole, ne věta v odstavci.
+const POLE = /^\*\*[^*]+\*\*:?\s/
 
 function articles() {
   const src = readFileSync(SEED, "utf8")
@@ -56,7 +58,7 @@ const PRAVIDLA = [
       let n = 0
       lines.forEach((raw, i) => {
         const l = raw.trim()
-        if (!l || STRUKTURNI.test(l)) return
+        if (!l || STRUKTURNI.test(l) || POLE.test(l)) return
         if (!/[.!?]$/.test(l) || l.split(/\s+/).length > 8) return
         const dalsi = (lines[i + 1] ?? "").trim()
         const konec = dalsi === "" || dalsi === ":::" || i === lines.length - 1

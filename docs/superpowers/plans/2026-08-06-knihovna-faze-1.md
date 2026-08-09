@@ -238,6 +238,19 @@ test("md blok bez revize nemá revisedAtLevel", () => {
   const blocks = parseBlocks("Tvrzení.")
   assert.equal(blocks[0].revisedAtLevel, undefined)
 })
+
+// Zjištěno při code review Tasku 1. Vnořené fence parser neumí a nikdy neuměl —
+// vnitřní fence zůstane jako doslovný text a osiřelý zavírací :::  se vykreslí.
+// Test tohle chování zaznamenává, aby se změna neprovedla omylem.
+test("vnořený fence se nezpracuje, zůstane doslovným textem", () => {
+  const blocks = parseBlocks(":::k3\nA\n:::k5\nB\n:::\nC\n:::")
+  assert.equal(blocks.length, 2)
+  assert.equal(blocks[0].type, "secret")
+  assert.equal(blocks[0].requiredLevel, 3)
+  assert.deepEqual(blocks[0].lines, ["A", ":::k5", "B"])
+  assert.equal(blocks[1].type, "md")
+  assert.deepEqual(blocks[1].lines, ["C", ":::"])
+})
 ```
 
 - [ ] **Step 2: Spustit testy a ověřit, že selžou**
@@ -325,7 +338,7 @@ function markPrevious(blocks: Block[], level: number): void {
 - [ ] **Step 4: Spustit testy**
 
 Run: `node --test lib/*.test.mjs`
-Expected: PASS, `# pass 11`, `# fail 0`
+Expected: PASS, `# pass 12`, `# fail 0`
 
 - [ ] **Step 5: Commit**
 
@@ -397,29 +410,40 @@ function RevisionBlock({ lines, requiredLevel }: { lines: string[]; requiredLeve
 
 Nahraď celou funkci `WikiRenderer` (řádek ~165 do konce souboru):
 
+Použij `switch` s kontrolou úplnosti, ne `if/else`. Code review Tasku 1 na tohle upozornila: dosavadní `else` větev by novou variantu bloku tiše vykreslila jako `RedactedBlock` a TypeScript by nic neřekl. Se `switch` a `never` se to projeví jako chyba překladu.
+
 ```tsx
 export function WikiRenderer({ content, kaichiLevel }: Props) {
   const blocks = parseBlocks(content)
   return (
     <div>
       {blocks.map((block, i) => {
-        if (block.type === "revision") {
-          if (kaichiLevel < block.requiredLevel) return null
-          return <RevisionBlock key={i} lines={block.lines} requiredLevel={block.requiredLevel} />
+        switch (block.type) {
+          case "md": {
+            const struck = block.revisedAtLevel != null && kaichiLevel >= block.revisedAtLevel
+            return <MdBlock key={i} lines={block.lines} struck={struck} />
+          }
+          case "secret": {
+            const struck = block.revisedAtLevel != null && kaichiLevel >= block.revisedAtLevel
+            return (
+              <RedactedBlock
+                key={i}
+                lines={block.lines}
+                requiredLevel={block.requiredLevel}
+                unlocked={kaichiLevel >= block.requiredLevel}
+                struck={struck}
+              />
+            )
+          }
+          case "revision":
+            // Pod úrovní se revize nesmí projevit vůbec — ani jako černé pruhy.
+            if (kaichiLevel < block.requiredLevel) return null
+            return <RevisionBlock key={i} lines={block.lines} requiredLevel={block.requiredLevel} />
+          default: {
+            const exhaustive: never = block
+            return exhaustive
+          }
         }
-        const struck = block.revisedAtLevel != null && kaichiLevel >= block.revisedAtLevel
-        if (block.type === "md") {
-          return <MdBlock key={i} lines={block.lines} struck={struck} />
-        }
-        return (
-          <RedactedBlock
-            key={i}
-            lines={block.lines}
-            requiredLevel={block.requiredLevel}
-            unlocked={kaichiLevel >= block.requiredLevel}
-            struck={struck}
-          />
-        )
       })}
     </div>
   )
@@ -702,20 +726,22 @@ Kánon (spec, K4): Kaichi 0 neexistuje. Studenti II–IV. Učitelé V–VII. GM 
 
 - [ ] **Step 1: Nastavit učitelům kaichi**
 
-V `lib/data.ts` (řádky 55–66) změň `kaichiLevel:0` na následující hodnoty. Rozdělení: ředitel a velení výš, řadoví učitelé níž.
+Rozdělení je rozhodnutí autora hry, ne odhad. Nakamura drží Čichače — jediný spolehlivý způsob, jak odhalit monstrum — což je nástroj dohledu, tedy velení. Shiranagi a Ibuki nikdy nebyli lovci, takže neznají pravdu o Návratu; to je záměrný rozdíl mezi dospělými, který jde hrát.
+
+V `lib/data.ts` (řádky 55–66) nahraď blok učitelů tímto:
 
 ```ts
   // ── Učitelé ──
   { id:"TCH6", code:"TCH-006",  name:"Arakami",   role:"teacher",
-    circleIds:[], kaichiLevel:7, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
+    circleIds:[], kaichiLevel:6, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
   { id:"TCH1", code:"TCH-001",  name:"Shiranagi", role:"teacher",
-    circleIds:[], kaichiLevel:6, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
+    circleIds:[], kaichiLevel:5, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
   { id:"TCH2", code:"TCH-002",  name:"Nakamura",  role:"teacher",
-    circleIds:[], kaichiLevel:6, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
+    circleIds:[], kaichiLevel:7, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
   { id:"TCH3", code:"TCH-003",  name:"Ibuki",     role:"teacher",
     circleIds:[], kaichiLevel:5, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
   { id:"TCH4", code:"TCH-004",  name:"Karasu",    role:"teacher",
-    circleIds:[], kaichiLevel:5, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
+    circleIds:[], kaichiLevel:6, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
   { id:"TCH5", code:"TCH-005",  name:"Okuda",     role:"teacher",
     circleIds:[], kaichiLevel:6, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
 ```
@@ -974,9 +1000,9 @@ Přihlas se postupně jako:
 | `STU-010` | II | V *Miasmě* je blok o detektoru lži zamčený |
 | `STU-002` | III | V *Miasmě* je blok o detektoru lži odemčený |
 | `STU-001` | IV | V *Návratu* je text o Návratu odemčený, revize stále neviditelná |
-| `TCH-003` | V | V *Lovcích* odemčené oba bloky o trojicích a rodině |
-| `TCH-001` | VI | V *Návratu* je text o Návratu **přeškrtnutý** a pod ním červený blok `REVIZE · KAICHI VI` |
-| `TCH-006` | VII | V *Systému Kaichi* odemčený blok o stabilitě. Blok Kaichi VIII stále zamčený. |
+| `TCH-003` | V | V *Lovcích* odemčené oba bloky o trojicích a rodině. V *Návratu* revize **není vidět** — Ibuki nebyl lovec. |
+| `TCH-004` | VI | V *Návratu* je text o Návratu **přeškrtnutý** a pod ním červený blok `REVIZE · KAICHI VI` |
+| `TCH-002` | VII | V *Systému Kaichi* odemčený blok o stabilitě. Blok Kaichi VIII stále zamčený. |
 
 - [ ] **Step 5: Commit**
 
@@ -993,4 +1019,4 @@ Během psaní článků vznikly dvě věci, které spec neurčuje. Ani jedna neb
 
 1. **Rozkaz o konečném stupni nákazy.** Zdroj (*Miasma*) říká: „Obecná znalost je že člověk v tomhle stavu umírá, ale není to pravda, zdravotníci mají rozkaz zabít člověka v této fázi." Tohle tajemství není v mapě Kaichi I–VIII. V článku *Miasma* zatím **není** — nechtěl jsem tiše přidávat kánon. Nabízí se Kaichi V, ale je to volba, ne odvození.
 
-2. **Rozdělení kaichi mezi učitele.** Task 6 dává TCH1/2/5 → VI, TCH3/4 → V, TCH6 → VII. Je to odhad podle toho, že Arakami je uveden první. Skutečné rozdělení má vycházet z postav v doku *Vedlejší postavy*, ne z pořadí v poli.
+2. ~~Rozdělení kaichi mezi učitele.~~ **Vyřešeno 2026-08-09.** Arakami VI, Shiranagi V, Nakamura VII, Ibuki V, Karasu VI, Okuda VI. Zdrojový dokument pro dospělé hráčské postavy (D001–D006) zatím neexistuje — dok *Vedlejší postavy* obsahuje jiné postavy — takže rozdělení je rozhodnutí autora, ne odvození z dokumentu.

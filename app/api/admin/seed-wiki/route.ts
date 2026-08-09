@@ -780,18 +780,6 @@ Jak přesně probíhá, se neučí. Ani na Akademii, ani nikde jinde, kam se stu
 
 Kdo se o postup zajímá nahlas, bývá zaznamenán.
 
----
-
-## Regulace
-
-Neregistrovaná transmutace je trestný čin bez ohledu na to, co se transmutovalo a jestli tím někdo utrpěl.
-
-Trestá se, i když dopadne dobře. **Zvlášť** když dopadne dobře — úspěch bez povolení znamená, že se postup dostal ven.
-
-Studentům Akademie je transmutace zakázána bez výjimky až do akreditace. Toto pravidlo nemá výjimku pro nadané, pro pokročilé ani pro nouzi.
-
-> *Neptej se, jak to funguje. Ptej se, komu to bylo dovoleno.*
-
 :::k6
 Transmutace není technický postup. Je to **rituál**.
 

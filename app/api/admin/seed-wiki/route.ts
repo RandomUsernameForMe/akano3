@@ -46,12 +46,8 @@ Kaichi není nástroj vzdělávání. Je to nástroj stability.
 Člověk, který ztratí řád a smysl, se mění v monstrum. Pravda podaná dřív, než na ni má člověk strukturu, řád ničí — a ničí tím i člověka. Stupňování poznání proto není opatrnost ani mocenský nástroj. Je to jediná známá prevence.
 
 Uspořádání společnosti, které mnozí považují za tvrdé, není omyl ani přežitek. Je to nejlepší dostupné řešení a bylo zvoleno vědomě.
-:::
 
-:::k8
-Veřejně se uznává sedm stupňů. Osmý existuje a zní:
-
-**Měsíc je tělo mrtvého monstra.** Junkin, na němž stojí celá civilizace, se těží z mrtvoly.
+Sedmý stupeň je poslední, který tato databáze vede.
 :::`,
   },
 
@@ -672,13 +668,98 @@ Z jednoho monstra je stopové množství. Celý Ústřední lovecký řád ročn
 
 Junkin proto není zboží. Je to přídělová položka a hospodaří se s ním jako se zdrojem, který nelze nahradit — protože nelze.
 
-:::k8
-Měsíc není ložisko a není to nebeské těleso s výskytem vzácné horniny.
+---
 
-Měsíc je **tělo**. Mrtvé, obrovské a plné junkinu, protože junkin je to, z čeho bylo.
+## Měsíc
 
-Civilizace, která přežila konec světa, přežila díky tomu, že těžila mrtvolu. A až lovci přinesou surovinu z monstra, dělají v malém přesně totéž.
-:::`,
+Proč je na Měsíci junkin a proč zrovna tam, databáze neuvádí.
+
+Otázka je stará jako těžba sama a odpovědi na ni se pohybují od geologických po náboženské. Oficiální stanovisko státu zní, že původ suroviny není pro její využití podstatný.
+
+Kdo se ptá dál, obvykle se dál nedostane.`,
+  },
+
+  // ─── AKANO3: kruhy ─────────────────────────────────────────────────────────
+  {
+    slug: "kruhy",
+    title: "Zájmové kruhy",
+    category: "Akano3",
+    kaichi_required: 0,
+    sort_order: 7,
+    content: `# Zájmové kruhy
+
+**Kruh** je zájmová skupina pěti studentů. Není nijak omezená příslušností k jednotce, týmu ani specializaci — v jednom kruhu se běžně potkají lidé, kteří spolu jinak nemají nic společného.
+
+Kruh vede dospělý mentor. Účast je dobrovolná, ale očekává se.
+
+---
+
+## Kuchi-Kuchi (くちくち)
+
+*J-popová kapela. Pouze dívčí obsazení.*
+
+Pět dívek ve třpytivých kostýmech. Jejich obrázek má doma každé malé dítě a za obdiv k nim se nestydí ani dospělí.
+
+J-pop je v Shin Junkinu **řízen na státní úrovni** jako nástroj na zvedání morálky a šíření správných postojů. Kuchi-Kuchi to nijak neskrývají. Je to jejich úkol a berou ho vážně.
+
+---
+
+## Kaligrafie
+
+> **PÍSMO JE ŘÁD.**
+
+Kruh se učí kaligrafii jako disciplínu, ne jako umění. Správně provedený znak drží řád a chrání před monstry. Špatně provedený je přitahuje.
+
+Z toho plyne pravidlo, které se opakuje od první hodiny: **psát cizí jména je studentům zakázáno.** Není to etiketa. Jména mají moc a začátečník ji neuhlídá.
+
+---
+
+## Vědecký kruh
+
+*Mentor: Ibuki.*
+
+Založen s cílem obnovit — nebo napodobit — ztracenou technologii Zlaté generace. Svět je plný strojů, které nikdo neumí vyrobit, používat ani nakrmit, protože všechny stály na junkinu.
+
+Kruh je zdaleka nejdisciplinovanější ze všech. Nastupuje se, hlásí se reporty a Ibuki vyžaduje víc, než je nutné. Nikdo z jeho členů si nestěžuje nahlas.
+
+---
+
+## Literární kruh
+
+*Mentor: Nakamura, školní Pečující.*
+
+Čte a píše. Hodně se mluví, píší se haiku, probírají se stará vyprávění — zejména příběh princezny Kaguji, příběh o Měsíci, smutku, opuštění a oběti.
+
+Ze všech kruhů je nejtišší a nejméně se ví, co se v něm vlastně děje.
+
+---
+
+## Sportovní kruh
+
+**赤野笑狐団 — *Akano Shōko-dan*, Smějící se lišky z Akana.**
+
+Duely. Bokken, pásky přes čelo, přesná pravidla a hodně obřadnosti. Není to sport v tom smyslu, že by šlo o výkon — jde o souboj, o svědky a o to, kdo z něj vyjde jak.
+
+---
+
+## Rituální kruh
+
+Provádí rituály sloužící společnosti — při svátcích, při zahájeních, při rozloučeních.
+
+Kruh má vlastní obřadní úbory a vlastní hierarchii v čele s **hlavním rituálníkem**, kterého si volí.
+
+---
+
+## Oslava života
+
+Kruhy vystupují ve stanoveném pořadí:
+
+1. Rituální
+2. Vědecký
+3. Kaligrafický
+4. Kuchi-Kuchi
+
+Po vystoupeních následuje volná zábava. Nevystupují všechny kruhy, ale všechny mají večerní program.`,
   },
   {
     slug: "transmutace",

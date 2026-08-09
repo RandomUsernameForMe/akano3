@@ -189,6 +189,29 @@ nepřenáší.
 zná **příznaky**. Že je surovinou pro **detektor lži**, je **Kaichi III**.
 Není to rozpor, jen chybějící rozlišení.
 
+**K16 — Kaichi VIII v aplikaci neexistuje.** Zdroj (*Kruhy*, tab Literární)
+říká, že Literární kruh vede „školní Pečující — sewanin **Nakamura**, kteří
+jsou nevidoucí". Tab *Tajemství* říká, že o Kaichi VIII „ví jenom pečující".
+Nakamura tedy **skutečně drží VIII**, což odporuje našemu dřívějšímu zařazení
+na VII.
+
+→ **Nakamura diegeticky drží VIII. Kaichi VIII ale není v systému aplikace
+zmíněno vůbec** — ani jako existující stupeň, ani jako obsah.
+
+Důsledky:
+
+- Knihovna končí na **Kaichi VII**. Článek *Systém Kaichi* vyjmenovává I–VII a
+  v k7 bloku uvádí, že sedmý stupeň je poslední, který databáze vede.
+- Blok `:::k8` **nesmí v knihovně existovat**. Obě místa, kde původně byl
+  (*Systém Kaichi*, *Junkin*), byla přepsána. *Junkin* místo něj otevřeně
+  přiznává, že původ suroviny na Měsíci databáze neuvádí — a že kdo se ptá dál,
+  se dál nedostane.
+- `lib/data.ts` ponechává Nakamurovi `kaichiLevel: 7`, protože sedm je maximum,
+  které systém zná. Osmý stupeň se nepředává terminálem, ale člověkem.
+- **Literární kruh je diegetická cesta k VIII.** Nakamura na konci nabídne
+  nejvýše dvěma studentům pravdu výměnou za to, že se vzdají lovectví a nechají
+  se oslepit. Knihovna tuhle cestu nikde nenaznačuje a naznačovat nesmí.
+
 **K14 — Kód monster v běžné mluvě.** → Překlep ve zdroji. Správně: „…protože
 **stačí vědět** speciální vlastnost, nebezpečnost a identifikační znak."
 Příklady tomu odpovídají — N4O lidožrouti, TN3C čichač, N7K lišky.
@@ -418,7 +441,7 @@ shuten-dōji · Čichač
 | V | Ukončení studia; Lovci: kasta |
 | VI | Návrat (`:::revise6`); Miasma (rozkaz o konečném stupni nákazy) |
 | VII | Řád, význam a role; Junkin: látka |
-| VIII | Měsíc; Junkin: látka |
+| VIII | **Nikde — v aplikaci neexistuje.** Viz K16. |
 
 ## Postup
 

@@ -358,6 +358,18 @@ Odlišení od `:::kN`: `kN` **přidává** (a pod úrovní ukazuje černé pruhy
 
 ### Známé omezení
 
+**`lib/data.ts` není zdroj pravdy za běhu.** `lib/game-context.tsx:68` dělá
+`kaichiLevel: state?.kaichi_level ?? c.kaichiLevel` — tabulka `character_state`
+v Postgresu přebíjí `data.ts`. Úprava kaichi v `data.ts` se projeví jen u postav,
+které pro daný běh **nemají řádek** v `character_state`, a u nově založených běhů.
+
+Zjištěno 2026-08-09 při ověřování fáze 1: učitelé řádek neměli, takže se u nich
+nové hodnoty projevily; čtyři studenti (S007, S012, S019, S024) řádek měli a
+zůstali na starých úrovních. Opraveno jednorázovým `UPDATE` proti běhu 1.
+
+Platí obecně: **jakákoli budoucí změna herních dat v `data.ts` vyžaduje buď nový
+běh, nebo zásah do `character_state`.** Samotná editace souboru nestačí.
+
 `POST /api/admin/seed-wiki` provádí `DELETE FROM wiki_articles` před vložením.
 Přeseedování zahodí veškeré úpravy provedené GM přes wiki-admin panel. Zatím
 přijatelné — obsah se píše v repu, admin panel slouží k opravám během hry.

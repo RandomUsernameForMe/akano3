@@ -69,11 +69,44 @@ function inline(text: string): React.ReactNode {
   return parts.length === 1 && typeof parts[0] === "string" ? parts[0] : <>{parts}</>
 }
 
-function MdBlock({ lines }: { lines: string[] }) {
-  return <>{lines.map((l, i) => renderMdLine(l, i))}</>
+function MdBlock({ lines, struck }: { lines: string[]; struck?: boolean }) {
+  const body = <>{lines.map((l, i) => renderMdLine(l, i))}</>
+  if (!struck) return body
+  return (
+    <div style={{ textDecoration:"line-through", opacity:0.45 }}>
+      {body}
+    </div>
+  )
 }
 
-function RedactedBlock({ lines, requiredLevel, unlocked }: { lines: string[]; requiredLevel: number; unlocked: boolean }) {
+function RevisionBlock({ lines, requiredLevel }: { lines: string[]; requiredLevel: number }) {
+  return (
+    <div style={{
+      borderLeft:"2px solid #c0392b", paddingLeft:14,
+      backgroundColor:"rgba(192,57,43,0.06)", borderRadius:"0 6px 6px 0",
+      padding:"10px 14px", margin:"10px 0",
+    }}>
+      <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:6 }}>
+        <span style={{
+          width:18, height:18, borderRadius:"50%",
+          border:"1px solid #c0392b", backgroundColor:"#1a0000",
+          display:"inline-flex", alignItems:"center", justifyContent:"center",
+          fontSize:"0.5rem", color:"#c0392b", fontFamily:"monospace", fontWeight:700, flexShrink:0,
+        }}>
+          {romanNumeral(requiredLevel)}
+        </span>
+        <span style={{ fontSize:"0.65rem", color:"#c0392b", letterSpacing:"0.1em" }}>
+          REVIZE · KAICHI {romanNumeral(requiredLevel)}
+        </span>
+      </div>
+      <MdBlock lines={lines} />
+    </div>
+  )
+}
+
+function RedactedBlock({ lines, requiredLevel, unlocked, struck }: {
+  lines: string[]; requiredLevel: number; unlocked: boolean; struck?: boolean
+}) {
   if (unlocked) {
     return (
       <div style={{
@@ -92,7 +125,7 @@ function RedactedBlock({ lines, requiredLevel, unlocked }: { lines: string[]; re
           </span>
           <span style={{ fontSize:"0.65rem", color:"#d4a017", letterSpacing:"0.1em" }}>UTAJENO · KAICHI {romanNumeral(requiredLevel)}</span>
         </div>
-        <MdBlock lines={lines} />
+        <MdBlock lines={lines} struck={struck} />
       </div>
     )
   }
@@ -133,15 +166,32 @@ export function WikiRenderer({ content, kaichiLevel }: Props) {
   return (
     <div>
       {blocks.map((block, i) => {
-        if (block.type === "md") return <MdBlock key={i} lines={block.lines} />
-        return (
-          <RedactedBlock
-            key={i}
-            lines={block.lines}
-            requiredLevel={block.requiredLevel}
-            unlocked={kaichiLevel >= block.requiredLevel}
-          />
-        )
+        switch (block.type) {
+          case "md": {
+            const struck = block.revisedAtLevel != null && kaichiLevel >= block.revisedAtLevel
+            return <MdBlock key={i} lines={block.lines} struck={struck} />
+          }
+          case "secret": {
+            const struck = block.revisedAtLevel != null && kaichiLevel >= block.revisedAtLevel
+            return (
+              <RedactedBlock
+                key={i}
+                lines={block.lines}
+                requiredLevel={block.requiredLevel}
+                unlocked={kaichiLevel >= block.requiredLevel}
+                struck={struck}
+              />
+            )
+          }
+          case "revision":
+            // Pod úrovní se revize nesmí projevit vůbec — ani jako černé pruhy.
+            if (kaichiLevel < block.requiredLevel) return null
+            return <RevisionBlock key={i} lines={block.lines} requiredLevel={block.requiredLevel} />
+          default: {
+            const exhaustive: never = block
+            return exhaustive
+          }
+        }
       })}
     </div>
   )

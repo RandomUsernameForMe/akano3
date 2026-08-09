@@ -2,6 +2,12 @@
 // `:::kN … :::` označuje tajemství — skryté pod úrovní N, zobrazené od N výš.
 // `:::reviseN … :::` označuje revizi — vyšší úroveň prohlašuje, že předchozí blok byl lež.
 
+/**
+ * Bloky drží pořadí, ve kterém byly v textu. Revidovaný blok (ten s
+ * `revisedAtLevel`) a jeho `revision` blok spolu souvisí *výhradně* tím,
+ * že jsou v poli bezprostředně vedle sebe — typ to nevynucuje. Kdo pole
+ * filtruje, řadí nebo přeskupuje, tuhle vazbu rozbije a nic ho nevaruje.
+ */
 export type Block =
   | { type: "md"; lines: string[]; revisedAtLevel?: number }
   | { type: "secret"; requiredLevel: number; lines: string[]; revisedAtLevel?: number }
@@ -35,9 +41,16 @@ export function parseBlocks(content: string): Block[] {
   while (i < rawLines.length) {
     const match = rawLines[i].match(FENCE)
     if (match) {
-      flushMd()
       const kind = match[1]
       const requiredLevel = parseInt(match[2])
+      // Prázdný řádek mezi dvěma fence bloky (typicky kvůli čitelnosti zdroje) by jinak
+      // vytvořil vlastní prázdný md blok, na který by se revize omylem navázala místo
+      // na skutečný předchozí obsah. Před :::reviseN ho tedy zahodíme, nikoli flushneme.
+      if (kind === "revise" && currentMd.every(l => !l.trim())) {
+        currentMd = []
+      } else {
+        flushMd()
+      }
       const body: string[] = []
       i++
       while (i < rawLines.length && rawLines[i].trim() !== ":::") {
@@ -47,7 +60,7 @@ export function parseBlocks(content: string): Block[] {
       if (kind === "k") {
         blocks.push({ type: "secret", requiredLevel, lines: body })
       } else {
-        markPrevious(blocks, requiredLevel)
+        attachRevision(blocks, requiredLevel)
         blocks.push({ type: "revision", requiredLevel, lines: body })
       }
     } else {
@@ -60,7 +73,7 @@ export function parseBlocks(content: string): Block[] {
 }
 
 /** Označí předchozí blok jako revidovaný. U md bloku odštěpí poslední odstavec. */
-function markPrevious(blocks: Block[], level: number): void {
+function attachRevision(blocks: Block[], level: number): void {
   const prev = blocks[blocks.length - 1]
   if (!prev) return
   if (prev.type === "secret") {

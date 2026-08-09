@@ -741,29 +741,25 @@ Za Zlaté generace se junkin těžil na odvrácené straně Měsíce v objemech,
 
 Ta těžba je pryč a její obnova je hlavním deklarovaným cílem státu.
 
----
-
-## Příděly
-
-Junkin rozděluje stát podle priorit, které se veřejně neoznamují.
-
-Ústřední lovecký řád má vlastní kvótu: bez rafinovaného junkinu nefunguje vybavení, filtry ani zbraně. Výše kvóty se odvíjí od výkonu lovců.
+Junkinu je v současnosti extrémně málo. Využívá se proto výhradně na projekty a cíle, které stát označí za zásadní.
 
 ---
 
-## Proč se nosí těla
-
-Studentům se od prvního dne opakuje, že výprava, která se vrátí bez těla, splnila půlku úkolu. Mrtvé monstrum na místě je bezpečí, doručené je bezpečí a ještě něco navíc.
-
-Tělo se transportuje celé. Rozebírat monstrum v terénu je zakázáno.
+## Nové zdroje
 
 :::k3
-To „něco navíc" je junkin. Tělo se odevzdává, protože se z něj surovina získává, a kvóta Ústředního loveckého řádu se odvozuje od toho, kolik jí lovci přinesou.
+Jedním ze současných zdrojů junkinu jsou **monstra**. V těle zabitého monstra zůstane stopové množství suroviny, a proto se monstra loví.
 
-Systém je uzavřený: lovci si na vybavení vydělávají tím, co ulovili. Čím horší rok, tím horší vybavení a tím horší další rok.
+Součástí školních misí někdy bývá dotáhnout tělo zpět, ale není to pravidlo. Zabít monstrum je důležitější než ho vytěžit a výprava, která tělo nechá na místě, úkol nezkazila.
 
-Zákaz rozebírat monstrum v terénu má stejný důvod jako všechna ostatní opatření kolem surového junkinu. Bez pečeti si v okolí najde tvar.
+Kvóta Ústředního loveckého řádu se odvozuje od toho, kolik suroviny lovci přinesou. Systém je uzavřený: lovci si na vybavení vydělávají tím, co ulovili. Čím horší rok, tím horší vybavení a tím horší další rok.
+
+Rozebírat monstrum v terénu je zakázáno, protože surový junkin si bez pečeti najde v okolí tvar.
 :::
+
+---
+
+## Rafinace
 
 :::k6
 Rafinace probíhá rituálním pečetěním: soustavou pečetí a bariér zvaných **Kekkai**, které surovinu stabilizují a uzavřou do nosiče.

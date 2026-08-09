@@ -12,7 +12,7 @@ const ARTICLES = [
     sort_order: 1,
     content: `# Systém Kaichi
 
-**Kaichi** (階知 — *úroveň poznání*) je formálně uznaná struktura pravdy. Určuje, jak hluboko jednotlivec rozumí skutečnému fungování světa a společnosti. Stát její existenci nepopírá ani neskrývá. Poznání je zdroj a se zdroji se hospodaří.
+**Kaichi** (階知, *úroveň poznání*) je formálně uznaná struktura pravdy. Určuje, jak hluboko jednotlivec rozumí skutečnému fungování světa a společnosti. Stát její existenci nepopírá ani neskrývá: poznání je zdroj a se zdroji se hospodaří.
 
 ---
 
@@ -26,7 +26,7 @@ const ARTICLES = [
 - **Kaichi VI** — 第六階知 *Dai Roku Kaichi* — vstup do důvěrných struktur: výzkum, velení, Lovci
 - **Kaichi VII** — 第七階知 *Dai Nana Kaichi* — přijetí mezi strategické plánovače
 
-První tři stupně jsou nárokové. Nikdo o ně nežádá a nikdo je neuděluje — přicházejí s věkem, protože poznání má svůj čas. Od čtvrtého stupně výše se Kaichi zasluhuje.
+První tři stupně jsou nárokové. Nikdo o ně nežádá a nikdo je neuděluje, přicházejí s věkem. Od čtvrtého stupně výše se Kaichi zasluhuje.
 
 Přístup na stupeň zahrnuje všechny předchozí. Stupně lze přeskakovat.
 
@@ -34,18 +34,18 @@ Přístup na stupeň zahrnuje všechny předchozí. Stupně lze přeskakovat.
 
 ## Závazky
 
-Každý stupeň přináší porozumění a s ním závazek. Držitel Kaichi nesdílí obsah svého stupně s nikým, kdo ho nedosáhl. Není to zákaz mluvení. Je to ochrana toho, kdo není připraven.
+Držitel Kaichi nesdílí obsah svého stupně s nikým, kdo ho nedosáhl. Slouží to k ochraně toho, kdo na danou pravdu není připraven.
 
 Znalost se ověřuje. Zkoušky loajality probíhají pravidelně a jejich součástí je detektor lži.
 
-> *Kdo unese pravdu, unese i její váhu. Kdo ji neunese, ublíží sobě i druhým.*
+> *Kdo unese pravdu, unese i její váhu.*
 
 :::k7
-Kaichi není nástroj vzdělávání. Je to nástroj stability.
+Kaichi je nástroj stability, ne vzdělávání.
 
-Člověk, který ztratí řád a smysl, se mění v monstrum. Pravda podaná dřív, než na ni má člověk strukturu, řád ničí — a ničí tím i člověka. Stupňování poznání proto není opatrnost ani mocenský nástroj. Je to jediná známá prevence.
+Člověk, který ztratí řád a smysl, se mění v monstrum. Pravda podaná dřív, než na ni má člověk strukturu, řád ničí a ničí tím i jeho. Stupňování poznání je jediná známá prevence.
 
-Uspořádání společnosti, které mnozí považují za tvrdé, není omyl ani přežitek. Je to nejlepší dostupné řešení a bylo zvoleno vědomě.
+Uspořádání společnosti, které mnozí považují za tvrdé, bylo zvoleno vědomě jako nejlepší dostupné řešení.
 
 Sedmý stupeň je poslední, který tato databáze vede.
 :::`,
@@ -60,7 +60,7 @@ Sedmý stupeň je poslední, který tato databáze vede.
     sort_order: 1,
     content: `# Lovci
 
-**Lovci** (猟士 — *Ryōshi*) jsou elitní kasta občanů Shin Junkinu. Jejich úkolem je vyhledávat a likvidovat monstra. Všechno ostatní z toho plyne.
+**Lovci** (猟士, *Ryōshi*) jsou elitní kasta občanů Shin Junkinu. Jejich úkolem je vyhledávat a likvidovat monstra.
 
 ---
 
@@ -68,7 +68,7 @@ Sedmý stupeň je poslední, který tato databáze vede.
 
 - Stojí nad běžným zákonem. Řídí se vlastními pravidly a soudí je jen jiní lovci.
 - Mají doživotní rentu, menší i pro své blízké. Při smrti ve službě se zvyšuje.
-- Mají nárok na vyšší stupně Kaichi. Ne výlučně, ale službou.
+- Mají nárok na vyšší stupně Kaichi, ne výlučně, ale službou.
 
 Rudý plášť je symbol přísahy. Po smrti se vrací rodině jako relikvie.
 
@@ -76,22 +76,18 @@ Rudý plášť je symbol přísahy. Po smrti se vrací rodině jako relikvie.
 
 ## Řád
 
-Lovce sdružuje **Ústřední lovecký řád** (中央猟士団 — *Chūō Ryōshi-dan*), zkráceně **Ryōdan**. Uděluje licence, přiděluje mise, vede soud.
-
-Rozhoduje demokraticky — každý lovec má jeden hlas — ale běžná rozhodnutí dělá volený **Nejvyšší koncil**.
-
-Ryōdan je samostatná mocenská instituce s monopolem na lov. Stát nad ním drží dohled rozpočtem, vyhrazenými místy v koncilu a existencí armády jako protiváhy. Napětí mezi řádem a státem je trvalé a je záměrné.
+Lovce sdružuje **Ústřední lovecký řád** (中央猟士団, *Chūō Ryōshi-dan*), zkráceně **Ryōdan**. Uděluje licence, přiděluje mise a vede soud.
 
 ---
 
 ## Trojice
 
-Lovci pracují výhradně po trojicích. Vycvičit jednoho lovce k plné samostatnosti trvá déle, než si obnovující se civilizace mohla dovolit. Trojice byla řešením.
+Lovci pracují výhradně po trojicích. Vycvičit jednoho lovce k plné samostatnosti trvá déle, než si obnovující se civilizace mohla dovolit.
 
 :::k5
 Trojice není doporučení. Bez kompletní trojice není akreditace.
 
-Když se trojice rozpadne — smrtí, zraněním, vyloučením — lovecká kariéra zbylých dvou obvykle končí. Nabízí se přechod do armády, štábní role v Řádu, vzácně přidělení ke Stínům. Spojení dvou neúplných trojic je výjimka, ne pravidlo.
+Když se trojice rozpadne smrtí, zraněním nebo vyloučením, lovecká kariéra zbylých dvou zpravidla končí. Nabízí se přechod do armády, štábní role v Řádu, vzácně přidělení ke Stínům. Spojení dvou neúplných trojic je výjimka.
 :::
 
 ---
@@ -101,11 +97,11 @@ Když se trojice rozpadne — smrtí, zraněním, vyloučením — lovecká kari
 Lovec nesmí mít trvalý partnerský vztah ani rodinu. Pravidlo vzniklo po případu Jestřába a od té doby se nezměnilo.
 
 :::k5
-Není to pravidlo, které by šlo porušit.
+Toto pravidlo nelze porušit.
 
-Při ukončení Akademie podstupuje každý budoucí lovec zákrok, který mu trvale odebírá schopnost mít děti. Veřejnost i většina lovců věří, že jde o závazek, o slib. Nejde. Rozhodnutí padlo za ně a je nevratné.
+Při ukončení Akademie podstupuje každý budoucí lovec zákrok, který mu trvale odebírá schopnost mít děti. Veřejnost i většina lovců to považuje za slib. Rozhodnutí padlo za ně a je nevratné.
 
-Příběhy o lovcích, kteří se vrátili k milující rodině, jsou vyfabrikované. Všechny.
+Příběhy o lovcích, kteří se vrátili k milující rodině, jsou vyfabrikované.
 :::`,
   },
   {
@@ -119,19 +115,19 @@ Příběhy o lovcích, kteří se vrátili k milující rodině, jsou vyfabrikov
 Mezi lovci se hovoří o **Návratu**. Podrobnosti podléhají čtvrtému stupni poznání.
 
 :::k4
-Přeměna člověka v monstrum není nevratná. Existuje postup, jak monstru vrátit původní význam a s ním i lidskou podobu.
+Přeměna člověka v monstrum není nevratná. Existuje postup, jak monstru vrátit původní význam a s ním lidskou podobu.
 
-Postup je krajně náročný a nelze ho opakovat. Každý akreditovaný lovec má za celou svou službu **jeden Návrat**. Jednou, kdykoli během kariéry, na kohokoli, bez zdůvodnění Řádu.
+Postup je náročný a nelze ho opakovat. Každý akreditovaný lovec má za celou službu **jeden Návrat**: jednou, kdykoli během kariéry, na kohokoli, bez zdůvodnění Řádu.
 
-Většina lovců ho nepoužije nikdy. Někteří si ho schovávají pro někoho konkrétního. Rozhodnutí je jejich a nikdo je nepřezkoumává.
+Většina lovců ho nepoužije nikdy. Někteří si ho schovávají pro konkrétního člověka. Rozhodnutí nikdo nepřezkoumává.
 :::
 
 :::revise6
-Návrat neexistuje. Nikdy neexistoval. Nebyl vyvinut, nebyl vyzkoušen a žádný lovec ho nikdy neuplatnil.
+Návrat neexistuje a nikdy neexistoval. Nebyl vyvinut, nebyl vyzkoušen a žádný lovec ho neuplatnil.
 
-Informace o Návratu je řízené opatření schválené Nejvyšším koncilem. Slouží k tomu, aby lovec vydržel. Naděje na jediný možný zvrat udrží člověka ve službě tam, kde by jinak selhal — a udržela jich už mnoho.
+Informace o Návratu je řízené opatření schválené Nejvyšším koncilem. Slouží k tomu, aby lovec vydržel. Naděje na jediný možný zvrat udrží člověka ve službě tam, kde by jinak selhal, a udržela jich už mnoho.
 
-Dozvídáš se to, protože jsi lovec. Ostatní tomu věří dál. Nech je.
+Dozvídáš se to, protože jsi lovec. Ostatní tomu věří dál.
 :::`,
   },
 
@@ -144,9 +140,9 @@ Dozvídáš se to, protože jsi lovec. Ostatní tomu věří dál. Nech je.
     sort_order: 1,
     content: `# Miasma
 
-**Miasma** je látka spojená s monstry. Chová se jako neviditelná mlha, ale nechová se jako plyn — nelze ji odvětrat, rozehnat ani zředit. Ničí tělo i mysl.
+**Miasma** je látka spojená s monstry. Chová se jako neviditelná mlha, ale nechová se jako plyn: nelze ji odvětrat, rozehnat ani zředit. Ničí tělo i mysl.
 
-Každá lovecká výprava je povinně vybavena maskou a filtrem. Bez výjimky.
+Každá lovecká výprava je povinně vybavena maskou a filtrem.
 
 ---
 
@@ -154,7 +150,7 @@ Každá lovecká výprava je povinně vybavena maskou a filtrem. Bez výjimky.
 
 - Některá monstra ji uvolňují neustále, jiná cíleně jako útok nebo zastrašení.
 - Na místech dlouhodobého výskytu monster vznikají **zamořené zóny**. Vstup bez ochrany je smrtelný.
-- Zóny jsou značené. Značení se nepřekračuje.
+- Zóny jsou značené a značení se nepřekračuje.
 
 ---
 
@@ -175,19 +171,17 @@ Nižší stupně odeznívají samy, pomalu a s odpočinkem. Vyšší ne.
 Sbírat a skladovat miasmu smějí výhradně státní instituce a Ústřední lovecký řád. Jakákoli jiná manipulace se stíhá jako příprava biologické zbraně.
 
 :::k3
-Miasma je surovinou detektoru lži.
+Miasma je surovinou detektoru lži. Neurotoxický účinek krátkodobě otupí mysl, subjekt se stane vnímavějším a méně schopným klamu. Jedna dávka odpovídá jedné otázce.
 
-Její neurotoxický účinek krátkodobě otupuje mysl. Subjekt je vnímavější a méně schopný klamu. Jedna dávka odpovídá jedné otázce.
-
-Proto se detektor lži nepoužívá plošně a nelze se jím denně ptát každého. Není to opatrnost. Je to spotřeba.
+Detektor se proto nepoužívá plošně a nelze se jím denně ptát každého. Omezuje ho spotřeba.
 :::
 
 :::k6
 Konečný stupeň nákazy nikoho nezabíjí. Organismus v něm vydrží týdny.
 
-Zdravotnický personál má pro tento stav stálý rozkaz, který se nezapisuje do dokumentace a nepředává ústně nikomu mimo strukturu. Pacient v konečném stupni se neléčí ani nepřeváží. Ukončuje se.
+Zdravotnický personál má pro tento stav stálý rozkaz, který se nezapisuje do dokumentace a nepředává nikomu mimo strukturu. Pacient v konečném stupni se neléčí ani nepřeváží. Ukončuje se.
 
-Důvod není milosrdenství. Rozložená osobnost, která přestala držet svůj význam, je jeden z nejspolehlivějších zdrojů nových monster, jaké známe. A stane se to uvnitř zařízení, mezi lidmi.
+Důvodem není milosrdenství. Rozložená osobnost, která přestala držet svůj význam, je jeden z nejspolehlivějších zdrojů nových monster, a stane se to uvnitř zařízení, mezi lidmi.
 :::`,
   },
 
@@ -200,41 +194,39 @@ Důvod není milosrdenství. Rozložená osobnost, která přestala držet svůj
     sort_order: 1,
     content: `# Akano3
 
-**Akano3** je specializovaná škola, která z civilistů cvičí lovce. Není to škola v obvyklém smyslu. Je to státní projekt s jedním cílem, jedním termínem a jednou generací.
+**Akano3** je specializovaná škola, která z civilistů cvičí lovce. Je to státní projekt s jedním cílem, jedním termínem a jednou generací.
 
 ---
 
 ## Proč nemá ročníky
 
-Akano3 necvičí každý rok novou třídu. Cvičí **jednu generaci naráz** a poté skončí. Proto jsou všichni studenti v jednom ročníku a proto jsou různě staří — mezi nejmladším a nejstarším je i pět let rozdílu.
+Akano3 necvičí každý rok novou třídu, ale jednu generaci naráz, a poté skončí. Všichni studenti jsou proto v jednom ročníku a jsou různě staří, mezi nejmladším a nejstarším je až pět let rozdílu.
 
-Tenhle rozdíl je normální a nikdo ho neřeší. Věk není v Akanu měřítkem ničeho.
+Věk není v Akanu měřítkem ničeho.
 
 ---
 
 ## Rozsah
 
-V celém Shin Junkinu funguje **několik desítek** škol projektu Akano3. Tvoje škola je jednou z nich. Ostatní mají stejné osnovy, stejné hodnocení a stejné termíny.
+V Shin Junkinu funguje několik desítek škol projektu Akano3 se stejnými osnovami, hodnocením i termíny.
 
-Akano3 je v současnosti hlavní cesta, jak se stát lovcem — ne však jediná. Existují i jiné akreditované cesty, výrazně vzácnější.
+Akano3 je hlavní cesta, jak se stát lovcem. Existují i jiné akreditované cesty, výrazně vzácnější.
 
 ---
 
 ## Co škola dělá
 
-Tři věci, v tomto pořadí:
+Tři věci v tomto pořadí:
 
 1. **Rozpoznat monstrum.** Většina studentů, kteří zemřou, zemře proto, že nepoznali, proti čemu stojí.
-2. **Porazit monstrum.** Každý druh má svůj způsob. Neexistuje univerzální postup a improvizace zabíjí.
-3. **Vrátit se s tělem.** Mrtvé monstrum je surovina. Výprava, která se vrátí bez něj, splnila jen půlku úkolu.
-
-> *Lidstvo žije, protože zabíjíme monstra. Škola existuje, protože je potřeba, aby to někdo uměl.*
+2. **Porazit monstrum.** Každý druh má svůj způsob. Univerzální postup neexistuje a improvizace zabíjí.
+3. **Vrátit se s tělem.** Mrtvé monstrum je surovina.
 
 ---
 
 ## Předchůdci
 
-Akano3 je třetí projekt toho jména. **Akano1** a **Akano2** skončily oba pod útoky monster. Podrobnosti o obou podléhají revizi a nejsou v této databázi dostupné.`,
+Akano3 je třetí projekt toho jména. **Akano1** a **Akano2** skončily obě pod útoky monster. Podrobnosti podléhají revizi a nejsou v této databázi dostupné.`,
   },
   {
     slug: "specializace",
@@ -244,7 +236,7 @@ Akano3 je třetí projekt toho jména. **Akano1** a **Akano2** skončily oba pod
     sort_order: 2,
     content: `# Specializace
 
-Tým je nejmenší jednotka organizovaného lovu. Má **přesně tři členy** a každý z nich má jinou specializaci. Kombinace všech tří pokrývá všechno, co lov monstra vyžaduje.
+Tým je nejmenší jednotka organizovaného lovu. Má přesně tři členy, každého s jinou specializací. Kombinace všech tří pokrývá vše, co lov monstra vyžaduje.
 
 ---
 
@@ -256,8 +248,6 @@ Tým je nejmenší jednotka organizovaného lovu. Má **přesně tři členy** a
 - **Zaměření:** fyzický boj, těžké zbraně, útočné manévry, odolnost
 - **Odpovědnost:** je první v kontaktu s monstrem a drží ho pod tlakem
 
----
-
 ## 策科 — Sakuka, Odbor strategie
 
 *Taktická specializace.*
@@ -266,29 +256,27 @@ Tým je nejmenší jednotka organizovaného lovu. Má **přesně tři členy** a
 - **Zaměření:** mapy, senzory, rozhodování, koordinace týmu
 - **Odpovědnost:** řídí misi, analyzuje situaci, stopuje monstrum, mění plán za pochodu
 
----
-
 ## 援科 — Enka, Odbor podpory
 
 *Podpůrná specializace.*
 
 - **Úloha:** léčení, opravy, zásobování, transport těla monstra
 - **Zaměření:** medicínská péče, technická podpora, manipulace s monstry
-- **Odpovědnost:** zajišťuje, že se tým vrátí — a že se vrátí s nákladem
+- **Odpovědnost:** zajišťuje, že se tým vrátí i s nákladem
 
 ---
 
 ## Rozřazení a výuka
 
-Specializace se přiděluje ve **druhém roce studia** po rozřazovacích zkouškách. Do té doby se od studenta očekává, že se bude snažit ve všem.
+Specializace se přiděluje ve druhém roce studia po rozřazovacích zkouškách. Do té doby se od studenta očekává snaha ve všem.
 
-**Třídy jsou dělené podle specializací**, ne podle týmů. Znamená to, že tři členové jednoho týmu spolu nechodí na hodiny a učí se rozdílné věci. Je to záměr. V terénu se pak tým musí spolehnout na to, co ostatní dva vědí a on ne.
+Třídy jsou dělené podle specializací, ne podle týmů. Tři členové jednoho týmu spolu nechodí na hodiny a učí se rozdílné věci. V terénu se pak tým musí spolehnout na to, co ostatní dva vědí a on ne.
 
 ---
 
 ## Odbory jako identita
 
-Odbory jsou silně kmenové. Mají vlastní znaky, pokřiky, části kostýmu a dlouhou historii vzájemné rivality. Soutěživost mezi nimi je tolerovaná a v rozumné míře podporovaná.
+Odbory jsou silně kmenové. Mají vlastní znaky, pokřiky, části kostýmu a dlouhou historii vzájemné rivality. Soutěživost je tolerovaná a v rozumné míře podporovaná.
 
 Za lov se ale hodnotí tým, ne odbor.`,
   },
@@ -300,38 +288,34 @@ Za lov se ale hodnotí tým, ne odbor.`,
     sort_order: 3,
     content: `# Týmy a jednotky
 
----
-
 ## Tým
 
 **Tým** je nejužší skupina, do které student patří. Má tři členy, každého s jinou specializací, a označuje se číslem.
 
 Většina výcviku i hodnocení probíhá po týmech. Body získává tým, ne jednotlivec.
 
-Tým je zároveň to, co ze studenta jednou udělá lovce — nebo neudělá. Akreditovaní lovci pracují výhradně po trojicích a trojice se skládá na Akademii.
+Tým je zároveň to, co ze studenta jednou udělá lovce. Akreditovaní lovci pracují výhradně po trojicích a trojice se skládá na Akademii.
 
 ---
 
 ## Jednotka
 
-**Jednotka** je organizační celek složený ze **dvou týmů**. Podstupuje společně tréninkové i ostré mise.
+**Jednotka** je organizační celek složený ze dvou týmů. Podstupuje společně tréninkové i ostré mise.
 
-Jednotka mívá kapitána, zástupce a další role podle svého zaměření. Obsazení těchto rolí je věcí jednotky samotné; škola do něj zasahuje jen výjimečně.
+Jednotka mívá kapitána, zástupce a další role podle svého zaměření. Obsazení těchto rolí je věcí jednotky, škola do něj zasahuje výjimečně.
 
 ---
 
 ## Proč zrovna tři
 
-Vycvičit jednoho lovce k plné samostatnosti trvá roky a málokdo takový výcvik unese — tělesně ani duševně. Obnovující se civilizace si na to nemohla počkat.
+Vycvičit jednoho lovce k plné samostatnosti trvá roky a málokdo takový výcvik unese tělesně ani duševně. Obnovující se civilizace si na to nemohla počkat.
 
-Trojice byla řešení. Tři lidé, z nichž každý umí něco jiného, zvládnou dohromady to, co jeden člověk sám nezvládne skoro nikdy.
-
-> *Sám nejsi lovec. Sám jsi jenom někdo, kdo běží proti monstru.*
+Tři lidé, z nichž každý umí něco jiného, zvládnou dohromady to, co jeden člověk sám nezvládne skoro nikdy.
 
 :::k5
-Pravidlo trojic není organizační doporučení. Bez kompletní trojice se akreditace neuděluje vůbec.
+Pravidlo trojic není organizační doporučení. Bez kompletní trojice se akreditace neuděluje.
 
-Skládání týmů na Akademii proto není cvičení. Je to výběr lidí, se kterými strávíš celou kariéru — a bez kterých žádnou mít nebudeš.
+Skládání týmů na Akademii proto není cvičení. Je to výběr lidí, se kterými student stráví celou kariéru a bez kterých žádnou mít nebude.
 :::`,
   },
   {
@@ -342,18 +326,18 @@ Skládání týmů na Akademii proto není cvičení. Je to výběr lidí, se kt
     sort_order: 4,
     content: `# Shidōsei
 
-**Shidōsei** (指導誓 — *Přísaha vedení*) je závazný vztah mezi dvěma osobami v rámci Akademie. Je to starý a uznávaný systém, který umožňuje individuální rozvoj, prověřuje disciplínu a připravuje studenta na fungování v hierarchické společnosti.
+**Shidōsei** (指導誓, *Přísaha vedení*) je závazný vztah mezi dvěma osobami v rámci Akademie. Umožňuje individuální rozvoj, prověřuje disciplínu a připravuje studenta na fungování v hierarchické společnosti.
 
-Stojí **mimo** běžný výukový rámec. Škola vztah registruje a dohlíží na jeho dodržování, ale nenařizuje ho ani neorganizuje.
+Stojí mimo běžný výukový rámec. Škola vztah registruje a dohlíží na jeho dodržování, ale nenařizuje ho ani neorganizuje.
 
 ---
 
 ## Role
 
-- **Shidōsha** (指導者) — *mentor*. Přebírá odpovědnost za vedení jiného studenta.
-- **Deshi** (弟子) — *učedník*. Skládá přísahu následovat mentora a čerpat z jeho zkušenosti.
+- **Shidōsha** (指導者), *mentor*. Přebírá odpovědnost za vedení jiného studenta.
+- **Deshi** (弟子), *učedník*. Skládá přísahu následovat mentora a čerpat z jeho zkušenosti.
 
-Mentorem může být téměř kdokoli ve struktuře Akademie — student, instruktor, učitel. Vztah **není** závislý na věku, třídě ani formální autoritě. Mladší může vést staršího.
+Mentorem může být téměř kdokoli ve struktuře Akademie: student, instruktor, učitel. Vztah nezávisí na věku, třídě ani formální autoritě. Mladší může vést staršího.
 
 ---
 
@@ -363,7 +347,7 @@ Mentorem může být téměř kdokoli ve struktuře Akademie — student, instru
 - Je výhradní. Jeden mentor, jeden učedník. Nikdo nemůže být obojí zároveň.
 - Trvá do rozvázání nebo do ukončení studia učedníka.
 - Nesmí vzniknout mezi příbuznými.
-- Nesmí vzniknout mezi partnery a partnerství mezi mentorem a učedníkem je zakázáno. Jeho zjištění ruší Shidōsei automaticky.
+- Nesmí vzniknout mezi partnery. Partnerství mezi mentorem a učedníkem je zakázáno a jeho zjištění ruší Shidōsei automaticky.
 
 ---
 
@@ -377,9 +361,9 @@ Mentorem může být téměř kdokoli ve struktuře Akademie — student, instru
 
 ## Rozvázání
 
-Rozvázat svazek **bez následku může pouze mentor**. Pro učedníka je to hanba — ukazuje to na jeho chybný úsudek — ale do oficiálního hodnocení se to nezapisuje.
+Rozvázat svazek bez následku může pouze mentor. Pro učedníka je to hanba ukazující na chybný úsudek, do oficiálního hodnocení se však nezapisuje.
 
-Rozvázání ze strany učedníka je **těžká hanba** a promítá se do hodnocení jako neukázněnost a porušení závazku.
+Rozvázání ze strany učedníka je těžká hanba a promítá se do hodnocení jako neukázněnost a porušení závazku.
 
 ---
 
@@ -397,27 +381,25 @@ Mentor tím svým jménem ručí, že učedník bude dobrý lovec i dobrý člov
     sort_order: 5,
     content: `# Hodnocení
 
-Studium na Akanu je po celou dobu **přísně bodově hodnoceno** a výsledky jsou **veřejné**.
+Studium na Akanu je po celou dobu přísně bodově hodnoceno a výsledky jsou veřejné.
 
-To není trest ani nátlak. Je to informace, na kterou má nárok každý, kdo se jednou postaví vedle tebe proti monstru.
+Je to informace, na kterou má nárok každý, kdo se jednou postaví vedle druhého proti monstru.
 
 ---
 
 ## Co se hodnotí
 
-Body se udělují a odebírají za:
-
 - splněné a nesplněné mise
-- výuku a prokázané znalosti
-- vztah Shidōsei — výsledky učedníka se promítají mentorovi
-- službu nad rámec povinností
+- výuka a prokázané znalosti
+- vztah Shidōsei: výsledky učedníka se promítají mentorovi
+- služba nad rámec povinností
 - kázeňské přestupky a nápravná opatření
 
 ---
 
 ## Kdo body uděluje
 
-Učitelé a pověření členové personálu. Studenti mají navíc omezenou možnost ocenit jeden druhého — tato možnost je záměrně malá a její zneužití je kázeňský přestupek.
+Učitelé a pověření členové personálu. Studenti mají navíc omezenou možnost ocenit jeden druhého. Tato možnost je záměrně malá a její zneužití je kázeňský přestupek.
 
 ---
 
@@ -425,7 +407,7 @@ Učitelé a pověření členové personálu. Studenti mají navíc omezenou mo�
 
 Zpravidla **tým**, ne jednotlivec. Některá ocenění míří na jednotku nebo na zájmový kruh.
 
-Tohle je hlavní důvod, proč se v Akanu nevyplácí vyniknout na úkor ostatních dvou. Tvůj výsledek je jejich výsledek.
+Vyniknout na úkor ostatních dvou se proto nevyplácí. Výsledek jednoho je výsledkem všech tří.
 
 ---
 
@@ -433,9 +415,7 @@ Tohle je hlavní důvod, proč se v Akanu nevyplácí vyniknout na úkor ostatn�
 
 Konečné hodnocení rozhoduje o dokončení studia. Kdo má dostatečné hodnocení, školu splní.
 
-Hodnocení samo o sobě **nerozhoduje** o tom, kdo se stane lovcem. Do toho vstupuje závěrečné hodnocení mentora, složení trojice a rozhodnutí Ústředního loveckého řádu.
-
-> *Body neříkají, jak jsi dobrý. Říkají, jak jsi na tom teď.*`,
+O tom, kdo se stane lovcem, hodnocení samo nerozhoduje. Vstupuje do toho závěrečné hodnocení mentora, složení trojice a rozhodnutí Ústředního loveckého řádu.`,
   },
   {
     slug: "ukonceni-studia",
@@ -451,26 +431,26 @@ Studium končí pro celou generaci naráz. Nikdo neodchází dřív a nikdo nez�
 
 ## Průběh
 
-1. **Poslední zkouška** — pro ty, jejichž hodnocení nestačí. Poslední příležitost splnit.
-2. **Poslední nástup** — formální shromáždění celé školy.
-3. **Zakončení studia** — slavnostní ceremoniál.
-4. **Udělení Kaichi V** — všem, kdo studium dokončili.
-5. **Jmenování lovci** — jen těm, kdo splnili podmínky Ústředního loveckého řádu.
+1. **Poslední zkouška** pro ty, jejichž hodnocení nestačí. Poslední příležitost splnit.
+2. **Poslední nástup**, formální shromáždění celé školy.
+3. **Zakončení studia**, slavnostní ceremoniál.
+4. **Udělení Kaichi V** všem, kdo studium dokončili.
+5. **Jmenování lovci** těm, kdo splnili podmínky Ústředního loveckého řádu.
 
 ---
 
 ## Poslední nástup
 
-Součástí posledního nástupu je právo **vznést obvinění**. Kdokoli může označit kohokoli.
+Součástí posledního nástupu je právo vznést obvinění. Kdokoli může označit kohokoli.
 
-Obvinění se neprojednává řečmi. Ověřuje se.
+Obvinění se neprojednává řečmi, ale ověřuje.
 
 :::k3
-Ověřuje se **Čichačem** — bytostí drženou ve sklepeních pod školou.
+Ověřuje se **Čichačem**, bytostí drženou ve sklepeních pod školou.
 
-Čichač pozná, zda je někdo monstrum. Je to jediný spolehlivý způsob, jak to potvrdit. Nevidí a nikdy neopouští své prostory.
+Čichač pozná, zda je někdo monstrum, a je to jediný spolehlivý způsob, jak to potvrdit. Nevidí a nikdy neopouští své prostory.
 
-Existuje proto, že člověk se v monstrum změnit může. Nestává se to často a nestává se to náhodou, ale stává se to — a mezi lidmi to nejde poznat pohledem.
+Existuje proto, že člověk se v monstrum změnit může. Neděje se to často ani náhodou, ale mezi lidmi to nejde poznat pohledem.
 :::
 
 ---
@@ -478,15 +458,15 @@ Existuje proto, že člověk se v monstrum změnit může. Nestává se to čast
 ## Možné osudy
 
 - **Nedokončit Akademii.** Naprosté minimum případů.
-- **Dokončit a nestát se lovcem.** Nabízí se armáda. Je to skoro opak lovectví: místo samostatnosti a úcty se z člověka stává šroub. Lovec je svoboda, voják je povinnost.
+- **Dokončit a nestát se lovcem.** Nabízí se armáda. Oproti samostatnosti a úctě se z člověka stává šroub.
 - **Dokončit, stát se lovcem, získat akreditaci.** Cíl, kvůli kterému škola existuje.
 
-Stát se lovcem nezáleží jen na tobě. Záleží to i na tom, jestli máš kompletní trojici.
+Stát se lovcem nezáleží jen na výkonu, ale i na tom, jestli má student kompletní trojici.
 
 :::k5
 Bez kompletní trojice se akreditace neuděluje. Kdo přijde o člena a nenajde náhradu, lovcem se nestane, i kdyby byl nejlepší ve své generaci.
 
-Náhrada se přitom hledá jen výjimečně a spojení dvou neúplných trojic je vzácnost, ne postup.
+Náhrada se hledá výjimečně a spojení dvou neúplných trojic je vzácnost, ne postup.
 :::`,
   },
 
@@ -499,54 +479,48 @@ Náhrada se přitom hledá jen výjimečně a spojení dvou neúplných trojic j
     sort_order: 2,
     content: `# Co jsou monstra
 
-**Monstra** (鬼 — *Oni*) se objevila všude, kde se lidstvo po Ozvěně zkázy pokusilo znovu něco postavit. Nejsou to zvířata a nejsou to nemoci. Jsou to bytosti, jejichž jediným trvalým rysem je, že **ničí to, co má smysl**.
-
-Nejvíc tedy ničí lidi a lidskou práci.
+**Monstra** (鬼, *Oni*) se objevila všude, kde se lidstvo po Ozvěně zkázy pokusilo znovu něco postavit. Nejsou to zvířata ani nemoc. Jejich jediný trvalý rys je, že ničí to, co má smysl, tedy především lidi a lidskou práci.
 
 ---
 
 ## Co mají společného
 
-Skoro nic. Liší se tvarem, silou, inteligencí i způsobem, jakým útočí. Některá vypadají jako zvířata, jiná jako lidé, některá nevypadají jako nic.
+Liší se tvarem, silou, inteligencí i způsobem útoku. Některá vypadají jako zvířata, jiná jako lidé, některá nevypadají jako nic.
 
 Společné mají tři věci:
 
-- Objevují se tam, kde se něco buduje. Ne v pustině.
+- Objevují se tam, kde se buduje, ne v pustině.
 - Míří na význam, ne na kořist. Zabíjejí i tam, kde nemají co získat.
-- Když je zabiješ, zůstane v jejich těle **junkin**.
-
-To poslední je důvod, proč lidstvo přežilo. Monstra jsou dnes jediný dostupný zdroj suroviny, na které stojí celá civilizace.
-
-> *Lidstvo žije, protože zabíjíme monstra. Není to metafora ani heslo. Je to popis.*
+- Po zabití zůstane v jejich těle **junkin**.
 
 ---
 
 ## Odkud se berou
 
-Vznikají jako **protiváha**. Kdykoli je něčemu rychle a násilně přiřazen nový význam, objeví se vedle toho síla, která ten význam rozbíjí.
+Vznikají jako protiváha. Kdykoli je něčemu rychle a násilně přiřazen nový význam, objeví se vedle toho síla, která ten význam rozbíjí.
 
-Přehradíš potok a uděláš rybník. Rybník má smysl: napájí, živí, slouží. A brzy poté se u něj začne topit lidi něco, co tam dřív nebylo.
+Přehradíš potok a uděláš rybník. Rybník má smysl: napájí, živí, slouží. A brzy se u něj začne topit lidi něco, co tam dřív nebylo.
 
-Proto je manipulace s junkinem regulovaná. Nejde o opatrnost úřadů. Jde o to, že každý zásah do světa má cenu, a tu cenu platí někdo jiný než ten, kdo zasáhl.
+Odtud regulace manipulace s junkinem. Každý zásah do světa má cenu a platí ji někdo jiný než ten, kdo zasáhl.
 
 :::k3
-Monstra nevznikají jen ve světě kolem. Vznikají i z lidí.
+Monstra vznikají i z lidí.
 
-Člověk, který ztratí svůj význam — místo, roli, důvod vstát ráno — se může změnit v monstrum. Nestává se to každému a nestává se to hned. Ale stává se to.
+Člověk, který ztratí svůj význam, tedy místo, roli a důvod vstávat, se může změnit v monstrum. Neděje se to každému ani hned, ale děje se to.
 
-Není to nemoc a nedá se to očkovat. Nejde to poznat pohledem a proměněný o sobě zpravidla neví, dokud není hotová.
+Proti proměně neexistuje očkování ani test. Pohledem to nejde poznat a proměněný o sobě zpravidla neví, dokud proměna neskončí.
 :::
 
 :::k7
-Tohle je celé jádro věci.
+Junkin potřebuje význam, aby držel tvar. Člověk má dva zdroje významu.
 
-Junkin potřebuje význam, aby držel tvar. Člověk má dva zdroje významu: **ikigai** — vlastní, vnitřní, nalezený smysl bytí — a **řád**, tedy roli, kterou mu přidělí společnost.
+**Ikigai** je vlastní, vnitřní, nalezený smysl bytí. Je spolehlivější, ale najde si ho málokdo a ztrácí se snadno.
 
-Ikigai je spolehlivější, ale najde si ho málokdo a snadno se ztrácí. Řád je slabší, zato ho lze zajistit každému a nezávisí na tom, jestli si ho člověk zaslouží.
+**Řád** je role přidělená společností. Drží slabším způsobem, zato ho lze zajistit každému bez ohledu na to, jestli si ho zaslouží.
 
-Shin Junkin proto nevynucuje řád z mocichtivosti. Vynucuje ho jako **prevenci**. Člověk bez místa v systému je člověk, který se může proměnit — a proměna se neděje o samotě v poli, ale mezi ostatními.
+Shin Junkin proto vynucuje řád jako prevenci. Člověk bez místa v systému se může proměnit, a proměna neproběhne o samotě v poli, ale mezi ostatními.
 
-Tvrdost tohoto uspořádání není přehmat. Je to zvolená cena.
+Tvrdost tohoto uspořádání je zvolená cena.
 :::`,
   },
   {
@@ -557,7 +531,7 @@ Tvrdost tohoto uspořádání není přehmat. Je to zvolená cena.
     sort_order: 3,
     content: `# Klasifikace a kódy
 
-Monstra mají lidové názvy a mají **režimní kód**. Lidový název řekne, na co se díváš. Kód řekne, co s tebou udělá.
+Monstra mají lidové názvy a **režimní kód**. Lidový název řekne, na co se díváš. Kód řekne, co s tebou udělá.
 
 Kód se skládá z pěti údajů a identifikačního znaku.
 
@@ -565,54 +539,40 @@ Kód se skládá z pěti údajů a identifikačního znaku.
 
 ## Typ
 
-Podle toho, **jak** útočí na lidi.
+Podle způsobu útoku na lidi.
 
 - **F** — fyzický: hrubou silou
 - **P** — psychický: klamem, lstí, iluzemi
-- **Z** — zvláštní: nějak jinak
-
----
+- **Z** — zvláštní: jinak
 
 ## Síla — S1 až S10
 
-Čistě fyzická nebezpečnost.
-
-Člověk je klasifikován jako **S4**. Od trojice akreditovaných lovců se očekává, že porazí **S8**. Trojici studentů se posílá nanejvýš proti **S6**.
-
----
+Čistě fyzická nebezpečnost. Člověk je klasifikován jako **S4**. Od trojice akreditovaných lovců se očekává, že porazí **S8**, trojici studentů se posílá nanejvýš proti **S6**.
 
 ## Inteligence — I1 až I10
 
-Schopnost dedukce, řeči, učení, používání nástrojů.
-
-Člověk se považuje za **I8**. Monstrum s vyšší inteligencí než tvojí tě přechytračí. Počítej s tím dřív, než na něj sáhneš.
-
----
+Schopnost dedukce, řeči, učení a používání nástrojů. Člověk se považuje za **I8**. Monstrum s vyšší inteligencí přechytračí lovce dřív, než se dostane k boji.
 
 ## Speciální vlastnost
 
 Písmeno, kterým se předává to nejdůležitější.
 
-- **T** — monstrum je toxické, šíří nebo využívá miasmu. Maska není doporučení.
+- **T** — toxické, šíří nebo využívá miasmu. Maska není doporučení.
 - **X** — mnoho o něm nevíme
-
----
 
 ## Nebezpečnost — N1 až N10
 
-Souhrnné hodnocení, které bere v úvahu všechno předchozí. Není to průměr. Je to odhad, jak pravděpodobně tě to zabije.
-
----
+Souhrnné hodnocení zahrnující všechny předchozí údaje. Odhaduje pravděpodobnost, že tě to zabije.
 
 ## Identifikační znak
 
-Písmeno abecedy. Rozlišuje monstra, kterým vyšel stejný kód.
+Písmeno abecedy. Rozlišuje monstra se shodným kódem.
 
 ---
 
 ## Jak se to čte
 
-Celý kód se skládá za sebe. Když některý údaj neznáme, píše se malé **x**.
+Údaje se skládají za sebe. Neznámý údaj se zapisuje malým **x**.
 
 - \`FS7I5N4O\` — lidožrouti
 - \`FS9I8N8O\` — pán lidožroutů
@@ -621,9 +581,9 @@ Celý kód se skládá za sebe. Když některý údaj neznáme, píše se malé 
 - \`ZS6I8TN6I\` — psí duch
 - \`ZS2I7TN3C\` — čichač
 
-V řeči se celý kód nepoužívá. Stačí **poslední tři až čtyři znaky** — speciální vlastnost, nebezpečnost a identifikační znak. Tedy *N4O* jsou lidožrouti, *TN3C* je čichač, *N7K* jsou lišky.
+V řeči se celý kód nepoužívá. Stačí poslední tři až čtyři znaky, tedy speciální vlastnost, nebezpečnost a identifikační znak: *N4O* jsou lidožrouti, *TN3C* je čichač, *N7K* jsou lišky.
 
-Síla a inteligence jsou pro plánování. To ostatní potřebuješ znát v běhu.`,
+Síla a inteligence slouží k plánování. Zbytek potřebuješ znát v běhu.`,
   },
 
   // ─── JUNKIN ────────────────────────────────────────────────────────────────
@@ -635,34 +595,32 @@ Síla a inteligence jsou pro plánování. To ostatní potřebuješ znát v běh
     sort_order: 1,
     content: `# Junkin
 
-**Junkin** (純金 — *čisté zlato*) je látka, na které stála Zlatá generace a na které dodnes stojí veškerá technologie Shin Junkinu. Energie, výroba potravin, medicína, zbraně, filtry.
+**Junkin** (純金, *čisté zlato*) je látka, na které stála Zlatá generace a na které dodnes stojí veškerá technologie Shin Junkinu: energie, výroba potravin, medicína, zbraně, filtry.
 
-O junkinu se veřejně ví trojí:
+Veřejně známé je o něm trojí:
 
 - **Těžil se na Měsíci.** Přístup k té těžbě lidstvo ztratilo.
-- **Umí měnit hmotu.** Přemění věc v jinou věc bez práce a bez času. Tomu se říká **transmutace**.
-- **Je ho zoufale málo.** Není to zboží, je to přídělová položka. Manipulace s ním vyžaduje povolení a neoprávněné nakládání se trestá.
+- **Mění hmotu.** Promění věc v jinou věc bez práce a bez času. Postup se nazývá **transmutace**.
+- **Je ho málo.** Junkin se nekupuje, přiděluje se. Manipulace vyžaduje povolení, neoprávněné nakládání se trestá.
 
-Všechno ostatní o junkinu podléhá vyšším stupňům poznání. Není to formalita. Junkin je jediná látka, u které stát reguluje i to, co se o ní smí vědět.
+Ostatní údaje o junkinu podléhají stupňům poznání.
 
 :::k1
-Měsíc už není zdroj. Zdroj jsou **monstra**.
+Měsíc už není zdroj. Zdrojem jsou **monstra**.
 
-V těle každého zabitého monstra zůstane stopové množství junkinu. Je to jediný způsob, jak dnes lidstvo surovinu získává — a jediný důvod, proč je lov organizovaný, financovaný a povinný.
+V těle každého zabitého monstra zůstane stopové množství junkinu. Je to jediný způsob, jak dnes lidstvo surovinu získává, a důvod, proč je lov organizovaný, financovaný a povinný.
 
-Tohle je odpověď na otázku, kterou si dřív nebo později položí každé dítě: **proč se monstra loví, místo aby se jim lidé vyhýbali.**
-
-Nevyhýbáme se jim, protože bez nich do měsíce zhasneme.
+Bez lovu zhasne Shin Junkin do měsíce.
 :::
 
 :::k2
-Junkin má dva stavy a rozdíl mezi nimi je otázka života.
+Junkin má dva stavy.
 
-**Surový junkin** je hmota. Vypadá jako hornina, dá se vzít do ruky a je **nestabilní**. Sám od sebe, bez zásahu člověka, v okolí **tvoří monstra**. Neuhlídaný nález surového junkinu je proto hlášen jako mimořádná událost a řeší se stejně jako výskyt monstra.
+**Surový** je hmota podobná hornině. Je nestabilní a bez zásahu člověka tvoří v okolí monstra. Neuhlídaný nález se hlásí jako mimořádná událost a řeší se stejným postupem jako výskyt monstra.
 
-**Rafinovaný junkin** už hmota není. Rituálním pečetěním se stabilizuje a teprve pak s ním jde pracovat.
+**Rafinovaný** hmota není. Rituálním pečetěním se stabilizuje a teprve pak s ním lze pracovat.
 
-Mezi nálezem a pečetí je tedy vždycky časové okno, ve kterém se surovina chová jako hrozba. Zkrátit ho na nulu se dosud nepodařilo.
+Mezi nálezem a zapečetěním je vždy okno, ve kterém se surovina chová jako hrozba. Zkrátit ho na nulu se dosud nepodařilo.
 :::`,
   },
 
@@ -675,7 +633,7 @@ Mezi nálezem a pečetí je tedy vždycky časové okno, ve kterém se surovina 
     sort_order: 7,
     content: `# Zájmové kruhy
 
-**Kruh** je zájmová skupina pěti studentů. Není nijak omezená příslušností k jednotce, týmu ani specializaci — v jednom kruhu se běžně potkají lidé, kteří spolu jinak nemají nic společného.
+**Kruh** je zájmová skupina pěti studentů. Není omezená příslušností k jednotce, týmu ani specializaci: v jednom kruhu se běžně potkají lidé, kteří spolu jinak nemají nic společného.
 
 Kruh vede dospělý mentor. Účast je dobrovolná, ale očekává se.
 
@@ -687,74 +645,55 @@ Kruh vede dospělý mentor. Účast je dobrovolná, ale očekává se.
 
 Pět dívek ve třpytivých kostýmech. Jejich obrázek má doma každé malé dítě a za obdiv k nim se nestydí ani dospělí.
 
-J-pop je v Shin Junkinu **řízen na státní úrovni** jako nástroj na zvedání morálky a šíření správných postojů. Kuchi-Kuchi to nijak neskrývají. Je to jejich úkol a berou ho vážně.
-
----
+J-pop je v Shin Junkinu řízen na státní úrovni jako nástroj na zvedání morálky a šíření správných postojů. Kuchi-Kuchi to neskrývají.
 
 ## Kaligrafie
 
 > **PÍSMO JE ŘÁD.**
 
-Kruh se učí kaligrafii jako disciplínu, ne jako umění. Správně provedený znak drží řád a chrání před monstry. Špatně provedený je přitahuje.
+Kruh se učí kaligrafii jako disciplínu, ne jako umění. Správně provedený znak drží řád a chrání před monstry, špatně provedený je přitahuje.
 
-Z toho plyne pravidlo, které se opakuje od první hodiny: **psát cizí jména je studentům zakázáno.** Není to etiketa. Jména mají moc a začátečník ji neuhlídá.
-
----
+Odtud pravidlo opakované od první hodiny: psát cizí jména je studentům zakázáno. Jména mají moc a začátečník ji neuhlídá.
 
 ## Vědecký kruh
 
 *Mentor: Ibuki.*
 
-Založen s cílem obnovit — nebo napodobit — ztracenou technologii Zlaté generace. Svět je plný strojů, které nikdo neumí vyrobit, používat ani nakrmit, protože všechny stály na junkinu.
+Založen s cílem obnovit nebo napodobit ztracenou technologii Zlaté generace. Svět je plný strojů, které nikdo neumí vyrobit, používat ani nakrmit, protože všechny stály na junkinu.
 
-Kruh je zdaleka nejdisciplinovanější ze všech. Nastupuje se, hlásí se reporty a Ibuki vyžaduje víc, než je nutné. Nikdo z jeho členů si nestěžuje nahlas.
-
----
+Kruh je nejdisciplinovanější ze všech. Nastupuje se, hlásí se reporty a Ibuki vyžaduje víc, než je nutné.
 
 ## Literární kruh
 
 *Mentor: Nakamura, školní Pečující.*
 
-Čte a píše. Hodně se mluví, píší se haiku, probírají se stará vyprávění — zejména příběh princezny Kaguji, příběh o Měsíci, smutku, opuštění a oběti.
+Čte a píše. Hodně se mluví, píší se haiku, probírají se stará vyprávění, zejména příběh princezny Kaguji o Měsíci, smutku, opuštění a oběti.
 
-Ze všech kruhů je nejtišší a nejméně se ví, co se v něm vlastně děje.
-
----
+Ze všech kruhů je nejtišší.
 
 ## Sportovní kruh
 
-**赤野笑狐団 — *Akano Shōko-dan*, Smějící se lišky z Akana.**
+**赤野笑狐団**, *Akano Shōko-dan*, Smějící se lišky z Akana.
 
-Duely. Bokken, pásky přes čelo, přesná pravidla a hodně obřadnosti. Není to sport v tom smyslu, že by šlo o výkon — jde o souboj, o svědky a o to, kdo z něj vyjde jak.
-
----
+Duely. Bokken, pásky přes čelo, přesná pravidla a hodně obřadnosti. Nejde o výkon, ale o souboj, o svědky a o to, kdo z něj vyjde jak.
 
 ## Rituální kruh
 
-Provádí rituály sloužící společnosti — při svátcích, při zahájeních, při rozloučeních.
-
-Kruh má vlastní obřadní úbory a vlastní hierarchii v čele s **hlavním rituálníkem**, kterého si volí.
+Provádí rituály sloužící společnosti při svátcích, zahájeních a rozloučeních. Má vlastní obřadní úbory a vlastní hierarchii v čele s **hlavním rituálníkem**, kterého si volí.
 
 :::k6
-Obřady pro společnost jsou pravda, ale ne celá.
+Obřady pro společnost platí, ale nejsou to celé.
 
-Rituální kruh se učí **transmutovat junkin**. Transmutace je rituál — přesné pohyby a přesné odříkání — a tenhle kruh je jediné místo na Akademii, kde se ta dovednost předává.
+Rituální kruh se učí **transmutovat junkin**. Transmutace je rituál a tenhle kruh je jediné místo na Akademii, kde se ta dovednost předává.
 
-Ví se o tom málo a mluví se o tom ještě míň. Absolvent Rituálního kruhu má otevřenou kariérní cestu, která nevede přes lovectví a o které se studentům neříká.
+Absolvent má otevřenou kariérní cestu, která nevede přes lovectví a o které se studentům neříká.
 :::
 
 ---
 
 ## Oslava života
 
-Kruhy vystupují ve stanoveném pořadí:
-
-1. Rituální
-2. Vědecký
-3. Kaligrafický
-4. Kuchi-Kuchi
-
-Po vystoupeních následuje volná zábava. Nevystupují všechny kruhy, ale všechny mají večerní program.`,
+Kruhy vystupují v pořadí: Rituální, Vědecký, Kaligrafický, Kuchi-Kuchi. Po vystoupeních následuje volná zábava. Nevystupují všechny kruhy, ale všechny mají večerní program.`,
   },
   {
     slug: "transmutace",
@@ -764,58 +703,40 @@ Po vystoupeních následuje volná zábava. Nevystupují všechny kruhy, ale vš
     sort_order: 2,
     content: `# Transmutace
 
-**Transmutace** je proměna věci v jinou věc — bez práce, bez nástrojů a bez času. Vezmeš dřevo a máš ptačí budku.
-
-Je to jediná schopnost, kvůli které byla Zlatá generace možná, a jediný důvod, proč se junkin kdy těžil.
+**Transmutace** promění věc v jinou věc bez práce, bez nástrojů a bez času. Ze dřeva ptačí budku. Je to jediná schopnost, kvůli které byla Zlatá generace možná, a jediný důvod, proč se junkin kdy těžil.
 
 ---
 
 ## Střežená dovednost
 
-**Transmutace junkinu je přísně střežená dovednost.** To je o ní veřejně známo a je to zároveň všechno, co je o ní veřejně známo.
+Postup transmutace je klasifikovaný. Neučí se: ani na Akademii, ani jinde, kam se student dostane. Provádět ji smí pouze držitel oprávnění a těch je málo.
 
-Že existuje. Že k ní je potřeba junkin. Že ji smí provádět jen ten, kdo k tomu má oprávnění, a že těch je málo.
-
-Jak přesně probíhá, se neučí. Ani na Akademii, ani nikde jinde, kam se student dostane. Není to opomenutí osnov — postup je klasifikovaný a jeho části podléhají stupňům poznání, kterých většina obyvatel nikdy nedosáhne.
-
-Kdo se o postup zajímá nahlas, bývá zaznamenán.
+Zájem o postup se eviduje.
 
 :::k6
-Transmutace není technický postup. Je to **rituál**.
+Transmutace není technický úkon, ale **rituál**: přesné pohyby, přesné pořadí, přesné odříkání. Provedený zpola není proveden.
 
-Nejde o zařízení, do kterého se něco vloží a zmáčkne se tlačítko. Jde o přesné pohyby, přesné pořadí a přesné odříkání — o úkon, který musí být proveden celý a správně, jinak není proveden vůbec.
+Proto ji nelze zautomatizovat a proto je transmutérů málo. Vzácní nejsou kvůli surovině, ale proto, že se to musí umět.
 
-Proto se nedá zautomatizovat a proto je transmutérů tak málo. Nejsou vzácní kvůli surovině. Jsou vzácní proto, že se to musí umět.
+Na Akademii tu dovednost předává **Rituální kruh**. Navenek provádí obřady pro společnost. To platí a je to jen část pravdy.
 
-Na Akademii se tomu učí **Rituální kruh**. Navenek provádí obřady pro společnost — a to je pravda, jen ne celá. Studenti, kteří jím projdou, jsou nejbližší, co má stát k budoucím transmutérům.
+**Význam** je to, co drží junkin ve tvaru. Vzniká normálně a pomalu: čajovým obřadem, otevřením obchodu, domem, do kterého se někdo nastěhuje. Takovému ději se říká rituál a probíhá po celou historii sám. Transmutace je totéž provedené naráz.
 
----
+**Pečeť** drží surový junkin stabilizovaný a použitelný. Je slabá a nezkušenému uživateli povolí. Junkin se pak vrátí do surového stavu uvnitř toho, kdo ho nesl, a udělá z něj monstrum.
 
-Junkin drží tvar jen tehdy, když má **význam**.
-
-Význam vzniká normálně a pomalu — čajovým obřadem, otevřením obchodu, domem, do kterého se někdo nastěhuje. Tomu se říká **rituál** a probíhá to samo, po celou historii.
-
-Transmutace je totéž provedené naráz. Zapečetěný junkin vloží do předmětu význam, který by jinak vznikal roky nebo nevznikl vůbec.
-
-**Pečeť** je to, co surový junkin drží stabilizovaný a použitelný. Je slabá a nevydrží dlouho. U nezkušeného uživatele povolí.
-
-Když povolí, junkin se vrátí do surového stavu — **uvnitř toho, kdo ho nesl**. Z transmutéra, kterému praskne pečeť, se nestává mrtvola. Stává se z něj práce pro lovce.
-
-Tohle je skutečný důvod přísnosti předpisů. Nejde o monopol ani o poplatky. Jde o to, že amatér s junkinem není nebezpečný sobě.
+Odtud přísnost předpisů. Amatér s junkinem není nebezpečný sobě.
 :::
 
 :::k7
-Význam nelze vytvořit z ničeho. Když někde vznikne, jinde vznikne **jeho opak**.
+Význam nelze vytvořit z ničeho. Když někde vznikne, jinde vznikne jeho opak.
 
-Přirozený rituál je pomalý, takže protiváha je malá a rozptýlená — kolem vodopádu, který se tvoří tisíc let, se možná časem objeví něco, co k němu chodí topit lidi. Průmyslová transmutace je okamžitá a obrovská. Stejně velká je i její stopa.
+Přirozený rituál je pomalý, takže protiváha zůstává malá a rozptýlená: kolem vodopádu, který se tvoří tisíc let, se časem objeví něco, co k němu chodí topit lidi. Průmyslová transmutace je okamžitá a obrovská. Stejně velká je i její stopa.
 
-Z toho plyne věta, kterou nikdo neřekne nahlas a která je celá pravda o tomto světě:
+**Monstra nejsou nepřítel zvenčí. Jsou to odpad naší vlastní výroby.**
 
-**Monstra nejsou nepřítel, který na nás přišel zvenčí. Jsou to odpad naší vlastní výroby.**
+Svět nebyl nejdřív plný zázraků a potom plný monster proto, že by se změnil svět. Změnilo se, jak rychle do něj lidé sahali. Každý zázrak měl svůj stín a ten se někde zhmotnil.
 
-Svět nebyl nejdřív plný zázraků a potom plný monster proto, že by se svět změnil. Změnilo se, jak rychle do něj lidé sahali — a každý zázrak měl svůj stín, který se někde zhmotnil.
-
-Shin Junkin to ví. Pokračuje v tom, protože alternativou je zastavit se, a zastavit se znamená zemřít pomaleji.
+Shin Junkin to ví a pokračuje v tom. Alternativou je zastavit se, což znamená zemřít pomaleji.
 :::`,
   },
   {
@@ -826,50 +747,44 @@ Shin Junkin to ví. Pokračuje v tom, protože alternativou je zastavit se, a za
     sort_order: 3,
     content: `# Těžba a rafinace
 
----
-
 ## Měsíční těžba
 
-Za Zlaté generace se junkin těžil na odvrácené straně Měsíce v objemech, které dnes nejdou popsat. Nikdo nehladověl, nikdo nestonal a jedenáct miliard lidí žilo líp než dnes žije kdokoli.
+Za Zlaté generace se junkin těžil na odvrácené straně Měsíce v objemech, které dnes nejdou popsat. Nikdo nehladověl, nikdo nestonal, jedenáct miliard lidí žilo lépe než dnes žije kdokoli.
 
-Ta těžba je pryč. Kdo tvrdí, že se snadno vrátí, obvykle něco prodává.
+Ta těžba je pryč a její obnova je hlavním deklarovaným cílem státu.
 
 ---
 
 ## Příděly
 
-Junkin dnes rozděluje stát podle priorit, které se veřejně neoznamují.
+Junkin rozděluje stát podle priorit, které se veřejně neoznamují.
 
-Ústřední lovecký řád má vlastní kvótu, protože bez rafinovaného junkinu nefunguje vybavení, filtry ani zbraně. Výše té kvóty se odvíjí od výkonu lovců.
+Ústřední lovecký řád má vlastní kvótu: bez rafinovaného junkinu nefunguje vybavení, filtry ani zbraně. Výše kvóty se odvíjí od výkonu lovců.
 
 ---
 
 ## Proč se nosí těla
 
-Studentům se od prvního dne opakuje: **výprava, která se vrátí bez těla, splnila půlku úkolu.** Mrtvé monstrum na místě je bezpečí. Mrtvé monstrum doručené je bezpečí i něco navíc.
+Studentům se od prvního dne opakuje, že výprava, která se vrátí bez těla, splnila půlku úkolu. Mrtvé monstrum na místě je bezpečí, doručené je bezpečí a ještě něco navíc.
 
 Tělo se transportuje celé. Rozebírat monstrum v terénu je zakázáno.
 
 :::k1
-To „něco navíc" je junkin.
+To „něco navíc" je junkin. Tělo se odevzdává, protože se z něj surovina získává, a kvóta Ústředního loveckého řádu se odvozuje od toho, kolik jí lovci přinesou.
 
-Tělo se odevzdává, protože se z něj surovina získává — a kvóta Ústředního loveckého řádu se odvozuje přesně od toho, kolik jí lovci přinesou.
+Systém je uzavřený: lovci si na vybavení vydělávají tím, co ulovili. Čím horší rok, tím horší vybavení a tím horší další rok.
 
-Systém je tedy uzavřený: **lovci si na svoje vybavení vydělávají tím, co ulovili.** Čím horší rok, tím horší vybavení, tím horší rok.
-
-Zákaz rozebírat monstrum v terénu má stejný důvod jako všechno ostatní kolem surového junkinu. Bez pečeti si v okolí najde tvar.
+Zákaz rozebírat monstrum v terénu má stejný důvod jako všechna ostatní opatření kolem surového junkinu. Bez pečeti si v okolí najde tvar.
 :::
 
 :::k6
-Rafinace probíhá **rituálním pečetěním** — soustavou pečetí a bariér zvaných **Kekkai**, které surovinu stabilizují a uzavřou do nosiče.
+Rafinace probíhá rituálním pečetěním: soustavou pečetí a bariér zvaných **Kekkai**, které surovinu stabilizují a uzavřou do nosiče.
 
 Veřejnost si pod nosičem představuje stroj. Stroje se používají také.
 
-Většina rafinovaného junkinu ve Shin Junkinu je ale zapečetěna **do lidí**. Nosič není zařízení. Nosič je člověk, který junkin drží ve svém těle a transmutuje jím tak dlouho, dokud pečeť vydrží.
+Většina rafinovaného junkinu v Shin Junkinu je ale zapečetěna do lidí. Nosič je člověk, který junkin drží ve svém těle a transmutuje jím tak dlouho, dokud pečeť vydrží.
 
-Je to práce. Je placená, je dobrovolná a nikdo o ní nemluví. Nosiči nemají odznak ani titul a v evidenci jsou vedeni pod povoláním, které dělali předtím.
-
-Kolik jich je, databáze neuvádí.
+Je to placená a dobrovolná práce. Nosiči nemají odznak ani titul a v evidenci jsou vedeni pod povoláním, které dělali předtím. Kolik jich je, databáze neuvádí.
 :::`,
   },
 
@@ -888,7 +803,7 @@ Před rokem 2031 vypadal svět jinak, než si dnes kdokoli mladší padesáti le
 
 ## Co tu bylo
 
-Osm miliard lidí. Stovky států. Zemědělská půda, na které rostlo jídlo ze země. Města bez hradeb, cesty bez doprovodu, moře, po kterých se dalo plout bez ozbrojené eskorty.
+Osm miliard lidí a stovky států. Zemědělská půda, na které rostlo jídlo ze země. Města bez hradeb, cesty bez doprovodu, moře splavná bez ozbrojené eskorty.
 
 Lidé se dožívali osmdesáti let a považovali to za málo.
 
@@ -896,21 +811,17 @@ Lidé se dožívali osmdesáti let a považovali to za málo.
 
 ## Monstra
 
-Byla i tehdy. Byla ale výrazně slabší a lidstvo mělo dost prostředků, aby si s nimi poradilo.
+Byla i tehdy, ale výrazně slabší, a lidstvo mělo dost prostředků, aby si s nimi poradilo.
 
-Existovaly armádní jednotky určené k ochraně obyvatelstva, ale běžný člověk na monstrum za celý život nenarazil. Většina lidí je považovala za pověru, pohraniční problém nebo něco, co se stává jinde.
+Existovaly armádní jednotky určené k ochraně obyvatelstva, běžný člověk však na monstrum za celý život nenarazil. Většina lidí je považovala za pověru nebo za pohraniční problém.
 
-Ke konci tohoto období se začaly objevovat obavy, že jich přibývá. Braly se jako přehnané.
+Ke konci období se začaly objevovat obavy, že jich přibývá. Braly se jako přehnané.
 
 ---
 
 ## Co si z toho vzít
 
-Tohle je jediné období lidských dějin, kdy lidstvo nežilo v ohrožení a nevědělo o tom.
-
-Nedokázalo si toho vážit a nedokázalo to udržet. Ne proto, že by bylo hloupé — ale proto, že mu nikdo neřekl, jakou cenu má řád, dokud ho nemělo pozdě.
-
-> *Nejnebezpečnější doba je ta, ve které se člověku zdá, že nebezpečí neexistuje.*`,
+Je to jediné období lidských dějin, kdy lidstvo nežilo v ohrožení a nevědělo o tom. Nedokázalo si toho vážit a nedokázalo to udržet, protože mu nikdo neřekl, jakou cenu má řád, dokud ho mělo.`,
   },
   {
     slug: "zlata-generace",
@@ -920,36 +831,34 @@ Nedokázalo si toho vážit a nedokázalo to udržet. Ne proto, že by bylo hlou
     sort_order: 2,
     content: `# Zlatá generace
 
-**黄金世代 — *Kogane Sedai***
+**黄金世代**, *Kogane Sedai*. Roky 2031 až 2095.
 
 ---
 
 ## 2031
 
-Japonská národní společnost **豪華世界 (Gōkasekai) — Luxusní svět** se dostává na odvrácenou stranu Měsíce a začíná tam těžit **純金 (Junkin) — čisté zlato**.
+Japonská národní společnost **豪華世界 (Gōkasekai), Luxusní svět** se dostává na odvrácenou stranu Měsíce a začíná tam těžit **純金 (Junkin), čisté zlato**.
 
 Považuje to za znamení a sebe znovu za vyvolený národ. Zbytek světa to bere jako nesmysl, který je nutné tolerovat, protože junkin funguje.
 
-A funguje na všechno. Levná energie. Zvrácené ekologické škody. Zpracování jídla a vody v jakémkoli množství. Těžba a zpracování provázené masivními rituály.
+Funguje na všechno: levná energie, zvrácené ekologické škody, zpracování jídla a vody v jakémkoli množství. Těžbu a zpracování provázejí masivní rituály.
 
 ---
 
 ## Co to udělalo
 
-Lidstvo odstranilo hlad. Odstranilo nemoci. Odstranilo chudobu.
-
-Jedenáct miliard lidí žilo krásný život. Vždycky se našel někdo, kdo si stěžoval, ale drtivá většina měla kde bydlet, co jíst, a neposlouchala varovné hlasy.
+Lidstvo odstranilo hlad, nemoci i chudobu. Jedenáct miliard lidí žilo krásný život. Většina měla kde bydlet, co jíst, a neposlouchala varovné hlasy.
 
 ---
 
 ## 2095
 
-Na Zemi žije **dvacet pět miliard** lidí — nejen díky porodnosti, ale hlavně díky extrémnímu prodloužení života.
+Na Zemi žije dvacet pět miliard lidí, nejen díky porodnosti, ale hlavně díky extrémnímu prodloužení života.
 
-- Zemědělská půda byla zrušena. Potraviny se vyrábějí laboratorně.
+- Zemědělská půda byla zrušena, potraviny se vyrábějí laboratorně.
 - Většina mořských ploch je zastavěná.
 - Volná příroda existuje jen v rezervacích.
-- Koncept států byl opuštěn. Lidstvo funguje jako jediná civilizační entita.
+- Koncept států byl opuštěn, lidstvo funguje jako jediná civilizační entita.
 
 O rezervacích kolují historky o podivných tvorech a duších. Většina lidstva je považuje za moderní verzi pověsti o Bigfootovi. Přesto vzniká vládní program na odstraňování nelidských hrozeb.
 
@@ -957,13 +866,11 @@ O rezervacích kolují historky o podivných tvorech a duších. Většina lidst
 
 ## Varování
 
-Vědci upozorňují, že junkin není obnovitelný a vývoj je neudržitelný. Podrobnější výzkum navíc odhaluje jeho stinnou stránku: **manipulace s junkinem urychluje vznik monster.**
+Vědci upozorňují, že junkin není obnovitelný a vývoj je neudržitelný. Podrobnější výzkum odhaluje jeho stinnou stránku: manipulace s junkinem urychluje vznik monster.
 
-Odpadní látky z jeho zpracování jsou těkavé a toxické. Světová vláda rozhodla ukládat je do extrémně hlubokých vrtů. Část vědecké obce protestovala kvůli neznámým dlouhodobým dopadům a byla umlčena masivně sponzorovanou studií.
+Odpadní látky ze zpracování jsou těkavé a toxické. Světová vláda rozhodla ukládat je do extrémně hlubokých vrtů. Část vědecké obce protestovala kvůli neznámým dlouhodobým dopadům a byla umlčena masivně sponzorovanou studií.
 
-Spekulovalo se, že výsledky ovlivnil lobbying těžařské společnosti Gōkasekai. Prokázáno to nebylo.
-
-> *Šedesát čtyři let blahobytu. Za každý z nich se pak platilo zvlášť.*`,
+Spekulovalo se, že výsledky ovlivnil lobbying těžařské společnosti Gōkasekai. Prokázáno to nebylo.`,
   },
   {
     slug: "rozpad-a-valka",
@@ -973,25 +880,23 @@ Spekulovalo se, že výsledky ovlivnil lobbying těžařské společnosti Gōkas
     sort_order: 3,
     content: `# Rozpad a Světová válka konce
 
----
-
 ## Rozpad (2095–2100)
 
 Těžba junkinu začíná váznout a je zřejmé, že ho ubývá. Na Měsíci propukají první boje mezi korporacemi o ložiska.
 
-Roztříštěnost zájmů oslabí systém ochrany před monstry. Objevují se první vážné útoky a masakry.
+Roztříštěnost zájmů oslabí systém ochrany před monstry a objevují se první vážné útoky a masakry.
 
-Společenské rozdíly, které byly v blahobytu neviditelné, se vyostří. Vyšší vrstvy hromadí junkin, na nižší se nedostává. Všechny technologie jsou přitom stavěné na junkin, kterého není dost.
+Společenské rozdíly, které byly v blahobytu neviditelné, se vyostří. Vyšší vrstvy hromadí junkin, na nižší se nedostává, přitom všechny technologie jsou na junkin stavěné.
 
-Propuká hladomor a s ním nepokoje. Svět se během pěti let rozdělí na „my" a „oni". Frakce bojují proti sobě. Umírají miliony.
+Propuká hladomor a s ním nepokoje. Svět se během pěti let rozdělí na „my" a „oni". Frakce bojují proti sobě a umírají miliony.
 
 ---
 
 ## Válka (2100–2101)
 
-**終焉世界大戦 — *Shūen Sekai Taisen*, Světová válka konce.**
+**終焉世界大戦**, *Shūen Sekai Taisen*, Světová válka konce.
 
-Trvala něco přes rok. Bojovalo se výhradně mezi lidmi — proti monstrům v té době nebojoval nikdo, protože nikdo neměl kapacitu.
+Trvala něco přes rok. Bojovalo se výhradně mezi lidmi. Proti monstrům v té době nebojoval nikdo, protože nikdo neměl kapacitu.
 
 V roce 2101 sáhla jedna ze stran po konečném řešení a použila celý svůj atomový arzenál.
 
@@ -999,20 +904,18 @@ V roce 2101 sáhla jedna ze stran po konečném řešení a použila celý svůj
 
 ## Proč se tím rozbil svět
 
-Exploze zasáhly rozsáhlá úložiště junkinového odpadu uložená v hlubokých vrtech.
+Exploze zasáhly rozsáhlá úložiště junkinového odpadu v hlubokých vrtech. To spustilo řetězovou reakci v zemské kůře a tektonické desky se daly do pohybu.
 
-To spustilo řetězovou reakci v zemské kůře. Tektonické desky se daly do pohybu.
-
-Válka tím fakticky skončila — ne proto, že by někdo zvítězil, ale proto, že přestalo být kde a s kým bojovat.
+Válka tím fakticky skončila. Ne proto, že by někdo zvítězil, ale proto, že přestalo být kde a s kým bojovat.
 
 :::k2
 Ta strana jsme byli my.
 
-Údery vypustili předchůdci Shin Junkinu. Pustina za mořem, kterou dnes nazýváme Okrajem a která je neobyvatelná dodnes, je neobyvatelná proto, že jsme ji takovou udělali.
+Údery vypustili předchůdci Shin Junkinu. Pustina za mořem, kterou dnes nazýváme Okrajem a která je neobyvatelná dodnes, je taková proto, že jsme ji takovou udělali.
 
 Odhady mrtvých se pohybují v miliardách a rozlišit oběti úderu od obětí toho, co následovalo, není možné.
 
-Nemluví se o tom nahlas a nemluví se o tom rádo. Nezakrývá se to ale a nebude se to zakrývat. Kdo dosáhl druhého stupně poznání, unese i tohle:
+Nemluví se o tom nahlas ani rádo, ale nezakrývá se to. Kdo dosáhl druhého stupně poznání, unese i tohle:
 
 **Udělali jsme to. Bylo to nutné. Kdybychom to neudělali, nebyl by tu dnes nikdo, kdo by se ptal.**
 :::`,
@@ -1025,9 +928,7 @@ Nemluví se o tom nahlas a nemluví se o tom rádo. Nezakrývá se to ale a nebu
     sort_order: 4,
     content: `# Ozvěna zkázy
 
-**亡響 — *Bōkyō***
-
-Deset let, během kterých se planeta přestavěla.
+**亡響**, *Bōkyō*. Roky 2101 až 2111, během kterých se planeta přestavěla.
 
 ---
 
@@ -1039,7 +940,7 @@ Tektonické desky se pohybovaly rychlostí, pro kterou geologie neměla slovo.
 - Pouště se měnily v moře a oceány vysychaly.
 - Extrémní výkyvy počasí, zemětřesení, záplavy a cunami bez pauzy.
 
-Umíraly miliardy. Ne ve válce — po ní.
+Umíraly miliardy, tentokrát ne ve válce, ale po ní.
 
 ---
 
@@ -1047,29 +948,23 @@ Umíraly miliardy. Ne ve válce — po ní.
 
 Elektronická komunikace nefungovala. Lidstvo se scvrklo na mrchožrouty a sběrače ve zbytcích rozbité civilizace.
 
-Lidé žili v klanech a v **přesuvných populačních centrech** — sídlech, která se stěhovala, kdykoli se jim krajina pod nohama změnila natolik, že se v ní nedalo zůstat.
+Lidé žili v klanech a v **přesuvných populačních centrech**, sídlech, která se stěhovala, kdykoli se krajina změnila natolik, že se v ní nedalo zůstat.
 
 ---
 
 ## 2111
 
-Pohyb desek se náhle zastavil. Výkyvy počasí skončily.
+Pohyb desek se náhle zastavil a výkyvy počasí skončily. Svět vypadal úplně jinak, ale zdál se stejně obyvatelný jako dřív.
 
-Svět vypadal úplně jinak, ale zdál se stejně obyvatelný jako dřív.
-
-Odhaduje se, že přežila zhruba **jedna miliarda** lidí. Podobný počet jako v polovině devatenáctého století.
+Odhaduje se, že přežila zhruba jedna miliarda lidí, podobný počet jako v polovině devatenáctého století.
 
 ---
 
 ## Co přišlo s tím
 
-Svět se mohl začít stabilizovat. Místo toho se ukázalo, že všude, kde se lidé pokusili znovu něco postavit, se objevují **monstra**.
+Svět se mohl začít stabilizovat. Místo toho se ukázalo, že všude, kde se lidé pokusili znovu něco postavit, se objevují **monstra**. Ne ojediněle, ale všude.
 
-Ne ojediněle. Všude.
-
-Tím okamžikem přestala být otázka, jestli lidstvo přežilo katastrofu, a začala otázka, jestli přežije to, co po ní zbylo.
-
-> *Zkáza měla ozvěnu. Ozvěna byla hlasitější.*`,
+Tím okamžikem přestala být otázka, jestli lidstvo přežilo katastrofu, a začala otázka, jestli přežije to, co po ní zbylo.`,
   },
   {
     slug: "putujici-svetla",
@@ -1079,15 +974,13 @@ Tím okamžikem přestala být otázka, jestli lidstvo přežilo katastrofu, a z
     sort_order: 5,
     content: `# Putující světla
 
-**巡灯 — *Juntō***
-
-Devět let mezi zastavením desek a ustavením Shin Junkinu. Doba, ve které vzniklo lovectví.
+**巡灯**, *Juntō*. Devět let mezi zastavením desek a ustavením Shin Junkinu, ve kterých vzniklo lovectví.
 
 ---
 
 ## Nultá generace
 
-Ještě před válkou existovali lidé, kteří zabíjeli monstra profesionálně — vojáci zvláštních armádních složek. Tehdy se jim neříkalo lovci. Ten název dostali až zpětně.
+Ještě před válkou existovali lidé, kteří zabíjeli monstra profesionálně: vojáci zvláštních armádních složek. Tehdy se jim neříkalo lovci, ten název dostali zpětně.
 
 Po zkáze se stali klíčovými pro přežití populačních center. Bylo jich málo a nikdo je nedokázal nahradit.
 
@@ -1097,11 +990,9 @@ Po zkáze se stali klíčovými pro přežití populačních center. Bylo jich m
 
 Ti, kdo po zkáze chodili světem a chránili lidi.
 
-Nezůstávali v jednom centru. Přesouvali se mezi nimi, prorážali dopravní stezky a čistili nová místa, když bylo potřeba centrum přestěhovat. V kolektivní paměti zůstali jako **postavy v šedivých cestovních pláštích, které přicházely ze tmy a zase do ní odcházely**.
+Nezůstávali v jednom centru. Přesouvali se mezi nimi, prorážali dopravní stezky a čistili nová místa, když bylo potřeba centrum přestěhovat. V kolektivní paměti zůstali jako postavy v šedivých cestovních pláštích, které přicházely ze tmy a zase do ní odcházely. Odtud jméno té doby.
 
-Odtud jméno té doby.
-
-Protože každé centrum mělo jiné zákony, vznikl **lovecký kovenant** — tři věty, na které město přistoupilo, když chtělo ochranu:
+Protože každé centrum mělo jiné zákony, vznikl **lovecký kovenant**, tři věty, na které město přistoupilo, když chtělo ochranu:
 
 1. Lovec má povinnost zabíjet monstra a chránit lidi.
 2. Lovec má dveře otevřené.
@@ -1113,9 +1004,9 @@ Kovenant formálně zanikl se vznikem státu. Lovci se na něj odkazují dodnes 
 
 ## Shidōsei a pravidlo trojic
 
-Mladí lidé v populačních centrech skládali **Shidōsei** — přísahy vedení, vždy jeden učedník jednomu mentorovi. Když mentor rozhodl, stal se učedník čekatelem. Tak vznikla **druhá generace**.
+Mladí lidé v populačních centrech skládali **Shidōsei**, přísahy vedení, vždy jeden učedník jednomu mentorovi. Když mentor rozhodl, stal se učedník čekatelem. Tak vznikla **druhá generace**.
 
-Tehdy se také zavedlo **pravidlo trojic**. Vycvičit jednoho člověka k plné samostatnosti trvalo příliš dlouho a málokdo to unesl. Civilizace v troskách si nemohla dovolit čekat na nadlidi.
+Tehdy se zavedlo i **pravidlo trojic**. Vycvičit jednoho člověka k plné samostatnosti trvalo příliš dlouho a málokdo to unesl. Civilizace v troskách si nemohla dovolit čekat na nadlidi.
 
 Jakmile se sešli tři čekatelé, posoudila se jejich vzájemná snesitelnost a stal se z nich tým. Mentor s nimi ještě nějakou dobu putoval, než jim udělil akreditaci.
 
@@ -1123,15 +1014,13 @@ Jakmile se sešli tři čekatelé, posoudila se jejich vzájemná snesitelnost a
 
 ## Jestřáb
 
-**鷹 — *Taka*.** Lovec nulté generace.
+**鷹**, *Taka*, lovec nulté generace.
 
 Ve vesnické dívce nenašel jen učednici, ale i lásku. Jeho milovanou postihl příšerný osud a proměnila se v monstrum.
 
-Taka odmítl naplnit kovenant a zabít ji. Když tu povinnost splnili jiní, postavil se svým bratrům — a ve vzdoru se proměnil v monstrum i on. Než ho porazili, zmasakroval několik lovců a desítky civilistů.
+Taka odmítl naplnit kovenant a zabít ji. Když tu povinnost splnili jiní, postavil se svým bratrům a ve vzdoru se proměnil v monstrum i on. Než ho porazili, zmasakroval několik lovců a desítky civilistů.
 
-Z toho dne pochází zákaz partnerského života a rodiny. A z počtu obětí pochází barva pláště: od té doby jsou **rudé**.
-
-> *Lidstvo otevírá dveře a vydává své bezpečí do rukou lovců. Musí mít jistotu, že nesejdou z cesty.*`,
+Z toho dne pochází zákaz partnerského života a rodiny. Z počtu obětí pochází barva pláště: od té doby jsou rudé.`,
   },
   {
     slug: "ustaveni-shin-junkinu",
@@ -1141,15 +1030,13 @@ Z toho dne pochází zákaz partnerského života a rodiny. A z počtu obětí p
     sort_order: 6,
     content: `# Ustavení Shin Junkinu
 
----
-
 ## 2120
 
-**新純金 (Shin Junkin) — Nový Junkin** vzniká jako federace populačních center, která sdílejí filozofii Zlaté generace: pokrok lidstva hnaný junkinem. Později se prohlásí velkostátem.
+**新純金 (Shin Junkin), Nový Junkin** vzniká jako federace populačních center, která sdílejí filozofii Zlaté generace: pokrok lidstva hnaný junkinem. Později se prohlásí velkostátem.
 
-Shin Junkin odmítá tvrzení, že využívání junkinu byla chyba. Vinu klade na přílišnou individualizaci a sobectví — ne na látku samotnou. Cílem je obnovit přístup do vesmíru a k těžbě.
+Shin Junkin odmítá tvrzení, že využívání junkinu byla chyba. Vinu klade na přílišnou individualizaci a sobectví, ne na látku samotnou. Cílem je obnovit přístup do vesmíru a k těžbě.
 
-Základní princip: **nikdo nemá hladovět, ale každý musí pracovat a dar junkinu nezneužívat.**
+Základní princip: nikdo nemá hladovět, ale každý musí pracovat a dar junkinu nezneužívat.
 
 ---
 
@@ -1157,9 +1044,9 @@ Základní princip: **nikdo nemá hladovět, ale každý musí pracovat a dar ju
 
 Lidstvo se nedokázalo sjednotit. Zbyly tři velmoci:
 
-- **Shin Junkin** — bývalé Japonsko a okolní souostroví
-- **Konfederace** — pobřežní státy bývalé Ameriky, spojené obrněnými vlaky přes zamořený kontinent. Hlavní protivník.
-- **Pakt Europa** — izolacionisté, kteří tvrdě omezili užívání junkinu. Mají proto málo monster a zaostávají v technologii.
+- **Shin Junkin**, bývalé Japonsko a okolní souostroví
+- **Konfederace**, pobřežní státy bývalé Ameriky spojené obrněnými vlaky přes zamořený kontinent. Hlavní protivník.
+- **Pakt Europa**, izolacionisté, kteří tvrdě omezili užívání junkinu. Mají proto málo monster a zaostávají v technologii.
 
 Vedle nich dvě menší mocnosti bez velmocenského postavení: **Meridián**, putovní národ plovoucích ostrovů a spojených lodí, a **Země obrody**, mikrostáty na jihu Afriky a Ameriky, které junkin odvrhly a snaží se s monstry žít v souladu.
 
@@ -1167,27 +1054,19 @@ Vedle nich dvě menší mocnosti bez velmocenského postavení: **Meridián**, p
 
 ## Lovecký řád
 
-Se vznikem státu se lovectví institucionalizovalo. Vznikl **Ústřední lovecký řád** (中央猟士団 — *Chūō Ryōshi-dan*), zkráceně **Ryōdan**.
+Se vznikem státu se lovectví institucionalizovalo a vznikl **Ústřední lovecký řád** (中央猟士団, *Chūō Ryōshi-dan*), zkráceně **Ryōdan**.
 
-Lovecký kovenant formálně zanikl a nahradil ho **Lovecký zákoník** — komplexní soubor pravidel existence lovců ve státě.
+Lovecký kovenant formálně zanikl a nahradil ho **Lovecký zákoník**, komplexní soubor pravidel existence lovců ve státě.
 
-Všichni, kdo se stali lovci po roce 2120, tvoří **druhou generaci**.
-
----
-
-## Projekt Akano
-
-Školy projektu Akano cvičí **třetí generaci**. Jsi v ní.
+Všichni, kdo se stali lovci po roce 2120, tvoří **druhou generaci**. Školy projektu Akano cvičí **třetí**.
 
 ---
 
 ## Nyní se píše rok 2143
 
-Od atomového úderu uplynulo dvaačtyřicet let. Od ustavení státu dvacet tři.
+Od atomového úderu uplynulo dvaačtyřicet let, od ustavení státu dvacet tři.
 
-Nultá generace lovců, ti, kdo pamatují svět před válkou, dnes buď nežije, nebo je jí přes pětašedesát. Za pár let nezůstane nikdo, kdo Zlatou generaci viděl na vlastní oči.
-
-Zůstanou záznamy. A tahle databáze.`,
+Nultá generace lovců, tedy ti, kdo pamatují svět před válkou, dnes buď nežije, nebo je jí přes pětašedesát. Za pár let nezůstane nikdo, kdo Zlatou generaci viděl na vlastní oči.`,
   },
 
   // ─── SVĚT ──────────────────────────────────────────────────────────────────
@@ -1199,15 +1078,15 @@ Zůstanou záznamy. A tahle databáze.`,
     sort_order: 1,
     content: `# Shin Junkin
 
-**新純金 — Nový Junkin.** Velkostát, ve kterém žiješ.
+**新純金**, Nový Junkin. Velkostát, ve kterém žijeme.
 
 ---
 
 ## Území
 
-Hlavní souostroví bývalého Japonska. Je místy zdevastované vlnami cunami a zemětřeseními, ale drží si části své historie — a především památku Zlaté generace, luxusu a blahobytu.
+Hlavní souostroví bývalého Japonska. Je místy zdevastované vlnami cunami a zemětřeseními, ale drží si části své historie a především památku Zlaté generace.
 
-Je to nejlepší místo k životu, jaké v Oceánii je. Kdokoli odjinud sem chce. Většina se sem nedostane.
+Je to nejlepší místo k životu, jaké v Oceánii je. Kdokoli odjinud sem chce a většina se sem nedostane.
 
 V Shin Junkinu žijí převážně **Místní**.
 
@@ -1217,12 +1096,11 @@ V Shin Junkinu žijí převážně **Místní**.
 
 Že junkin nebyl chyba.
 
-Katastrofu podle státní doktríny nezpůsobila látka ani její těžba, ale **přílišná individualizace a sobectví** lidstva. Lidé si brali, nedávali a nikdo je nedržel v řádu.
+Katastrofu podle státní doktríny nezpůsobila látka ani její těžba, ale přílišná individualizace a sobectví lidstva. Lidé si brali, nedávali a nikdo je nedržel v řádu.
 
-Z toho plynou dvě věty, které uslyšíš při každé oficiální příležitosti:
+Z toho plynou dvě věty, které zazní při každé oficiální příležitosti:
 
-> *Nikdo nemá hladovět.*
-> *Každý musí pracovat a dar junkinu nezneužívat.*
+> *Nikdo nemá hladovět. Každý musí pracovat a dar junkinu nezneužívat.*
 
 Cílem státu je obnovit přístup do vesmíru a k těžbě. Všechno ostatní je prostředek.
 
@@ -1230,17 +1108,15 @@ Cílem státu je obnovit přístup do vesmíru a k těžbě. Všechno ostatní j
 
 ## Sebevědomí
 
-Shin Junkin je o své nadřazenosti a pravdě přesvědčen. Ne jako o názoru — jako o zjištěném faktu.
-
-Toto přesvědčení je oficiální, veřejné a nikdo se ho nesnaží zjemňovat. Kdo s ním nesouhlasí, obvykle žije někde jinde.
+Shin Junkin je o své nadřazenosti a pravdě přesvědčen a považuje to za zjištěný fakt, ne za názor. Toto přesvědčení je oficiální a veřejné.
 
 ---
 
 ## Monstra
 
-Shin Junkin považuje monstra za šintoistické bytosti — 鬼 (*Oni*) a jim podobné. Neodpovídají přesně příběhům, které se o nich po staletí vyprávěly, ale nikdo tu nepochybuje, že jde o totéž.
+Shin Junkin považuje monstra za šintoistické bytosti, 鬼 (*Oni*) a jim podobné. Neodpovídají přesně příběhům, které se o nich po staletí vyprávěly, ale nikdo zde nepochybuje, že jde o totéž.
 
-Je to jediné místo, kde stát připouští, že nerozumí něčemu zcela.`,
+Je to jediné místo, kde stát připouští, že něčemu nerozumí zcela.`,
   },
   {
     slug: "regiony",
@@ -1258,9 +1134,9 @@ Je to jediné místo, kde stát připouští, že nerozumí něčemu zcela.`,
 
 Bývalé Filipíny, Tchaj-wan, Indonésie a Guinea.
 
-Mikrostáty **vojensky podrobené** Shin Junkinu. Formálně mají vlastní správu. Fakticky dodávají, co se po nich chce.
+Mikrostáty vojensky podrobené Shin Junkinu. Formálně mají vlastní správu, fakticky dodávají, co se po nich chce.
 
-Podmínky k životu jsou snesitelné. Postavení není.
+Podmínky k životu jsou snesitelné, postavení není.
 
 ---
 
@@ -1268,17 +1144,17 @@ Podmínky k životu jsou snesitelné. Postavení není.
 
 Pásy ostrovů na východě, které vytvořil pohyb desek.
 
-Ještě před třiceti lety ležely na dně oceánu. Není tam proto skoro žádná zeleň, život ani stabilní půda. Zato je pásmo poseté sopkami — část je stále činná — a s nimi vulkanickými elektrárnami a těžebními doly.
+Ještě před třiceti lety ležely na dně oceánu, takže tam není skoro žádná zeleň, život ani stabilní půda. Zato je pásmo poseté sopkami, z nichž část je stále činná, a s nimi vulkanickými elektrárnami a těžebními doly.
 
-Je to nehostinná průmyslová a silně militarizovaná oblast. Důvod pro to poslední je jednoduchý: Nové pásmo je jediné území obrácené k Pacifiku, za kterým leží **Konfederace**.
+Je to nehostinná průmyslová a silně militarizovaná oblast. Důvod je jednoduchý: Nové pásmo je jediné území obrácené k Pacifiku, za kterým leží **Konfederace**.
 
 ---
 
 ## Okraj
 
-Okraj bývalé Asie — Korea, Čína, Vietnam.
+Okraj bývalé Asie: Korea, Čína, Vietnam.
 
-Není to ucelené území. Je to série pevností a bašt na rozbitém kontinentu.
+Není to ucelené území, ale série pevností a bašt na rozbitém kontinentu.
 
 Velké pevniny jsou poseté monstry a obyvatelné jen stěží. Na Čínu navíc ve válce dopadly nukleární zbraně a značná část Okraje je neobyvatelná dodnes.
 
@@ -1300,7 +1176,7 @@ Zda je ta výměna spravedlivá, není otázka, která by se veřejně kladla.`,
     sort_order: 3,
     content: `# Ostatní mocnosti
 
-Po válce zbyly **tři velmoci**. Vedle nich existují dvě menší mocnosti, které velmocenské postavení nemají, ale je nutné o nich vědět.
+Po válce zbyly tři velmoci. Vedle nich existují dvě menší mocnosti bez velmocenského postavení.
 
 ---
 
@@ -1310,7 +1186,7 @@ Po válce zbyly **tři velmoci**. Vedle nich existují dvě menší mocnosti, kt
 
 Několik pobřežních států bývalé Ameriky, propojených obrněnými vlaky, které projíždějí vybombardovaným a monstry zaplněným vnitrozemím.
 
-Stojí na individualismu — na přesvědčení, že jednotlivec je víc než celek. Z pohledu Shin Junkinu je to přesně ta chyba, která svět zabila, zopakovaná znovu a vědomě.
+Stojí na individualismu, tedy na přesvědčení, že jednotlivec je víc než celek. Z pohledu Shin Junkinu je to přesně ta chyba, která svět zabila, zopakovaná znovu a vědomě.
 
 ---
 
@@ -1318,9 +1194,9 @@ Stojí na individualismu — na přesvědčení, že jednotlivec je víc než ce
 
 *Velmoc. Izolacionisté.*
 
-Odstřihli se od světa a velmi přísně omezili užívání junkinu. Díky tomu u nich monstra skoro nejsou.
+Odstřihli se od světa a velmi přísně omezili užívání junkinu. Monstra u nich proto skoro nejsou.
 
-Zaplatili za to technologickým zaostáváním. Nedokážou to, co Shin Junkin, a nikdy nedokážou.
+Zaplatili za to technologickým zaostáváním, které dohnat nedokážou.
 
 ---
 
@@ -1328,11 +1204,11 @@ Zaplatili za to technologickým zaostáváním. Nedokážou to, co Shin Junkin, 
 
 *Menší mocnost. Bez území.*
 
-Putovní národ. Plovoucí ostrovy a spojené lodě křižující Pacifik a Atlantik. Žijí z vytahování technologií a paliva ze strojů na dně oceánů.
+Putovní národ. Plovoucí ostrovy a spojené lodě křižující Pacifik a Atlantik, živí se vytahováním technologií a paliva ze strojů na dně oceánů.
 
 Pokusili se usadit v Austrálii. Shin Junkin je zničil, protože to bylo příliš blízko.
 
-Meridián přijímá uprchlíky a vyhnance odkudkoli. Žijí v něm proto i skupiny Oceánských a Místních.
+Meridián přijímá uprchlíky a vyhnance odkudkoli, žijí v něm proto i skupiny Vedlejších a Místních.
 
 ---
 
@@ -1340,7 +1216,7 @@ Meridián přijímá uprchlíky a vyhnance odkudkoli. Žijí v něm proto i skup
 
 *Menší mocnost. Mikrostáty.*
 
-Na jihu Afriky a Ameriky. Junkin odvrhli úplně a snaží se s monstry **žít v souladu**.
+Na jihu Afriky a Ameriky. Junkin odvrhly úplně a snaží se s monstry žít v souladu.
 
 Obyvatelé Shin Junkinu o nich buď nevědí, nebo se jejich naivitě smějí.
 
@@ -1348,7 +1224,7 @@ Obyvatelé Shin Junkinu o nich buď nevědí, nebo se jejich naivitě smějí.
 
 ## Kde je kdo
 
-V Paktu Europa, Konfederaci a Zemích obrody žijí prakticky jen lidé **Cizího** původu. Meridián je jediné místo, kde se potkáš se všemi třemi.`,
+V Paktu Europa, Konfederaci a Zemích obrody žijí prakticky jen lidé **Cizího** původu. Meridián je jediné místo, kde se potkají všechny tři původy.`,
   },
   {
     slug: "puvod",
@@ -1358,49 +1234,43 @@ V Paktu Europa, Konfederaci a Zemích obrody žijí prakticky jen lidé **Cizíh
     sort_order: 4,
     content: `# Původ
 
-Shin Junkin rozlišuje obyvatele podle **původu** — podle toho, odkud pochází jejich rodina a jaký mají vztah ke státu.
-
-Rozlišení je oficiální, zapsané a nosí se viditelně.
+Shin Junkin rozlišuje obyvatele podle **původu**, tedy podle toho, odkud pochází jejich rodina a jaký mají vztah ke státu. Rozlišení je oficiální, zapsané a nosí se viditelně.
 
 ---
 
 ## Místní
 
-Pocházejí ze Shin Junkinu a žijí v něm.
+Pocházejí ze Shin Junkinu a žijí v něm. Cokoli dělají pro stát, dělají pro sebe. Jejich rodiny tu byly před válkou a budou tu po ní.
 
-Cokoli dělají pro stát, dělají pro sebe. Jejich rodiny tu byly před válkou a budou tu po ní.
+Místní častěji používají japonské názvy pro věci: většina prvků světa má vedle běžného označení i vznešenější japonské. Kaichi. Shidōsei. Ryōdan. Je to zvyk, ne předpis, a je poznat.
 
-Místní častěji používají japonské názvy pro věci — většina prvků světa má vedle běžného označení i vznešenější japonské. Kaichi. Shidōsei. Ryōdan. Není to předpis, je to zvyk, a je poznat.
-
-Místní se také častěji odkazují na dobu před válkou, na Zlatou generaci a na Japonsko.
+Častěji se také odkazují na dobu před válkou, na Zlatou generaci a na Japonsko.
 
 ---
 
 ## Vedlejší
 
-Pocházejí odjinud z Oceánie — z Jižních provincií, Nového pásma nebo Okraje.
+Pocházejí odjinud z Oceánie: z Jižních provincií, Nového pásma nebo Okraje.
 
 Co dělají pro stát, dělají spíš pro ty, kdo si žijí v bohatství a bezpečí v Shin Junkinu. Sami z toho blahobytu dostávají výrazně méně.
 
-Geneticky ani vzhledem je od Místních rozlišit nejde. Za Zlaté generace se lidstvo promíchalo natolik, že barva ani rysy dnes neříkají o původu nic.
-
-Rozdíl je čistě ve skutečném původu a ve vztahu ke kraji, ve kterém člověk je.
+Geneticky ani vzhledem je od Místních rozlišit nejde. Za Zlaté generace se lidstvo promíchalo natolik, že barva ani rysy dnes o původu neříkají nic. Rozdíl je ve skutečném původu a ve vztahu ke kraji.
 
 ---
 
 ## Cizí
 
-Pocházejí z velkých pevnin — z Ameriky, z Evropy.
+Pocházejí z velkých pevnin, z Ameriky a z Evropy.
 
-Hlavní rozdíl oproti předchozím dvěma: **je to na nich vidět.**
+Hlavní rozdíl oproti předchozím dvěma: je to na nich vidět.
 
 ---
 
 ## Co to není
 
-Toto rozdělení není rasové. Rasismus založený na barvě nebo tvaru ve světě zanikl s Zlatou generací, kdy se lidstvo promísilo tak, že přestal dávat smysl.
+Toto rozdělení není rasové. Rasismus založený na barvě nebo tvaru zanikl se Zlatou generací, kdy se lidstvo promísilo tak, že přestal dávat smysl.
 
-Co vzniklo místo něj, je dělení podle toho, **kde ses narodil** — a to je stále v platnosti, stále je součástí evidence a stále rozhoduje o tom, kam až se člověk dostane.`,
+Vzniklo místo něj dělení podle toho, kde se člověk narodil. To je stále v platnosti, je součástí evidence a rozhoduje o tom, kam až se člověk dostane.`,
   },
 
   // ─── ŘÁD A SPOLEČNOST ──────────────────────────────────────────────────────
@@ -1412,45 +1282,39 @@ Co vzniklo místo něj, je dělení podle toho, **kde ses narodil** — a to je 
     sort_order: 2,
     content: `# Řád, význam a role
 
-Základní společenská doktrína Shin Junkinu. Vyučuje se od základní školy a nikdo ji nezpochybňuje nahlas.
-
----
-
-## Věta, na které to stojí
+Základní společenská doktrína Shin Junkinu. Vyučuje se od základní školy.
 
 > *Každý má své místo. Místo je povinnost. Povinnost je ochrana.*
 
-Řád není v Shin Junkinu chápán jako omezení svobody, ale jako **věc, která drží člověka pohromadě**. Kdo ví, kam patří a co se od něj čeká, je v bezpečí. Kdo to neví, je ohrožený — a ohrožuje ostatní.
+Řád se nechápe jako omezení svobody, ale jako to, co drží člověka pohromadě. Kdo ví, kam patří a co se od něj čeká, je v bezpečí. Kdo to neví, ohrožuje sebe i ostatní.
 
 ---
 
 ## Role
 
-Každý má přidělenou nebo zvolenou roli: v rodině, v týmu, v jednotce, v odboru, v zaměstnání. Role není nálepka. Je to soubor konkrétních povinností, které někdo jiný počítá, že splníš.
+Každý má přidělenou nebo zvolenou roli: v rodině, v týmu, v jednotce, v odboru, v zaměstnání. Role je soubor konkrétních povinností, s jejichž splněním někdo jiný počítá.
 
-Změna role je možná, ale je to formální úkon. Nikdo v Shin Junkinu není „mezi rolemi" dlouho. Stát to nedovolí, a nedovolí to z důvodů, které jsou vážnější, než se na první pohled zdá.
+Změnit roli lze, ale je to formální úkon. Nikdo v Shin Junkinu nezůstává mezi rolemi dlouho a stát to nedovolí.
 
 ---
 
-## Proč se tolik dbá na to, aby nikdo nezůstal bez místa
+## Proč se dbá na to, aby nikdo nezůstal bez místa
 
-Protože ztráta role není jen sociální problém.
+Ztráta role je víc než sociální problém.
 
-Člověk, který přijde o práci, o postavení, o důvod vstávat, není v Shin Junkinu ponechán osudu — ne z dobroty, ale proto, že prázdné místo v řádu je nebezpečné pro okolí.
+Člověk, který přijde o práci, postavení a důvod vstávat, není ponechán osudu. Prázdné místo v řádu je nebezpečné pro okolí.
 
-Systém podpory, přeřazení a nucené práce, který se cizincům jeví jako tvrdý, existuje právě proto. Není trestem za pád. Je opatřením proti tomu, co po pádu přichází.
+Systém podpory, přeřazení a nucené práce, který cizincům připadá tvrdý, existuje právě proto. Je opatřením proti tomu, co po pádu přichází.
 
 ---
 
 ## Ikigai
 
-Vedle vnějšího řádu uznává doktrína i **ikigai** (生き甲斐) — vlastní, vnitřní důvod k existenci. Věc, kvůli které člověk sám od sebe vstane.
+Doktrína uznává vedle vnějšího řádu i **ikigai** (生き甲斐), vlastní vnitřní důvod k existenci.
 
-Ikigai je považováno za lepší a hodnotnější než přidělená role. Kdo ho má, nepotřebuje, aby ho držel někdo zvenčí.
+Ikigai se považuje za hodnotnější než přidělená role. Kdo ho má, nepotřebuje, aby ho držel někdo zvenčí.
 
-Zároveň se na něj nespoléhá. Najde si ho málokdo, drží nespolehlivě a ztrácí se snadno.
-
-> *Ikigai je lepší. Řád je jistější. Stát staví na tom druhém, protože si nemůže dovolit doufat.*`,
+Stát na něj přesto nespoléhá: najde si ho málokdo, drží nespolehlivě a ztrácí se snadno.`,
   },
   {
     slug: "detektor-lzi",
@@ -1460,32 +1324,24 @@ Zároveň se na něj nespoléhá. Najde si ho málokdo, drží nespolehlivě a z
     sort_order: 3,
     content: `# Detektor lži a zkoušky loajality
 
----
-
-## K čemu to je
-
-Systém Kaichi stojí na tom, že se poznání nešíří mimo svůj stupeň. To by bylo bezcenné, kdyby se dodržování nedalo ověřit.
-
-Ověřuje se. Pravidelně a všem, kdo drží Kaichi IV a výše.
+Systém Kaichi stojí na tom, že se poznání nešíří mimo svůj stupeň. Dodržování se ověřuje pravidelně u všech, kdo drží Kaichi IV a výše.
 
 ---
 
-## Jak zkouška probíhá
-
-Zkouška loajality je formální úkon s vlastním protokolem:
+## Průběh zkoušky
 
 1. Předvolání. Termín se neoznamuje dopředu.
 2. Podání látky.
 3. Otázky. Kladou se jednotlivě a odpovídá se okamžitě.
 4. Zápis. Zapisuje se odpověď, ne průběh.
 
-Zkoušku vede pověřená osoba, nikdy ne přímý nadřízený.
+Zkoušku vede pověřená osoba, nikdy přímý nadřízený.
 
 ---
 
 ## Co detektor umí
 
-Zajišťuje, že subjekt **nemůže lhát**. Neumí číst myšlenky, neumí zjistit, na co ses neptal, a neumí odhalit, že si dotyčný svou odpověď předem sám pro sebe přeformuloval.
+Zajišťuje, že subjekt nemůže lhát. Neumí číst myšlenky, zjistit nepoloženou otázku ani odhalit, že si dotyčný odpověď předem sám pro sebe přeformuloval.
 
 Je to nástroj proti zatajení, ne proti chytrosti.
 
@@ -1493,25 +1349,19 @@ Je to nástroj proti zatajení, ne proti chytrosti.
 
 ## Proč se nepoužívá častěji
 
-Protože je omezený zdrojem. **Jedna dávka odpovídá jedné otázce** a dávek je málo.
-
-Nelze se tedy denně ptát každého. Zkoušky se plánují, otázky se volí předem a promarněná otázka se nevrací.
+Jedna dávka odpovídá jedné otázce a dávek je málo. Zkoušky se plánují, otázky se volí předem a promarněná otázka se nevrací.
 
 :::k3
-Látkou je **miasma**.
+Látkou je **miasma**. Neurotoxický účinek krátkodobě otupí mysl a subjekt se stane vnímavějším a méně schopným klamu.
 
-Její neurotoxický účinek krátkodobě otupí mysl a subjekt se stane vnímavějším a méně schopným klamu. Právě proto je každá zkouška zároveň dávkou jedu — a proto se počítají.
-
-Kdo chodí na zkoušky často, nese to na sobě.
+Každá zkouška je tedy zároveň dávkou jedu. Kdo chodí na zkoušky často, nese to na sobě.
 :::
 
 ---
 
 ## Na Akanu
 
-Studenti Akademie zkouškám loajality běžně nepodléhají. Setkají se s nimi až jako lovci nebo při vstupu do struktur, kde se to vyžaduje.
-
-Existují ale výjimky a v odůvodněných případech lze zkoušku nařídit komukoli.`,
+Studenti Akademie zkouškám běžně nepodléhají. Setkají se s nimi až jako lovci nebo při vstupu do struktur, kde se to vyžaduje. V odůvodněných případech lze zkoušku nařídit komukoli.`,
   },
 
   // ─── LOVCI ─────────────────────────────────────────────────────────────────
@@ -1523,7 +1373,7 @@ Existují ale výjimky a v odůvodněných případech lze zkoušku nařídit ko
     sort_order: 3,
     content: `# Ústřední lovecký řád
 
-**中央猟士団 — *Chūō Ryōshi-dan*.** V běžné řeči **Ryōdan**.
+**中央猟士団**, *Chūō Ryōshi-dan*. V běžné řeči **Ryōdan**.
 
 ---
 
@@ -1533,33 +1383,29 @@ Existují ale výjimky a v odůvodněných případech lze zkoušku nařídit ko
 - Přiděluje **mise**
 - Vede **soud** nad lovci
 
-Poslední bod je nejdůležitější a plyne přímo z kovenantu: lovce soudí jenom jiní lovci. Zůstalo to v platnosti i poté, co kovenant nahradil Lovecký zákoník.
+Soudní pravomoc plyne přímo z kovenantu: lovce soudí jenom jiní lovci. Zůstala v platnosti i poté, co kovenant nahradil Lovecký zákoník.
 
 ---
 
 ## Jak rozhoduje
 
-Ryōdan funguje demokraticky. **Každý lovec má jeden hlas.**
+Ryōdan funguje demokraticky a každý lovec má jeden hlas. Většinu rozhodnutí dělá volený **Nejvyšší koncil**, který zasedá stále.
 
-Většinu rozhodnutí ale nedělá shromáždění, nýbrž volený **Nejvyšší koncil**. Ten zasedá stále a rozhoduje o všem, co nesnese odklad.
-
-Být lovcem je zároveň to nejvíc, jak blízko se člověk v Shin Junkinu dostane k občanským právům v jejich starém smyslu.
+Být lovcem je zároveň nejbližší postavení k občanským právům v jejich starém smyslu, jaké lze v Shin Junkinu získat.
 
 ---
 
 ## Ryōdan a stát
 
-Ryōdan je **samostatná mocenská instituce s monopolem na lov monster**. To z něj dělá jedinou organizaci ve státě, bez které se stát neobejde a kterou zároveň neřídí.
+Ryōdan má monopol na lov monster. Je to jediná organizace ve státě, bez které se stát neobejde a kterou zároveň neřídí.
 
-Stát si drží kontrolu třemi způsoby a nijak to nezakrývá:
+Stát si drží kontrolu třemi způsoby a nezakrývá to:
 
 - **Rozpočet.** Lovci jsou závislí na státním financování rent i provozu.
-- **Politický dohled.** Velké operace musí formálně schválit státní rada — často až zpětně. Rada má navíc vyhrazená místa v koncilu.
+- **Politický dohled.** Velké operace musí formálně schválit státní rada, často až zpětně. Rada má vyhrazená místa v koncilu.
 - **Armáda.** Existuje mimo jiné proto, aby Ryōdan nebyl jedinou ozbrojenou silou s privilegii.
 
-Napětí mezi řádem a státem je trvalé, oboustranně uznávané a záměrné. Nikdo se ho nesnaží odstranit.
-
-> *Stát potřebuje lovce. Lovci potřebují stát. Ani jedna strana z toho nemá radost.*`,
+Napětí mezi řádem a státem je trvalé, oboustranně uznávané a záměrné.`,
   },
   {
     slug: "generace-lovcu",
@@ -1569,25 +1415,25 @@ Napětí mezi řádem a státem je trvalé, oboustranně uznávané a záměrné
     sort_order: 4,
     content: `# Generace lovců
 
-Lovci se dělí podle toho, kdy se jimi stali. Není to hodnost ani zásluha — je to údaj o tom, jaký svět dotyčný zažil.
+Lovci se dělí podle toho, kdy se jimi stali. Není to hodnost ani zásluha, ale údaj o tom, jaký svět dotyčný zažil.
 
 ---
 
 ## Nultá generace
 
-Zabíječi monster **z doby před válkou**. Vojáci zvláštních armádních složek.
+Zabíječi monster z doby před válkou, vojáci zvláštních armádních složek. Tehdy se jim neříkalo lovci, ten název dostali zpětně.
 
-Tehdy se jim neříkalo lovci; ten název dostali zpětně. Nedělili se na specializace a fungovali samostatně — v tomhle smyslu to byli lidé, jaké dnešní výcvik nedokáže vyrobit.
+Nedělili se na specializace a fungovali samostatně. Zažili Zlatou generaci a pamatují si ji.
 
-Zažili Zlatou generaci a pamatují si ji. Dnes je jim pětašedesát a víc. Většina už nežije.
+Dnes je jim pětašedesát a víc. Většina už nežije.
 
 ---
 
 ## První generace
 
-Ti, kdo po zkáze **chodili světem a chránili lidi**. Postavy v šedivých cestovních pláštích, které přicházely z tmy mezi populační centra.
+Ti, kdo po zkáze chodili světem a chránili lidi. Postavy v šedivých cestovních pláštích, které přicházely mezi populační centra.
 
-Vznikl s nimi lovecký kovenant. Válku si pamatují, dobu před ní ne — byli tehdy děti z rozbitých měst.
+Vznikl s nimi lovecký kovenant. Válku si pamatují, dobu před ní ne, byli tehdy děti z rozbitých měst.
 
 Dnes je jim padesát až sedmdesát.
 
@@ -1595,21 +1441,19 @@ Dnes je jim padesát až sedmdesát.
 
 ## Druhá generace
 
-Jejich **učedníci** přes Shidōsei, a poté všichni, kdo se stali lovci po ustavení Shin Junkinu v roce 2120.
+Jejich učedníci přes Shidōsei a poté všichni, kdo se stali lovci po ustavení Shin Junkinu v roce 2120.
 
-Je to první generace, která lovectví nevynalezla, ale zdědila. Vyrostla v hotové instituci s licencemi, zákoníkem a rozpočtem.
+První generace, která lovectví nevynalezla, ale zdědila. Vyrostla v hotové instituci s licencemi, zákoníkem a rozpočtem.
 
-Dnes je jim pětadvacet až padesát. Tvoří naprostou většinu činných lovců.
+Dnes je jim pětadvacet až padesát a tvoří většinu činných lovců.
 
 ---
 
 ## Třetí generace
 
-**Studenti projektu Akano.** Ty.
+Studenti projektu Akano.
 
-Je to první generace, která se lovcem nestává tím, že by ji někdo našel a vzal si ji k sobě. Stává se jí tím, že projde školou.
-
-Co to udělá s lovectvím, nikdo neví. Zjistí se to na vás.`,
+První generace, která se lovcem nestává tím, že by ji někdo našel a vzal si ji k sobě, ale tím, že projde školou. Jak to lovectví změní, se teprve ukáže.`,
   },
   {
     slug: "divize-lovcu",
@@ -1625,9 +1469,7 @@ Ryōdan se dělí na divize podle toho, proti čemu jeho lovci stojí.
 
 ## Lovci
 
-Základní a zdaleka nejpočetnější divize. Ti, na které si člověk vzpomene, když se řekne lovec.
-
-Fyzická monstra, fyzický terén, fyzický střet. Pracují po trojicích.
+Základní a nejpočetnější divize. Fyzická monstra, fyzický terén, fyzický střet. Pracují po trojicích.
 
 ---
 
@@ -1635,9 +1477,9 @@ Fyzická monstra, fyzický terén, fyzický střet. Pracují po trojicích.
 
 Trojice specializované na **informační prostor**.
 
-Ne každé monstrum má tělo a ne každé se dá potkat na ulici. Virtuální lovci pracují stejně jako ostatní — po třech, se stejným rozdělením rolí — jen v prostředí, do kterého se nedá vejít.
+Ne každé monstrum má tělo a ne každé se dá potkat na ulici. Virtuální lovci pracují po třech se stejným rozdělením rolí jako ostatní, jen v prostředí, do kterého se nedá vejít.
 
-O jejich existenci se běžně ví. O jejich práci skoro nic.
+O jejich existenci se běžně ví. O jejich práci téměř nic.
 
 ---
 
@@ -1646,13 +1488,11 @@ O jejich existenci se běžně ví. O jejich práci skoro nic.
 Existence této divize není tajemstvím. Její náplň se veřejně nerozebírá.
 
 :::k6
-Stínová divize slouží k **eliminaci vnitřních hrozeb**.
+Stínová divize slouží k eliminaci vnitřních hrozeb: lidí, neposlušných lovců a všeho, co je nutné vyřešit tiše a co nelze svěřit armádě ani soudu.
 
-Lidí. Neposlušných lovců. Obecně všeho, co je nutné vyřešit tiše a co nelze svěřit ani armádě, ani soudu.
+Přidělení ke Stínům je jednou z mála cest, které zůstávají lovci, jemuž se rozpadla trojice a který nechce do armády. Nenabízí se každému.
 
-Přidělení ke Stínům je jednou z mála cest, které zůstávají lovci, jemuž se rozpadla trojice a který nechce do armády. Je to cesta vzácná a nenabízí se každému.
-
-Lovec, který ke Stínům odejde, přestává být uveden v běžných seznamech. Nemizí. Jen tam už není.
+Lovec, který ke Stínům odejde, přestává být uveden v běžných seznamech.
 :::`,
   },
   {
@@ -1663,46 +1503,40 @@ Lovec, který ke Stínům odejde, přestává být uveden v běžných seznamech
     sort_order: 6,
     content: `# Lovci a armáda
 
----
-
 ## Kdo dělá co
 
 **Armáda** zajišťuje hranice, pořádek a válku. Je početná, hierarchická a řídí ji stát.
 
-**Lovci** čelí tomu, co armáda nezvládne — přímému střetu s monstry. Jsou vzácní, samostatní a řídí se sami.
+**Lovci** čelí tomu, co armáda nezvládne: přímému střetu s monstry. Jsou vzácní, samostatní a řídí se sami.
 
-Rozdělení je jasné a v praxi funguje. Napětí nevzniká z něj.
+Rozdělení je jasné a v praxi funguje.
 
 ---
 
-## Odkud napětí je
+## Odkud je napětí
 
-Z privilegií.
-
-Lovec stojí nad běžným zákonem, má doživotní rentu a soudí ho jen jeho vlastní lidé. Voják nemá nic z toho a dělá práci, ve které se také umírá.
+Z privilegií. Lovec stojí nad běžným zákonem, má doživotní rentu a soudí ho jen jeho vlastní lidé. Voják nemá nic z toho a dělá práci, ve které se také umírá.
 
 - Vojáci vidí v lovcích elitu a zároveň jim závidí postavení.
 - Lovci považují armádu za nutnou, ale méněcennou sílu.
 
-Střety mezi oběma složkami se dějí. Někdy kvůli konkrétní věci, častěji kvůli tomu, že na tutéž situaci platí dva různé zákony.
+Střety mezi oběma složkami se dějí, nejčastěji proto, že na tutéž situaci platí dva různé zákony.
 
 ---
 
 ## K čemu to je dobré
 
-Armáda je přiznaně tím, kdo drží lovce v mezích. Kdyby neexistovala, byl by Ryōdan jedinou ozbrojenou silou s výsadami — a to stát nepřipustí.
+Armáda je přiznaně tím, kdo drží lovce v mezích. Bez ní by byl Ryōdan jedinou ozbrojenou silou s výsadami, což stát nepřipustí.
 
-Stát obě složky **záměrně drží v rovnováze**. Podporuje spolupráci a zároveň využívá jejich rivalitu jako kontrolní mechanismus.
+Stát obě složky záměrně drží v rovnováze: podporuje spolupráci a zároveň využívá jejich rivalitu jako kontrolní mechanismus.
 
 ---
 
 ## Co to drží pohromadě
 
-Lovci, kterým se rozpadla trojice, obvykle odcházejí do armády.
+Lovci, kterým se rozpadla trojice, zpravidla odcházejí do armády. V armádě proto slouží nezanedbatelný počet bývalých lovců, kteří mají mezi lovci dál kamarády.
 
-Znamená to, že v armádě slouží nezanedbatelný počet bývalých lovců, kteří mají mezi lovci pořád kamarády. Právě tihle lidé drží vztah obou složek v mezích, ve kterých se dá pracovat.
-
-> *Rivalita je povolená. Nenávist ne. Rozdíl hlídají ti, kdo byli na obou stranách.*`,
+Právě oni drží vztah obou složek v mezích, ve kterých se dá pracovat.`,
   },
 ]
 

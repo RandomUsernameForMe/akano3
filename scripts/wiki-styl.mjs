@@ -47,6 +47,9 @@ const PRAVIDLA = [
   // (`**F** — fyzický`) a v glosách japonských výrazů — tam to není pauza.
   { nazev: "em-dash jako pauza v próze", limit: 30,
     count: b => prosaicLines(b).reduce((s, l) => s + (l.match(/—/g)?.length ?? 0), 0) },
+  // Krátká věta vadí jen tehdy, když odstavec UKONČUJE — pak zpravidla jen
+  // shrnuje, co si čtenář právě přečetl. Krátká věta hned pod nadpisem nebo
+  // po prázdném řádku je definice nebo uvození tématu, což je hutné a v pořádku.
   { nazev: "krátká úderná věta na konci odstavce", limit: 5,
     count: b => {
       const lines = b.split("\n")
@@ -54,7 +57,10 @@ const PRAVIDLA = [
       lines.forEach((raw, i) => {
         const l = raw.trim()
         if (!l || STRUKTURNI.test(l)) return
-        if ((lines[i + 1] ?? "").trim() === "" && l.endsWith(".") && l.split(/\s+/).length <= 6) n++
+        const prev = (lines[i - 1] ?? "").trim()
+        const konciOdstavec = (lines[i + 1] ?? "").trim() === ""
+        const predchaziProza = prev && !STRUKTURNI.test(prev)
+        if (konciOdstavec && predchaziProza && l.endsWith(".") && l.split(/\s+/).length <= 6) n++
       })
       return n
     } },

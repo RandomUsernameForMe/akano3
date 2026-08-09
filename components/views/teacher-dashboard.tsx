@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import {
-  IconPlus, IconDashboard, IconList, IconChartLine, IconUsers, IconBell,
+  IconPlus, IconDashboard, IconList, IconChartLine, IconUsers, IconBell, IconBooks,
 } from "@tabler/icons-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -12,8 +12,12 @@ import { TransactionLog } from "@/components/panels/transaction-log"
 import { ChartsPanel } from "@/components/panels/charts"
 import { PeoplePanel } from "@/components/panels/people"
 import { AlarmPanel } from "@/components/panels/alarm"
+import { WikiPanel } from "@/components/panels/wiki"
+import { useGame } from "@/lib/game-context"
 
 export function TeacherDashboard() {
+  const { currentUser, characters } = useGame()
+  const teacher = characters.find(c => c.id === currentUser?.id)
   const [sheetOpen, setSheetOpen] = useState(false)
   const [sbMode,    setSbMode]    = useState<"students" | "teams" | "units" | "circles">("teams")
 
@@ -53,6 +57,7 @@ export function TeacherDashboard() {
             ["charts","Grafy",IconChartLine],
             ["people","Lidé",IconUsers],
             ["alarm","Alarm",IconBell],
+            ["wiki","Informace",IconBooks],
           ].map(([v,label,Icon]) => (
             <TabsTrigger key={v as string} value={v as string}
               style={{ color:"var(--c-text-muted)", fontSize:"0.8rem", display:"flex", alignItems:"center", gap:5 }}>
@@ -78,6 +83,11 @@ export function TeacherDashboard() {
         <TabsContent value="charts"><ChartsPanel /></TabsContent>
         <TabsContent value="people"><PeoplePanel /></TabsContent>
         <TabsContent value="alarm"><AlarmPanel /></TabsContent>
+        <TabsContent value="wiki">
+          {teacher
+            ? <WikiPanel characterId={teacher.id} kaichiLevel={teacher.kaichiLevel ?? 0} />
+            : <p style={{ color:"var(--c-text-muted)", textAlign:"center", padding:"40px 0" }}>Postava nenalezena.</p>}
+        </TabsContent>
       </Tabs>
     </div>
   )

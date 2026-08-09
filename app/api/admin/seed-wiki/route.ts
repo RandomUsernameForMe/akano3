@@ -597,13 +597,13 @@ Veřejně známé je o něm trojí:
 
 Ostatní údaje o junkinu podléhají stupňům poznání.
 
-:::k1
+:::k3
 Měsíc už není zdroj. Zdrojem jsou **monstra**.
 
 V těle každého zabitého monstra zůstane stopové množství junkinu. Je to jediný způsob, jak dnes lidstvo surovinu získává, a důvod, proč je lov organizovaný, financovaný a povinný.
 :::
 
-:::k2
+:::k4
 Junkin má dva stavy.
 
 **Surový** je hmota podobná hornině. Je nestabilní a bez zásahu člověka tvoří v okolí monstra. Neuhlídaný nález se hlásí jako mimořádná událost a řeší se stejným postupem jako výskyt monstra.

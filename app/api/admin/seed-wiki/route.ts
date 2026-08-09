@@ -202,8 +202,6 @@ Důvodem není milosrdenství. Rozložená osobnost, která přestala držet sv�
 
 Akano3 necvičí každý rok novou třídu, ale jednu generaci naráz, a poté skončí. Všichni studenti jsou proto v jednom ročníku a jsou různě staří, mezi nejmladším a nejstarším je až pět let rozdílu.
 
-Věk není v Akanu měřítkem ničeho.
-
 ---
 
 ## Rozsah
@@ -276,9 +274,7 @@ Třídy jsou dělené podle specializací, ne podle týmů. Tři členové jedno
 
 ## Odbory jako identita
 
-Odbory jsou silně kmenové. Mají vlastní znaky, pokřiky, části kostýmu a dlouhou historii vzájemné rivality. Soutěživost je tolerovaná a v rozumné míře podporovaná.
-
-Za lov se ale hodnotí tým, ne odbor.`,
+Odbory jsou silně kmenové. Mají vlastní znaky, pokřiky, části kostýmu a dlouhou historii vzájemné rivality. Soutěživost je tolerovaná a v rozumné míře podporovaná, za lov se však hodnotí tým, ne odbor.`,
   },
   {
     slug: "tymy-a-jednotky",
@@ -441,9 +437,7 @@ Studium končí pro celou generaci naráz. Nikdo neodchází dřív a nikdo nez�
 
 ## Poslední nástup
 
-Součástí posledního nástupu je právo vznést obvinění. Kdokoli může označit kohokoli.
-
-Obvinění se neprojednává řečmi, ale ověřuje.
+Součástí posledního nástupu je právo vznést obvinění a kdokoli může označit kohokoli. Obvinění se neprojednává řečmi ani svědectvím, ale ověřuje se přímo.
 
 :::k3
 Ověřuje se **Čichačem**, bytostí drženou ve sklepeních pod školou.
@@ -519,8 +513,6 @@ Junkin potřebuje význam, aby držel tvar. Člověk má dva zdroje významu.
 **Řád** je role přidělená společností. Drží slabším způsobem, zato ho lze zajistit každému bez ohledu na to, jestli si ho zaslouží.
 
 Shin Junkin proto vynucuje řád jako prevenci. Člověk bez místa v systému se může proměnit, a proměna neproběhne o samotě v poli, ale mezi ostatními.
-
-Tvrdost tohoto uspořádání je zvolená cena.
 :::`,
   },
   {
@@ -609,8 +601,6 @@ Ostatní údaje o junkinu podléhají stupňům poznání.
 Měsíc už není zdroj. Zdrojem jsou **monstra**.
 
 V těle každého zabitého monstra zůstane stopové množství junkinu. Je to jediný způsob, jak dnes lidstvo surovinu získává, a důvod, proč je lov organizovaný, financovaný a povinný.
-
-Bez lovu zhasne Shin Junkin do měsíce.
 :::
 
 :::k2
@@ -668,8 +658,6 @@ Kruh je nejdisciplinovanější ze všech. Nastupuje se, hlásí se reporty a Ib
 *Mentor: Nakamura, školní Pečující.*
 
 Čte a píše. Hodně se mluví, píší se haiku, probírají se stará vyprávění, zejména příběh princezny Kaguji o Měsíci, smutku, opuštění a oběti.
-
-Ze všech kruhů je nejtišší.
 
 ## Sportovní kruh
 
@@ -1084,11 +1072,9 @@ Nultá generace lovců, tedy ti, kdo pamatují svět před válkou, dnes buď ne
 
 ## Území
 
-Hlavní souostroví bývalého Japonska. Je místy zdevastované vlnami cunami a zemětřeseními, ale drží si části své historie a především památku Zlaté generace.
+Hlavní souostroví bývalého Japonska, obývané převážně **Místními**. Je místy zdevastované vlnami cunami a zemětřeseními, ale drží si části své historie a především památku Zlaté generace.
 
 Je to nejlepší místo k životu, jaké v Oceánii je. Kdokoli odjinud sem chce a většina se sem nedostane.
-
-V Shin Junkinu žijí převážně **Místní**.
 
 ---
 
@@ -1134,9 +1120,7 @@ Je to jediné místo, kde stát připouští, že něčemu nerozumí zcela.`,
 
 Bývalé Filipíny, Tchaj-wan, Indonésie a Guinea.
 
-Mikrostáty vojensky podrobené Shin Junkinu. Formálně mají vlastní správu, fakticky dodávají, co se po nich chce.
-
-Podmínky k životu jsou snesitelné, postavení není.
+Mikrostáty vojensky podrobené Shin Junkinu. Formálně mají vlastní správu, fakticky dodávají, co se po nich chce. Podmínky k životu jsou snesitelné, společenské postavení jejich obyvatel nikoli.
 
 ---
 
@@ -1194,9 +1178,7 @@ Stojí na individualismu, tedy na přesvědčení, že jednotlivec je víc než 
 
 *Velmoc. Izolacionisté.*
 
-Odstřihli se od světa a velmi přísně omezili užívání junkinu. Monstra u nich proto skoro nejsou.
-
-Zaplatili za to technologickým zaostáváním, které dohnat nedokážou.
+Odstřihli se od světa a velmi přísně omezili užívání junkinu. Monstra u nich proto skoro nejsou, zaplatili za to však technologickým zaostáváním, které dohnat nedokážou.
 
 ---
 
@@ -1342,8 +1324,6 @@ Zkoušku vede pověřená osoba, nikdy přímý nadřízený.
 ## Co detektor umí
 
 Zajišťuje, že subjekt nemůže lhát. Neumí číst myšlenky, zjistit nepoloženou otázku ani odhalit, že si dotyčný odpověď předem sám pro sebe přeformuloval.
-
-Je to nástroj proti zatajení, ne proti chytrosti.
 
 ---
 
@@ -1508,8 +1488,6 @@ Lovec, který ke Stínům odejde, přestává být uveden v běžných seznamech
 **Armáda** zajišťuje hranice, pořádek a válku. Je početná, hierarchická a řídí ji stát.
 
 **Lovci** čelí tomu, co armáda nezvládne: přímému střetu s monstry. Jsou vzácní, samostatní a řídí se sami.
-
-Rozdělení je jasné a v praxi funguje.
 
 ---
 

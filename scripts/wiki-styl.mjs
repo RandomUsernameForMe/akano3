@@ -47,9 +47,9 @@ const PRAVIDLA = [
   // (`**F** — fyzický`) a v glosách japonských výrazů — tam to není pauza.
   { nazev: "em-dash jako pauza v próze", limit: 30,
     count: b => prosaicLines(b).reduce((s, l) => s + (l.match(/—/g)?.length ?? 0), 0) },
-  // Krátká věta vadí jen tehdy, když odstavec UKONČUJE — pak zpravidla jen
-  // shrnuje, co si čtenář právě přečetl. Krátká věta hned pod nadpisem nebo
-  // po prázdném řádku je definice nebo uvození tématu, což je hutné a v pořádku.
+  // Krátká věta vadí, když odstavec UKONČUJE nebo stojí samostatně po próze —
+  // tam zpravidla jen shrnuje, co si čtenář právě přečetl, nebo dělá pointu.
+  // Nevadí hned pod nadpisem nebo na začátku bloku: tam uvozuje téma.
   { nazev: "krátká úderná věta na konci odstavce", limit: 5,
     count: b => {
       const lines = b.split("\n")
@@ -57,10 +57,14 @@ const PRAVIDLA = [
       lines.forEach((raw, i) => {
         const l = raw.trim()
         if (!l || STRUKTURNI.test(l)) return
-        const prev = (lines[i - 1] ?? "").trim()
-        const konciOdstavec = (lines[i + 1] ?? "").trim() === ""
-        const predchaziProza = prev && !STRUKTURNI.test(prev)
-        if (konciOdstavec && predchaziProza && l.endsWith(".") && l.split(/\s+/).length <= 6) n++
+        if (!/[.!?]$/.test(l) || l.split(/\s+/).length > 8) return
+        const dalsi = (lines[i + 1] ?? "").trim()
+        const konec = dalsi === "" || dalsi === ":::" || i === lines.length - 1
+        // Uvození: nejbližší předchozí neprázdný řádek je nadpis nebo fence.
+        let j = i - 1
+        while (j >= 0 && lines[j].trim() === "") j--
+        const uvozeni = j < 0 || STRUKTURNI.test(lines[j].trim())
+        if (konec && !uvozeni) n++
       })
       return n
     } },

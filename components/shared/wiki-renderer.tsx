@@ -2,45 +2,11 @@
 
 import React from "react"
 import { romanNumeral } from "@/lib/utils"
+import { parseBlocks } from "@/lib/wiki-blocks"
 
 interface Props {
   content: string
   kaichiLevel: number
-}
-
-type Block =
-  | { type: "md"; lines: string[] }
-  | { type: "redacted"; requiredLevel: number; lines: string[] }
-
-function parseBlocks(content: string): Block[] {
-  const rawLines = content.split("\n")
-  const blocks: Block[] = []
-  let currentMd: string[] = []
-  let i = 0
-
-  while (i < rawLines.length) {
-    const line = rawLines[i]
-    const fenceMatch = line.match(/^:::k(\d+)\s*$/)
-    if (fenceMatch) {
-      if (currentMd.length) {
-        blocks.push({ type: "md", lines: currentMd })
-        currentMd = []
-      }
-      const level = parseInt(fenceMatch[1])
-      const secretLines: string[] = []
-      i++
-      while (i < rawLines.length && rawLines[i].trim() !== ":::") {
-        secretLines.push(rawLines[i])
-        i++
-      }
-      blocks.push({ type: "redacted", requiredLevel: level, lines: secretLines })
-    } else {
-      currentMd.push(line)
-    }
-    i++
-  }
-  if (currentMd.length) blocks.push({ type: "md", lines: currentMd })
-  return blocks
 }
 
 function renderMdLine(line: string, idx: number): React.ReactNode {

@@ -1091,6 +1091,521 @@ Nultá generace lovců, ti, kdo pamatují svět před válkou, dnes buď nežije
 
 Zůstanou záznamy. A tahle databáze.`,
   },
+
+  // ─── SVĚT ──────────────────────────────────────────────────────────────────
+  {
+    slug: "shin-junkin",
+    title: "Shin Junkin",
+    category: "Svět",
+    kaichi_required: 0,
+    sort_order: 1,
+    content: `# Shin Junkin
+
+**新純金 — Nový Junkin.** Velkostát, ve kterém žiješ.
+
+---
+
+## Území
+
+Hlavní souostroví bývalého Japonska. Je místy zdevastované vlnami cunami a zemětřeseními, ale drží si části své historie — a především památku Zlaté generace, luxusu a blahobytu.
+
+Je to nejlepší místo k životu, jaké v Oceánii je. Kdokoli odjinud sem chce. Většina se sem nedostane.
+
+V Shin Junkinu žijí převážně **Místní**.
+
+---
+
+## Co Shin Junkin tvrdí
+
+Že junkin nebyl chyba.
+
+Katastrofu podle státní doktríny nezpůsobila látka ani její těžba, ale **přílišná individualizace a sobectví** lidstva. Lidé si brali, nedávali a nikdo je nedržel v řádu.
+
+Z toho plynou dvě věty, které uslyšíš při každé oficiální příležitosti:
+
+> *Nikdo nemá hladovět.*
+> *Každý musí pracovat a dar junkinu nezneužívat.*
+
+Cílem státu je obnovit přístup do vesmíru a k těžbě. Všechno ostatní je prostředek.
+
+---
+
+## Sebevědomí
+
+Shin Junkin je o své nadřazenosti a pravdě přesvědčen. Ne jako o názoru — jako o zjištěném faktu.
+
+Toto přesvědčení je oficiální, veřejné a nikdo se ho nesnaží zjemňovat. Kdo s ním nesouhlasí, obvykle žije někde jinde.
+
+---
+
+## Monstra
+
+Shin Junkin považuje monstra za šintoistické bytosti — 鬼 (*Oni*) a jim podobné. Neodpovídají přesně příběhům, které se o nich po staletí vyprávěly, ale nikdo tu nepochybuje, že jde o totéž.
+
+Je to jediné místo, kde stát připouští, že nerozumí něčemu zcela.`,
+  },
+  {
+    slug: "regiony",
+    title: "Jižní provincie, Nové pásmo, Okraj",
+    category: "Svět",
+    kaichi_required: 0,
+    sort_order: 2,
+    content: `# Regiony Oceánie
+
+Území pod vlivem Shin Junkinu, která nejsou Shin Junkin.
+
+---
+
+## Jižní provincie
+
+Bývalé Filipíny, Tchaj-wan, Indonésie a Guinea.
+
+Mikrostáty **vojensky podrobené** Shin Junkinu. Formálně mají vlastní správu. Fakticky dodávají, co se po nich chce.
+
+Podmínky k životu jsou snesitelné. Postavení není.
+
+---
+
+## Nové pásmo
+
+Pásy ostrovů na východě, které vytvořil pohyb desek.
+
+Ještě před třiceti lety ležely na dně oceánu. Není tam proto skoro žádná zeleň, život ani stabilní půda. Zato je pásmo poseté sopkami — část je stále činná — a s nimi vulkanickými elektrárnami a těžebními doly.
+
+Je to nehostinná průmyslová a silně militarizovaná oblast. Důvod pro to poslední je jednoduchý: Nové pásmo je jediné území obrácené k Pacifiku, za kterým leží **Konfederace**.
+
+---
+
+## Okraj
+
+Okraj bývalé Asie — Korea, Čína, Vietnam.
+
+Není to ucelené území. Je to série pevností a bašt na rozbitém kontinentu.
+
+Velké pevniny jsou poseté monstry a obyvatelné jen stěží. Na Čínu navíc ve válce dopadly nukleární zbraně a značná část Okraje je neobyvatelná dodnes.
+
+Sloužit na Okraji je trest i vyznamenání, podle toho, koho se zeptáš.
+
+---
+
+## Jak to spolu souvisí
+
+Všechna tři území dodávají Shin Junkinu suroviny, pracovní sílu a vojáky. Všechna tři z něj dostávají ochranu a příděly.
+
+Zda je ta výměna spravedlivá, není otázka, která by se veřejně kladla.`,
+  },
+  {
+    slug: "ostatni-mocnosti",
+    title: "Ostatní mocnosti",
+    category: "Svět",
+    kaichi_required: 0,
+    sort_order: 3,
+    content: `# Ostatní mocnosti
+
+Po válce zbyly **tři velmoci**. Vedle nich existují dvě menší mocnosti, které velmocenské postavení nemají, ale je nutné o nich vědět.
+
+---
+
+## Konfederace
+
+*Velmoc. Hlavní protivník Shin Junkinu.*
+
+Několik pobřežních států bývalé Ameriky, propojených obrněnými vlaky, které projíždějí vybombardovaným a monstry zaplněným vnitrozemím.
+
+Stojí na individualismu — na přesvědčení, že jednotlivec je víc než celek. Z pohledu Shin Junkinu je to přesně ta chyba, která svět zabila, zopakovaná znovu a vědomě.
+
+---
+
+## Pakt Europa
+
+*Velmoc. Izolacionisté.*
+
+Odstřihli se od světa a velmi přísně omezili užívání junkinu. Díky tomu u nich monstra skoro nejsou.
+
+Zaplatili za to technologickým zaostáváním. Nedokážou to, co Shin Junkin, a nikdy nedokážou.
+
+---
+
+## Meridián
+
+*Menší mocnost. Bez území.*
+
+Putovní národ. Plovoucí ostrovy a spojené lodě křižující Pacifik a Atlantik. Žijí z vytahování technologií a paliva ze strojů na dně oceánů.
+
+Pokusili se usadit v Austrálii. Shin Junkin je zničil, protože to bylo příliš blízko.
+
+Meridián přijímá uprchlíky a vyhnance odkudkoli. Žijí v něm proto i skupiny Oceánských a Místních.
+
+---
+
+## Země obrody
+
+*Menší mocnost. Mikrostáty.*
+
+Na jihu Afriky a Ameriky. Junkin odvrhli úplně a snaží se s monstry **žít v souladu**.
+
+Obyvatelé Shin Junkinu o nich buď nevědí, nebo se jejich naivitě smějí.
+
+---
+
+## Kde je kdo
+
+V Paktu Europa, Konfederaci a Zemích obrody žijí prakticky jen lidé **Cizího** původu. Meridián je jediné místo, kde se potkáš se všemi třemi.`,
+  },
+  {
+    slug: "puvod",
+    title: "Původ",
+    category: "Svět",
+    kaichi_required: 0,
+    sort_order: 4,
+    content: `# Původ
+
+Shin Junkin rozlišuje obyvatele podle **původu** — podle toho, odkud pochází jejich rodina a jaký mají vztah ke státu.
+
+Rozlišení je oficiální, zapsané a nosí se viditelně.
+
+---
+
+## Místní
+
+Pocházejí ze Shin Junkinu a žijí v něm.
+
+Cokoli dělají pro stát, dělají pro sebe. Jejich rodiny tu byly před válkou a budou tu po ní.
+
+Místní častěji používají japonské názvy pro věci — většina prvků světa má vedle běžného označení i vznešenější japonské. Kaichi. Shidōsei. Ryōdan. Není to předpis, je to zvyk, a je poznat.
+
+Místní se také častěji odkazují na dobu před válkou, na Zlatou generaci a na Japonsko.
+
+---
+
+## Vedlejší
+
+Pocházejí odjinud z Oceánie — z Jižních provincií, Nového pásma nebo Okraje.
+
+Co dělají pro stát, dělají spíš pro ty, kdo si žijí v bohatství a bezpečí v Shin Junkinu. Sami z toho blahobytu dostávají výrazně méně.
+
+Geneticky ani vzhledem je od Místních rozlišit nejde. Za Zlaté generace se lidstvo promíchalo natolik, že barva ani rysy dnes neříkají o původu nic.
+
+Rozdíl je čistě ve skutečném původu a ve vztahu ke kraji, ve kterém člověk je.
+
+---
+
+## Cizí
+
+Pocházejí z velkých pevnin — z Ameriky, z Evropy.
+
+Hlavní rozdíl oproti předchozím dvěma: **je to na nich vidět.**
+
+---
+
+## Co to není
+
+Toto rozdělení není rasové. Rasismus založený na barvě nebo tvaru ve světě zanikl s Zlatou generací, kdy se lidstvo promísilo tak, že přestal dávat smysl.
+
+Co vzniklo místo něj, je dělení podle toho, **kde ses narodil** — a to je stále v platnosti, stále je součástí evidence a stále rozhoduje o tom, kam až se člověk dostane.`,
+  },
+
+  // ─── ŘÁD A SPOLEČNOST ──────────────────────────────────────────────────────
+  {
+    slug: "rad-vyznam-role",
+    title: "Řád, význam a role",
+    category: "Řád a společnost",
+    kaichi_required: 0,
+    sort_order: 2,
+    content: `# Řád, význam a role
+
+Základní společenská doktrína Shin Junkinu. Vyučuje se od základní školy a nikdo ji nezpochybňuje nahlas.
+
+---
+
+## Věta, na které to stojí
+
+> *Každý má své místo. Místo je povinnost. Povinnost je ochrana.*
+
+Řád není v Shin Junkinu chápán jako omezení svobody, ale jako **věc, která drží člověka pohromadě**. Kdo ví, kam patří a co se od něj čeká, je v bezpečí. Kdo to neví, je ohrožený — a ohrožuje ostatní.
+
+---
+
+## Role
+
+Každý má přidělenou nebo zvolenou roli: v rodině, v týmu, v jednotce, v odboru, v zaměstnání. Role není nálepka. Je to soubor konkrétních povinností, které někdo jiný počítá, že splníš.
+
+Změna role je možná, ale je to formální úkon. Nikdo v Shin Junkinu není „mezi rolemi" dlouho. Stát to nedovolí, a nedovolí to z důvodů, které jsou vážnější, než se na první pohled zdá.
+
+---
+
+## Proč se tolik dbá na to, aby nikdo nezůstal bez místa
+
+Protože ztráta role není jen sociální problém.
+
+Člověk, který přijde o práci, o postavení, o důvod vstávat, není v Shin Junkinu ponechán osudu — ne z dobroty, ale proto, že prázdné místo v řádu je nebezpečné pro okolí.
+
+Systém podpory, přeřazení a nucené práce, který se cizincům jeví jako tvrdý, existuje právě proto. Není trestem za pád. Je opatřením proti tomu, co po pádu přichází.
+
+---
+
+## Ikigai
+
+Vedle vnějšího řádu uznává doktrína i **ikigai** (生き甲斐) — vlastní, vnitřní důvod k existenci. Věc, kvůli které člověk sám od sebe vstane.
+
+Ikigai je považováno za lepší a hodnotnější než přidělená role. Kdo ho má, nepotřebuje, aby ho držel někdo zvenčí.
+
+Zároveň se na něj nespoléhá. Najde si ho málokdo, drží nespolehlivě a ztrácí se snadno.
+
+> *Ikigai je lepší. Řád je jistější. Stát staví na tom druhém, protože si nemůže dovolit doufat.*`,
+  },
+  {
+    slug: "detektor-lzi",
+    title: "Detektor lži a zkoušky loajality",
+    category: "Řád a společnost",
+    kaichi_required: 0,
+    sort_order: 3,
+    content: `# Detektor lži a zkoušky loajality
+
+---
+
+## K čemu to je
+
+Systém Kaichi stojí na tom, že se poznání nešíří mimo svůj stupeň. To by bylo bezcenné, kdyby se dodržování nedalo ověřit.
+
+Ověřuje se. Pravidelně a všem, kdo drží Kaichi IV a výše.
+
+---
+
+## Jak zkouška probíhá
+
+Zkouška loajality je formální úkon s vlastním protokolem:
+
+1. Předvolání. Termín se neoznamuje dopředu.
+2. Podání látky.
+3. Otázky. Kladou se jednotlivě a odpovídá se okamžitě.
+4. Zápis. Zapisuje se odpověď, ne průběh.
+
+Zkoušku vede pověřená osoba, nikdy ne přímý nadřízený.
+
+---
+
+## Co detektor umí
+
+Zajišťuje, že subjekt **nemůže lhát**. Neumí číst myšlenky, neumí zjistit, na co ses neptal, a neumí odhalit, že si dotyčný svou odpověď předem sám pro sebe přeformuloval.
+
+Je to nástroj proti zatajení, ne proti chytrosti.
+
+---
+
+## Proč se nepoužívá častěji
+
+Protože je omezený zdrojem. **Jedna dávka odpovídá jedné otázce** a dávek je málo.
+
+Nelze se tedy denně ptát každého. Zkoušky se plánují, otázky se volí předem a promarněná otázka se nevrací.
+
+:::k3
+Látkou je **miasma**.
+
+Její neurotoxický účinek krátkodobě otupí mysl a subjekt se stane vnímavějším a méně schopným klamu. Právě proto je každá zkouška zároveň dávkou jedu — a proto se počítají.
+
+Kdo chodí na zkoušky často, nese to na sobě.
+:::
+
+---
+
+## Na Akanu
+
+Studenti Akademie zkouškám loajality běžně nepodléhají. Setkají se s nimi až jako lovci nebo při vstupu do struktur, kde se to vyžaduje.
+
+Existují ale výjimky a v odůvodněných případech lze zkoušku nařídit komukoli.`,
+  },
+
+  // ─── LOVCI ─────────────────────────────────────────────────────────────────
+  {
+    slug: "ryodan",
+    title: "Ústřední lovecký řád",
+    category: "Lovci",
+    kaichi_required: 0,
+    sort_order: 3,
+    content: `# Ústřední lovecký řád
+
+**中央猟士団 — *Chūō Ryōshi-dan*.** V běžné řeči **Ryōdan**.
+
+---
+
+## Co dělá
+
+- Uděluje a odebírá **lovecké licence**
+- Přiděluje **mise**
+- Vede **soud** nad lovci
+
+Poslední bod je nejdůležitější a plyne přímo z kovenantu: lovce soudí jenom jiní lovci. Zůstalo to v platnosti i poté, co kovenant nahradil Lovecký zákoník.
+
+---
+
+## Jak rozhoduje
+
+Ryōdan funguje demokraticky. **Každý lovec má jeden hlas.**
+
+Většinu rozhodnutí ale nedělá shromáždění, nýbrž volený **Nejvyšší koncil**. Ten zasedá stále a rozhoduje o všem, co nesnese odklad.
+
+Být lovcem je zároveň to nejvíc, jak blízko se člověk v Shin Junkinu dostane k občanským právům v jejich starém smyslu.
+
+---
+
+## Ryōdan a stát
+
+Ryōdan je **samostatná mocenská instituce s monopolem na lov monster**. To z něj dělá jedinou organizaci ve státě, bez které se stát neobejde a kterou zároveň neřídí.
+
+Stát si drží kontrolu třemi způsoby a nijak to nezakrývá:
+
+- **Rozpočet.** Lovci jsou závislí na státním financování rent i provozu.
+- **Politický dohled.** Velké operace musí formálně schválit státní rada — často až zpětně. Rada má navíc vyhrazená místa v koncilu.
+- **Armáda.** Existuje mimo jiné proto, aby Ryōdan nebyl jedinou ozbrojenou silou s privilegii.
+
+Napětí mezi řádem a státem je trvalé, oboustranně uznávané a záměrné. Nikdo se ho nesnaží odstranit.
+
+> *Stát potřebuje lovce. Lovci potřebují stát. Ani jedna strana z toho nemá radost.*`,
+  },
+  {
+    slug: "generace-lovcu",
+    title: "Generace lovců",
+    category: "Lovci",
+    kaichi_required: 0,
+    sort_order: 4,
+    content: `# Generace lovců
+
+Lovci se dělí podle toho, kdy se jimi stali. Není to hodnost ani zásluha — je to údaj o tom, jaký svět dotyčný zažil.
+
+---
+
+## Nultá generace
+
+Zabíječi monster **z doby před válkou**. Vojáci zvláštních armádních složek.
+
+Tehdy se jim neříkalo lovci; ten název dostali zpětně. Nedělili se na specializace a fungovali samostatně — v tomhle smyslu to byli lidé, jaké dnešní výcvik nedokáže vyrobit.
+
+Zažili Zlatou generaci a pamatují si ji. Dnes je jim pětašedesát a víc. Většina už nežije.
+
+---
+
+## První generace
+
+Ti, kdo po zkáze **chodili světem a chránili lidi**. Postavy v šedivých cestovních pláštích, které přicházely z tmy mezi populační centra.
+
+Vznikl s nimi lovecký kovenant. Válku si pamatují, dobu před ní ne — byli tehdy děti z rozbitých měst.
+
+Dnes je jim padesát až sedmdesát.
+
+---
+
+## Druhá generace
+
+Jejich **učedníci** přes Shidōsei, a poté všichni, kdo se stali lovci po ustavení Shin Junkinu v roce 2120.
+
+Je to první generace, která lovectví nevynalezla, ale zdědila. Vyrostla v hotové instituci s licencemi, zákoníkem a rozpočtem.
+
+Dnes je jim pětadvacet až padesát. Tvoří naprostou většinu činných lovců.
+
+---
+
+## Třetí generace
+
+**Studenti projektu Akano.** Ty.
+
+Je to první generace, která se lovcem nestává tím, že by ji někdo našel a vzal si ji k sobě. Stává se jí tím, že projde školou.
+
+Co to udělá s lovectvím, nikdo neví. Zjistí se to na vás.`,
+  },
+  {
+    slug: "divize-lovcu",
+    title: "Divize",
+    category: "Lovci",
+    kaichi_required: 0,
+    sort_order: 5,
+    content: `# Divize
+
+Ryōdan se dělí na divize podle toho, proti čemu jeho lovci stojí.
+
+---
+
+## Lovci
+
+Základní a zdaleka nejpočetnější divize. Ti, na které si člověk vzpomene, když se řekne lovec.
+
+Fyzická monstra, fyzický terén, fyzický střet. Pracují po trojicích.
+
+---
+
+## Virtuální divize
+
+Trojice specializované na **informační prostor**.
+
+Ne každé monstrum má tělo a ne každé se dá potkat na ulici. Virtuální lovci pracují stejně jako ostatní — po třech, se stejným rozdělením rolí — jen v prostředí, do kterého se nedá vejít.
+
+O jejich existenci se běžně ví. O jejich práci skoro nic.
+
+---
+
+## Stínová divize
+
+Existence této divize není tajemstvím. Její náplň se veřejně nerozebírá.
+
+:::k6
+Stínová divize slouží k **eliminaci vnitřních hrozeb**.
+
+Lidí. Neposlušných lovců. Obecně všeho, co je nutné vyřešit tiše a co nelze svěřit ani armádě, ani soudu.
+
+Přidělení ke Stínům je jednou z mála cest, které zůstávají lovci, jemuž se rozpadla trojice a který nechce do armády. Je to cesta vzácná a nenabízí se každému.
+
+Lovec, který ke Stínům odejde, přestává být uveden v běžných seznamech. Nemizí. Jen tam už není.
+:::`,
+  },
+  {
+    slug: "lovci-a-armada",
+    title: "Lovci a armáda",
+    category: "Lovci",
+    kaichi_required: 0,
+    sort_order: 6,
+    content: `# Lovci a armáda
+
+---
+
+## Kdo dělá co
+
+**Armáda** zajišťuje hranice, pořádek a válku. Je početná, hierarchická a řídí ji stát.
+
+**Lovci** čelí tomu, co armáda nezvládne — přímému střetu s monstry. Jsou vzácní, samostatní a řídí se sami.
+
+Rozdělení je jasné a v praxi funguje. Napětí nevzniká z něj.
+
+---
+
+## Odkud napětí je
+
+Z privilegií.
+
+Lovec stojí nad běžným zákonem, má doživotní rentu a soudí ho jen jeho vlastní lidé. Voják nemá nic z toho a dělá práci, ve které se také umírá.
+
+- Vojáci vidí v lovcích elitu a zároveň jim závidí postavení.
+- Lovci považují armádu za nutnou, ale méněcennou sílu.
+
+Střety mezi oběma složkami se dějí. Někdy kvůli konkrétní věci, častěji kvůli tomu, že na tutéž situaci platí dva různé zákony.
+
+---
+
+## K čemu to je dobré
+
+Armáda je přiznaně tím, kdo drží lovce v mezích. Kdyby neexistovala, byl by Ryōdan jedinou ozbrojenou silou s výsadami — a to stát nepřipustí.
+
+Stát obě složky **záměrně drží v rovnováze**. Podporuje spolupráci a zároveň využívá jejich rivalitu jako kontrolní mechanismus.
+
+---
+
+## Co to drží pohromadě
+
+Lovci, kterým se rozpadla trojice, obvykle odcházejí do armády.
+
+Znamená to, že v armádě slouží nezanedbatelný počet bývalých lovců, kteří mají mezi lovci pořád kamarády. Právě tihle lidé drží vztah obou složek v mezích, ve kterých se dá pracovat.
+
+> *Rivalita je povolená. Nenávist ne. Rozdíl hlídají ti, kdo byli na obou stranách.*`,
+  },
 ]
 
 export async function POST() {

@@ -774,6 +774,323 @@ Za Zlaté generace se junkin těžil na Měsíci v objemech, které dnes nejdou 
 
 Ta těžba je pryč a nevrátí se snadno. Kdo tvrdí opak, obvykle něco prodává.`,
   },
+
+  // ─── HISTORIE ──────────────────────────────────────────────────────────────
+  {
+    slug: "svet-pred-zlatou-generaci",
+    title: "Svět před Zlatou generací",
+    category: "Historie",
+    kaichi_required: 0,
+    sort_order: 1,
+    content: `# Svět před Zlatou generací
+
+Před rokem 2031 vypadal svět jinak, než si dnes kdokoli mladší padesáti let dokáže představit.
+
+---
+
+## Co tu bylo
+
+Osm miliard lidí. Stovky států. Zemědělská půda, na které rostlo jídlo ze země. Města bez hradeb, cesty bez doprovodu, moře, po kterých se dalo plout bez ozbrojené eskorty.
+
+Lidé se dožívali osmdesáti let a považovali to za málo.
+
+---
+
+## Monstra
+
+Byla i tehdy. Byla ale výrazně slabší a lidstvo mělo dost prostředků, aby si s nimi poradilo.
+
+Existovaly armádní jednotky určené k ochraně obyvatelstva, ale běžný člověk na monstrum za celý život nenarazil. Většina lidí je považovala za pověru, pohraniční problém nebo něco, co se stává jinde.
+
+Ke konci tohoto období se začaly objevovat obavy, že jich přibývá. Braly se jako přehnané.
+
+---
+
+## Co si z toho vzít
+
+Tohle je jediné období lidských dějin, kdy lidstvo nežilo v ohrožení a nevědělo o tom.
+
+Nedokázalo si toho vážit a nedokázalo to udržet. Ne proto, že by bylo hloupé — ale proto, že mu nikdo neřekl, jakou cenu má řád, dokud ho nemělo pozdě.
+
+> *Nejnebezpečnější doba je ta, ve které se člověku zdá, že nebezpečí neexistuje.*`,
+  },
+  {
+    slug: "zlata-generace",
+    title: "Zlatá generace (2031–2095)",
+    category: "Historie",
+    kaichi_required: 0,
+    sort_order: 2,
+    content: `# Zlatá generace
+
+**黄金世代 — *Kogane Sedai***
+
+---
+
+## 2031
+
+Japonská národní společnost **豪華世界 (Gōkasekai) — Luxusní svět** se dostává na odvrácenou stranu Měsíce a začíná tam těžit **純金 (Junkin) — čisté zlato**.
+
+Považuje to za znamení a sebe znovu za vyvolený národ. Zbytek světa to bere jako nesmysl, který je nutné tolerovat, protože junkin funguje.
+
+A funguje na všechno. Levná energie. Zvrácené ekologické škody. Zpracování jídla a vody v jakémkoli množství. Těžba a zpracování provázené masivními rituály.
+
+---
+
+## Co to udělalo
+
+Lidstvo odstranilo hlad. Odstranilo nemoci. Odstranilo chudobu.
+
+Jedenáct miliard lidí žilo krásný život. Vždycky se našel někdo, kdo si stěžoval, ale drtivá většina měla kde bydlet, co jíst, a neposlouchala varovné hlasy.
+
+---
+
+## 2095
+
+Na Zemi žije **dvacet pět miliard** lidí — nejen díky porodnosti, ale hlavně díky extrémnímu prodloužení života.
+
+- Zemědělská půda byla zrušena. Potraviny se vyrábějí laboratorně.
+- Většina mořských ploch je zastavěná.
+- Volná příroda existuje jen v rezervacích.
+- Koncept států byl opuštěn. Lidstvo funguje jako jediná civilizační entita.
+
+O rezervacích kolují historky o podivných tvorech a duších. Většina lidstva je považuje za moderní verzi pověsti o Bigfootovi. Přesto vzniká vládní program na odstraňování nelidských hrozeb.
+
+---
+
+## Varování
+
+Vědci upozorňují, že junkin není obnovitelný a vývoj je neudržitelný. Podrobnější výzkum navíc odhaluje jeho stinnou stránku: **manipulace s junkinem urychluje vznik monster.**
+
+Odpadní látky z jeho zpracování jsou těkavé a toxické. Světová vláda rozhodla ukládat je do extrémně hlubokých vrtů. Část vědecké obce protestovala kvůli neznámým dlouhodobým dopadům a byla umlčena masivně sponzorovanou studií.
+
+Spekulovalo se, že výsledky ovlivnil lobbying těžařské společnosti Gōkasekai. Prokázáno to nebylo.
+
+> *Šedesát čtyři let blahobytu. Za každý z nich se pak platilo zvlášť.*`,
+  },
+  {
+    slug: "rozpad-a-valka",
+    title: "Rozpad a Světová válka konce (2095–2101)",
+    category: "Historie",
+    kaichi_required: 0,
+    sort_order: 3,
+    content: `# Rozpad a Světová válka konce
+
+---
+
+## Rozpad (2095–2100)
+
+Těžba junkinu začíná váznout a je zřejmé, že ho ubývá. Na Měsíci propukají první boje mezi korporacemi o ložiska.
+
+Roztříštěnost zájmů oslabí systém ochrany před monstry. Objevují se první vážné útoky a masakry.
+
+Společenské rozdíly, které byly v blahobytu neviditelné, se vyostří. Vyšší vrstvy hromadí junkin, na nižší se nedostává. Všechny technologie jsou přitom stavěné na junkin, kterého není dost.
+
+Propuká hladomor a s ním nepokoje. Svět se během pěti let rozdělí na „my" a „oni". Frakce bojují proti sobě. Umírají miliony.
+
+---
+
+## Válka (2100–2101)
+
+**終焉世界大戦 — *Shūen Sekai Taisen*, Světová válka konce.**
+
+Trvala něco přes rok. Bojovalo se výhradně mezi lidmi — proti monstrům v té době nebojoval nikdo, protože nikdo neměl kapacitu.
+
+V roce 2101 sáhla jedna ze stran po konečném řešení a použila celý svůj atomový arzenál.
+
+---
+
+## Proč se tím rozbil svět
+
+Exploze zasáhly rozsáhlá úložiště junkinového odpadu uložená v hlubokých vrtech.
+
+To spustilo řetězovou reakci v zemské kůře. Tektonické desky se daly do pohybu.
+
+Válka tím fakticky skončila — ne proto, že by někdo zvítězil, ale proto, že přestalo být kde a s kým bojovat.
+
+:::k2
+Ta strana jsme byli my.
+
+Údery vypustili předchůdci Shin Junkinu. Pustina za mořem, kterou dnes nazýváme Okrajem a která je neobyvatelná dodnes, je neobyvatelná proto, že jsme ji takovou udělali.
+
+Odhady mrtvých se pohybují v miliardách a rozlišit oběti úderu od obětí toho, co následovalo, není možné.
+
+Nemluví se o tom nahlas a nemluví se o tom rádo. Nezakrývá se to ale a nebude se to zakrývat. Kdo dosáhl druhého stupně poznání, unese i tohle:
+
+**Udělali jsme to. Bylo to nutné. Kdybychom to neudělali, nebyl by tu dnes nikdo, kdo by se ptal.**
+:::`,
+  },
+  {
+    slug: "ozvena-zkazy",
+    title: "Ozvěna zkázy (2101–2111)",
+    category: "Historie",
+    kaichi_required: 0,
+    sort_order: 4,
+    content: `# Ozvěna zkázy
+
+**亡響 — *Bōkyō***
+
+Deset let, během kterých se planeta přestavěla.
+
+---
+
+## Co se dělo
+
+Tektonické desky se pohybovaly rychlostí, pro kterou geologie neměla slovo.
+
+- Pohoří mizela a nová vznikala během týdnů.
+- Pouště se měnily v moře a oceány vysychaly.
+- Extrémní výkyvy počasí, zemětřesení, záplavy a cunami bez pauzy.
+
+Umíraly miliardy. Ne ve válce — po ní.
+
+---
+
+## Jak se přežívalo
+
+Elektronická komunikace nefungovala. Lidstvo se scvrklo na mrchožrouty a sběrače ve zbytcích rozbité civilizace.
+
+Lidé žili v klanech a v **přesuvných populačních centrech** — sídlech, která se stěhovala, kdykoli se jim krajina pod nohama změnila natolik, že se v ní nedalo zůstat.
+
+---
+
+## 2111
+
+Pohyb desek se náhle zastavil. Výkyvy počasí skončily.
+
+Svět vypadal úplně jinak, ale zdál se stejně obyvatelný jako dřív.
+
+Odhaduje se, že přežila zhruba **jedna miliarda** lidí. Podobný počet jako v polovině devatenáctého století.
+
+---
+
+## Co přišlo s tím
+
+Svět se mohl začít stabilizovat. Místo toho se ukázalo, že všude, kde se lidé pokusili znovu něco postavit, se objevují **monstra**.
+
+Ne ojediněle. Všude.
+
+Tím okamžikem přestala být otázka, jestli lidstvo přežilo katastrofu, a začala otázka, jestli přežije to, co po ní zbylo.
+
+> *Zkáza měla ozvěnu. Ozvěna byla hlasitější.*`,
+  },
+  {
+    slug: "putujici-svetla",
+    title: "Putující světla (2111–2120)",
+    category: "Historie",
+    kaichi_required: 0,
+    sort_order: 5,
+    content: `# Putující světla
+
+**巡灯 — *Juntō***
+
+Devět let mezi zastavením desek a ustavením Shin Junkinu. Doba, ve které vzniklo lovectví.
+
+---
+
+## Nultá generace
+
+Ještě před válkou existovali lidé, kteří zabíjeli monstra profesionálně — vojáci zvláštních armádních složek. Tehdy se jim neříkalo lovci. Ten název dostali až zpětně.
+
+Po zkáze se stali klíčovými pro přežití populačních center. Bylo jich málo a nikdo je nedokázal nahradit.
+
+---
+
+## První generace a kovenant
+
+Ti, kdo po zkáze chodili světem a chránili lidi.
+
+Nezůstávali v jednom centru. Přesouvali se mezi nimi, prorážali dopravní stezky a čistili nová místa, když bylo potřeba centrum přestěhovat. V kolektivní paměti zůstali jako **postavy v šedivých cestovních pláštích, které přicházely ze tmy a zase do ní odcházely**.
+
+Odtud jméno té doby.
+
+Protože každé centrum mělo jiné zákony, vznikl **lovecký kovenant** — tři věty, na které město přistoupilo, když chtělo ochranu:
+
+1. Lovec má povinnost zabíjet monstra a chránit lidi.
+2. Lovec má dveře otevřené.
+3. Lovce soudí jenom jiní lovci.
+
+Kovenant formálně zanikl se vznikem státu. Lovci se na něj odkazují dodnes a berou ho vážněji než zákoník, který ho nahradil.
+
+---
+
+## Shidōsei a pravidlo trojic
+
+Mladí lidé v populačních centrech skládali **Shidōsei** — přísahy vedení, vždy jeden učedník jednomu mentorovi. Když mentor rozhodl, stal se učedník čekatelem. Tak vznikla **druhá generace**.
+
+Tehdy se také zavedlo **pravidlo trojic**. Vycvičit jednoho člověka k plné samostatnosti trvalo příliš dlouho a málokdo to unesl. Civilizace v troskách si nemohla dovolit čekat na nadlidi.
+
+Jakmile se sešli tři čekatelé, posoudila se jejich vzájemná snesitelnost a stal se z nich tým. Mentor s nimi ještě nějakou dobu putoval, než jim udělil akreditaci.
+
+---
+
+## Jestřáb
+
+**鷹 — *Taka*.** Lovec nulté generace.
+
+Ve vesnické dívce nenašel jen učednici, ale i lásku. Jeho milovanou postihl příšerný osud a proměnila se v monstrum.
+
+Taka odmítl naplnit kovenant a zabít ji. Když tu povinnost splnili jiní, postavil se svým bratrům — a ve vzdoru se proměnil v monstrum i on. Než ho porazili, zmasakroval několik lovců a desítky civilistů.
+
+Z toho dne pochází zákaz partnerského života a rodiny. A z počtu obětí pochází barva pláště: od té doby jsou **rudé**.
+
+> *Lidstvo otevírá dveře a vydává své bezpečí do rukou lovců. Musí mít jistotu, že nesejdou z cesty.*`,
+  },
+  {
+    slug: "ustaveni-shin-junkinu",
+    title: "Ustavení Shin Junkinu (2120–2143)",
+    category: "Historie",
+    kaichi_required: 0,
+    sort_order: 6,
+    content: `# Ustavení Shin Junkinu
+
+---
+
+## 2120
+
+**新純金 (Shin Junkin) — Nový Junkin** vzniká jako federace populačních center, která sdílejí filozofii Zlaté generace: pokrok lidstva hnaný junkinem. Později se prohlásí velkostátem.
+
+Shin Junkin odmítá tvrzení, že využívání junkinu byla chyba. Vinu klade na přílišnou individualizaci a sobectví — ne na látku samotnou. Cílem je obnovit přístup do vesmíru a k těžbě.
+
+Základní princip: **nikdo nemá hladovět, ale každý musí pracovat a dar junkinu nezneužívat.**
+
+---
+
+## Rozdělení světa
+
+Lidstvo se nedokázalo sjednotit. Zbyly tři velmoci:
+
+- **Shin Junkin** — bývalé Japonsko a okolní souostroví
+- **Konfederace** — pobřežní státy bývalé Ameriky, spojené obrněnými vlaky přes zamořený kontinent. Hlavní protivník.
+- **Pakt Europa** — izolacionisté, kteří tvrdě omezili užívání junkinu. Mají proto málo monster a zaostávají v technologii.
+
+Vedle nich dvě menší mocnosti bez velmocenského postavení: **Meridián**, putovní národ plovoucích ostrovů a spojených lodí, a **Země obrody**, mikrostáty na jihu Afriky a Ameriky, které junkin odvrhly a snaží se s monstry žít v souladu.
+
+---
+
+## Lovecký řád
+
+Se vznikem státu se lovectví institucionalizovalo. Vznikl **Ústřední lovecký řád** (中央猟士団 — *Chūō Ryōshi-dan*), zkráceně **Ryōdan**.
+
+Lovecký kovenant formálně zanikl a nahradil ho **Lovecký zákoník** — komplexní soubor pravidel existence lovců ve státě.
+
+Všichni, kdo se stali lovci po roce 2120, tvoří **druhou generaci**.
+
+---
+
+## Projekt Akano
+
+Školy projektu Akano cvičí **třetí generaci**. Jsi v ní.
+
+---
+
+## Nyní se píše rok 2143
+
+Od atomového úderu uplynulo dvaačtyřicet let. Od ustavení státu dvacet tři.
+
+Nultá generace lovců, ti, kdo pamatují svět před válkou, dnes buď nežije, nebo je jí přes pětašedesát. Za pár let nezůstane nikdo, kdo Zlatou generaci viděl na vlastní oči.
+
+Zůstanou záznamy. A tahle databáze.`,
+  },
 ]
 
 export async function POST() {

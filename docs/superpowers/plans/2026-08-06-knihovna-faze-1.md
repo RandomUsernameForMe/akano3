@@ -352,7 +352,53 @@ git commit -m "feat: blok :::reviseN v parseru knihovny"
 ## Task 3: Vykreslit revizi a přeškrtnutí
 
 **Files:**
+- Modify: `lib/wiki-blocks.ts`
+- Modify: `lib/wiki-blocks.test.mjs`
 - Modify: `components/shared/wiki-renderer.tsx`
+
+Nejdřív tři drobnosti z code review Tasku 2, protože renderer se o ně opře.
+
+- [ ] **Step 0a: Zaznamenat chování dvou revizí za sebou**
+
+Dvě `:::reviseN` po sobě: druhá nemá co označit (předchozí blok je `revision`), takže tiše nic neoznačí a zůstane viset. Je to přijatelný výsledek — chyba autora článku, ne pád — ale není nikde zachycený. Přidej na konec `lib/wiki-blocks.test.mjs`:
+
+```js
+// Dvě revize za sebou: druhá nemá co označit, protože předchozí blok je revision.
+// Tiše nic neoznačí. Je to chyba autora článku, ne parseru — test to drží na místě,
+// aby budoucí úprava nezačala omylem revidovat revizi nebo revidovat dvakrát totéž.
+test("druhá revize v řadě nic neoznačí", () => {
+  const blocks = parseBlocks("A\n:::revise3\nX\n:::\n:::revise4\nY\n:::")
+  assert.equal(blocks.length, 3)
+  assert.equal(blocks[0].type, "md")
+  assert.equal(blocks[0].revisedAtLevel, 3)
+  assert.equal(blocks[1].type, "revision")
+  assert.equal(blocks[1].requiredLevel, 3)
+  assert.equal(blocks[2].type, "revision")
+  assert.equal(blocks[2].requiredLevel, 4)
+})
+```
+
+- [ ] **Step 0b: Zdokumentovat sousednost a přejmenovat `markPrevious`**
+
+Revidovaný blok a jeho `revision` blok drží pohromadě **jen tím, že jsou v poli vedle sebe**. Nic to nevynucuje typem. Renderer na tom staví. Doplň nad `Block` v `lib/wiki-blocks.ts` komentář:
+
+```ts
+/**
+ * Bloky drží pořadí, ve kterém byly v textu. Revidovaný blok (ten s
+ * `revisedAtLevel`) a jeho `revision` blok spolu souvisí *výhradně* tím,
+ * že jsou v poli bezprostředně vedle sebe — typ to nevynucuje. Kdo pole
+ * filtruje, řadí nebo přeskupuje, tuhle vazbu rozbije a nic ho nevaruje.
+ */
+```
+
+Zároveň přejmenuj `markPrevious` na `attachRevision`. Funkce nejen označuje, ale i dělí blok a vkládá nový — původní název to zamlčuje.
+
+- [ ] **Step 0c: Spustit testy**
+
+Run: `node --test lib/*.test.mjs`
+Expected: PASS, `# pass 13`, `# fail 0`
+
+Pak pokračuj vykreslováním.
 
 Vzhled:
 - Pod úrovní `N` se revizní blok **nevykreslí vůbec** — ani jako černé pruhy. Revize nesmí prozradit, že revize existuje.

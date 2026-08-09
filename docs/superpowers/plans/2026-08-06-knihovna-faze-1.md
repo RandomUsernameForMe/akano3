@@ -8,6 +8,8 @@
 
 **Tech Stack:** Next.js 16, React 19, TypeScript 5, Node 24 (`node --test` + nativní stripování typů), Neon Postgres přes `@neondatabase/serverless`.
 
+**Spouštění testů:** `node --test lib/*.test.mjs`. Adresářová forma `node --test lib/` v tomhle prostředí selže — Node se pokusí `lib` načíst jako modul a skončí na `Cannot find module`. Glob funguje.
+
 **Spec:** `docs/superpowers/specs/2026-08-06-knihovna-obsah-design.md`
 
 ---
@@ -141,7 +143,7 @@ test("prázdný vstup vrátí jeden prázdný md blok", () => {
 
 - [ ] **Step 3: Spustit testy**
 
-Run: `node --test lib/`
+Run: `node --test lib/*.test.mjs`
 Expected: PASS, `# pass 6`, `# fail 0`
 
 - [ ] **Step 4: Přepojit renderer na nový modul**
@@ -240,7 +242,7 @@ test("md blok bez revize nemá revisedAtLevel", () => {
 
 - [ ] **Step 2: Spustit testy a ověřit, že selžou**
 
-Run: `node --test lib/`
+Run: `node --test lib/*.test.mjs`
 Expected: FAIL — `:::revise6` se zatím parsuje jako obyčejný text, takže `blocks.find(b => b.type === "revision")` vrátí `undefined`
 
 - [ ] **Step 3: Implementovat**
@@ -322,7 +324,7 @@ function markPrevious(blocks: Block[], level: number): void {
 
 - [ ] **Step 4: Spustit testy**
 
-Run: `node --test lib/`
+Run: `node --test lib/*.test.mjs`
 Expected: PASS, `# pass 11`, `# fail 0`
 
 - [ ] **Step 5: Commit**

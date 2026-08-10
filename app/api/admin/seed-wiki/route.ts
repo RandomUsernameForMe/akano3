@@ -1002,13 +1002,17 @@ Jakmile se sešli tři čekatelé, posoudila se jejich vzájemná snesitelnost a
 
 ## Jestřáb
 
+Případ z konce tohoto období, podle kterého se dodnes odvozuje zákaz partnerského života a rodiny u lovců. Podrobnosti podléhají pátému stupni poznání.
+
+:::k5
 **鷹**, *Taka*, lovec nulté generace.
 
 Ve vesnické dívce nenašel jen učednici, ale i lásku. Jeho milovanou postihl příšerný osud a proměnila se v monstrum.
 
 Taka odmítl naplnit kovenant a zabít ji. Když tu povinnost splnili jiní, postavil se svým bratrům a ve vzdoru se proměnil v monstrum i on. Než ho porazili, zmasakroval několik lovců a desítky civilistů.
 
-Z toho dne pochází zákaz partnerského života a rodiny. Z počtu obětí pochází barva pláště: od té doby jsou rudé.`,
+Z toho dne pochází zákaz partnerského života a rodiny. Z počtu obětí pochází barva pláště: od té doby jsou rudé.
+:::`,
   },
   {
     slug: "ustaveni-shin-junkinu",

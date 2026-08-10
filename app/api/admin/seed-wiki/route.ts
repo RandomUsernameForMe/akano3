@@ -94,7 +94,7 @@ Když se trojice rozpadne smrtí, zraněním nebo vyloučením, lovecká kariér
 
 ## Závazky
 
-Lovec nesmí mít trvalý partnerský vztah ani rodinu. Pravidlo vzniklo po případu Jestřába a od té doby se nezměnilo.
+Lovec nesmí mít trvalý partnerský vztah ani rodinu. Pravidlo pochází z doby Putujících světel a od té doby se nezměnilo.
 
 :::k5
 Toto pravidlo nelze porušit.
@@ -1000,9 +1000,9 @@ Jakmile se sešli tři čekatelé, posoudila se jejich vzájemná snesitelnost a
 
 ---
 
-## Jestřáb
+## Precedens
 
-Případ z konce tohoto období, podle kterého se dodnes odvozuje zákaz partnerského života a rodiny u lovců. Podrobnosti podléhají pátému stupni poznání.
+Na konci tohoto období došlo k události, ze které se dodnes odvozuje zákaz partnerského života a rodiny u lovců. Jméno ani průběh databáze neuvádí, podrobnosti podléhají pátému stupni poznání.
 
 :::k5
 **鷹**, *Taka*, lovec nulté generace.

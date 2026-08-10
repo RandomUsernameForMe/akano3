@@ -42,6 +42,9 @@ Limity na **celou knihovnu**, ne na článek. Kontroluje test.
 | Vzorec | Limit | Poznámka |
 |---|---|---|
 | Antiteze „Není to X, je to Y" / „Nejde o X, jde o Y" | **5** | Nikdy dvě v jednom článku |
+| Antiteze bez „to" — „X není Y. Je Z." | **2** | Tatáž figura, jen skrytější |
+| Antiteze „ne X, ale Y" | **3** | Povolená u definic, ne jako ozdoba |
+| Anafora — tři věty za sebou se stejným začátkem | **0** | Rytmická figura, ne informace |
 | Em-dash `—` jako dramatická pauza | **40** | Většinu nahradí čárka, tečka nebo dvojtečka |
 | Kurzívní aforismus v `>` bloku | **8** | Jen doložený citát: doktrína, průpovídka. Ne moudro vypravěče |
 | Krátká úderná věta (≤6 slov) na konci odstavce | **5** | Musí nést nový fakt, ne shrnovat odstavec |

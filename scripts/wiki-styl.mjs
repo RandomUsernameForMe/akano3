@@ -41,6 +41,12 @@ const PRAVIDLA = [
     re: /\b(zoufale|krajně|nesmírně|naprost\w+ většin\w+)\b/gi },
   { nazev: "antiteze „Není to X, je to Y\"", limit: 5,
     re: /\b(Není to|není to|Nejde o|nejde o|Ne proto)\b/g },
+  // Táž figura bez „to“: „Zlatá generace není vzpomínka. Je to cíl.“
+  { nazev: "antiteze bez „to\" — X není Y, je Z", limit: 2,
+    re: /\b(není|nejsou|nebyl[ao]?)\b[^.!?\n]{0,60}[.!?]\s+(Je|Jsou)\b/g },
+  // „není X, ale Y“ / „ne X, nýbrž Y“
+  { nazev: "antiteze „ne X, ale Y\"", limit: 3,
+    re: /\b(není|nejsou|ne)\b[^.!?\n]{0,50},\s*(ale|nýbrž)\s/g },
   { nazev: "kurzívní aforismus v blockquote", limit: 8, re: /^> \*/gm },
   { nazev: "oslovení čtenáře", limit: 3,
     re: /\b(Jsi|jsi|tvoj\w+|Tvoj\w+|tvůj|Tvůj)\b/g },
@@ -68,6 +74,20 @@ const PRAVIDLA = [
         const uvozeni = j < 0 || STRUKTURNI.test(lines[j].trim())
         if (konec && !uvozeni) n++
       })
+      return n
+    } },
+  // Tři věty za sebou začínající stejným slovem. Rytmická figura, ne informace.
+  { nazev: "anafora — tři věty se stejným začátkem", limit: 0,
+    count: b => {
+      let n = 0
+      for (const l of prosaicLines(b)) {
+        const zacatky = l.split(/(?<=[.!?])\s+/)
+          .map(v => (v.trim().match(/^[\p{L}]+/u) ?? [""])[0].toLowerCase())
+          .filter(Boolean)
+        for (let i = 0; i + 2 < zacatky.length; i++) {
+          if (zacatky[i] && zacatky[i] === zacatky[i + 1] && zacatky[i] === zacatky[i + 2]) n++
+        }
+      }
       return n
     } },
   { nazev: "článek delší než 2600 znaků", limit: 0,

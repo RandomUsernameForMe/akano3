@@ -315,7 +315,7 @@ Tři lidé, z nichž každý umí něco jiného, zvládnou dohromady to, co jede
 :::k5
 Pravidlo trojic není organizační doporučení. Bez kompletní trojice se akreditace neuděluje.
 
-Skládání týmů na Akademii proto není cvičení. Je to výběr lidí, se kterými student stráví celou kariéru a bez kterých žádnou mít nebude.
+Skládáním týmů na Akademii si student vybírá lidi, se kterými stráví celou kariéru a bez kterých žádnou mít nebude.
 :::`,
   },
   {
@@ -708,7 +708,7 @@ Zájem o postup se eviduje.
 :::k6
 Transmutace není technický úkon, ale **rituál**: přesné pohyby, přesné pořadí, přesné odříkání. Provedený zpola není proveden.
 
-Proto ji nelze zautomatizovat a proto je transmutérů málo. Vzácní nejsou kvůli surovině, ale proto, že se to musí umět.
+Proto ji nelze zautomatizovat a proto je transmutérů málo. Omezuje je výcvik, ne dostupnost suroviny.
 
 Na Akademii tu dovednost předává **Rituální kruh**. Navenek provádí obřady pro společnost. To platí a je to jen část pravdy.
 
@@ -835,9 +835,7 @@ Funguje na všechno: levná energie, zvrácené ekologické škody, zpracování
 
 ## Co to udělalo
 
-Lidstvo odstranilo hlad. Odstranilo nemoci. Odstranilo chudobu.
-
-Jedenáct miliard lidí mělo kde bydlet, co jíst a co dělat. Nemocný člověk se uzdravil, starý člověk žil dál. Děti se rodily do světa, kde se nikdo nebál zítřka.
+Lidstvo odstranilo hlad, nemoci i chudobu. Jedenáct miliard lidí mělo kde bydlet, co jíst a co dělat. Nemocný člověk se uzdravil, starý člověk žil dál. Děti se rodily do světa, kde se nikdo nebál zítřka.
 
 Do roku 2095 žije na Zemi **dvacet pět miliard** lidí, nejen díky porodnosti, ale hlavně díky extrémnímu prodloužení života.
 
@@ -850,20 +848,16 @@ Do roku 2095 žije na Zemi **dvacet pět miliard** lidí, nejen díky porodnosti
 
 ## Proč na ní záleží dnes
 
-Zlatá generace není vzpomínka. Je to **cíl**.
+Obnovení Zlaté generace je deklarovaný cíl Shin Junkinu. Všechno ostatní se od něj odvozuje: lidstvo se na Měsíc vrátí, těžba začne znovu a to, co jsme měli, budeme mít zase. Tomuhle slouží každý příděl, každý program a každá mise.
 
-Všechno, co Shin Junkin dělá, se odvozuje od jediného předpokladu: lidstvo se na Měsíc vrátí, těžba začne znovu a to, co jsme měli, budeme mít zase. Každý příděl, každý program a každá mise slouží tomuhle.
-
-Kdo tvrdí, že to nejde, popírá důvod, proč stát existuje.
+Zpochybňování tohoto cíle se posuzuje jako podrývání státní politiky.
 
 :::k4
 Ne všichni tehdy věřili, že to vydrží.
 
 Existovaly skupiny, které kolaps očekávaly a připravovaly se na něj. Stavěly plavidla schopná dlouhodobé soběstačnosti **bez junkinu**: vlastní energie, vlastní voda, vlastní jídlo, žádná závislost na dodávkách odnikud.
 
-Za Zlaté generace se jim smáli. Když přišla válka a po ní Ozvěna zkázy, byli to oni, kdo měl kam jít.
-
-Z těch plavidel vznikl dnešní **Meridián**.
+Za Zlaté generace se na ně hledělo jako na výstřelek. Po válce a Ozvěně zkázy zůstala jejich plavidla funkční a vznikl z nich dnešní **Meridián**.
 :::`,
   },
   {
@@ -934,7 +928,7 @@ Tektonické desky se pohybovaly rychlostí, pro kterou geologie neměla slovo.
 - Pouště se měnily v moře a oceány vysychaly.
 - Extrémní výkyvy počasí, zemětřesení, záplavy a cunami bez pauzy.
 
-Umíraly miliardy, tentokrát ne ve válce, ale po ní.
+Umíraly miliardy, tentokrát až po skončení bojů.
 
 ---
 

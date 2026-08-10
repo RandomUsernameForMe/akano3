@@ -819,7 +819,7 @@ Je to jediné období lidských dějin, kdy lidstvo nežilo v ohrožení a nevě
     sort_order: 2,
     content: `# Zlatá generace
 
-**黄金世代**, *Kogane Sedai*. Roky 2031 až 2095.
+**黄金世代**, *Kogane Sedai*. Roky 2031 až 2095. Nejlepší doba, jakou lidstvo zažilo.
 
 ---
 
@@ -835,30 +835,36 @@ Funguje na všechno: levná energie, zvrácené ekologické škody, zpracování
 
 ## Co to udělalo
 
-Lidstvo odstranilo hlad, nemoci i chudobu. Jedenáct miliard lidí žilo krásný život. Většina měla kde bydlet, co jíst, a neposlouchala varovné hlasy.
+Lidstvo odstranilo hlad. Odstranilo nemoci. Odstranilo chudobu.
 
----
+Jedenáct miliard lidí mělo kde bydlet, co jíst a co dělat. Nemocný člověk se uzdravil, starý člověk žil dál. Děti se rodily do světa, kde se nikdo nebál zítřka.
 
-## 2095
-
-Na Zemi žije dvacet pět miliard lidí, nejen díky porodnosti, ale hlavně díky extrémnímu prodloužení života.
+Do roku 2095 žije na Zemi **dvacet pět miliard** lidí, nejen díky porodnosti, ale hlavně díky extrémnímu prodloužení života.
 
 - Zemědělská půda byla zrušena, potraviny se vyrábějí laboratorně.
 - Většina mořských ploch je zastavěná.
-- Volná příroda existuje jen v rezervacích.
+- Volná příroda existuje jen v rozsáhlých rezervacích.
 - Koncept států byl opuštěn, lidstvo funguje jako jediná civilizační entita.
-
-O rezervacích kolují historky o podivných tvorech a duších. Většina lidstva je považuje za moderní verzi pověsti o Bigfootovi. Přesto vzniká vládní program na odstraňování nelidských hrozeb.
 
 ---
 
-## Varování
+## Proč na ní záleží dnes
 
-Vědci upozorňují, že junkin není obnovitelný a vývoj je neudržitelný. Podrobnější výzkum odhaluje jeho stinnou stránku: manipulace s junkinem urychluje vznik monster.
+Zlatá generace není vzpomínka. Je to **cíl**.
 
-Odpadní látky ze zpracování jsou těkavé a toxické. Světová vláda rozhodla ukládat je do extrémně hlubokých vrtů. Část vědecké obce protestovala kvůli neznámým dlouhodobým dopadům a byla umlčena masivně sponzorovanou studií.
+Všechno, co Shin Junkin dělá, se odvozuje od jediného předpokladu: lidstvo se na Měsíc vrátí, těžba začne znovu a to, co jsme měli, budeme mít zase. Každý příděl, každý program a každá mise slouží tomuhle.
 
-Spekulovalo se, že výsledky ovlivnil lobbying těžařské společnosti Gōkasekai. Prokázáno to nebylo.`,
+Kdo tvrdí, že to nejde, popírá důvod, proč stát existuje.
+
+:::k4
+Ne všichni tehdy věřili, že to vydrží.
+
+Existovaly skupiny, které kolaps očekávaly a připravovaly se na něj. Stavěly plavidla schopná dlouhodobé soběstačnosti **bez junkinu**: vlastní energie, vlastní voda, vlastní jídlo, žádná závislost na dodávkách odnikud.
+
+Za Zlaté generace se jim smáli. Když přišla válka a po ní Ozvěna zkázy, byli to oni, kdo měl kam jít.
+
+Z těch plavidel vznikl dnešní **Meridián**.
+:::`,
   },
   {
     slug: "rozpad-a-valka",

@@ -846,12 +846,6 @@ Do roku 2095 žije na Zemi **dvacet pět miliard** lidí, nejen díky porodnosti
 
 ---
 
-## Monstra
-
-Byla i tehdy. Veřejně se o nich skoro nemluvilo a řešily se stranou, mimo pozornost běžného života. Většina lidí za celou Zlatou generaci žádné nepotkala.
-
----
-
 ## Proč na ní záleží dnes
 
 Obnovení Zlaté generace je deklarovaný cíl Shin Junkinu. Všechno ostatní se od něj odvozuje: lidstvo se na Měsíc vrátí, těžba začne znovu a to, co jsme měli, budeme mít zase. Tomuhle slouží každý příděl, každý program a každá mise.
@@ -878,11 +872,13 @@ Za Zlaté generace se na ně hledělo jako na výstřelek. Po válce a Ozvěně 
 
 Těžba junkinu začíná váznout a je zřejmé, že ho ubývá.
 
-Ostatní mocnosti a korporace začínají bojovat o přístup ke zbývajícím měsíčním zásobám. První střety probíhají přímo na Měsíci a připraví lidstvo o většinu tamní infrastruktury. Odtud se boje přesouvají na Zem.
+Ostatní mocnosti a korporace začínají bojovat o přístup ke zbývajícím měsíčním zásobám. První střety probíhají přímo na Měsíci a odtud se přesouvají na Zem.
 
-**Tím skončila měsíční těžba** a dodnes se ji nepodařilo obnovit.
+Bojů využila **monstra**. Na Měsíci vybila lidskou posádku a těžba tím skončila.
 
-Roztříštěnost zájmů oslabí systém ochrany před monstry a objevují se první vážné útoky a masakry.
+Těžební zařízení tam podle dostupných záznamů stojí dál. Návrat na Měsíc je proto především otázkou vyčištění, ne stavby.
+
+Roztříštěnost zájmů oslabí systém ochrany před monstry i na Zemi a objevují se první vážné útoky a masakry.
 
 Společenské rozdíly, které byly v blahobytu neviditelné, se vyostří. Vyšší vrstvy hromadí junkin, na nižší se nedostává, přitom všechny technologie jsou na junkin stavěné.
 

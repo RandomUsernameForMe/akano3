@@ -846,6 +846,12 @@ Do roku 2095 žije na Zemi **dvacet pět miliard** lidí, nejen díky porodnosti
 
 ---
 
+## Monstra
+
+Byla i tehdy. Veřejně se o nich skoro nemluvilo a řešily se stranou, mimo pozornost běžného života. Většina lidí za celou Zlatou generaci žádné nepotkala.
+
+---
+
 ## Proč na ní záleží dnes
 
 Obnovení Zlaté generace je deklarovaný cíl Shin Junkinu. Všechno ostatní se od něj odvozuje: lidstvo se na Měsíc vrátí, těžba začne znovu a to, co jsme měli, budeme mít zase. Tomuhle slouží každý příděl, každý program a každá mise.
@@ -870,7 +876,11 @@ Za Zlaté generace se na ně hledělo jako na výstřelek. Po válce a Ozvěně 
 
 ## Rozpad (2095–2100)
 
-Těžba junkinu začíná váznout a je zřejmé, že ho ubývá. Na Měsíci propukají první boje mezi korporacemi o ložiska.
+Těžba junkinu začíná váznout a je zřejmé, že ho ubývá.
+
+Ostatní mocnosti a korporace začínají bojovat o přístup ke zbývajícím měsíčním zásobám. První střety probíhají přímo na Měsíci a připraví lidstvo o většinu tamní infrastruktury. Odtud se boje přesouvají na Zem.
+
+**Tím skončila měsíční těžba** a dodnes se ji nepodařilo obnovit.
 
 Roztříštěnost zájmů oslabí systém ochrany před monstry a objevují se první vážné útoky a masakry.
 
@@ -1050,7 +1060,7 @@ Se vznikem státu se lovectví institucionalizovalo a vznikl **Ústřední lovec
 
 Lovecký kovenant formálně zanikl a nahradil ho **Lovecký zákoník**, komplexní soubor pravidel existence lovců ve státě.
 
-Všichni, kdo se stali lovci po roce 2120, tvoří **druhou generaci**. Školy projektu Akano cvičí **třetí**.
+Všichni, kdo se stali lovci po roce 2120, doplnili **druhou generaci** po bok učedníků z doby Putujících světel. Školy projektu Akano cvičí **třetí**.
 
 ---
 
@@ -1058,7 +1068,7 @@ Všichni, kdo se stali lovci po roce 2120, tvoří **druhou generaci**. Školy p
 
 Od atomového úderu uplynulo dvaačtyřicet let, od ustavení státu dvacet tři.
 
-Nultá generace lovců, tedy ti, kdo pamatují svět před válkou, dnes buď nežije, nebo je jí přes pětašedesát. Za pár let nezůstane nikdo, kdo Zlatou generaci viděl na vlastní oči.`,
+Nultá generace lovců, tedy ti, kdo pamatují svět před válkou, dnes buď nežije, nebo je jí přes pětašedesát. Za pár desítek let nezůstane nikdo, kdo Zlatou generaci viděl na vlastní oči.`,
   },
 
   // ─── SVĚT ──────────────────────────────────────────────────────────────────

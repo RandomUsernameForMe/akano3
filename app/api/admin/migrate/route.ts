@@ -75,6 +75,16 @@ export async function POST() {
       )
     `
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS wiki_links (
+        id SERIAL PRIMARY KEY,
+        from_slug TEXT NOT NULL,
+        to_slug TEXT NOT NULL,
+        label TEXT NOT NULL,
+        kaichi_required INTEGER NOT NULL DEFAULT 0
+      )
+    `
+
     return Response.json({ ok: true, message: "Migrace dokončena" })
   } catch (err) {
     console.error("[migrate]", err)

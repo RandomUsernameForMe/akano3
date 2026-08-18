@@ -59,3 +59,10 @@ export interface WikiArticle {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface WikiLink {
+  fromSlug: string
+  toSlug: string
+  label: string | null // null = zamčeno
+  locked: boolean
+}

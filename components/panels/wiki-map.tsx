@@ -91,8 +91,8 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
                 strokeWidth={1.5}
               />
               <text
-                x={h.x + 14} y={h.y + 20}
-                style={{ fontSize:11, fontWeight:700, letterSpacing:1.5, textTransform:"uppercase" }}
+                x={h.x + 16} y={h.y + 26}
+                style={{ fontSize:15, fontWeight:700, letterSpacing:2, textTransform:"uppercase" }}
                 fill="var(--c-text-muted)"
               >
                 {h.category}
@@ -117,10 +117,10 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
                 />
                 {showLabel && (
                   <text
-                    x={mx} y={my - 4} textAnchor="middle"
-                    style={{ fontSize:9, fontFamily: l.locked ? "monospace" : undefined, paintOrder:"stroke" }}
+                    x={mx} y={my - 5} textAnchor="middle"
+                    style={{ fontSize:13, fontFamily: l.locked ? "monospace" : undefined, paintOrder:"stroke" }}
                     fill={l.locked ? "#d4a017" : "var(--c-text-muted)"}
-                    stroke="var(--c-bg-card)" strokeWidth={3}
+                    stroke="var(--c-bg-card)" strokeWidth={4}
                   >
                     {l.locked ? "███" : l.label}
                   </text>
@@ -147,11 +147,11 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
                   strokeWidth={selected ? 3 : 2}
                 />
                 <text
-                  x={n.x} y={n.y + n.r + 13} textAnchor="middle"
-                  style={{ fontSize:11, fontWeight:600, paintOrder:"stroke" }}
-                  fill="var(--c-text)" stroke="var(--c-bg-card)" strokeWidth={3}
+                  x={n.x} y={n.y + n.r + 17} textAnchor="middle"
+                  style={{ fontSize:15, fontWeight:600, paintOrder:"stroke" }}
+                  fill="var(--c-text)" stroke="var(--c-bg-card)" strokeWidth={4}
                 >
-                  {n.title}
+                  {n.title.replace(/\s*\(.*\)\s*$/, "")}
                 </text>
               </g>
             )

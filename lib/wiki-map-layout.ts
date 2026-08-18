@@ -5,17 +5,18 @@ export interface MapNode { slug: string; title: string; category: string; x: num
 export interface MapHull { category: string; x: number; y: number; width: number; height: number }
 export interface MapLayout { nodes: MapNode[]; hulls: MapHull[]; width: number; height: number }
 
-// Jediný ručně laděný vstup mapy: středy shluků kategorií (souřadnice ~1000×840 plátna).
+// Jediný ručně laděný vstup mapy: středy shluků kategorií (souřadnice ~900×1200 plátna,
+// na výšku — čtecí panel vpravo dává mapě portrétní poměr stran).
 export const CLUSTER_CENTERS: Record<string, { x: number; y: number }> = {
-  "Akano3":           { x: 500, y: 330 },
-  "Lovci":            { x: 810, y: 200 },
-  "Historie":         { x: 190, y: 190 },
-  "Svět":             { x: 170, y: 520 },
-  "Řád a společnost": { x: 470, y: 650 },
-  "Monstra":          { x: 830, y: 620 },
-  "Junkin":           { x: 860, y: 410 },
+  "Akano3":           { x: 450, y: 520 },
+  "Lovci":            { x: 690, y: 190 },
+  "Historie":         { x: 200, y: 210 },
+  "Svět":             { x: 170, y: 620 },
+  "Řád a společnost": { x: 270, y: 960 },
+  "Monstra":          { x: 650, y: 990 },
+  "Junkin":           { x: 710, y: 640 },
 }
-const FALLBACK_CENTER = { x: 500, y: 420 }
+const FALLBACK_CENTER = { x: 450, y: 600 }
 const HULL_PADDING = 34
 
 type SimNode = MapNode & { index?: number; vx?: number; vy?: number }
@@ -24,7 +25,7 @@ export function computeLayout(
   articles: Pick<WikiArticle, "slug" | "title" | "category">[],
   links: WikiLink[],
 ): MapLayout {
-  if (articles.length === 0) return { nodes: [], hulls: [], width: 1000, height: 840 }
+  if (articles.length === 0) return { nodes: [], hulls: [], width: 900, height: 1200 }
 
   const degree = new Map<string, number>()
   for (const l of links) {
@@ -38,7 +39,7 @@ export function computeLayout(
       slug: a.slug, title: a.title, category: a.category,
       // deterministický rozptyl výchozích pozic — simulace pak nesahá po náhodě
       x: c.x + 60 * Math.cos(i * 2.4), y: c.y + 60 * Math.sin(i * 2.4),
-      r: Math.min(20, 9 + 2 * (degree.get(a.slug) ?? 0)),
+      r: Math.min(26, 11 + 2 * (degree.get(a.slug) ?? 0)),
     }
   })
   const bySlug = new Set(nodes.map(n => n.slug))
@@ -48,11 +49,11 @@ export function computeLayout(
 
   forceSimulation(nodes)
     .force("link", forceLink<SimNode, { source: string; target: string }>(simLinks)
-      .id(n => n.slug).distance(80).strength(0.25))
-    .force("charge", forceManyBody().strength(-160))
-    .force("x", forceX<SimNode>(n => (CLUSTER_CENTERS[n.category] ?? FALLBACK_CENTER).x).strength(0.22))
-    .force("y", forceY<SimNode>(n => (CLUSTER_CENTERS[n.category] ?? FALLBACK_CENTER).y).strength(0.22))
-    .force("collide", forceCollide<SimNode>(n => n.r + 16))
+      .id(n => n.slug).distance(95).strength(0.2))
+    .force("charge", forceManyBody().strength(-220))
+    .force("x", forceX<SimNode>(n => (CLUSTER_CENTERS[n.category] ?? FALLBACK_CENTER).x).strength(0.3))
+    .force("y", forceY<SimNode>(n => (CLUSTER_CENTERS[n.category] ?? FALLBACK_CENTER).y).strength(0.3))
+    .force("collide", forceCollide<SimNode>(n => n.r + 26))
     .stop()
     .tick(300)
 

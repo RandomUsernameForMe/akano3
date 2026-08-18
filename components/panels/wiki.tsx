@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { IconBooks, IconListDetails, IconMap2, IconSearch } from "@tabler/icons-react"
 import { WikiIndex } from "@/components/panels/wiki-index"
 import { WikiMap } from "@/components/panels/wiki-map"
+import { WikiReader } from "@/components/panels/wiki-reader"
 import { computeLayout } from "@/lib/wiki-map-layout"
 import { matchesQuery } from "@/lib/wiki-search"
 import type { WikiArticle, WikiLink } from "@/lib/types"
@@ -103,16 +104,13 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
             />
           </div>
           <div style={{ flex:"2 1 300px", minWidth:280 }}>
-            {/* WikiReader přijde v Tasku 7 */}
-            <div style={{
-              minHeight:620, display:"flex", alignItems:"center", justifyContent:"center",
-              backgroundColor:"var(--c-bg-card)", border:"2px solid var(--c-border-mid)",
-              borderRadius:6, boxShadow:"var(--shadow-print-sm)",
-            }}>
-              <p style={{ color:"var(--c-text-muted)", fontSize:"0.85rem" }}>
-                {selectedSlug ?? "Vyber uzel na mapě."}
-              </p>
-            </div>
+            <WikiReader
+              articles={articles}
+              links={links}
+              selectedSlug={selectedSlug}
+              onNavigate={setSelectedSlug}
+              kaichiLevel={kaichiLevel}
+            />
           </div>
         </div>
       )}

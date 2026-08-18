@@ -1,8 +1,11 @@
 "use client"
 
-import React, { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { IconBooks, IconListDetails, IconMap2, IconSearch } from "@tabler/icons-react"
 import { WikiIndex } from "@/components/panels/wiki-index"
+import { WikiMap } from "@/components/panels/wiki-map"
+import { computeLayout } from "@/lib/wiki-map-layout"
+import { matchesQuery } from "@/lib/wiki-search"
 import type { WikiArticle, WikiLink } from "@/lib/types"
 
 export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; kaichiLevel: number }) {
@@ -28,6 +31,12 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
   }, [characterId])
 
   useEffect(() => { load() }, [load])
+
+  const layout = useMemo(() => computeLayout(articles, links), [articles, links])
+  const matchedSlugs = useMemo(
+    () => new Set(articles.filter(a => matchesQuery(a, query)).map(a => a.slug)),
+    [articles, query],
+  )
 
   if (loading) {
     return <p style={{ color:"var(--c-text-muted)", textAlign:"center", padding:"40px 0" }}>Načítám…</p>
@@ -82,12 +91,29 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
       {tab === "index" ? (
         <WikiIndex articles={articles} kaichiLevel={kaichiLevel} query={query} />
       ) : (
-        <div style={{
-          minHeight:400, display:"flex", alignItems:"center", justifyContent:"center",
-          backgroundColor:"var(--c-bg-card)", border:"2px solid var(--c-border-mid)",
-          borderRadius:6, boxShadow:"var(--shadow-print-sm)",
-        }}>
-          <p style={{ color:"var(--c-text-muted)", fontSize:"0.85rem" }}>Mapa se připravuje…</p>
+        <div style={{ display:"flex", gap:12, alignItems:"stretch", flexWrap:"wrap" }}>
+          <div style={{ flex:"3 1 420px", minWidth:0 }}>
+            <WikiMap
+              layout={layout}
+              links={links}
+              selectedSlug={selectedSlug}
+              onSelect={setSelectedSlug}
+              matchedSlugs={matchedSlugs}
+              queryActive={query.trim() !== ""}
+            />
+          </div>
+          <div style={{ flex:"2 1 300px", minWidth:280 }}>
+            {/* WikiReader přijde v Tasku 7 */}
+            <div style={{
+              minHeight:620, display:"flex", alignItems:"center", justifyContent:"center",
+              backgroundColor:"var(--c-bg-card)", border:"2px solid var(--c-border-mid)",
+              borderRadius:6, boxShadow:"var(--shadow-print-sm)",
+            }}>
+              <p style={{ color:"var(--c-text-muted)", fontSize:"0.85rem" }}>
+                {selectedSlug ?? "Vyber uzel na mapě."}
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </div>

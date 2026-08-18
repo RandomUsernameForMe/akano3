@@ -170,28 +170,15 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
             const a = pos.get(l.fromSlug), b = pos.get(l.toSlug)
             if (!a || !b) return null
             const active = touches(l, selectedSlug) || touches(l, hovered)
-            const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2
             return (
-              <g key={i} pointerEvents="none">
-                <line
-                  x1={a.x} y1={a.y} x2={b.x} y2={b.y}
-                  stroke={l.locked ? "#d4a017" : active ? "var(--c-accent)" : "var(--c-border-mid)"}
-                  strokeWidth={active ? 2.5 : 1.5}
-                  strokeDasharray={l.locked ? "6 4" : undefined}
-                  opacity={active ? 1 : 0.7}
-                />
-                {/* Slovní popisky hran jsou jen ve čtecím panelu; v mapě zůstává jen značka tajemství. */}
-                {l.locked && (
-                  <text
-                    x={mx} y={my - 5} textAnchor="middle"
-                    style={{ fontSize:11, fontFamily:"monospace", paintOrder:"stroke" }}
-                    fill="#d4a017"
-                    stroke="var(--c-bg-card)" strokeWidth={4}
-                  >
-                    ███
-                  </text>
-                )}
-              </g>
+              <line
+                key={i} pointerEvents="none"
+                x1={a.x} y1={a.y} x2={b.x} y2={b.y}
+                stroke={l.locked ? "#d4a017" : active ? "var(--c-accent)" : "var(--c-border-mid)"}
+                strokeWidth={active ? 2.5 : 1.5}
+                strokeDasharray={l.locked ? "6 4" : undefined}
+                opacity={active ? 1 : 0.7}
+              />
             )
           })}
 

@@ -171,7 +171,6 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
             if (!a || !b) return null
             const active = touches(l, selectedSlug) || touches(l, hovered)
             const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2
-            const showLabel = l.locked || (active && l.label)
             return (
               <g key={i} pointerEvents="none">
                 <line
@@ -181,14 +180,15 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
                   strokeDasharray={l.locked ? "6 4" : undefined}
                   opacity={active ? 1 : 0.7}
                 />
-                {showLabel && (
+                {/* Slovní popisky hran jsou jen ve čtecím panelu; v mapě zůstává jen značka tajemství. */}
+                {l.locked && (
                   <text
                     x={mx} y={my - 5} textAnchor="middle"
-                    style={{ fontSize:11, fontFamily: l.locked ? "monospace" : undefined, paintOrder:"stroke" }}
-                    fill={l.locked ? "#d4a017" : "var(--c-text-muted)"}
+                    style={{ fontSize:11, fontFamily:"monospace", paintOrder:"stroke" }}
+                    fill="#d4a017"
                     stroke="var(--c-bg-card)" strokeWidth={4}
                   >
-                    {l.locked ? "███" : l.label}
+                    ███
                   </text>
                 )}
               </g>

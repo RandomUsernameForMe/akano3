@@ -122,7 +122,7 @@ export function LoginScreen() {
             <div style={{ display:"flex", flexWrap:"wrap", gap:6 }}>
               {[
                 ["GM-001","GM"], ["TCH-001","Učitel"], ["STU-007","Student"],
-                ["SCREEN-A","Display"], ["RUZE-001","Růže"],
+                ["SCREEN-A","Display"], ["RUZE-001","Růže"], ["KNIHOVNA","Knihovna"],
               ].map(([c, label]) => (
                 <button key={c} onClick={() => setCode(c)} style={{
                   backgroundColor:"var(--c-bg-section)", border:"1px solid var(--c-border-mid)",

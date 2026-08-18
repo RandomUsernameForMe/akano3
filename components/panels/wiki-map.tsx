@@ -58,9 +58,10 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
     e.currentTarget.setPointerCapture(e.pointerId)
   }
   function onPointerMove(e: React.PointerEvent<SVGSVGElement>) {
-    if (!drag.current) return
+    const d = drag.current
+    if (!d) return
     const p = toViewUnits(e.clientX, e.clientY)
-    setView(v => ({ ...v, tx: drag.current!.tx + (p.x - drag.current!.px), ty: drag.current!.ty + (p.y - drag.current!.py) }))
+    setView(v => ({ ...v, tx: d.tx + (p.x - d.px), ty: d.ty + (p.y - d.py) }))
   }
   function onPointerUp() { drag.current = null }
 
@@ -92,7 +93,7 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
               />
               <text
                 x={h.x + 16} y={h.y + 26}
-                style={{ fontSize:15, fontWeight:700, letterSpacing:2, textTransform:"uppercase" }}
+                style={{ fontSize:12, fontWeight:700, letterSpacing:2, textTransform:"uppercase" }}
                 fill="var(--c-text-muted)"
               >
                 {h.category}
@@ -118,7 +119,7 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
                 {showLabel && (
                   <text
                     x={mx} y={my - 5} textAnchor="middle"
-                    style={{ fontSize:13, fontFamily: l.locked ? "monospace" : undefined, paintOrder:"stroke" }}
+                    style={{ fontSize:11, fontFamily: l.locked ? "monospace" : undefined, paintOrder:"stroke" }}
                     fill={l.locked ? "#d4a017" : "var(--c-text-muted)"}
                     stroke="var(--c-bg-card)" strokeWidth={4}
                   >
@@ -147,8 +148,8 @@ export function WikiMap({ layout, links, selectedSlug, onSelect, matchedSlugs, q
                   strokeWidth={selected ? 3 : 2}
                 />
                 <text
-                  x={n.x} y={n.y + n.r + 17} textAnchor="middle"
-                  style={{ fontSize:15, fontWeight:600, paintOrder:"stroke" }}
+                  x={n.x} y={n.y + n.r + 15} textAnchor="middle"
+                  style={{ fontSize:12.5, fontWeight:600, paintOrder:"stroke" }}
                   fill="var(--c-text)" stroke="var(--c-bg-card)" strokeWidth={4}
                 >
                   {n.title.replace(/\s*\(.*\)\s*$/, "")}

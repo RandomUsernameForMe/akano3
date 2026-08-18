@@ -1,4 +1,5 @@
 import { sql } from "@/lib/db"
+import { validateLinks } from "@/lib/wiki-links"
 
 export const dynamic = "force-dynamic"
 
@@ -1510,8 +1511,86 @@ Právě oni drží vztah obou složek v mezích, ve kterých se dá pracovat.`,
   },
 ]
 
+// Kanonické vazby mezi články. Zámek hrany kopíruje :::kN blok, ze kterého vztah plyne.
+const LINKS = [
+  // ─── AKANO3 ───
+  { from_slug: "akano3-projekt", to_slug: "lovci", label: "cvičí", kaichi_required: 0 },
+  { from_slug: "akano3-projekt", to_slug: "generace-lovcu", label: "vychovává", kaichi_required: 0 },
+  { from_slug: "akano3-projekt", to_slug: "shin-junkin", label: "řídí ho", kaichi_required: 0 },
+  { from_slug: "akano3-projekt", to_slug: "ukonceni-studia", label: "vrcholí v", kaichi_required: 0 },
+  { from_slug: "specializace", to_slug: "tymy-a-jednotky", label: "skládá", kaichi_required: 0 },
+  { from_slug: "specializace", to_slug: "divize-lovcu", label: "zrcadlí role", kaichi_required: 0 },
+  { from_slug: "tymy-a-jednotky", to_slug: "lovci", label: "připravuje na", kaichi_required: 0 },
+  { from_slug: "tymy-a-jednotky", to_slug: "ukonceni-studia", label: "podmínka akreditace", kaichi_required: 5 },
+  { from_slug: "shidosei", to_slug: "putujici-svetla", label: "pochází z", kaichi_required: 0 },
+  { from_slug: "shidosei", to_slug: "ukonceni-studia", label: "mentor ručí při", kaichi_required: 0 },
+  { from_slug: "hodnoceni", to_slug: "shidosei", label: "promítá se do", kaichi_required: 0 },
+  { from_slug: "hodnoceni", to_slug: "ukonceni-studia", label: "rozhoduje o", kaichi_required: 0 },
+  { from_slug: "ukonceni-studia", to_slug: "co-jsou-monstra", label: "odhaluje proměněné", kaichi_required: 3 },
+  { from_slug: "ukonceni-studia", to_slug: "system-kaichi", label: "uděluje stupeň", kaichi_required: 0 },
+  { from_slug: "ukonceni-studia", to_slug: "ryodan", label: "jmenuje skrze", kaichi_required: 0 },
+  { from_slug: "kruhy", to_slug: "transmutace", label: "učí transmutaci", kaichi_required: 6 },
+  // ─── LOVCI ───
+  { from_slug: "lovci", to_slug: "co-jsou-monstra", label: "loví", kaichi_required: 0 },
+  { from_slug: "lovci", to_slug: "tezba-a-rafinace", label: "odvádí surovinu", kaichi_required: 3 },
+  { from_slug: "lovci", to_slug: "divize-lovcu", label: "rozpadlí ke Stínům", kaichi_required: 5 },
+  { from_slug: "navrat", to_slug: "lovci", label: "naděje lovců", kaichi_required: 0 },
+  { from_slug: "navrat", to_slug: "co-jsou-monstra", label: "vrací proměněné", kaichi_required: 4 },
+  { from_slug: "ryodan", to_slug: "lovci", label: "sdružuje", kaichi_required: 0 },
+  { from_slug: "ryodan", to_slug: "putujici-svetla", label: "dědí kovenant", kaichi_required: 0 },
+  { from_slug: "ryodan", to_slug: "ustaveni-shin-junkinu", label: "vznikl při", kaichi_required: 0 },
+  { from_slug: "ryodan", to_slug: "tezba-a-rafinace", label: "žije z kvót", kaichi_required: 3 },
+  { from_slug: "generace-lovcu", to_slug: "putujici-svetla", label: "mapuje éru", kaichi_required: 0 },
+  { from_slug: "generace-lovcu", to_slug: "zlata-generace", label: "pamatuje", kaichi_required: 0 },
+  { from_slug: "divize-lovcu", to_slug: "ryodan", label: "člení", kaichi_required: 0 },
+  { from_slug: "lovci-a-armada", to_slug: "ryodan", label: "drží v mezích", kaichi_required: 0 },
+  { from_slug: "lovci-a-armada", to_slug: "ukonceni-studia", label: "přijímá nelovce", kaichi_required: 0 },
+  // ─── MONSTRA + JUNKIN ───
+  { from_slug: "co-jsou-monstra", to_slug: "junkin", label: "obsahují", kaichi_required: 0 },
+  { from_slug: "co-jsou-monstra", to_slug: "rad-vyznam-role", label: "proměna bez řádu", kaichi_required: 3 },
+  { from_slug: "co-jsou-monstra", to_slug: "akano3-projekt", label: "zničila předchůdce", kaichi_required: 0 },
+  { from_slug: "miasma", to_slug: "co-jsou-monstra", label: "šíří ji", kaichi_required: 0 },
+  { from_slug: "miasma", to_slug: "detektor-lzi", label: "surovina detektoru", kaichi_required: 3 },
+  { from_slug: "klasifikace-monster", to_slug: "co-jsou-monstra", label: "kóduje", kaichi_required: 0 },
+  { from_slug: "klasifikace-monster", to_slug: "miasma", label: "T značí miasmu", kaichi_required: 0 },
+  { from_slug: "junkin", to_slug: "zlata-generace", label: "těžen za", kaichi_required: 0 },
+  { from_slug: "junkin", to_slug: "transmutace", label: "mění hmotu skrze", kaichi_required: 0 },
+  { from_slug: "junkin", to_slug: "co-jsou-monstra", label: "surový plodí", kaichi_required: 4 },
+  { from_slug: "transmutace", to_slug: "zlata-generace", label: "umožnila", kaichi_required: 0 },
+  { from_slug: "transmutace", to_slug: "co-jsou-monstra", label: "selhaná pečeť plodí", kaichi_required: 6 },
+  { from_slug: "tezba-a-rafinace", to_slug: "rozpad-a-valka", label: "ztracena při", kaichi_required: 0 },
+  { from_slug: "tezba-a-rafinace", to_slug: "transmutace", label: "pečetí do nosičů", kaichi_required: 6 },
+  // ─── HISTORIE + SVĚT + ŘÁD ───
+  { from_slug: "svet-pred-zlatou-generaci", to_slug: "zlata-generace", label: "končí objevem", kaichi_required: 0 },
+  { from_slug: "svet-pred-zlatou-generaci", to_slug: "co-jsou-monstra", label: "monstra slabší", kaichi_required: 0 },
+  { from_slug: "zlata-generace", to_slug: "rozpad-a-valka", label: "zlomí se v", kaichi_required: 0 },
+  { from_slug: "zlata-generace", to_slug: "ostatni-mocnosti", label: "zrodila skeptiky", kaichi_required: 4 },
+  { from_slug: "rozpad-a-valka", to_slug: "ozvena-zkazy", label: "vyústila v", kaichi_required: 0 },
+  { from_slug: "rozpad-a-valka", to_slug: "regiony", label: "naše údery zničily", kaichi_required: 2 },
+  { from_slug: "ozvena-zkazy", to_slug: "putujici-svetla", label: "následují", kaichi_required: 0 },
+  { from_slug: "ozvena-zkazy", to_slug: "co-jsou-monstra", label: "probudila všude", kaichi_required: 0 },
+  { from_slug: "putujici-svetla", to_slug: "lovci", label: "zrodila lovectví", kaichi_required: 0 },
+  { from_slug: "putujici-svetla", to_slug: "ustaveni-shin-junkinu", label: "ústí v", kaichi_required: 0 },
+  { from_slug: "ustaveni-shin-junkinu", to_slug: "shin-junkin", label: "založil", kaichi_required: 0 },
+  { from_slug: "ustaveni-shin-junkinu", to_slug: "ostatni-mocnosti", label: "rozdělil svět", kaichi_required: 0 },
+  { from_slug: "shin-junkin", to_slug: "zlata-generace", label: "chce obnovit", kaichi_required: 0 },
+  { from_slug: "shin-junkin", to_slug: "junkin", label: "hospodaří s", kaichi_required: 0 },
+  { from_slug: "shin-junkin", to_slug: "regiony", label: "ovládá", kaichi_required: 0 },
+  { from_slug: "shin-junkin", to_slug: "ostatni-mocnosti", label: "soupeří s", kaichi_required: 0 },
+  { from_slug: "puvod", to_slug: "shin-junkin", label: "určuje postavení v", kaichi_required: 0 },
+  { from_slug: "puvod", to_slug: "regiony", label: "Vedlejší pochází z", kaichi_required: 0 },
+  { from_slug: "system-kaichi", to_slug: "co-jsou-monstra", label: "prevence proměny", kaichi_required: 7 },
+  { from_slug: "system-kaichi", to_slug: "detektor-lzi", label: "ověřuje skrz", kaichi_required: 0 },
+  { from_slug: "system-kaichi", to_slug: "lovci", label: "VI. otevírá Lovce", kaichi_required: 0 },
+]
+
 export async function POST() {
   try {
+    const slugs = new Set(ARTICLES.map(a => a.slug))
+    const bad = validateLinks(slugs, LINKS)
+    if (bad.length > 0) {
+      return new Response(`Neznámé sluggy vazeb: ${bad.join(", ")}`, { status: 400 })
+    }
     await sql`DELETE FROM wiki_articles`
     for (const a of ARTICLES) {
       await sql`
@@ -1519,7 +1598,14 @@ export async function POST() {
         VALUES (${a.slug}, ${a.title}, ${a.category}, ${a.kaichi_required}, ${a.sort_order}, ${a.content})
       `
     }
-    return Response.json({ ok: true, inserted: ARTICLES.length })
+    await sql`DELETE FROM wiki_links`
+    for (const l of LINKS) {
+      await sql`
+        INSERT INTO wiki_links (from_slug, to_slug, label, kaichi_required)
+        VALUES (${l.from_slug}, ${l.to_slug}, ${l.label}, ${l.kaichi_required})
+      `
+    }
+    return Response.json({ ok: true, inserted: ARTICLES.length, links: LINKS.length })
   } catch (err) {
     console.error("[seed-wiki]", err)
     return new Response(String(err), { status: 500 })

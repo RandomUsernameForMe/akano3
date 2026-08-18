@@ -14,12 +14,14 @@ function rowToArticle(r: Record<string, unknown>): WikiArticle {
 }
 
 // GET /api/wiki?characterId=X  — { articles, links } podle kaichi postavy
+// GET /api/wiki?kaichi=N        — { articles, links } pro zadaný stupeň (knihovní view)
 // GET /api/wiki?admin=1         — všechny články (GM use)
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url)
     const admin = searchParams.get("admin") === "1"
     const characterId = searchParams.get("characterId")
+    const kaichiParam = searchParams.get("kaichi")
 
     if (admin) {
       const rows = await sql`
@@ -28,16 +30,21 @@ export async function GET(req: Request) {
       return Response.json(rows.map(rowToArticle))
     }
 
-    if (!characterId) {
+    if (!characterId && kaichiParam === null) {
       return new Response("characterId required", { status: 400 })
     }
 
-    const runId = await getActiveRunId()
-    const [state] = await sql`
-      SELECT kaichi_level FROM character_state
-      WHERE character_id = ${characterId} AND run_id = ${runId}
-    `
-    const kaichiLevel = (state?.kaichi_level as number) ?? 0
+    let kaichiLevel: number
+    if (kaichiParam !== null) {
+      kaichiLevel = Math.max(0, Math.min(8, Number(kaichiParam) || 0))
+    } else {
+      const runId = await getActiveRunId()
+      const [state] = await sql`
+        SELECT kaichi_level FROM character_state
+        WHERE character_id = ${characterId} AND run_id = ${runId}
+      `
+      kaichiLevel = (state?.kaichi_level as number) ?? 0
+    }
 
     const rows = await sql`
       SELECT * FROM wiki_articles

@@ -26,6 +26,7 @@ export function RoleBadge({ role }: { role: Role }) {
     ruze:    ["#e052b4","Růže"],
     student: ["#52b0e0","Student"],
     display: ["#888","Obrazovka"],
+    library: ["#b8860b","Knihovna"],
   }
   const [color, label] = map[role]
   return (

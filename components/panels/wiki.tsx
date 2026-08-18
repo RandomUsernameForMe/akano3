@@ -9,7 +9,12 @@ import { computeLayout } from "@/lib/wiki-map-layout"
 import { matchesQuery } from "@/lib/wiki-search"
 import type { WikiArticle, WikiLink } from "@/lib/types"
 
-export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; kaichiLevel: number }) {
+export function WikiPanel({ characterId, kaichiLevel, kaichiOverride }: {
+  characterId: string; kaichiLevel: number
+  // knihovní view: obsah se gatuje zadaným stupněm místo kaichi postavy
+  kaichiOverride?: number
+}) {
+  const effectiveKaichi = kaichiOverride ?? kaichiLevel
   const [articles, setArticles] = useState<WikiArticle[]>([])
   const [links,    setLinks]    = useState<WikiLink[]>([])
   const [loading,  setLoading]  = useState(true)
@@ -20,7 +25,9 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
   const load = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await fetch(`/api/wiki?characterId=${characterId}`)
+      const res = await fetch(kaichiOverride !== undefined
+        ? `/api/wiki?kaichi=${kaichiOverride}`
+        : `/api/wiki?characterId=${characterId}`)
       if (res.ok) {
         const data: { articles: WikiArticle[]; links: WikiLink[] } = await res.json()
         setArticles(data.articles)
@@ -29,7 +36,7 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
     } finally {
       setLoading(false)
     }
-  }, [characterId])
+  }, [characterId, kaichiOverride])
 
   useEffect(() => { load() }, [load])
 
@@ -90,7 +97,7 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
       </div>
 
       {tab === "index" ? (
-        <WikiIndex articles={articles} kaichiLevel={kaichiLevel} query={query} />
+        <WikiIndex articles={articles} kaichiLevel={effectiveKaichi} query={query} />
       ) : (
         <div style={{ display:"flex", gap:12, alignItems:"stretch", flexWrap:"wrap" }}>
           <div style={{ flex:"3 1 420px", minWidth:0 }}>
@@ -109,7 +116,7 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
               links={links}
               selectedSlug={selectedSlug}
               onNavigate={setSelectedSlug}
-              kaichiLevel={kaichiLevel}
+              kaichiLevel={effectiveKaichi}
             />
           </div>
         </div>

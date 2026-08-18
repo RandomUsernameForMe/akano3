@@ -1,6 +1,6 @@
 import type { CSSProperties, ComponentType } from "react"
 
-export type Role = "gm" | "teacher" | "ruze" | "student" | "display"
+export type Role = "gm" | "teacher" | "ruze" | "student" | "display" | "library"
 export type Specialization = "combat" | "tactical" | "support"
 export type ActionType =
   | "mission_success" | "mission_fail" | "lesson" | "shidosei"

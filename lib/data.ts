@@ -69,6 +69,9 @@ export const CHARACTERS: Character[] = [
     circleIds:[], kaichiLevel:0, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
   { id:"DSP2", code:"SCREEN-B", name:"Obrazovka B", role:"display",
     circleIds:[], kaichiLevel:0, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
+  // ── Knihovna ──
+  { id:"LIB1", code:"KNIHOVNA", name:"Knihovna", role:"library",
+    circleIds:[], kaichiLevel:0, points:0, peerPointPool:0, lessonClaimedThisWindow:false },
   // ── Tým 1 ──
   { id:"S001", code:"STU-001", name:"Mushashi", nickname:"Drsňák",      role:"student",
     teamId:"T01", unitId:"U1", circleIds:["C4"], specialization:"combat",

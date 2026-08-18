@@ -30,7 +30,7 @@ export function PeoplePanel() {
       .filter(c => c.role === "teacher" || c.role === "gm")
       .filter(c => !term || c.name.toLowerCase().includes(term))
       .sort((a, b) => {
-        const order = { gm:0, teacher:1, ruze:2, student:3, display:4 }
+        const order = { gm:0, teacher:1, ruze:2, student:3, display:4, library:5 }
         const ro = order[a.role] - order[b.role]
         return ro !== 0 ? ro : a.name.localeCompare(b.name, "cs")
       })

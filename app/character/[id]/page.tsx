@@ -9,6 +9,7 @@ import { TeacherDashboard } from "@/components/views/teacher-dashboard"
 import { RuzeDashboard } from "@/components/views/ruze-dashboard"
 import { StudentDashboard } from "@/components/views/student-dashboard"
 import { DisplayScreen } from "@/components/views/display-screen"
+import { LibraryView } from "@/components/views/library-view"
 import { AlarmBannerStrip } from "@/components/shared/alarm-banner"
 import { ToastContainer } from "@/components/shared/toast"
 import { TopBar } from "@/components/shared/top-bar"
@@ -55,6 +56,13 @@ function CharacterRouter() {
 
   if (!currentUser) return null
   if (role === "display") return <DisplayScreen />
+  if (role === "library") {
+    return (
+      <div style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>
+        <LibraryView />
+      </div>
+    )
+  }
 
   return (
     <div className={themeClass} style={{ minHeight:"100vh", backgroundColor:"var(--c-bg)", color:"var(--c-text)" }}>

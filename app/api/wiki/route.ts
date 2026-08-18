@@ -1,10 +1,20 @@
 import { sql } from "@/lib/db"
 import { getActiveRunId } from "@/lib/runs"
+import { gateLinks, type RawLink } from "@/lib/wiki-links"
+import type { WikiArticle } from "@/lib/types"
 
 export const dynamic = "force-dynamic"
 
-// GET /api/wiki?characterId=X  — filtered by character's kaichi level
-// GET /api/wiki?admin=1         — all articles (GM use)
+function rowToArticle(r: Record<string, unknown>): WikiArticle {
+  return {
+    id: r.id, slug: r.slug, title: r.title, content: r.content, category: r.category,
+    kaichiRequired: r.kaichi_required, sortOrder: r.sort_order,
+    createdAt: r.created_at, updatedAt: r.updated_at,
+  } as WikiArticle
+}
+
+// GET /api/wiki?characterId=X  — { articles, links } podle kaichi postavy
+// GET /api/wiki?admin=1         — všechny články (GM use)
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url)
@@ -15,7 +25,7 @@ export async function GET(req: Request) {
       const rows = await sql`
         SELECT * FROM wiki_articles ORDER BY category, sort_order, id
       `
-      return Response.json(rows)
+      return Response.json(rows.map(rowToArticle))
     }
 
     if (!characterId) {
@@ -34,7 +44,12 @@ export async function GET(req: Request) {
       WHERE kaichi_required <= ${kaichiLevel}
       ORDER BY category, sort_order, id
     `
-    return Response.json(rows)
+    const articles = rows.map(rowToArticle)
+    const linkRows = await sql`
+      SELECT from_slug, to_slug, label, kaichi_required FROM wiki_links
+    `
+    const links = gateLinks(linkRows as RawLink[], kaichiLevel, new Set(articles.map(a => a.slug)))
+    return Response.json({ articles, links })
   } catch (err) {
     console.error("[wiki GET]", err)
     return new Response(String(err), { status: 500 })

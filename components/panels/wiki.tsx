@@ -17,10 +17,10 @@ export function WikiPanel({ characterId, kaichiLevel }: { characterId: string; k
     try {
       const res = await fetch(`/api/wiki?characterId=${characterId}`)
       if (res.ok) {
-        const data: WikiArticle[] = await res.json()
-        setArticles(data)
+        const data: { articles: WikiArticle[] } = await res.json()
+        setArticles(data.articles)
         // auto-open first category
-        if (data.length > 0) setOpenCategories(new Set([data[0].category]))
+        if (data.articles.length > 0) setOpenCategories(new Set([data.articles[0].category]))
       }
     } finally {
       setLoading(false)

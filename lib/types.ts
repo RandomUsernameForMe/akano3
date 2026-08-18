@@ -66,3 +66,11 @@ export interface WikiLink {
   label: string | null // null = zamčeno
   locked: boolean
 }
+
+export interface WikiLinkAdmin {
+  id: number
+  fromSlug: string
+  toSlug: string
+  label: string
+  kaichiRequired: number
+}

@@ -8,6 +8,7 @@ import {
   AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { WikiLinksAdmin } from "@/components/panels/wiki-links-admin"
 import { WikiArticle } from "@/lib/types"
 import { romanNumeral } from "@/lib/utils"
 
@@ -302,6 +303,8 @@ export function WikiAdminPanel() {
           ))}
         </div>
       )}
+
+      {!loading && <WikiLinksAdmin articles={articles} />}
 
       <AlertDialog open={!!deleteTarget} onOpenChange={open => { if (!open) setDeleteTarget(null) }}>
         <AlertDialogContent style={{ backgroundColor: "var(--c-bg)", border: "1px solid var(--c-border)" }}>

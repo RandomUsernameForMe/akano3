@@ -47,7 +47,8 @@ kaichi_required INT DEFAULT 0
 - Seed: `seed-wiki` route rozšířena o `LINKS` pole, stejný delete+insert vzor jako `ARTICLES`. Seed validuje, že oba sluggy existují — jinak spadne.
 - GET `/api/wiki` vrací vedle článků i hrany. Odemčená hrana (kaichi postavy ≥ `kaichi_required`) jde celá; zamčená jde bez labelu jako `{ from, to, locked: true }`.
 - Zamčená hrana se kreslí čárkovaně se zlatým ███ místo labelu — hráč vidí, ŽE spojení existuje, ne JAKÉ. Stejná filozofie jako `:::kN` bloky: viditelná cenzura je motor.
-- Autorství hran: Claude navrhne z kanonu (32 článků + design doc knihovny + rozložení tajemství), Tomáš schválí tabulku, pak seed. Žádné admin UI pro editaci hran (případně později, až bude potřeba za běhu hry).
+- Autorství hran: Claude navrhne z kanonu (32 článků + design doc knihovny + rozložení tajemství), Tomáš schválí tabulku, pak seed.
+- GM admin umí vazby upravovat (doplněno při realizaci): sekce Vazby v admin panelu, CRUD přes `/api/wiki/links`, validace slugů na serveru. Pozor: re-seed přes `seed-wiki` ruční úpravy přepíše (stejně jako u článků).
 
 ## Ověření
 
@@ -58,4 +59,4 @@ kaichi_required INT DEFAULT 0
 ## Rozsah
 
 - Nová větev `knihovna-mapa`, aby `knihovna-faze-1` šla mergnout samostatně.
-- Mimo rozsah: mobilní verze mapy, admin UI pro hrany, wiki-linky `[[...]]` v textu článků, změny Rejstříku nad rámec search boxu.
+- Mimo rozsah: mobilní verze mapy, wiki-linky `[[...]]` v textu článků, změny Rejstříku nad rámec search boxu.

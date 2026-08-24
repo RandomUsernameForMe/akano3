@@ -216,12 +216,26 @@ Opravu designáku dělá autor, knihovna do něj nesahá.
 režimu**. Shuten-dōji ale monstrum není — je to člověk, bývalý lovec. Že se
 režim i lovci spletli, je **velké odhalení na hře**.
 
-Důsledek pro knihovnu: článek *Bestiář: shuten-dōji* nese **pouze oficiální
-verzi**. Pravda do knihovny nepatří v žádné kaichi vrstvě — odhalení se
-odehrává hrou, ne čtením. Zbytek bestiáře smí obsahovat vodítka (chová se
-cíleně, plášť sešitý z plášťů lovců, „lovec lovců"), ale nikde nesmí padnout
-závěr. Formulace „není to doopravdy monstrum" ze zdroje se do knihovny
-nepřenáší.
+Důsledek pro knihovnu: hesla jednotlivých monster se nepíšou, viz K17. Kde se
+Shuten-dōji objeví, tedy zatím jen kódem v *Klasifikaci*, platí **pouze
+oficiální verze**. Pravda do knihovny nepatří v žádné kaichi vrstvě, odhalení
+se odehrává hrou, ne čtením. Vodítka jsou přípustná (chová se cíleně, plášť
+sešitý z plášťů lovců, „lovec lovců"), ale nikde nesmí padnout závěr.
+Formulace „není to doopravdy monstrum" ze zdroje se do knihovny nepřenáší.
+
+**K17 — Bestiář se do knihovny nepíše.** Rozhodnuto 2026-08-24. Knihovna nenese
+hesla jednotlivých monster. Zůstávají *Co jsou monstra* (co monstra jsou a odkud
+se berou) a *Klasifikace a kódy* (jak se čte kód, s příklady). Konkrétní druh se
+hráč dozvídá lovem, výukou a od postav, ne čtením terminálu.
+
+Důsledky:
+
+- Původní plán šesti hesel (lidožrouti, kaibyō, lišky, inugami, shuten-dōji,
+  Čichač) padá. Fáze 4 postupu je zrušená.
+- Vlastnosti druhu, které nese zápletka, žijí v článku o té zápletce. Že
+  nasycený lidožrout uvažuje lépe než člověk a že existují linie s volní
+  proměnou, nese *Aokami* v blocích k6 a k7.
+- Kategorie *Monstra* tím zůstává tříčlánková.
 
 **K13 — Miasma a veřejnost.** → Veřejnost ví, **že** je miasma nebezpečná, a
 zná **příznaky**. Že je surovinou pro **detektor lži**, je **Kaichi III**.
@@ -274,8 +288,8 @@ odstranit hledáním `⚠`.
 | Upravené děti | `t.f1iutbve7u9h` | „Zajímavé odpovězené otázky:" | Vše níže překonané, Akana byly střední školy |
 | Junkin a monstra | `t.2omdcjeiinql` | „Tsukoyomi napadl zemi a prohrál" | Neplatí jako kosmologie, jen jako doktrína režimu |
 
-Neoznačeno zůstává: *Geopolitika* (názvy původů, K11) a *Bestiář*
-(Shuten-dōji, K12) — obojí čeká na to, až se k nim dostane psaní.
+Neoznačeno zůstává: *Geopolitika* (názvy původů, K11). *Bestiář* se
+neoznačuje, protože se z něj nečerpá, viz K17.
 
 ### Svět Akano3 › Režim › Upravené děti (DONE)
 
@@ -336,7 +350,7 @@ Osobnosti) zanikají. Nové:
 | Řád a společnost | Kaichi, řád a význam, detektor lži, zákony | Tajemství, Miasma |
 | Lovci | Kasta, Ryōdan, trojice, divize, generace, tabu | Lovci |
 | Akano3 | Škola, specializace, shidōsei, hodnocení, kruhy, ukončení | Akano3, Specializace, Mentoring, Ukončení studia, doc *Kruhy* |
-| Monstra | Klasifikace, bestiář, miasma | Bestiář, Miasma, designák/Lov |
+| Monstra | Klasifikace, miasma | Miasma, designák/Lov |
 | Junkin | Látka, transmutace, těžba, rafinace, pečeti | Junkin a monstra |
 
 Kosmologie (Cukujomi, Kaguja, dualita) **nedostává vlastní kategorii**. Je to
@@ -462,9 +476,7 @@ Generace lovců · Divize · Lovci a armáda · Rudý plášť a Jestřáb · N�
 jednotky · Shidōsei · Hodnocení · Kruhy (6 článků z docu *Kruhy*) · Ukončení
 studia a akreditace
 
-**Monstra** — Co jsou monstra · Klasifikace a kódy · Miasma · Bestiář:
-lidožrouti · Bestiář: kaibyō · Bestiář: lišky · Bestiář: inugami · Bestiář:
-shuten-dōji · Čichač
+**Monstra** — Co jsou monstra · Klasifikace a kódy · Miasma
 
 **Junkin** — Junkin: látka · Transmutace · Těžba a rafinace · Měsíc
 
@@ -499,12 +511,11 @@ reálně čte každá postava. Bez ní je knihovna prázdná i pro hráče s Kai
 **Fáze 3 — Kaichi IV–VIII.** Krátké bloky do už napsaných článků, ne nové
 články.
 
-**Fáze 4 — Bestiář.** Zvlášť: pět monster má ve zdroji jen nadpisy (kaligrafické
-monstrum, inugami, čichač, dva bezejmenné). Bude potřeba obsah **dopsat**, ne
-přeložit. Vyžaduje samostatné kolo rozhodnutí.
+**Fáze 4 — zrušena.** Bestiář se nepíše, viz K17.
 
 ## Mimo rozsah
 
+- Hesla jednotlivých monster (K17).
 - Editace designového dokumentu.
 - Hacking knihovny Růží (vidět nad svoje kaichi). Růže dostává jen běžný
   přístup podle svého kaichi.

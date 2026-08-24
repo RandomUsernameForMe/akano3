@@ -582,7 +582,6 @@ V řeči se celý kód nepoužívá. Stačí poslední tři až čtyři znaky, t
 
 Síla a inteligence slouží k plánování. Zbytek potřebuješ znát v běhu.`,
   },
-
   // ─── JUNKIN ────────────────────────────────────────────────────────────────
   {
     slug: "junkin",
@@ -1066,6 +1065,60 @@ Všichni, kdo se stali lovci po roce 2120, doplnili **druhou generaci** po bok u
 Od atomového úderu uplynulo dvaačtyřicet let, od ustavení státu dvacet tři.
 
 Nultá generace lovců, tedy ti, kdo pamatují svět před válkou, dnes buď nežije, nebo je jí přes pětašedesát. Za pár desítek let nezůstane nikdo, kdo Zlatou generaci viděl na vlastní oči.`,
+  },
+  {
+    slug: "aokami",
+    title: "Aokami",
+    category: "Historie",
+    kaichi_required: 0,
+    sort_order: 7,
+    content: `# Aokami
+
+**Aokami** (青神, *modré božstvo*) byl kraj v horách jádra Shin Junkinu. Údolí stranou hlavních tras, jedno z mála sídel, které přečkalo Světovou válku konce i Ozvěnu zkázy skoro beze změny. Zaniklo roku 2138.
+
+---
+
+## Co se stalo
+
+Kraj čelil přes rok sílícímu tlaku monster. Obyvatelé se stáhli do opevněných usedlostí a čekali na pomoc. Než armáda dorazila, bariéry padly a údolí obsadili lidožrouti.
+
+Zásah skončil vyklizením kraje. Přeživší odešli do sběrných táborů, děti bez rodin do státní péče a část z nich na akademie projektu Akano3. Aokami se od té doby neosídluje a prostředky na obnovu se neuvolňují.
+
+---
+
+## Co si z toho vzít
+
+Aokami se uvádí jako doklad toho, že osídlení mimo dosah rychlé pomoci se udržet nedá, ať je jakkoli staré a zachovalé. Kraj, který přečkal konec světa, nepřečkal jedinou zimu poté, co k němu monstra našla cestu.
+
+:::k3
+V Aokami se proměnila část místních obyvatel. Kolik, se nezjišťuje.
+
+Kde je proměněný prokázán, uplatňuje se krevní karanténa: vypálení usedlosti i s příbuzenstvem. V Aokami se použila plošně a týkala se stovek lidí, které veřejná evidence vede jako nedohledané.
+:::
+
+:::k4
+Rodiny z Aokami žádaly o Návrat pro proměněné příbuzné. Žádosti byly zamítnuty pro nedostatek kapacity.
+:::
+
+:::revise6
+Zamítnuty byly proto, že Návrat neexistuje. Evidence žádostí i zdůvodnění kapacitou se vedou u všech takových případů, aby opatření působilo funkčně.
+:::
+
+:::k6
+V Aokami žil rod, jehož potomci se dokážou vlastní vůlí a při plném vědomí proměnit v lidožrouta.
+
+Rozhodnutí rod odstranit padlo dřív, než kraj napadla monstra. Jednání o přesunu i o výzkumu selhalo, rod odmítl údolí opustit. Zásah byl odložen, dokud útok monster neposkytl krytí pro plošné vypálení usedlostí. Dohledání jednotlivců převzala Stínová divize.
+
+Poslední evidovaný nositel linie je nezletilý a je veden pod dohledem na Akano3.
+:::
+
+:::k7
+Rod se jmenuje Mikazuki (三日月).
+
+Nasycený lidožrout uvažuje lépe než člověk. Linie, která proměnu ovládá vůlí, je použitelná jako zbraň i jako počátek populace schopné chovat lidi jako zdroj. Riziko se hodnotí bez ohledu na chování jednotlivých nositelů.
+
+Odklad zásahu do doby, kdy jej zaštítí vnější událost, je schválený postup pod označením řízená prodleva.
+:::`,
   },
 
   // ─── SVĚT ──────────────────────────────────────────────────────────────────
@@ -1582,6 +1635,15 @@ const LINKS = [
   { from_slug: "system-kaichi", to_slug: "co-jsou-monstra", label: "prevence proměny", kaichi_required: 7 },
   { from_slug: "system-kaichi", to_slug: "detektor-lzi", label: "ověřuje skrz", kaichi_required: 0 },
   { from_slug: "system-kaichi", to_slug: "lovci", label: "VI. otevírá Lovce", kaichi_required: 0 },
+  // ─── AOKAMI + BESTIÁŘ ───
+  { from_slug: "aokami", to_slug: "akano3-projekt", label: "sirotci přiděleni", kaichi_required: 0 },
+  { from_slug: "aokami", to_slug: "lovci-a-armada", label: "zásah vedla armáda", kaichi_required: 0 },
+  { from_slug: "aokami", to_slug: "co-jsou-monstra", label: "proměnili se místní", kaichi_required: 3 },
+  { from_slug: "aokami", to_slug: "navrat", label: "žádosti o Návrat", kaichi_required: 4 },
+  { from_slug: "aokami", to_slug: "divize-lovcu", label: "dohledávaly Stíny", kaichi_required: 6 },
+  { from_slug: "aokami", to_slug: "rad-vyznam-role", label: "linie jako riziko", kaichi_required: 7 },
+  { from_slug: "ozvena-zkazy", to_slug: "aokami", label: "pozdní ozvěna", kaichi_required: 0 },
+  { from_slug: "puvod", to_slug: "aokami", label: "kraj bez návratu", kaichi_required: 0 },
 ]
 
 export async function POST() {

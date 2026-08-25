@@ -1,4 +1,5 @@
 import { sql } from "@/lib/db"
+import { adminGuard } from "@/lib/admin-auth"
 import { validateLinks } from "@/lib/wiki-links"
 
 export const dynamic = "force-dynamic"
@@ -1266,7 +1267,11 @@ V Paktu Europa, Konfederaci a Zemích obrody žijí prakticky jen lidé **Cizíh
     sort_order: 4,
     content: `# Původ
 
-Shin Junkin rozlišuje obyvatele podle **původu**, tedy podle toho, odkud pochází jejich rodina a jaký mají vztah ke státu. Rozlišení je oficiální, zapsané a nosí se viditelně.
+Shin Junkin rozlišuje obyvatele podle **původu**, tedy podle toho, odkud pochází jejich rodina a jaký mají vztah ke státu.
+
+Původ je zapsaný v evidenci, nosí se viditelně a promítá se do toho, kam až se člověk dostane, do studia i do zaměstnání.
+
+**Ústřední lovecký řád** je jediná instituce, která veřejně prohlašuje, že na původu lovce nezáleží. Licence se uděluje za výkon.
 
 ---
 
@@ -1280,7 +1285,7 @@ Místní častěji používají japonské názvy pro věci: většina prvků sv�
 
 ---
 
-## Vedlejší
+## Příbuzní
 
 Pocházejí odjinud z Oceánie: z Jižních provincií, Nového pásma nebo Okraje.
 
@@ -1294,15 +1299,7 @@ Geneticky ani vzhledem je od Místních rozlišit nejde. Za Zlaté generace se l
 
 Pocházejí z velkých pevnin, z Ameriky a z Evropy.
 
-Hlavní rozdíl oproti předchozím dvěma: je to na nich vidět.
-
----
-
-## Co to není
-
-Toto rozdělení není rasové. Rasismus založený na barvě nebo tvaru zanikl se Zlatou generací, kdy se lidstvo promísilo tak, že přestal dávat smysl.
-
-Vzniklo místo něj dělení podle toho, kde se člověk narodil. To je stále v platnosti, je součástí evidence a rozhoduje o tom, kam až se člověk dostane.`,
+Hlavní rozdíl oproti předchozím dvěma: je to na nich vidět.`,
   },
 
   // ─── ŘÁD A SPOLEČNOST ──────────────────────────────────────────────────────
@@ -1385,6 +1382,12 @@ Jedna dávka odpovídá jedné otázce a dávek je málo. Zkoušky se plánují,
 Látkou je **miasma**. Neurotoxický účinek krátkodobě otupí mysl a subjekt se stane vnímavějším a méně schopným klamu.
 
 Každá zkouška je tedy zároveň dávkou jedu. Kdo chodí na zkoušky často, nese to na sobě.
+:::
+
+:::k7
+Na některé druhy monster látka nepůsobí. Doloženo je to u **lišek** (\`PS3I8N7K\`): dávka je neotupí a odpovídají dál volně, včetně lží.
+
+Zkouška loajality proto není důkazem, že zkoušený je člověk.
 :::
 
 ---
@@ -1505,20 +1508,16 @@ Trojice specializované na informační prostor. Ne každé monstrum má tělo a
 **Ví se o nich:** že existují
 :::
 
-:::karta Stínová divize
-Existence této divize není tajemstvím. Její náplň se veřejně nerozebírá.
+:::k5
+**Stínová divize.** Třetí divize Ryōdanu. Loví lidi.
 
-**Pracují:** neuvedeno
-
-**Ví se o nich:** jméno
+Slouží k ní nejčastěji lovci, kterým se rozpadla trojice a kteří nechtějí přejít na úřední ani výukové místo. Chtějí lovit dál a tohle je práce, která zbývá.
 :::
 
 :::k6
-Stínová divize slouží k eliminaci vnitřních hrozeb: lidí, neposlušných lovců a všeho, co je nutné vyřešit tiše a co nelze svěřit armádě ani soudu.
+Náplní jsou vnitřní hrozby: neposlušní lovci a všechno, co je nutné vyřešit tiše a co nelze svěřit armádě ani soudu.
 
-Přidělení ke Stínům je jednou z mála cest, které zůstávají lovci, jemuž se rozpadla trojice a který nechce do armády. Nenabízí se každému.
-
-Lovec, který ke Stínům odejde, přestává být uveden v běžných seznamech.
+Přidělení ke Stínům se nenabízí každému. Lovec, který ke Stínům odejde, přestává být uveden v běžných seznamech.
 :::`,
   },
   {
@@ -1631,7 +1630,8 @@ const LINKS = [
   { from_slug: "shin-junkin", to_slug: "regiony", label: "ovládá", kaichi_required: 0 },
   { from_slug: "shin-junkin", to_slug: "ostatni-mocnosti", label: "soupeří s", kaichi_required: 0 },
   { from_slug: "puvod", to_slug: "shin-junkin", label: "určuje postavení v", kaichi_required: 0 },
-  { from_slug: "puvod", to_slug: "regiony", label: "Vedlejší pochází z", kaichi_required: 0 },
+  { from_slug: "puvod", to_slug: "regiony", label: "Příbuzní pocházejí z", kaichi_required: 0 },
+  { from_slug: "puvod", to_slug: "ryodan", label: "původ nerozhoduje", kaichi_required: 0 },
   { from_slug: "system-kaichi", to_slug: "co-jsou-monstra", label: "prevence proměny", kaichi_required: 7 },
   { from_slug: "system-kaichi", to_slug: "detektor-lzi", label: "ověřuje skrz", kaichi_required: 0 },
   { from_slug: "system-kaichi", to_slug: "lovci", label: "VI. otevírá Lovce", kaichi_required: 0 },
@@ -1646,28 +1646,56 @@ const LINKS = [
   { from_slug: "puvod", to_slug: "aokami", label: "kraj bez návratu", kaichi_required: 0 },
 ]
 
-export async function POST() {
+export async function POST(req: Request) {
+  const denied = adminGuard(req)
+  if (denied) return denied
+
   try {
     const slugs = new Set(ARTICLES.map(a => a.slug))
     const bad = validateLinks(slugs, LINKS)
     if (bad.length > 0) {
       return new Response(`Neznámé sluggy vazeb: ${bad.join(", ")}`, { status: 400 })
     }
-    await sql`DELETE FROM wiki_articles`
+    // Nedestruktivní: co je v seedu, přepíše se; co GM přidal v appce, zůstává.
     for (const a of ARTICLES) {
       await sql`
         INSERT INTO wiki_articles (slug, title, category, kaichi_required, sort_order, content)
         VALUES (${a.slug}, ${a.title}, ${a.category}, ${a.kaichi_required}, ${a.sort_order}, ${a.content})
+        ON CONFLICT (slug) DO UPDATE SET
+          title = EXCLUDED.title, category = EXCLUDED.category,
+          kaichi_required = EXCLUDED.kaichi_required, sort_order = EXCLUDED.sort_order,
+          content = EXCLUDED.content, updated_at = NOW()
       `
     }
-    await sql`DELETE FROM wiki_links`
+
+    // wiki_links nemá unique klíč, párujeme na dvojici from+to.
     for (const l of LINKS) {
-      await sql`
-        INSERT INTO wiki_links (from_slug, to_slug, label, kaichi_required)
-        VALUES (${l.from_slug}, ${l.to_slug}, ${l.label}, ${l.kaichi_required})
+      const [existing] = await sql`
+        SELECT id FROM wiki_links WHERE from_slug = ${l.from_slug} AND to_slug = ${l.to_slug}
       `
+      if (existing) {
+        await sql`
+          UPDATE wiki_links SET label = ${l.label}, kaichi_required = ${l.kaichi_required}
+          WHERE id = ${existing.id}
+        `
+      } else {
+        await sql`
+          INSERT INTO wiki_links (from_slug, to_slug, label, kaichi_required)
+          VALUES (${l.from_slug}, ${l.to_slug}, ${l.label}, ${l.kaichi_required})
+        `
+      }
     }
-    return Response.json({ ok: true, inserted: ARTICLES.length, links: LINKS.length })
+
+    // Články v DB, které v seedu nejsou. Nemažeme je, jen hlásíme drift.
+    const extraRows = await sql`
+      SELECT slug FROM wiki_articles WHERE slug <> ALL(${[...slugs]})
+    `
+    return Response.json({
+      ok: true,
+      articles: ARTICLES.length,
+      links: LINKS.length,
+      mimoSeed: extraRows.map(r => r.slug),
+    })
   } catch (err) {
     console.error("[seed-wiki]", err)
     return new Response(String(err), { status: 500 })

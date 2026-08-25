@@ -1,10 +1,14 @@
 import { sql } from "@/lib/db"
+import { adminGuard } from "@/lib/admin-auth"
 
 export const dynamic = "force-dynamic"
 
 // One-time migration: add runs table and run_id columns to all per-run tables.
 // Safe to call multiple times (IF NOT EXISTS / WHERE run_id IS NULL).
-export async function POST() {
+export async function POST(req: Request) {
+  const denied = adminGuard(req)
+  if (denied) return denied
+
   try {
     await sql`
       CREATE TABLE IF NOT EXISTS runs (

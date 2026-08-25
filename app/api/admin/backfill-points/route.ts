@@ -1,4 +1,5 @@
 import { sql } from "@/lib/db"
+import { adminGuard } from "@/lib/admin-auth"
 import { TEAMS } from "@/lib/data"
 import { teamMemberIds, splitPointsWeighted } from "@/lib/utils"
 import { getActiveRunId } from "@/lib/runs"
@@ -8,7 +9,10 @@ export const dynamic = "force-dynamic"
 // One-time: migrate the active run's team_points into individual character_points
 // by splitting each team's total unevenly (random weights) across its members.
 // Re-running resets character_points for the run first, so it's idempotent-ish.
-export async function POST() {
+export async function POST(req: Request) {
+  const denied = adminGuard(req)
+  if (denied) return denied
+
   try {
     const runId = await getActiveRunId()
 

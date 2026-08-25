@@ -1,4 +1,5 @@
 import { sql } from "@/lib/db"
+import { adminGuard } from "@/lib/admin-auth"
 import { INITIAL_POINT_LOG, CHARACTERS } from "@/lib/data"
 
 export const dynamic = "force-dynamic"
@@ -6,7 +7,10 @@ export const dynamic = "force-dynamic"
 // Seed mock point data for run 1.
 // Resets point_log and character_points for run 1, then inserts INITIAL_POINT_LOG
 // and each student's starting individual points (team totals derive from these).
-export async function POST() {
+export async function POST(req: Request) {
+  const denied = adminGuard(req)
+  if (denied) return denied
+
   try {
     const runId = 1
     const pointChars = CHARACTERS.filter(c => c.role === "student" || c.role === "ruze")

@@ -31,7 +31,7 @@ function startSiren(ctx: AudioContext) {
   }
 }
 
-function useAlarmSound(active: boolean) {
+export function useAlarmSound(active: boolean) {
   const [unlocked, setUnlocked] = useState(false)
 
   useEffect(() => {

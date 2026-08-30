@@ -10,6 +10,7 @@ import { useGame } from "@/lib/game-context"
 import { formatDateTime, teamDeltaOf } from "@/lib/utils"
 import { TEAM_ICONS } from "@/lib/data"
 import { TeamIcon } from "@/components/shared/team-icon"
+import { useAlarmSound } from "@/components/shared/alarm-banner"
 import type { Team } from "@/lib/types"
 
 function EndLabel({ cx, cy, index, lastIndex, color, name, iconTeamId }: {
@@ -44,6 +45,7 @@ const VIEW_TITLE: Record<View, string> = {
 
 export function DisplayScreen() {
   const { teams, characters, pointLog, alarmState, broadcastActive } = useGame()
+  useAlarmSound(alarmState.active)
   const [view, setView] = useState<View>("studentScores")
   const [progress, setProgress] = useState(0)   // 0..1 until next auto-rotate
   const ROTATE_MS = 18000

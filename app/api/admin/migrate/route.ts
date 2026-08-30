@@ -65,6 +65,17 @@ export async function POST(req: Request) {
     // Point attribution now records the individual recipients too
     await sql`ALTER TABLE point_log ADD COLUMN IF NOT EXISTS resolved_character_ids TEXT[]`
 
+    // alarm_state bývala singleton (id PK DEFAULT 1) — druhý běh se do ní nevešel.
+    // Klíčem je teď run_id; doplň řádky běhům, které o ně kolizí přišly.
+    await sql`ALTER TABLE alarm_state DROP CONSTRAINT IF EXISTS alarm_state_pkey`
+    await sql`ALTER TABLE alarm_state DROP COLUMN IF EXISTS id`
+    await sql`CREATE UNIQUE INDEX IF NOT EXISTS alarm_state_run_id_key ON alarm_state (run_id)`
+    await sql`
+      INSERT INTO alarm_state (run_id, active, type, message, color)
+      SELECT id, false, 'evacuation', '', '#c0392b' FROM runs
+      WHERE id NOT IN (SELECT run_id FROM alarm_state)
+    `
+
     await sql`
       CREATE TABLE IF NOT EXISTS wiki_articles (
         id SERIAL PRIMARY KEY,

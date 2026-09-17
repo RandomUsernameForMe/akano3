@@ -96,10 +96,8 @@ Když se trojice rozpadne smrtí, zraněním nebo vyloučením, lovecká kariér
 
 ## Závazky
 
-Lovec nesmí mít trvalý partnerský vztah ani rodinu. Pravidlo pochází z doby Putujících světel a od té doby se nezměnilo.
-
 :::k5
-Toto pravidlo nelze porušit.
+Lovec nesmí mít trvalý partnerský vztah ani rodinu. Pravidlo pochází z doby Putujících světel a od té doby se nezměnilo. Nelze ho porušit.
 
 Při ukončení Akademie podstupuje každý budoucí lovec zákrok, který mu trvale odebírá schopnost mít děti. Veřejnost i většina lovců to považuje za slib. Rozhodnutí padlo za ně a je nevratné.
 
@@ -142,7 +140,7 @@ Dozvídáš se to, protože jsi lovec. Ostatní tomu věří dál.
     sort_order: 1,
     content: `# Miasma
 
-**Miasma** je látka spojená s monstry. Chová se jako neviditelná mlha, ale nechová se jako plyn: nelze ji odvětrat, rozehnat ani zředit. Ničí tělo i mysl.
+**Miasma** je látka spojená s monstry. Je neviditelná a nelze ji odvětrat, rozehnat ani zředit. Ničí tělo i mysl.
 
 Každá lovecká výprava je povinně vybavena maskou a filtrem.
 
@@ -183,7 +181,7 @@ Konečný stupeň nákazy nikoho nezabíjí. Organismus v něm vydrží týdny.
 
 Zdravotnický personál má pro tento stav stálý rozkaz, který se nezapisuje do dokumentace a nepředává nikomu mimo strukturu. Pacient v konečném stupni se neléčí ani nepřeváží. Ukončuje se.
 
-Důvodem není milosrdenství. Rozložená osobnost, která přestala držet svůj význam, je jeden z nejspolehlivějších zdrojů nových monster, a stane se to uvnitř zařízení, mezi lidmi.
+Rozložená osobnost, která přestala držet svůj význam, patří k nejspolehlivějším zdrojům nových monster. Proměna proběhne uvnitř zařízení, mezi pacienty a personálem.
 :::`,
   },
 
@@ -473,13 +471,13 @@ Náhrada se hledá výjimečně a spojení dvou neúplných trojic je vzácnost,
   // ─── MONSTRA ───────────────────────────────────────────────────────────────
   {
     slug: "co-jsou-monstra",
-    title: "Co jsou monstra",
+    title: "Monstra",
     category: "Monstra",
     kaichi_required: 0,
     sort_order: 2,
-    content: `# Co jsou monstra
+    content: `# Monstra
 
-**Monstra** (鬼, *Oni*) se objevila všude, kde se lidstvo po Ozvěně zkázy pokusilo znovu něco postavit. Nejsou to zvířata ani nemoc. Jejich jediný trvalý rys je, že ničí to, co má smysl, tedy především lidi a lidskou práci.
+**Monstra** se objevila všude, kde se lidstvo po Ozvěně zkázy pokusilo znovu něco postavit. Nejsou to zvířata ani nemoc. Jejich jediný trvalý rys je, že ničí to, co má smysl, tedy především lidi a lidskou práci.
 
 ---
 
@@ -497,18 +495,18 @@ Společné mají tři věci:
 
 ## Odkud se berou
 
-Vznikají jako protiváha. Kdykoli je něčemu rychle a násilně přiřazen nový význam, objeví se vedle toho síla, která ten význam rozbíjí.
-
-Přehradíš potok a uděláš rybník. Rybník má smysl: napájí, živí, slouží. A brzy se u něj začne topit lidi něco, co tam dřív nebylo.
-
-Odtud regulace manipulace s junkinem. Každý zásah do světa má cenu a platí ji někdo jiný než ten, kdo zasáhl.
-
 :::k3
 Monstra vznikají i z lidí.
 
-Člověk, který ztratí svůj význam, tedy místo, roli a důvod vstávat, se může změnit v monstrum. Neděje se to každému ani hned, ale děje se to.
+Člověk, který ztratí svůj význam, tedy místo, roli a důvod vstávat, se může změnit v monstrum.
 
 Proti proměně neexistuje očkování ani test. Pohledem to nejde poznat a proměněný o sobě zpravidla neví, dokud proměna neskončí.
+:::
+
+:::k4
+Výzkum pracuje s monstrem jako s protiváhou. Kde se něčemu rychle přiřadí nový význam, vzniká vedle toho síla, která ten význam rozbíjí. Rybník postavený za jedno léto plodí monstrum spolehlivěji než vesnice rostoucí sto let.
+
+Odtud regulace manipulace s junkinem: povolení, kvóty a evidence každého zásahu.
 :::
 
 :::k7
@@ -529,7 +527,7 @@ Shin Junkin proto vynucuje řád jako prevenci. Člověk bez místa v systému s
     sort_order: 3,
     content: `# Klasifikace a kódy
 
-Monstra mají lidové názvy a **režimní kód**. Lidový název řekne, na co se díváš. Kód řekne, co s tebou udělá.
+Monstra mají lidové názvy a **režimní kód**. Lidový název popisuje vzhled, kód nebezpečnost.
 
 Kód se skládá z pěti údajů a identifikačního znaku.
 
@@ -553,14 +551,14 @@ Schopnost dedukce, řeči, učení a používání nástrojů. Člověk se pova�
 
 ## Speciální vlastnost
 
-Písmeno, kterým se předává to nejdůležitější.
+Písmeno pro vlastnost, která mění postup zásahu.
 
-- **T** — toxické, šíří nebo využívá miasmu. Maska není doporučení.
+- **T** — toxické, šíří nebo využívá miasmu. Maska a filtr povinné.
 - **X** — mnoho o něm nevíme
 
 ## Nebezpečnost — N1 až N10
 
-Souhrnné hodnocení zahrnující všechny předchozí údaje. Odhaduje pravděpodobnost, že tě to zabije.
+Souhrnné hodnocení zahrnující všechny předchozí údaje. Odhaduje pravděpodobnost usmrcení člověka.
 
 ## Identifikační znak
 
@@ -581,7 +579,7 @@ Písmeno abecedy. Rozlišuje monstra se shodným kódem.
 
 V řeči se celý kód nepoužívá. Stačí poslední tři až čtyři znaky, tedy speciální vlastnost, nebezpečnost a identifikační znak: *N4O* jsou lidožrouti, *TN3C* je čichač, *N7K* jsou lišky.
 
-Síla a inteligence slouží k plánování. Zbytek potřebuješ znát v běhu.`,
+Síla a inteligence slouží k plánování zásahu, zbytek k jednání na místě.`,
   },
   // ─── JUNKIN ────────────────────────────────────────────────────────────────
   {
@@ -1165,7 +1163,7 @@ Shin Junkin je o své nadřazenosti a pravdě přesvědčen a považuje to za zj
 
 ## Monstra
 
-Shin Junkin považuje monstra za šintoistické bytosti, 鬼 (*Oni*) a jim podobné. Neodpovídají přesně příběhům, které se o nich po staletí vyprávěly, ale nikdo zde nepochybuje, že jde o totéž.
+Shin Junkin považuje monstra za šintoistické bytosti. Neodpovídají přesně příběhům, které se o nich po staletí vyprávěly, ale nikdo zde nepochybuje, že jde o totéž.
 
 Je to jediné místo, kde stát připouští, že něčemu nerozumí zcela.`,
   },

@@ -49,3 +49,4 @@ next-env.d.ts
 # local brand art
 AkanoFin02.png
 .superpowers/
+.codex/

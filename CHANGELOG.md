@@ -1,3 +1,5 @@
+## [2026-10-01] - unit testy pro adminGuard
+
 ## [2026-04-28] - Opravy kritických bugů (review)
 
 - `/api/gift` — TOCTOU fix: pool deduction + team_points + log v jednom CTE (atomic); přidána validace `amount > 0`

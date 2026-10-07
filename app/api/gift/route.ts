@@ -1,15 +1,16 @@
 import { sql } from "@/lib/db"
 import { CHARACTERS } from "@/lib/data"
+import { validateGift } from "@/lib/gift-validation"
 import { getActiveRunId } from "@/lib/runs"
 
 export async function POST(req: Request) {
   try {
     const { fromId, toId, amount } = await req.json() as { fromId: string; toId: string; amount: number }
-    if (!Number.isInteger(amount) || amount <= 0) return new Response("Invalid amount", { status: 400 })
+    const error = validateGift(fromId, toId, amount, CHARACTERS)
+    if (error) return new Response(error, { status: 400 })
 
-    const from = CHARACTERS.find(c => c.id === fromId)
-    const to   = CHARACTERS.find(c => c.id === toId)
-    if (!from || !to?.teamId) return new Response("Invalid characters", { status: 400 })
+    const from = CHARACTERS.find(c => c.id === fromId)!
+    const to   = CHARACTERS.find(c => c.id === toId)!
 
     const runId = await getActiveRunId()
     const id = `PE${crypto.randomUUID()}`
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
         RETURNING character_id
       )
       INSERT INTO point_log (id, run_id, source_role, source_character_id, target_type, target_id, resolved_team_ids, resolved_character_ids, amount, action_type, note)
-      SELECT ${id}, ${runId}, 'student', ${fromId}, 'student', ${toId}, ${[to.teamId]}, ${[toId]}, ${amount}, 'peer_gift', ${`Dar od ${from.name} pro ${to.name}`}
+      SELECT ${id}, ${runId}, 'student', ${fromId}, 'student', ${toId}, ${[to.teamId!]}, ${[toId]}, ${amount}, 'peer_gift', ${`Dar od ${from.name} pro ${to.name}`}
       WHERE EXISTS (SELECT 1 FROM deduct)
       RETURNING id
     `

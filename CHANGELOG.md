@@ -1,3 +1,7 @@
+## [2026-10-09] - Vypnuty Vercel preview deploymenty
+
+- `vercel.json` — `git.deploymentEnabled`: deploy jen z `main`, ostatní větve nedeployují
+
 ## [2026-10-01] - unit testy pro adminGuard
 
 ## [2026-04-28] - Opravy kritických bugů (review)

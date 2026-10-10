@@ -1,6 +1,7 @@
 ## [2026-10-09] - Vypnuty Vercel preview deploymenty
 
 - `vercel.json` — `git.deploymentEnabled`: deploy jen z `main`, ostatní větve nedeployují
+## [2026-10-09] - Unit testy pro rozpočet bodů, extrakce lib/point-resolution.ts
 
 ## [2026-10-01] - unit testy pro adminGuard
 

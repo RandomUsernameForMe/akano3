@@ -11,6 +11,12 @@ import { ACTION_LABELS } from "@/lib/constants"
 import { formatDateTime, getCharName, getTargetName, getTeamName } from "@/lib/utils"
 import { ActionBadge, RoleBadge } from "@/components/shared/badges"
 import { TeamDot } from "@/components/shared/team-icon"
+import {
+  AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent,
+  AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
+import { buildReversal, isReversal, isReversed } from "@/lib/point-resolution"
+import type { PointEntry } from "@/lib/types"
 
 // Růže masquerade: her entries display a fake teacher (deterministic per entry
 // id, stable across renders/devices) and occasionally glitch pink to reveal her.
@@ -39,7 +45,9 @@ export function TransactionLog({
 }: {
   maxRows?: number; canExport?: boolean; hideFilters?: boolean
 }) {
-  const { pointLog } = useGame()
+  const { pointLog, currentUser, assignPoints } = useGame()
+  const isGM = currentUser?.role === "gm"
+  const [reversing, setReversing] = useState<PointEntry | null>(null)
   const [filterRole,   setFilterRole]   = useState("")
   const [filterAction, setFilterAction] = useState("")
   const [filterTeam,   setFilterTeam]   = useState("")
@@ -71,6 +79,12 @@ export function TransactionLog({
     a.download = "akano3-log.csv"
     document.body.appendChild(a); a.click(); document.body.removeChild(a)
     URL.revokeObjectURL(url)
+  }
+
+  const confirmReversal = () => {
+    if (!reversing || !currentUser) return
+    assignPoints({ sourceRole: currentUser.role, sourceCharacterId: currentUser.id, ...buildReversal(reversing) })
+    setReversing(null)
   }
 
   const filterStyle = { backgroundColor:"var(--c-input)", border:"1px solid var(--c-input-border)", fontSize:"0.8rem", height:32, color:"var(--c-text)" }
@@ -128,7 +142,7 @@ export function TransactionLog({
         <Table>
           <TableHeader>
             <TableRow style={{ borderColor:"var(--c-border)" }}>
-              {["Čas","Kdo","Typ akce","Cíl","Týmy","Body","Poznámka"].map(h => (
+              {["Čas","Kdo","Typ akce","Cíl","Týmy","Body","Poznámka", ...(isGM ? ["Akce"] : [])].map(h => (
                 <TableHead key={h} style={{ color:"var(--c-text-muted)", fontSize:"0.75rem", letterSpacing:"0.05em" }}>{h}</TableHead>
               ))}
             </TableRow>
@@ -136,7 +150,7 @@ export function TransactionLog({
           <TableBody>
             {filtered.length === 0 && (
               <TableRow>
-                <TableCell colSpan={7} style={{ textAlign:"center", color:"var(--c-text-faint)", padding:"32px 0" }}>
+                <TableCell colSpan={isGM ? 8 : 7} style={{ textAlign:"center", color:"var(--c-text-faint)", padding:"32px 0" }}>
                   Žádné záznamy
                 </TableCell>
               </TableRow>
@@ -167,6 +181,17 @@ export function TransactionLog({
                 <TableCell style={{ color:"var(--c-text-muted)", fontSize:"0.78rem", maxWidth:200 }}>
                   {e.note ?? "—"}
                 </TableCell>
+                {isGM && (
+                  <TableCell>
+                    {!isReversal(e) && !isReversed(e, pointLog) && (
+                      <button onClick={() => setReversing(e)}
+                        style={{ background:"transparent", border:"1px solid var(--c-border-str)", color:"var(--c-text-muted)",
+                          padding:"2px 8px", borderRadius:6, cursor:"pointer", fontSize:"0.72rem" }}>
+                        Stornovat
+                      </button>
+                    )}
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
@@ -175,6 +200,20 @@ export function TransactionLog({
       <p style={{ color:"var(--c-text-faint)", fontSize:"0.72rem", marginTop:8 }}>
         {filtered.length} záznamů
       </p>
+      <AlertDialog open={!!reversing} onOpenChange={(open) => { if (!open) setReversing(null) }}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Stornovat záznam?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {reversing && `Vytvoří se protizáznam ${-reversing.amount > 0 ? "+" : ""}${-reversing.amount} pro ${getTargetName(reversing.targetType, reversing.targetId)}.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Zrušit</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmReversal}>Stornovat</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }

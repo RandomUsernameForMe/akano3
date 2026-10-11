@@ -1,3 +1,4 @@
+import type { PointEntry } from "./types.ts"
 import { UNITS, CIRCLES, CHARACTERS } from "./data.ts"
 
 // Characters that hold points (students + the Růže).
@@ -51,4 +52,27 @@ export function teamDeltaOf(entry: { resolvedCharacterIds?: string[]; resolvedTe
     for (const t of entry.resolvedTeamIds) d[t] = (d[t] ?? 0) + entry.amount
   }
   return d
+}
+
+const REVERSAL_PREFIX = "Storno: "
+
+// Correcting counter-entry for a log row. Source fields are filled in by the caller.
+export function buildReversal(
+  entry: Pick<PointEntry, "id" | "targetType" | "targetId" | "amount" | "note">
+) {
+  return {
+    targetType: entry.targetType,
+    targetId: entry.targetId,
+    amount: -entry.amount,
+    actionType: "correction" as const,
+    note: `${REVERSAL_PREFIX}${entry.id}${entry.note ? ` (${entry.note})` : ""}`,
+  }
+}
+
+export function isReversal(entry: Pick<PointEntry, "actionType" | "note">): boolean {
+  return entry.actionType === "correction" && !!entry.note?.startsWith(REVERSAL_PREFIX)
+}
+
+export function isReversed(entry: Pick<PointEntry, "id">, log: Pick<PointEntry, "actionType" | "note">[]): boolean {
+  return log.some(e => isReversal(e) && (e.note === REVERSAL_PREFIX + entry.id || e.note!.startsWith(`${REVERSAL_PREFIX}${entry.id} (`)))
 }

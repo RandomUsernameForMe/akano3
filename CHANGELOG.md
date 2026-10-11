@@ -1,4 +1,5 @@
 ## [2026-10-12] - Inline odkazy [[slug|text]] mezi wiki články (zamčené = ███, neexistující = text)
+## [2026-10-12] - Storno záznamu v logu bodů (GM): protizáznam typu correction
 ## [2026-10-11] - README: popis projektu, stack a spuštění (EN + CZ)
 ## [2026-10-10] - Validace wiki článku a kaichi level v API (400 místo 500/NaN)
 ## [2026-10-11] - Validace typu a zprávy alarmu v POST /api/alarm

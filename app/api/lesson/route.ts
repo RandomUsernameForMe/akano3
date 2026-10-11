@@ -1,9 +1,14 @@
 import { sql } from "@/lib/db"
 import { getActiveRunId } from "@/lib/runs"
+import { CHARACTERS } from "@/lib/data"
+import { parseDurationMin, validateLessonBody } from "@/lib/request-validation"
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as
+    const raw: unknown = await req.json().catch(() => null)
+    const error = validateLessonBody(raw, CHARACTERS.map(c => c.id))
+    if (error) return new Response(error, { status: 400 })
+    const body = raw as
       | { action: "toggle"; active: boolean; durationMin?: number }
       | { action: "claim"; characterId: string }
 
@@ -11,7 +16,7 @@ export async function POST(req: Request) {
 
     if (body.action === "toggle") {
       const end = body.active
-        ? new Date(Date.now() + (body.durationMin ?? 30) * 60000).toISOString()
+        ? new Date(Date.now() + parseDurationMin(body.durationMin)! * 60000).toISOString()
         : null
       if (body.active) {
         await sql.transaction([

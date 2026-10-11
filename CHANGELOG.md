@@ -1,4 +1,5 @@
 ## [2026-10-10] - Validace wiki článku a kaichi level v API (400 místo 500/NaN)
+## [2026-10-11] - Validace typu a zprávy alarmu v POST /api/alarm
 
 ## [2026-10-09] - Vypnuty Vercel preview deploymenty
 

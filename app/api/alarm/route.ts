@@ -1,24 +1,24 @@
 import { sql } from "@/lib/db"
 import { ALARM_COLORS } from "@/lib/constants"
 import { getActiveRunId } from "@/lib/runs"
-import type { AlarmState } from "@/lib/types"
+import { parseAlarmBody } from "@/lib/alarm-validation"
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as { action: "trigger" | "dismiss"; type?: AlarmState["type"]; message?: string }
+    const parsed = parseAlarmBody(await req.json())
+    if (!parsed.ok) return new Response(parsed.error, { status: 400 })
+    const cmd = parsed.value
     const runId = await getActiveRunId()
 
-    if (body.action === "dismiss") {
+    if (cmd.action === "dismiss") {
       await sql`UPDATE alarm_state SET active = false, updated_at = NOW() WHERE run_id = ${runId}`
-    } else if (body.action === "trigger" && body.type) {
-      const color = ALARM_COLORS[body.type]
+    } else if (cmd.action === "trigger") {
+      const color = ALARM_COLORS[cmd.type]
       await sql`
         UPDATE alarm_state
-        SET active = true, type = ${body.type}, message = ${body.message ?? ""}, color = ${color}, updated_at = NOW()
+        SET active = true, type = ${cmd.type}, message = ${cmd.message}, color = ${color}, updated_at = NOW()
         WHERE run_id = ${runId}
       `
-    } else {
-      return new Response("Bad request", { status: 400 })
     }
 
     return new Response(null, { status: 204 })

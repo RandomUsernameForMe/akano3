@@ -1,5 +1,5 @@
 import { sql } from "@/lib/db"
-import type { QRCode } from "@/lib/types"
+import { parseQrBody } from "@/lib/qr-validation"
 
 export async function GET() {
   const rows = await sql`SELECT * FROM qr_codes ORDER BY created_at DESC`
@@ -8,7 +8,9 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as Omit<QRCode, "id" | "token" | "timesScanned" | "status" | "createdAt">
+    const parsed = parseQrBody(await req.json())
+    if (!parsed.ok) return new Response(parsed.error, { status: 400 })
+    const body = parsed.value
     const id    = `QR${crypto.randomUUID()}`
     const token = `akn-${Array.from(crypto.getRandomValues(new Uint8Array(5))).map(b => b.toString(36).padStart(2,"0")).join("").slice(0,9)}`
 

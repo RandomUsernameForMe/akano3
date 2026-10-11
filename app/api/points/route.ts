@@ -1,7 +1,21 @@
 import { sql } from "@/lib/db"
 import { resolveTargetCharacters, teamsOfChars } from "@/lib/utils"
+import type { RunMapping } from "@/lib/point-resolution"
 import { getActiveRunId } from "@/lib/runs"
 import type { PointEntry } from "@/lib/types"
+
+async function loadRunMapping(targetType: string, runId: number): Promise<RunMapping | undefined> {
+  if (targetType !== "unit" && targetType !== "circle") return undefined
+  const [tuRows, cmRows] = await Promise.all([
+    sql`SELECT team_id, unit_id FROM team_units WHERE run_id = ${runId}`,
+    sql`SELECT circle_id, character_id FROM circle_members WHERE run_id = ${runId}`,
+  ])
+  const teamUnits: Record<string, string> = {}
+  for (const r of tuRows) teamUnits[r.team_id] = r.unit_id
+  const circleMembers: Record<string, string[]> = {}
+  for (const r of cmRows) (circleMembers[r.circle_id] ??= []).push(r.character_id)
+  return { teamUnits, circleMembers }
+}
 
 export async function POST(req: Request) {
   try {
@@ -16,7 +30,8 @@ export async function POST(req: Request) {
 
     const runId = await getActiveRunId()
 
-    const resolvedCharacterIds = resolveTargetCharacters(body.targetType, body.targetId)
+    const mapping = await loadRunMapping(body.targetType, runId)
+    const resolvedCharacterIds = resolveTargetCharacters(body.targetType, body.targetId, mapping)
     const resolvedTeamIds = teamsOfChars(resolvedCharacterIds)
 
     const id = `PE${crypto.randomUUID()}`

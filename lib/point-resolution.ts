@@ -11,18 +11,30 @@ export function teamMemberIds(teamId: string): string[] {
   return POINT_CHARS.filter(c => c.teamId === teamId).map(c => c.id)
 }
 
+// Per-run overrides (team_units / circle_members). teamUnits: teamId -> unitId,
+// circleMembers: circleId -> characterIds. A provided map is authoritative.
+export type RunMapping = {
+  teamUnits?: Record<string, string>
+  circleMembers?: Record<string, string[]>
+}
+
 // Resolve a point target to the individual characters who receive the points.
 // Group targets (team/unit/circle) fan out — each member gets the full amount.
 export function resolveTargetCharacters(
   targetType: "team" | "unit" | "circle" | "student",
-  targetId: string
+  targetId: string,
+  mapping?: RunMapping
 ): string[] {
   if (targetType === "student") return CHAR_TEAM[targetId] ? [targetId] : []
   if (targetType === "team") return teamMemberIds(targetId)
   if (targetType === "unit") {
+    const tu = mapping?.teamUnits
+    if (tu) return Object.keys(tu).filter(t => tu[t] === targetId).flatMap(teamMemberIds)
     const u = UNITS.find(u => u.id === targetId)
     return u ? u.teamIds.flatMap(teamMemberIds) : []
   }
+  const cm = mapping?.circleMembers
+  if (cm) return (cm[targetId] ?? []).filter(id => CHAR_TEAM[id])
   const c = CIRCLES.find(c => c.id === targetId)
   return c ? c.memberIds.filter(id => CHAR_TEAM[id]) : []
 }

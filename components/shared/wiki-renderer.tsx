@@ -3,13 +3,39 @@
 import React from "react"
 import { romanNumeral } from "@/lib/utils"
 import { parseBlocks, type Block } from "@/lib/wiki-blocks"
+import { parseInlineLinks } from "@/lib/wiki-inline-links"
+
+export type LinkState = "ok" | "locked" | "missing"
 
 interface Props {
   content: string
   kaichiLevel: number
+  onNavigate?: (slug: string) => void
+  resolveLink?: (slug: string) => LinkState
 }
 
-function renderMdLine(line: string, idx: number): React.ReactNode {
+interface LinkCtx {
+  onNavigate?: (slug: string) => void
+  resolveLink?: (slug: string) => LinkState
+}
+
+const InlineLinkContext = React.createContext<LinkCtx>({})
+
+function renderLink(slug: string, label: string, key: string, ctx: LinkCtx): React.ReactNode {
+  const state = ctx.onNavigate && ctx.resolveLink ? ctx.resolveLink(slug) : "missing"
+  if (state === "locked") return <span key={key} style={{ color:"#d4a017", fontFamily:"monospace" }}>███</span>
+  if (state === "missing") return label
+  return (
+    <button key={key} onClick={() => ctx.onNavigate?.(slug)} style={{
+      all:"unset", cursor:"pointer", color:"var(--c-accent)", textDecoration:"underline",
+    }}>
+      {label}
+    </button>
+  )
+}
+
+function renderMdLine(line: string, idx: number, ctx: LinkCtx): React.ReactNode {
+  const inline = (t: string) => inlineFmt(t, ctx)
   // Headings
   if (line.startsWith("### ")) return <h3 key={idx} style={{ fontSize:"1rem", fontWeight:800, color:"var(--c-text)", margin:"20px 0 6px" }}>{inline(line.slice(4))}</h3>
   if (line.startsWith("## "))  return <h2 key={idx} style={{ fontSize:"1.15rem", fontWeight:800, color:"var(--c-accent)", margin:"26px 0 8px", borderBottom:"1px solid var(--c-border)", paddingBottom:4 }}>{inline(line.slice(3))}</h2>
@@ -52,7 +78,15 @@ function renderMdLine(line: string, idx: number): React.ReactNode {
   return <p key={idx} style={{ margin:"4px 0", color:"var(--c-text)", fontSize:"0.9rem", lineHeight:1.75 }}>{inline(line)}</p>
 }
 
-function inline(text: string): React.ReactNode {
+function inlineFmt(text: string, ctx: LinkCtx): React.ReactNode {
+  const segs = parseInlineLinks(text)
+  if (!segs.some(s => s.type === "link")) return inlineStyle(text)
+  return <>{segs.map((s, i) => s.type === "link"
+    ? renderLink(s.slug, s.label, `l${i}`, ctx)
+    : <React.Fragment key={`t${i}`}>{inlineStyle(s.text)}</React.Fragment>)}</>
+}
+
+function inlineStyle(text: string): React.ReactNode {
   // Parse **bold**, *italic*, `code`
   const parts: React.ReactNode[] = []
   const re = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g
@@ -70,7 +104,8 @@ function inline(text: string): React.ReactNode {
 }
 
 function MdBlock({ lines, struck }: { lines: string[]; struck?: boolean }) {
-  const body = <>{lines.map((l, i) => renderMdLine(l, i))}</>
+  const ctx = React.useContext(InlineLinkContext)
+  const body = <>{lines.map((l, i) => renderMdLine(l, i, ctx))}</>
   if (!struck) return body
   return (
     <div style={{ textDecoration:"line-through", opacity:0.45 }}>
@@ -205,9 +240,10 @@ function CardBlock({ title, lines }: { title: string; lines: string[] }) {
   )
 }
 
-export function WikiRenderer({ content, kaichiLevel }: Props) {
+export function WikiRenderer({ content, kaichiLevel, onNavigate, resolveLink }: Props) {
   const blocks = parseBlocks(content)
   return (
+    <InlineLinkContext.Provider value={{ onNavigate, resolveLink }}>
     <div>
       {groupCards(blocks).map((block, i) => {
         if (Array.isArray(block)) {
@@ -254,5 +290,6 @@ export function WikiRenderer({ content, kaichiLevel }: Props) {
         }
       })}
     </div>
+    </InlineLinkContext.Provider>
   )
 }

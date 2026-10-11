@@ -5,6 +5,7 @@ import { IconChevronUp, IconChevronDown } from "@tabler/icons-react"
 import { useGame } from "@/lib/game-context"
 import { UNITS, CIRCLES } from "@/lib/data"
 import { resolvedCharsOf, charTeam } from "@/lib/utils"
+import { unitPoints, circlePoints } from "@/lib/score-aggregation"
 import { TeamDot } from "@/components/shared/team-icon"
 
 type ScoreMode = "students" | "teams" | "units" | "circles"
@@ -39,12 +40,12 @@ export function ScoreboardComponent({
     }
     if (mode === "units") {
       return UNITS.map(u => {
-        const pts = characters.filter(c => c.teamId && u.teamIds.includes(c.teamId)).reduce((s,c) => s + c.points, 0)
+        const pts = unitPoints(u.id, teams, characters)
         return { id:u.id, name:u.name, points:pts, color:"var(--c-teal)", rank:0, iconTeamId: undefined as string | undefined }
       }).sort((a,b)=>b.points-a.points).map((r,i)=>({...r, rank:i+1}))
     }
     return CIRCLES.map(c => {
-      const pts = characters.filter(ch => c.memberIds.includes(ch.id)).reduce((s,ch) => s + ch.points, 0)
+      const pts = circlePoints(c.id, characters)
       return { id:c.id, name:c.name, points:pts, color:"#a052e0", rank:0, iconTeamId: undefined as string | undefined }
     }).sort((a,b)=>b.points-a.points).map((r,i)=>({...r, rank:i+1}))
   }, [mode, teams, characters])

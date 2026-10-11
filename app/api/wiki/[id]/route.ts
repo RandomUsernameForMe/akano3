@@ -1,13 +1,15 @@
 import { sql } from "@/lib/db"
+import { validateWikiArticleInput } from "@/lib/wiki-validation"
 
 // PUT /api/wiki/[id] — update article
 export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
-    const body = await req.json() as {
-      slug: string; title: string; content: string
-      category: string; kaichiRequired: number; sortOrder: number
-    }
+    const numId = Number(id)
+    if (!Number.isInteger(numId)) return new Response("Invalid id", { status: 400 })
+    const parsed = validateWikiArticleInput(await req.json().catch(() => null))
+    if (!parsed.ok) return new Response(parsed.error, { status: 400 })
+    const body = parsed.value
     const [row] = await sql`
       UPDATE wiki_articles SET
         slug = ${body.slug},
@@ -17,7 +19,7 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         kaichi_required = ${body.kaichiRequired},
         sort_order = ${body.sortOrder},
         updated_at = NOW()
-      WHERE id = ${Number(id)}
+      WHERE id = ${numId}
       RETURNING *
     `
     if (!row) return new Response("Not found", { status: 404 })

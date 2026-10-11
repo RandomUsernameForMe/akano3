@@ -1,6 +1,7 @@
 import { sql } from "@/lib/db"
 import { getActiveRunId } from "@/lib/runs"
 import { gateLinks, type RawLink } from "@/lib/wiki-links"
+import { validateWikiArticleInput } from "@/lib/wiki-validation"
 import type { WikiArticle } from "@/lib/types"
 
 export const dynamic = "force-dynamic"
@@ -66,10 +67,9 @@ export async function GET(req: Request) {
 // POST /api/wiki — create article
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as {
-      slug: string; title: string; content: string
-      category: string; kaichiRequired: number; sortOrder: number
-    }
+    const parsed = validateWikiArticleInput(await req.json().catch(() => null))
+    if (!parsed.ok) return new Response(parsed.error, { status: 400 })
+    const body = parsed.value
     const [row] = await sql`
       INSERT INTO wiki_articles (slug, title, content, category, kaichi_required, sort_order)
       VALUES (${body.slug}, ${body.title}, ${body.content}, ${body.category}, ${body.kaichiRequired}, ${body.sortOrder})

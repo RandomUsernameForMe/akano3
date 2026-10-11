@@ -1,3 +1,5 @@
+## [2026-10-10] - Validace wiki článku a kaichi level v API (400 místo 500/NaN)
+
 ## [2026-10-09] - Vypnuty Vercel preview deploymenty
 
 - `vercel.json` — `git.deploymentEnabled`: deploy jen z `main`, ostatní větve nedeployují

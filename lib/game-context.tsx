@@ -336,15 +336,13 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     if (!lessonWindowActive) return
     try {
       const res = await fetch("/api/lesson", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"claim", characterId: studentId }) })
+      if (res.status === 409) { addToast("Body za hodinu už byly uplatněny nebo okno vypršelo", "error"); fetchGameState(); return }
       if (!res.ok) { addToast("Chyba", "error"); return }
-      const student = characters.find(c => c.id === studentId)
-      if (student?.teamId) {
-        await assignPoints({ sourceRole:"student", sourceCharacterId:studentId, targetType:"student", targetId:studentId, amount:5, actionType:"lesson", note:"Body za hodinu" })
-      }
       setCharacters(prev => prev.map(c => c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c))
       addToast("Body za hodinu přidány!")
+      fetchGameState()
     } catch { addToast("Chyba sítě", "error") }
-  }, [lessonWindowActive, characters, assignPoints, addToast])
+  }, [lessonWindowActive, addToast, fetchGameState])
 
   const setActiveRun = useCallback(async (runId: number) => {
     try {

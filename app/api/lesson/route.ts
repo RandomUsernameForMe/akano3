@@ -1,6 +1,7 @@
 import { sql } from "@/lib/db"
 import { getActiveRunId } from "@/lib/runs"
 import { CHARACTERS } from "@/lib/data"
+import { canClaimLesson, LESSON_POINTS } from "@/lib/lesson-claim"
 import { parseDurationMin, validateLessonBody } from "@/lib/request-validation"
 
 export async function POST(req: Request) {
@@ -35,11 +36,48 @@ export async function POST(req: Request) {
         `
       }
     } else if (body.action === "claim") {
-      await sql`
-        UPDATE character_state
-        SET lesson_claimed_this_window = true
-        WHERE character_id = ${body.characterId} AND run_id = ${runId} AND lesson_claimed_this_window = false
+      const characterId = body.characterId
+      const teamId = CHARACTERS.find(c => c.id === characterId)?.teamId
+      if (!teamId) return new Response("Postava nemá jednotku", { status: 400 })
+
+      const [state] = await sql`
+        SELECT g.lesson_window_active, g.lesson_window_end, s.lesson_claimed_this_window
+        FROM game_config g, character_state s
+        WHERE g.run_id = ${runId} AND s.run_id = ${runId} AND s.character_id = ${characterId}
       `
+      const eligible = state && canClaimLesson({
+        windowActive: state.lesson_window_active,
+        windowEnd: state.lesson_window_end ? new Date(state.lesson_window_end) : null,
+        alreadyClaimed: state.lesson_claimed_this_window,
+      }, new Date())
+      if (!eligible) return new Response("Body za hodinu nelze uplatnit", { status: 409 })
+
+      const id = `PE${crypto.randomUUID()}`
+      // Atomicky: označ claim + přičti body + zapiš log; podmínky se znovu ověřují v SQL
+      const rows = await sql`
+        WITH claim AS (
+          UPDATE character_state
+          SET lesson_claimed_this_window = true
+          WHERE character_id = ${characterId} AND run_id = ${runId} AND lesson_claimed_this_window = false
+            AND EXISTS (
+              SELECT 1 FROM game_config
+              WHERE run_id = ${runId} AND lesson_window_active = true AND lesson_window_end > NOW()
+            )
+          RETURNING character_id
+        ),
+        add_points AS (
+          UPDATE character_points
+          SET points = points + ${LESSON_POINTS}
+          WHERE character_id = ${characterId} AND run_id = ${runId}
+            AND EXISTS (SELECT 1 FROM claim)
+          RETURNING character_id
+        )
+        INSERT INTO point_log (id, run_id, source_role, source_character_id, target_type, target_id, resolved_team_ids, resolved_character_ids, amount, action_type, note)
+        SELECT ${id}, ${runId}, 'student', ${characterId}, 'student', ${characterId}, ${[teamId]}, ${[characterId]}, ${LESSON_POINTS}, 'lesson', 'Body za hodinu'
+        WHERE EXISTS (SELECT 1 FROM claim)
+        RETURNING id
+      `
+      if (rows.length === 0) return new Response("Body za hodinu nelze uplatnit", { status: 409 })
     } else {
       return new Response("Bad request", { status: 400 })
     }

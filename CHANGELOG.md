@@ -1,4 +1,5 @@
 ## [2026-10-12] - README: screenshot aplikace
+## [2026-10-12] - Hráč: tab „Moje body“ s historií vlastních bodů a průběžným součtem
 ## [2026-10-12] - Inline odkazy [[slug|text]] mezi wiki články (zamčené = ███, neexistující = text)
 ## [2026-10-12] - Storno záznamu v logu bodů (GM): protizáznam typu correction
 ## [2026-10-12] - Žebříček jednotek a kruhů počítá z DB přiřazení (characters/teams), ne ze statických dat

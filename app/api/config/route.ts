@@ -1,11 +1,21 @@
 import { sql } from "@/lib/db"
 import { getActiveRunId } from "@/lib/runs"
+import { CHARACTERS, CIRCLES, TEAMS, UNITS } from "@/lib/data"
+import { validateConfigBody } from "@/lib/request-validation"
 
 // GM-only: manage team→unit, circle members, specializations
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json() as
+    const raw: unknown = await req.json().catch(() => null)
+    const error = validateConfigBody(raw, {
+      teamIds: TEAMS.map(t => t.id),
+      unitIds: UNITS.map(u => u.id),
+      circleIds: CIRCLES.map(c => c.id),
+      characterIds: CHARACTERS.map(c => c.id),
+    })
+    if (error) return new Response(error, { status: 400 })
+    const body = raw as
       | { action: "setTeamUnit"; teamId: string; unitId: string }
       | { action: "setCircleMembers"; circleId: string; memberIds: string[] }
       | { action: "setSpecialization"; characterId: string; specialization: string | null }

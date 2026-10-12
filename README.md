@@ -1,5 +1,7 @@
 # Akano 3
 
+![Screenshot](docs/screenshot.png)
+
 A companion web app for the LARP *Akano* — runs on players' phones and the organizers' laptop during the game and keeps the shared game state in sync.
 
 **Live:** <https://akano3.vercel.app>

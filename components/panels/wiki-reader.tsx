@@ -2,7 +2,7 @@
 
 import React from "react"
 import { IconMapPin } from "@tabler/icons-react"
-import { WikiRenderer } from "@/components/shared/wiki-renderer"
+import { WikiRenderer, type LinkState } from "@/components/shared/wiki-renderer"
 import type { WikiArticle, WikiLink } from "@/lib/types"
 
 export function WikiReader({ articles, links, selectedSlug, onNavigate, kaichiLevel }: {
@@ -30,6 +30,12 @@ export function WikiReader({ articles, links, selectedSlug, onNavigate, kaichiLe
   const related = links.filter(l => l.fromSlug === article.slug || l.toSlug === article.slug)
   const titleOf = (slug: string) => articles.find(a => a.slug === slug)?.title ?? slug
 
+  const resolveLink = (slug: string): LinkState => {
+    const target = articles.find(a => a.slug === slug)
+    if (!target) return "missing"
+    return target.kaichiRequired > kaichiLevel ? "locked" : "ok"
+  }
+
   return (
     <div style={{
       maxHeight:620, overflowY:"auto", padding:"20px 24px",
@@ -39,7 +45,7 @@ export function WikiReader({ articles, links, selectedSlug, onNavigate, kaichiLe
       <p style={{ fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:1, color:"var(--c-text-muted)", marginBottom:8 }}>
         {article.category}
       </p>
-      <WikiRenderer content={article.content} kaichiLevel={kaichiLevel} />
+      <WikiRenderer content={article.content} kaichiLevel={kaichiLevel} onNavigate={onNavigate} resolveLink={resolveLink} />
       {related.length > 0 && (
         <div style={{ marginTop:20, paddingTop:14, borderTop:"1px solid var(--c-border)" }}>
           <p style={{ fontSize:"0.68rem", textTransform:"uppercase", letterSpacing:1, color:"var(--c-text-muted)", marginBottom:8 }}>

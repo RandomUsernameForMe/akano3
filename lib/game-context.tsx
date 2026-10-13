@@ -5,6 +5,15 @@ import type { Team, Character, PointEntry, AlarmState, QRCode, Toast, RunSummary
 import { TEAMS, CHARACTERS, UNITS, CIRCLES } from "./data"
 import { ALARM_COLORS } from "./constants"
 import { getTeamName, romanNumeral, charTeam } from "./utils"
+import { teamDeltaOf } from "./point-resolution"
+
+type CharStateRow = { character_id: string; kaichi_level: number; peer_point_pool: number; lesson_claimed_this_window: boolean; specialization: string | null }
+type TeamUnitRow = { team_id: string; unit_id: string }
+type CircleMemberRow = { circle_id: string; character_id: string }
+
+function sendJson(url: string, body: unknown, method = "POST"): Promise<Response> {
+  return fetch(url, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+}
 
 export interface GameCtx {
   teams:              Team[]
@@ -46,10 +55,10 @@ export function useGame() {
 
 // Merge static CHARACTERS with mutable DB state
 function buildCharacters(
-  charState: { character_id: string; kaichi_level: number; peer_point_pool: number; lesson_claimed_this_window: boolean; specialization: string | null }[],
+  charState: CharStateRow[],
   characterPoints: { character_id: string; points: number }[],
-  circleMembers: { circle_id: string; character_id: string }[],
-  teamUnits: { team_id: string; unit_id: string }[]
+  circleMembers: CircleMemberRow[],
+  teamUnits: TeamUnitRow[]
 ): Character[] {
   const circlesByChar: Record<string, string[]> = {}
   for (const { circle_id, character_id } of circleMembers) {
@@ -86,7 +95,7 @@ function teamPointsFromChars(chars: Character[]): Record<string, number> {
 // Derive teams from character points + unit assignments.
 function buildTeams(
   chars: Character[],
-  teamUnits: { team_id: string; unit_id: string }[]
+  teamUnits: TeamUnitRow[]
 ): Team[] {
   const pointsMap = teamPointsFromChars(chars)
   const unitMap: Record<string, string> = {}
@@ -158,9 +167,9 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     const alarm   = data.alarm as Record<string, unknown>
     const config  = data.config as Record<string, unknown>
     const cp      = data.characterPoints as { character_id: string; points: number }[]
-    const cs      = data.charState as { character_id: string; kaichi_level: number; peer_point_pool: number; lesson_claimed_this_window: boolean; specialization: string | null }[]
-    const cm      = data.circleMembers as { circle_id: string; character_id: string }[]
-    const tu      = data.teamUnits as { team_id: string; unit_id: string }[]
+    const cs      = data.charState as CharStateRow[]
+    const cm      = data.circleMembers as CircleMemberRow[]
+    const tu      = data.teamUnits as TeamUnitRow[]
     const pl      = data.pointLog as Record<string, unknown>[]
     const qr      = data.qrCodes as Record<string, unknown>[]
     const runsRaw = data.runs as { id: number; name: string; is_active: boolean; created_at: string }[]
@@ -184,15 +193,30 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
     setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3500)
   }, [])
 
+  const markFetchFailure = useCallback(() => {
+    failCountRef.current++
+    if (failCountRef.current >= 3 && !offlineRef.current) {
+      addToast("Ztráta spojení se serverem", "error")
+      offlineRef.current = true
+    }
+  }, [addToast])
+
+  const callApi = useCallback(async (url: string, body: unknown, errMsg: string, method?: string): Promise<Response | null> => {
+    try {
+      const res = await sendJson(url, body, method)
+      if (!res.ok) { addToast(errMsg, "error"); return null }
+      return res
+    } catch {
+      addToast("Chyba sítě", "error")
+      return null
+    }
+  }, [addToast])
+
   const fetchGameState = useCallback(async () => {
     try {
       const res = await fetch("/api/game-state")
       if (!res.ok) {
-        failCountRef.current++
-        if (failCountRef.current >= 3 && !offlineRef.current) {
-          addToast("Ztráta spojení se serverem", "error")
-          offlineRef.current = true
-        }
+        markFetchFailure()
         return
       }
       failCountRef.current = 0
@@ -200,13 +224,9 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
       const data = await res.json()
       applyGameState(data)
     } catch {
-      failCountRef.current++
-      if (failCountRef.current >= 3 && !offlineRef.current) {
-        addToast("Ztráta spojení se serverem", "error")
-        offlineRef.current = true
-      }
+      markFetchFailure()
     }
-  }, [applyGameState, addToast])
+  }, [applyGameState, markFetchFailure])
 
   // Poll every 2s — no visibilitychange pause so background tabs still sync
   const isLoggedIn = currentUser !== null
@@ -236,9 +256,9 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   }, [])
 
   const assignPoints = useCallback(async (entry: Omit<PointEntry, "id" | "timestamp" | "resolvedTeamIds" | "resolvedCharacterIds">) => {
-    try {
-      const res = await fetch("/api/points", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(entry) })
-      if (!res.ok) { addToast("Chyba při zadávání bodů", "error"); return }
+    {
+      const res = await callApi("/api/points", entry, "Chyba při zadávání bodů")
+      if (!res) return
       const { id, resolvedTeamIds, resolvedCharacterIds } = await res.json()
       // Optimistic update: credit each resolved character, mirror onto team totals
       const full: PointEntry = { ...entry, id, timestamp: new Date(), resolvedTeamIds, resolvedCharacterIds }
@@ -246,18 +266,17 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
       setPointLog(prev => [full, ...prev])
       setCharacters(prev => prev.map(c => chars.includes(c.id) ? { ...c, points: c.points + entry.amount } : c))
       setTeams(prev => {
-        const delta: Record<string, number> = {}
-        for (const cid of chars) { const t = charTeam(cid); if (t) delta[t] = (delta[t] ?? 0) + entry.amount }
+        const delta = teamDeltaOf({ resolvedCharacterIds, resolvedTeamIds, amount: entry.amount })
         return prev.map(t => delta[t.id] ? { ...t, points: t.points + delta[t.id] } : t)
       })
       addToast(`${entry.amount > 0 ? "+" : ""}${entry.amount} bodů → ${resolvedTeamIds.map(getTeamName).join(", ")}`)
-    } catch { addToast("Chyba sítě", "error") }
-  }, [addToast])
+    }
+  }, [callApi, addToast])
 
   const updateKaichi = useCallback(async (characterId: string, level?: number) => {
-    try {
-      const res = await fetch("/api/kaichi", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ characterId, level }) })
-      if (!res.ok) { addToast("Chyba při změně kaichi", "error"); return }
+    {
+      const res = await callApi("/api/kaichi", { characterId, level }, "Chyba při změně kaichi")
+      if (!res) return
       setCharacters(prev => {
         const updated = prev.map(c => {
           if (c.id !== characterId) return c
@@ -271,21 +290,21 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
           : `${char?.name ?? "Postava"} — Kaichi ${romanNumeral(newLevel)}`)
         return updated
       })
-    } catch { addToast("Chyba sítě", "error") }
-  }, [addToast])
+    }
+  }, [callApi, addToast])
 
   const triggerAlarm = useCallback(async (type: AlarmState["type"], message: string) => {
     const color = ALARM_COLORS[type]
     setAlarmState({ active:true, type, message, color })
     try {
-      await fetch("/api/alarm", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"trigger", type, message }) })
+      await sendJson("/api/alarm", { action:"trigger", type, message })
     } catch { /* optimistic — polling will sync */ }
   }, [])
 
   const dismissAlarm = useCallback(async () => {
     setAlarmState(prev => ({ ...prev, active:false }))
     try {
-      await fetch("/api/alarm", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"dismiss" }) })
+      await sendJson("/api/alarm", { action:"dismiss" })
     } catch { /* optimistic */ }
   }, [])
 
@@ -294,75 +313,57 @@ export function GameProvider({ children, initialUserId }: { children: React.Reac
   }, [])
 
   const generateQR = useCallback(async (cfg: Omit<QRCode, "id" | "token" | "timesScanned" | "status" | "createdAt">) => {
-    try {
-      const res = await fetch("/api/qr", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(cfg) })
-      if (!res.ok) { addToast("Chyba při generování QR", "error"); return }
-      addToast("QR kód vygenerován")
-      fetchGameState()
-    } catch { addToast("Chyba sítě", "error") }
-  }, [addToast, fetchGameState])
+    if (!await callApi("/api/qr", cfg, "Chyba při generování QR")) return
+    addToast("QR kód vygenerován")
+    fetchGameState()
+  }, [callApi, addToast, fetchGameState])
 
   const toggleLesson = useCallback(async (active: boolean, durationMin = 30) => {
-    try {
-      const res = await fetch("/api/lesson", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"toggle", active, durationMin }) })
-      if (!res.ok) { addToast("Chyba", "error"); return }
-      setLessonWindowActive(active)
-      if (active) {
-        setLessonWindowEnd(new Date(Date.now() + durationMin * 60000))
-        setCharacters(prev => prev.map(c => ({ ...c, lessonClaimedThisWindow: false })))
-        addToast("Okno pro body za hodinu otevřeno")
-      } else {
-        setLessonWindowEnd(null)
-        addToast("Okno pro body za hodinu zavřeno")
-      }
-    } catch { addToast("Chyba sítě", "error") }
-  }, [addToast])
+    if (!await callApi("/api/lesson", { action:"toggle", active, durationMin }, "Chyba")) return
+    setLessonWindowActive(active)
+    if (active) {
+      setLessonWindowEnd(new Date(Date.now() + durationMin * 60000))
+      setCharacters(prev => prev.map(c => ({ ...c, lessonClaimedThisWindow: false })))
+      addToast("Okno pro body za hodinu otevřeno")
+    } else {
+      setLessonWindowEnd(null)
+      addToast("Okno pro body za hodinu zavřeno")
+    }
+  }, [callApi, addToast])
 
   const giftPoints = useCallback(async (fromId: string, toId: string, amount: number) => {
-    try {
-      const res = await fetch("/api/gift", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ fromId, toId, amount }) })
-      if (!res.ok) { addToast("Chyba při daru", "error"); return }
-      // Sender loses pool; recipient gains individual points → recipient's team total rises
-      setCharacters(prev => prev.map(c =>
-        c.id === fromId ? { ...c, peerPointPool: c.peerPointPool - amount }
-        : c.id === toId ? { ...c, points: c.points + amount }
-        : c))
-      const toTeam = charTeam(toId)
-      if (toTeam) setTeams(prev => prev.map(t => t.id === toTeam ? { ...t, points: t.points + amount } : t))
-    } catch { addToast("Chyba sítě", "error") }
-  }, [addToast])
+    if (!await callApi("/api/gift", { fromId, toId, amount }, "Chyba při daru")) return
+    // Sender loses pool; recipient gains individual points → recipient's team total rises
+    setCharacters(prev => prev.map(c =>
+      c.id === fromId ? { ...c, peerPointPool: c.peerPointPool - amount }
+      : c.id === toId ? { ...c, points: c.points + amount }
+      : c))
+    const toTeam = charTeam(toId)
+    if (toTeam) setTeams(prev => prev.map(t => t.id === toTeam ? { ...t, points: t.points + amount } : t))
+  }, [callApi])
 
   const claimLesson = useCallback(async (studentId: string) => {
     if (!lessonWindowActive) return
-    try {
-      const res = await fetch("/api/lesson", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"claim", characterId: studentId }) })
-      if (!res.ok) { addToast("Chyba", "error"); return }
-      const student = characters.find(c => c.id === studentId)
-      if (student?.teamId) {
-        await assignPoints({ sourceRole:"student", sourceCharacterId:studentId, targetType:"student", targetId:studentId, amount:5, actionType:"lesson", note:"Body za hodinu" })
-      }
-      setCharacters(prev => prev.map(c => c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c))
-      addToast("Body za hodinu přidány!")
-    } catch { addToast("Chyba sítě", "error") }
-  }, [lessonWindowActive, characters, assignPoints, addToast])
+    if (!await callApi("/api/lesson", { action:"claim", characterId: studentId }, "Chyba")) return
+    const student = characters.find(c => c.id === studentId)
+    if (student?.teamId) {
+      await assignPoints({ sourceRole:"student", sourceCharacterId:studentId, targetType:"student", targetId:studentId, amount:5, actionType:"lesson", note:"Body za hodinu" })
+    }
+    setCharacters(prev => prev.map(c => c.id === studentId ? { ...c, lessonClaimedThisWindow: true } : c))
+    addToast("Body za hodinu přidány!")
+  }, [lessonWindowActive, characters, assignPoints, callApi, addToast])
 
   const setActiveRun = useCallback(async (runId: number) => {
-    try {
-      const res = await fetch("/api/runs", { method:"PATCH", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ action:"setActive", runId }) })
-      if (!res.ok) { addToast("Chyba při přepínání běhu", "error"); return }
-      addToast("Aktivní běh přepnut")
-      fetchGameState()
-    } catch { addToast("Chyba sítě", "error") }
-  }, [addToast, fetchGameState])
+    if (!await callApi("/api/runs", { action:"setActive", runId }, "Chyba při přepínání běhu", "PATCH")) return
+    addToast("Aktivní běh přepnut")
+    fetchGameState()
+  }, [callApi, addToast, fetchGameState])
 
   const createRun = useCallback(async (name: string) => {
-    try {
-      const res = await fetch("/api/runs", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ name }) })
-      if (!res.ok) { addToast("Chyba při vytváření běhu", "error"); return }
-      addToast(`Běh "${name}" vytvořen`)
-      fetchGameState()
-    } catch { addToast("Chyba sítě", "error") }
-  }, [addToast, fetchGameState])
+    if (!await callApi("/api/runs", { name }, "Chyba při vytváření běhu")) return
+    addToast(`Běh "${name}" vytvořen`)
+    fetchGameState()
+  }, [callApi, addToast, fetchGameState])
 
   const value = useMemo<GameCtx>(() => ({
     teams, characters, pointLog, alarmState, broadcastActive,

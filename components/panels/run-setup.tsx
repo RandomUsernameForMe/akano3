@@ -1,11 +1,12 @@
 "use client"
 
 import React, { useState } from "react"
-import { IconPlayerPlay, IconPlus } from "@tabler/icons-react"
+import { IconPlayerPlay, IconPlus, IconDownload } from "@tabler/icons-react"
 import { Input } from "@/components/ui/input"
 import { useGame } from "@/lib/game-context"
 import { TEAMS, UNITS, CIRCLES, CHARACTERS } from "@/lib/data"
 import { getTeamName } from "@/lib/utils"
+import { buildStandingsCsv } from "@/lib/standings-csv"
 
 const SPECIALIZATIONS = [
   { value: "", label: "—" },
@@ -48,6 +49,17 @@ export function RunSetupPanel() {
   const [savingSpec, setSavingSpec] = useState<string | null>(null)
 
   const students = CHARACTERS.filter(c => c.role === "student" || c.role === "ruze")
+
+  const handleExportResults = () => {
+    const runName = runs.find(r => r.id === activeRunId)?.name ?? "beh"
+    const csv = buildStandingsCsv({ characters, teams, units: UNITS, circles: CIRCLES })
+    const blob = new Blob(["﻿" + csv], { type: "text/csv" })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a"); a.href = url
+    a.download = `akano3-vysledky-${runName.replace(/[^\p{L}\p{N}]+/gu, "-")}.csv`
+    document.body.appendChild(a); a.click(); document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
 
   const handleCreateRun = async () => {
     if (!newRunName.trim()) return
@@ -127,6 +139,17 @@ export function RunSetupPanel() {
               </div>
             ))}
           </div>
+
+          <button
+            onClick={handleExportResults}
+            style={{
+              display: "flex", alignItems: "center", gap: 5, marginBottom: 16,
+              backgroundColor: "var(--c-teal)", color: "#F4ECDF", border: "none",
+              borderRadius: 6, padding: "6px 12px", cursor: "pointer", fontSize: "0.8rem", fontWeight: 700,
+            }}
+          >
+            <IconDownload size={13} /> Export výsledků
+          </button>
 
           <div style={{ display: "flex", gap: 8 }}>
             <Input

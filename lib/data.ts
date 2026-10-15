@@ -44,7 +44,7 @@ export const CIRCLES: Circle[] = [
   { id:"C3", name:"Vědecký",         memberIds:["S030","S002","S008","S011","S020"] },
   { id:"C4", name:"Rituální",        memberIds:["S023","S001","S010","S019","S024"] },
   { id:"C5", name:"Akano Shōko-dan", memberIds:["S025","S026","S027","S004","S013"] },
-  { id:"C6", name:"Literární",       memberIds:["S007","S014","S022","S028","S029"] },
+  { id:"C6", name:"Literární",       memberIds:["S007","S014","S022","S028","S029","S005"] },
 ]
 
 export const CHARACTERS: Character[] = [

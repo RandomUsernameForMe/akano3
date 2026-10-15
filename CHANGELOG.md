@@ -1,3 +1,4 @@
+## [2026-10-15] - wiki admin: společný hook useAdminCrud pro CRUD seznam článků a vazeb
 ## [2026-10-13] - game-context: jeden helper pro volání API (sendJson/callApi), markFetchFailure a teamDeltaOf v assignPoints
 ## [2026-10-13] - claim lekce ověřuje okno a duplicitu, body zapisuje server
 ## [2026-10-13] - GM: tlačítko „Export výsledků“ (CSV pořadí studentů, týmů, jednotek a kruhů)

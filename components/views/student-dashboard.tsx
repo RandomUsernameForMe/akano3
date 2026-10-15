@@ -56,7 +56,7 @@ export function StudentDashboard() {
     return () => clearInterval(iv)
   }, [lessonWindowEnd])
 
-  const history = useMemo(() => student ? characterHistory(pointLog, student.id) : [], [pointLog, student])
+  const history = useMemo(() => student ? characterHistory(pointLog, student.id, student.points) : [], [pointLog, student])
 
   if (!student) return null
 

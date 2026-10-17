@@ -1,3 +1,4 @@
+## [2026-10-15] - Storno skupinového záznamu vrací body přesně těm postavám, které je dostaly
 ## [2026-10-13] - game-context: jeden helper pro volání API (sendJson/callApi), markFetchFailure a teamDeltaOf v assignPoints
 ## [2026-10-15] - StudentDashboard rozdělen na komponenty záložek (components/views/student/), bez změny chování
 ## [2026-10-13] - claim lekce ověřuje okno a duplicitu, body zapisuje server
